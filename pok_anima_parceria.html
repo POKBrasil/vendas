@@ -2045,6 +2045,28 @@
     .eco-convite { padding: 32px 24px; }
     .eco-convite h3 { font-size: 22px; }
     .eco-convite-razoes { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  /* Em mobile estreito (≤640px), permitir scroll horizontal no diagrama
+     SVG para preservar legibilidade do texto */
+  @media (max-width: 640px) {
+    .eco-fluxo-diagrama {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .eco-diagrama-svg {
+      min-width: 720px;
+    }
+    .eco-rede-grid { grid-template-columns: 1fr; }
+    .eco-loop-banner { flex-direction: column; text-align: center; gap: 12px; }
+    .eco-fluxo { padding: 24px 16px; }
+    .eco-convite { padding: 28px 20px; }
+    .eco-convite h3 { font-size: 20px; }
   }
 
   /* ==================== ANIMAÇÕES ==================== */
