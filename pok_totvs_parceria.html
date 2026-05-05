@@ -134,9 +134,14 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
 .cta-final-inner { position: relative; z-index: 2; }
 .cta-final h2 { font-size: clamp(22px, 2.4vw, 32px); font-weight: 800; line-height: 1.2; margin-bottom: 14px; letter-spacing: -0.015em; }
 .cta-final p { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.65; max-width: 640px; margin: 0 auto 28px; }
-.cta-final-btn { font-family: 'Poppins', sans-serif; display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 99px; font-size: 14px; font-weight: 700; background: #fff; color: var(--purple-dark); border: none; cursor: pointer; transition: all 0.18s; text-decoration: none; }
-.cta-final-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-.cta-final-btn svg { width: 14px; height: 14px; }
+.cta-contact-card { display: inline-flex; flex-direction: row; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-md); padding: 22px 28px; gap: 22px; text-align: left; }
+.cta-contact-qr { width: 96px; height: 96px; flex-shrink: 0; background: #fff; border-radius: 8px; padding: 6px; display: flex; align-items: center; justify-content: center; }
+.cta-contact-qr img { width: 100%; height: 100%; display: block; }
+.cta-contact-info { display: flex; flex-direction: column; gap: 4px; }
+.cta-contact-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+.cta-contact-name { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+.cta-contact-email { font-size: 14px; font-weight: 500; color: var(--purple-light); text-decoration: none; transition: color 0.18s; word-break: break-all; }
+.cta-contact-email:hover { color: #fff; }
 
 /* ─── FOOTER ────────────────────────────────────────────────────────────── */
 .site-footer { text-align: center; padding: 40px 32px 56px; border-top: 1px solid var(--border); margin-top: 32px; }
@@ -169,6 +174,10 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
   .hero-eyebrow { font-size: 10px; padding: 5px 12px; letter-spacing: 0.1em; }
   .revenue-banner { flex-direction: column; align-items: flex-start; padding: 18px 20px; }
   .cta-final { padding: 36px 22px; }
+  .cta-contact-card { padding: 18px 22px; flex-direction: column; gap: 16px; text-align: center; }
+  .cta-contact-info { align-items: center; }
+  .cta-contact-qr { width: 110px; height: 110px; }
+  .cta-contact-name { font-size: 16px; }
 }
 
 @media (max-width: 420px) {
@@ -293,8 +302,8 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
 
         <div class="partnership-step">
           <div class="partnership-step-num">03</div>
-          <div class="partnership-step-title"><span data-pt="Integração técnica conforme demanda" data-es="Integración técnica según demanda">Integração técnica conforme demanda</span></div>
-          <div class="partnership-step-desc"><span data-pt="Quando o volume e o interesse mútuo justificarem, TOTVS e POK desenvolvem integração nativa via API, transformando a POK em módulo do ecossistema TOTVS." data-es="Cuando el volumen y el interés mutuo lo justifiquen, TOTVS y POK desarrollan integración nativa vía API, transformando POK en módulo del ecosistema TOTVS.">Quando o volume e o interesse mútuo justificarem, TOTVS e POK desenvolvem integração nativa via API, transformando a POK em módulo do ecossistema TOTVS.</span></div>
+          <div class="partnership-step-title"><span data-pt="Integração nativa com produtos TOTVS" data-es="Integración nativa con productos TOTVS">Integração nativa com produtos TOTVS</span></div>
+          <div class="partnership-step-desc"><span data-pt="A POK se conecta ao ecossistema TOTVS via API ou LTI, emitindo credenciais automaticamente a partir de eventos do TOTVS Educacional (conclusão de curso, diplomação) e do TOTVS RH (programas obrigatórios e treinamentos regulatórios)." data-es="POK se conecta al ecosistema TOTVS vía API o LTI, emitiendo credenciales automáticamente a partir de eventos de TOTVS Educacional (conclusión de curso, graduación) y de TOTVS RH (programas obligatorios y capacitaciones regulatorias).">A POK se conecta ao ecossistema TOTVS via API ou LTI, emitindo credenciais automaticamente a partir de eventos do TOTVS Educacional (conclusão de curso, diplomação) e do TOTVS RH (programas obrigatórios e treinamentos regulatórios).</span></div>
         </div>
 
       </div>
@@ -312,15 +321,21 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
     </div>
   </div>
 
-  <!-- CTA FINAL -->
+  <!-- CTA FINAL com contato -->
   <div class="cta-final">
     <div class="cta-final-inner">
       <h2><span data-pt="Vamos explorar essa parceria?" data-es="¿Vamos a explorar esta asociación?">Vamos explorar essa parceria?</span></h2>
       <p><span data-pt="A POK está disponível para aprofundar o encaixe com cada vertical TOTVS — Educacional, RH e ESG Consulting — e construir conjuntamente os primeiros casos de demonstração com clientes da base TOTVS." data-es="POK está disponible para profundizar el encaje con cada vertical TOTVS — Educacional, RH y ESG Consulting — y construir conjuntamente los primeros casos de demostración con clientes de la base TOTVS.">A POK está disponível para aprofundar o encaixe com cada vertical TOTVS — Educacional, RH e ESG Consulting — e construir conjuntamente os primeiros casos de demonstração com clientes da base TOTVS.</span></p>
-      <a href="mailto:hello@pok.tec.br" class="cta-final-btn">
-        <span data-pt="Conversar com a POK" data-es="Hablar con POK">Conversar com a POK</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <div class="cta-contact-card">
+        <div class="cta-contact-qr">
+          <img src="data:image/png;base64,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" alt="QR Code de contato — Carolina Ferrés">
+        </div>
+        <div class="cta-contact-info">
+          <div class="cta-contact-label"><span data-pt="Contato POK" data-es="Contacto POK">Contato POK</span></div>
+          <div class="cta-contact-name">Carolina Ferrés</div>
+          <a href="mailto:carolina@pok.tech" class="cta-contact-email">carolina@pok.tech</a>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -330,7 +345,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
   <div class="footer-logo">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" aria-label="POK"><path d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/></svg>
   </div>
-  <p><span data-pt="Sistema de captura de dados via micro-credenciais" data-es="Sistema de captura de datos vía micro-credenciales">Sistema de captura de dados via micro-credenciais</span> · <a href="mailto:hello@pok.tec.br">hello@pok.tec.br</a></p>
+  <p><span data-pt="© POK Tecnologia · Todos os direitos reservados" data-es="© POK Tecnología · Todos los derechos reservados">© POK Tecnologia · Todos os direitos reservados</span></p>
 </footer>
 
 <script>
