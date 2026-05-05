@@ -1900,31 +1900,41 @@
   /* Em mobile, ajustar posição para não conflitar com hamburguer */
   @media (max-width: 900px) {
     .lang-toggle {
-      top: auto;
-      bottom: 20px;
-      right: 20px;
+      top: 20px;
+      right: auto;
+      left: 20px;
+      bottom: auto;
     }
   }
 
+  /* Quando sidebar mobile aberta, esconder o menu-toggle */
+  body.sidebar-aberta .menu-toggle {
+    display: none;
+  }
+
   /* ==================== RESPONSIVO ==================== */
+  /* Tablets grandes / laptops pequenos */
   @media (max-width: 1024px) {
     section { padding: 80px 48px; }
     .hero { padding: 80px 48px; }
     .micros-grid { grid-template-columns: repeat(2, 1fr); }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
+  /* Tablets / mobile largo */
   @media (max-width: 900px) {
     .sidebar {
       transform: translateX(-100%);
       transition: transform 0.3s ease;
     }
-    .sidebar.open { transform: translateX(0); }
+    .sidebar.open { transform: translateX(0); z-index: 300; }
     .main { margin-left: 0; }
     .menu-toggle { display: flex; }
     section { padding: 64px 24px; }
     .hero { padding: 96px 24px 64px; }
-    .ecosystem-grid { grid-template-columns: 1fr; }
-    .ecosystem-arrow { transform: rotate(90deg); text-align: center; }
+
+    /* Grids viram 1 coluna */
+    .ecosystem-grid,
     .campanha-intro,
     .trilhas-intro,
     .value-cards,
@@ -1932,39 +1942,166 @@
     .valores-grid,
     .about-grid,
     .two-col,
-    .contato-grid {
+    .contato-grid,
+    .doacao-destaque,
+    .programa-pok {
       grid-template-columns: 1fr;
       gap: 32px;
     }
+    .ecosystem-arrow { transform: rotate(90deg); text-align: center; }
+
+    /* Tabelas ficam menores */
     .valor-tabela { font-size: 12px; }
     .valor-tabela thead th,
     .valor-tabela tbody td { padding: 10px 12px; }
+
+    /* Contato */
     .contato-info h3 { font-size: 28px; }
     .contato-qr img { width: 180px; height: 180px; }
+    .contato-grid { gap: 32px; max-width: 100%; }
+
+    /* Seção micro-credenciais */
     .micro-section { padding: 64px 24px; }
     .stats-card { padding: 2rem 1.5rem; }
     .stat-item .number { font-size: 2.2rem; }
-    .doacao-destaque {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
+
+    /* Doação box */
+    .doacao-destaque { gap: 24px; }
     .doacao-box { padding: 36px 28px; }
-    .programa-pok { grid-template-columns: 1fr; }
+    .doacao-numero { font-size: 64px; }
+
+    /* Hero */
     .hero h1 { font-size: 40px; }
+
+    /* Padding de cards / boxes grandes */
+    .feature-curso,
+    .programa-pok,
+    .case-latam,
+    .visao-final,
+    .ecosystem-diagram,
+    .dashboard-cta,
+    .valores-nota {
+      padding: 32px 24px;
+    }
+
+    /* Pilar 01 horizontal */
+    .value-card-featured { padding: 28px 24px; }
+
+    /* Programa POK h3 menor */
+    .programa-pok h3 { font-size: 22px; }
+
+    /* Feature curso h3 */
+    .feature-curso h3 { font-size: 26px; }
+
+    /* Botão CTA dentro do dashboard - fica full-width */
+    .dashboard-cta .btn-cta { align-self: flex-start; }
+
+    /* Pesquisa parceiros - botão volta ao final em coluna única */
+    .pesquisa-parceiros { gap: 8px; }
+    .btn-cta-fnesp { margin-left: 0; margin-top: 8px; width: 100%; justify-content: center; }
   }
 
+  /* Smartphones (≤640px) */
   @media (max-width: 640px) {
-    .stat-grid { grid-template-columns: 1fr; }
+    section { padding: 56px 20px; }
+    .hero { padding: 88px 20px 56px; }
+
+    /* Grids agressivos */
+    .stat-grid { grid-template-columns: 1fr; gap: 12px; }
     .micros-grid { grid-template-columns: 1fr; }
-    .hero-brands { gap: 12px; }
-    .brand-pill { padding: 10px 20px; font-size: 14px; }
+    .cycle-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+
+    /* Hero */
+    .hero h1 { font-size: 32px; letter-spacing: -1px; }
+    .hero-subtitle { font-size: 14px; }
+    .hero-brands { gap: 10px; flex-wrap: wrap; }
+    .brand-pill { padding: 9px 18px; font-size: 13px; }
+
+    /* Padding interno menor em todos os boxes grandes */
     .ecosystem-diagram,
     .case-latam,
     .programa-pok,
     .feature-curso,
-    .visao-final { padding: 28px 24px; }
-    .feature-curso h3 { font-size: 26px; }
+    .visao-final,
+    .dashboard-cta,
+    .stats-card,
+    .doacao-box,
+    .valores-nota,
+    .pesquisa-card { padding: 24px 20px; }
+
+    .ecosystem-node { padding: 24px 20px; }
+    .value-card { padding: 24px 20px; }
+    .valor-card { padding: 24px 20px; }
+
+    /* Tipografia titles menores */
+    .feature-curso h3 { font-size: 22px; }
+    .programa-pok h3 { font-size: 20px; }
+    .case-latam h3 { font-size: 22px; }
+    .doacao-numero { font-size: 56px; letter-spacing: -2px; }
     .visao-numero { font-size: 56px; letter-spacing: -2px; }
+    .visao-label { font-size: 18px; }
+
+    /* Tabelas em smartphones */
+    .valor-tabela { font-size: 11.5px; }
+    .valor-tabela thead th { font-size: 9.5px; padding: 9px 8px; letter-spacing: 0.8px; }
+    .valor-tabela tbody td { padding: 9px 8px; }
+    /* Wrapper de overflow para tabela caso fique muito apertada */
+    .valor-card { overflow-x: auto; }
+
+    /* Cycle cards */
+    .cycle-card { padding: 1.4rem; }
+
+    /* Stats card mini */
+    .stats-card { padding: 1.5rem 1.2rem; }
+    .stats-grid { gap: 1.2rem; }
+    .stat-item .number { font-size: 1.8rem; }
+    .stat-item .label { font-size: 0.85rem; }
+
+    /* Contato */
+    .contato-info h3 { font-size: 24px; }
+    .contato-qr img { width: 160px; height: 160px; }
+    .contato-qr { padding: 18px; }
+
+    /* Sidebar mais estreita em mobile aberta */
+    .sidebar { width: 260px; padding: 24px 20px; }
+
+    /* Toggle idioma menor (mantém top:20 left:20 do breakpoint 900px) */
+    .lang-toggle { padding: 3px; }
+    .lang-toggle button { padding: 6px 14px; font-size: 10.5px; }
+
+    /* Feature/Recursos cards */
+    .feature-card { padding: 1.6rem; }
+
+    /* Programa POK - botão full em mobile */
+    .programa-pok .btn-cta { width: 100%; justify-content: center; margin-top: 8px; }
+
+    /* Doacao box - reordenar/centralizar */
+    .doacao-box { gap: 14px; }
+    .doacao-box h3 { font-size: 20px; }
+
+    /* Section titles cabem melhor */
+    .section-title { letter-spacing: -0.3px; }
+
+    /* Programa POK tag não quebra */
+    .programa-pok-tag { font-size: 10px; letter-spacing: 1.2px; }
+  }
+
+  /* Smartphones bem pequenos (≤380px) */
+  @media (max-width: 380px) {
+    section { padding: 48px 16px; }
+    .hero { padding: 80px 16px 48px; }
+    .hero h1 { font-size: 28px; }
+    .visao-numero, .doacao-numero { font-size: 48px; }
+    .feature-curso h3, .case-latam h3, .programa-pok h3 { font-size: 19px; }
+    .valor-tabela thead th { font-size: 9px; padding: 8px 6px; }
+    .valor-tabela tbody td { padding: 8px 6px; font-size: 11px; }
+  }
+
+  /* Quebras de linha responsivas */
+  .br-desktop { display: inline; }
+  @media (max-width: 640px) {
+    .br-desktop { display: none; }
   }
 
   /* ==================== ANIMAÇÕES ==================== */
@@ -1995,7 +2132,7 @@
 </div>
 
 <!-- Mobile menu toggle -->
-<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')" aria-label="Abrir menu" data-i18n-aria="menu_btn_label">
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open');document.body.classList.toggle('sidebar-aberta')" aria-label="Abrir menu" data-i18n-aria="menu_btn_label">
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
 </button>
 
@@ -2050,9 +2187,7 @@
     <div class="hero-content">
       <span class="hero-eyebrow" data-i18n="hero_eyebrow">Parceria Estratégica · 2026</span>
       <h1 data-i18n-html="hero_h1">
-        Da maior base de alunos<br>
-        EAD do Brasil para um<br>
-        case <span class="accent">Brasil</span> <span class="accent-e">e</span> <span class="accent">LATAM</span>
+        Da maior base de alunos<br class="br-desktop"> EAD do Brasil para um<br class="br-desktop"> case <span class="accent">Brasil</span> <span class="accent-e">e</span> <span class="accent">LATAM</span>
       </h1>
       <p class="hero-subtitle" data-i18n-html="hero_subtitle">
         Proposta de parceria entre a POK, plataforma de credenciais verificáveis em blockchain, e a Vitru Educação, controladora das marcas UNIASSELVI e UniCesumar — em duas frentes: a <a href="https://pokbrasil.github.io/marketing/pok_campanha_egressos.html" target="_blank" rel="noopener">Campanha Egressos e Empregabilidade 2026</a> e a adoção do <a href="https://pok672.ac-page.com/programa-pok-de-trilhas-formativas-microcertificadas" target="_blank" rel="noopener">Programa POK de Trilhas Formativas Micro-Certificadas por Competências</a>.
@@ -2769,12 +2904,8 @@
     "es": "Alianza Estratégica · 2026"
   },
   "hero_h1": {
-    "pt": "Da maior base de alunos<br>EAD do Brasil para um<br>case <span class=\"accent\">Brasil</span> <span class=\"accent-e\">y</span> <span class=\"accent\">LATAM</span>",
-    "es": "De la mayor base de estudiantes<br>de educación a distancia de Brasil<br>a un caso <span class=\"accent\">Brasil</span> <span class=\"accent-e\">y</span> <span class=\"accent\">LATAM</span>"
-  },
-  "hero_h1_pt": {
-    "pt": "Da maior base de alunos<br>EAD do Brasil para um<br>case <span class=\"accent\">Brasil</span> <span class=\"accent-e\">e</span> <span class=\"accent\">LATAM</span>",
-    "es": "De la mayor base de estudiantes<br>de educación a distancia de Brasil<br>a un caso <span class=\"accent\">Brasil</span> <span class=\"accent-e\">y</span> <span class=\"accent\">LATAM</span>"
+    "pt": "Da maior base de alunos<br class=\"br-desktop\"> EAD do Brasil para um<br class=\"br-desktop\"> case <span class=\"accent\">Brasil</span> <span class=\"accent-e\">e</span> <span class=\"accent\">LATAM</span>",
+    "es": "De la mayor base de estudiantes<br class=\"br-desktop\"> de educación a distancia de Brasil<br class=\"br-desktop\"> a un caso <span class=\"accent\">Brasil</span> <span class=\"accent-e\">y</span> <span class=\"accent\">LATAM</span>"
   },
   "hero_subtitle": {
     "pt": "Proposta de parceria entre a POK, plataforma de credenciais verificáveis em blockchain, e a Vitru Educação, controladora das marcas UNIASSELVI e UniCesumar — em duas frentes: a <a href=\"https://pokbrasil.github.io/marketing/pok_campanha_egressos.html\" target=\"_blank\" rel=\"noopener\">Campanha Egressos e Empregabilidade 2026</a> e a adoção do <a href=\"https://pok672.ac-page.com/programa-pok-de-trilhas-formativas-microcertificadas\" target=\"_blank\" rel=\"noopener\">Programa POK de Trilhas Formativas Micro-Certificadas por Competências</a>.",
