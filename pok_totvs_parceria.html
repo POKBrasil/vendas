@@ -27,6 +27,10 @@
   --amber: #C8A04C;
   --amber-light: #FAF1DC;
   --amber-dark: #8C6E27;
+  --tv-purple: #2A1B5E;
+  --tv-purple-deep: #1a0e3d;
+  --tv-magenta: #E91E63;
+  --tv-cyan: #00D4FF;
   --radius-lg: 20px;
   --radius-md: 12px;
 }
@@ -127,6 +131,23 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
 .revenue-banner-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
 .revenue-banner-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; }
 
+/* ─── ATIVAÇÃO UNIVERSO TOTVS ──────────────────────────────────────────── */
+.activation { margin-bottom: 56px; }
+.activation-card { background: linear-gradient(135deg, var(--tv-purple-deep) 0%, var(--tv-purple) 60%, #4A2D8F 100%); border: 1px solid rgba(0,212,255,0.3); border-radius: var(--radius-lg); padding: 44px 56px; position: relative; overflow: hidden; box-shadow: 0 16px 48px rgba(42,27,94,0.25); }
+/* Anel cósmico (Saturno) à direita */
+.activation-card::before { content: ''; position: absolute; top: -120px; right: -120px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(0,212,255,0.18) 0%, rgba(0,212,255,0) 65%); pointer-events: none; }
+.activation-card::after { content: ''; position: absolute; bottom: -150px; left: 10%; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(233,30,99,0.15) 0%, rgba(233,30,99,0) 65%); pointer-events: none; }
+.activation-inner { position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center; }
+.activation-icon { width: 88px; height: 88px; border-radius: 20px; background: rgba(255,255,255,0.06); border: 1px solid rgba(0,212,255,0.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--tv-cyan); box-shadow: 0 8px 24px rgba(0,212,255,0.15), inset 0 0 24px rgba(0,212,255,0.08); }
+.activation-icon svg { width: 44px; height: 44px; }
+.activation-content { flex: 1; }
+.activation-eyebrow { display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(90deg, var(--tv-magenta) 0%, var(--tv-cyan) 100%); color: #fff; border-radius: 99px; padding: 4px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+.activation-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+.activation-title { font-size: clamp(20px, 2vw, 26px); font-weight: 800; color: #fff; margin-bottom: 8px; line-height: 1.25; letter-spacing: -0.01em; }
+.activation-event { font-size: 13px; font-weight: 700; color: var(--tv-cyan); letter-spacing: 0.02em; margin-bottom: 12px; }
+.activation-desc { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.7; }
+.activation-desc strong { color: #fff; font-weight: 700; }
+
 /* ─── CTA FINAL ─────────────────────────────────────────────────────────── */
 .cta-final { background: var(--purple-dark); border-radius: var(--radius-lg); padding: 56px 56px; text-align: center; color: #fff; position: relative; overflow: hidden; margin-bottom: 32px; }
 .cta-final::before { content: ''; position: absolute; top: -80px; right: -80px; width: 280px; height: 280px; border-radius: 50%; background: rgba(123,79,207,0.25); pointer-events: none; }
@@ -157,6 +178,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
   .hero { padding: 56px 40px 84px; }
   .content { padding: 0 24px 48px; margin-top: -56px; }
   .intro-block, .partnership-card { padding: 36px 36px; }
+  .activation-card { padding: 36px 36px; }
   .partnership-grid { grid-template-columns: 1fr; }
   .cta-final { padding: 44px 36px; }
 }
@@ -173,6 +195,10 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
   .footer-logo svg { height: 26px; }
   .hero-eyebrow { font-size: 10px; padding: 5px 12px; letter-spacing: 0.1em; }
   .revenue-banner { flex-direction: column; align-items: flex-start; padding: 18px 20px; }
+  .activation-card { padding: 32px 24px; }
+  .activation-inner { grid-template-columns: 1fr; gap: 18px; text-align: left; }
+  .activation-icon { width: 64px; height: 64px; border-radius: 14px; }
+  .activation-icon svg { width: 32px; height: 32px; }
   .cta-final { padding: 36px 22px; }
   .cta-contact-card { padding: 18px 22px; flex-direction: column; gap: 16px; text-align: center; }
   .cta-contact-info { align-items: center; }
@@ -182,6 +208,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
 
 @media (max-width: 420px) {
   .hero-eyebrow { white-space: normal; line-height: 1.4; }
+  .activation-event { line-height: 1.5; }
 }
 
 @media (max-width: 380px) {
@@ -201,6 +228,13 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
   .market-card-cta { padding: 11px 18px; font-size: 12px; }
   .section-label { font-size: 10px; gap: 8px; }
   .partnership-step { padding: 20px 18px; }
+  .activation-card { padding: 28px 18px; }
+  .activation-icon { width: 56px; height: 56px; border-radius: 12px; }
+  .activation-icon svg { width: 28px; height: 28px; }
+  .activation-title { font-size: 18px; }
+  .activation-event { font-size: 12px; }
+  .activation-desc { font-size: 13px; }
+  .activation-eyebrow { font-size: 9px; padding: 4px 10px; }
   .cta-final h2 { font-size: 20px; }
   .cta-final p { font-size: 13px; }
 }
@@ -277,6 +311,23 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
         </button>
       </a>
 
+    </div>
+  </div>
+
+  <!-- ATIVAÇÃO: Universo TOTVS 2026 -->
+  <div class="activation">
+    <div class="activation-card">
+      <div class="activation-inner">
+        <div class="activation-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="15" r="2.5" fill="currentColor"/></svg>
+        </div>
+        <div class="activation-content">
+          <div class="activation-eyebrow"><span class="dot"></span> <span data-pt="Proposta de ativação" data-es="Propuesta de activación">Proposta de ativação</span></div>
+          <h2 class="activation-title"><span data-pt="POK como patrocinadora oficial de credenciais do Universo TOTVS" data-es="POK como patrocinadora oficial de credenciales del Universo TOTVS">POK como patrocinadora oficial de credenciais do Universo TOTVS</span></h2>
+          <div class="activation-event"><span data-pt="Universo TOTVS 2026 · 13 e 14 de outubro · São Paulo" data-es="Universo TOTVS 2026 · 13 y 14 de octubre · São Paulo">Universo TOTVS 2026 · 13 e 14 de outubro · São Paulo</span></div>
+          <p class="activation-desc"><span data-pt="A POK oferece à TOTVS, em forma de patrocínio em espécie, a certificação em blockchain de todos os participantes do Universo TOTVS 2026. Cada participante recebe credencial verificável publicamente, vinculável ao seu LinkedIn — transformando os milhares de presentes em embaixadores espontâneos da parceria POK + TOTVS no maior evento de tecnologia e negócios do Brasil. Em troca, a POK ganha presença de marca no evento e visibilidade junto ao ecossistema TOTVS." data-es="POK ofrece a TOTVS, en forma de patrocinio en especie, la certificación en blockchain de todos los participantes del Universo TOTVS 2026. Cada participante recibe credencial verificable públicamente, vinculable a su LinkedIn — transformando a los miles de presentes en embajadores espontáneos de la asociación POK + TOTVS en el mayor evento de tecnología y negocios de Brasil. A cambio, POK gana presencia de marca en el evento y visibilidad ante el ecosistema TOTVS.">A POK oferece à TOTVS, em forma de patrocínio em espécie, a certificação em blockchain de todos os participantes do Universo TOTVS 2026. Cada participante recebe credencial verificável publicamente, vinculável ao seu LinkedIn — transformando os milhares de presentes em embaixadores espontâneos da parceria POK + TOTVS no maior evento de tecnologia e negócios do Brasil. Em troca, a POK ganha presença de marca no evento e visibilidade junto ao ecossistema TOTVS.</span></p>
+        </div>
+      </div>
     </div>
   </div>
 
