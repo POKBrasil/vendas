@@ -133,6 +133,20 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
 .revenue-banner-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
 .revenue-banner-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; }
 
+/* ─── BLOCO NRs (GESTÃO REGULATÓRIA) ───────────────────────────────────── */
+.nr1 { margin-bottom: 56px; }
+.nr1-card { background: linear-gradient(135deg, var(--purple-faint) 0%, #fbf8ff 100%); border: 1px solid var(--purple-light); border-radius: var(--radius-lg); padding: 44px 56px; position: relative; overflow: hidden; }
+.nr1-card::before { content: ''; position: absolute; top: -120px; right: -100px; width: 320px; height: 320px; border-radius: 50%; background: rgba(29,158,117,0.06); pointer-events: none; }
+.nr1-eyebrow { display: inline-flex; align-items: center; gap: 7px; background: var(--green); color: #fff; border-radius: 99px; padding: 5px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; position: relative; z-index: 2; }
+.nr1-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; }
+.nr1-title { font-size: clamp(20px, 2vw, 26px); font-weight: 800; color: var(--ink); margin-bottom: 14px; line-height: 1.25; letter-spacing: -0.01em; position: relative; z-index: 2; max-width: 820px; }
+.nr1-content { position: relative; z-index: 2; }
+.nr1-content p { font-size: 14px; color: var(--ink-muted); line-height: 1.75; margin-bottom: 14px; }
+.nr1-content p:last-of-type { margin-bottom: 22px; }
+.nr1-content strong { color: var(--ink); font-weight: 700; }
+.nr1-content .date-highlight { color: var(--green-dark); font-weight: 700; }
+
+
 /* ─── ATIVAÇÃO UNIVERSO TOTVS ──────────────────────────────────────────── */
 .activation { margin-bottom: 56px; }
 .activation-card { background: linear-gradient(135deg, var(--tv-purple-deep) 0%, var(--tv-purple) 60%, #4A2D8F 100%); border: 1px solid rgba(0,212,255,0.3); border-radius: var(--radius-lg); padding: 44px 56px; position: relative; overflow: hidden; box-shadow: 0 16px 48px rgba(42,27,94,0.25); }
@@ -181,6 +195,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
   .content { padding: 0 24px 48px; margin-top: -56px; }
   .intro-block, .partnership-card { padding: 36px 36px; }
   .activation-card { padding: 36px 36px; }
+  .nr1-card { padding: 36px 36px; }
   .partnership-grid { grid-template-columns: 1fr; }
   .cta-final { padding: 44px 36px; }
 }
@@ -201,6 +216,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
   .revenue-banner { flex-direction: column; align-items: flex-start; padding: 18px 20px; }
   .activation-card { padding: 32px 24px; }
   .activation-inner { grid-template-columns: 1fr; gap: 18px; text-align: left; }
+  .nr1-card { padding: 32px 24px; }
   .activation-icon { width: 64px; height: 64px; border-radius: 14px; }
   .activation-icon svg { width: 32px; height: 32px; }
   .cta-final { padding: 36px 22px; }
@@ -233,6 +249,9 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
   .section-label { font-size: 10px; gap: 8px; }
   .partnership-step { padding: 20px 18px; }
   .activation-card { padding: 28px 18px; }
+  .nr1-card { padding: 28px 18px; }
+  .nr1-title { font-size: 18px; }
+  .nr1-content p { font-size: 13px; }
   .activation-icon { width: 56px; height: 56px; border-radius: 12px; }
   .activation-icon svg { width: 28px; height: 28px; }
   .activation-title { font-size: 18px; }
@@ -317,6 +336,19 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
         </button>
       </a>
 
+    </div>
+  </div>
+
+  <!-- GESTÃO DE NRs / OPORTUNIDADE REGULATÓRIA -->
+  <div class="nr1">
+    <div class="nr1-card">
+      <div class="nr1-eyebrow"><span class="dot"></span> <span data-pt="Gestão de NRs · Compliance regulatório" data-es="Gestión de NRs · Compliance regulatorio">Gestão de NRs · Compliance regulatório</span></div>
+      <h2 class="nr1-title"><span data-pt="Gestão de NRs: do PDF frágil à credencial verificável" data-es="Gestión de NRs: del PDF frágil a la credencial verificable">Gestão de NRs: do PDF frágil à credencial verificável</span></h2>
+      <div class="nr1-content">
+        <p><span data-pt="Toda Norma Regulamentadora exige comprovante de capacitação — NR-10 (eletricidade), NR-12 (máquinas), NR-33 (espaço confinado), NR-35 (altura), e dezenas de outras. Hoje, a maioria desses comprovantes é emitida em <strong>PDF</strong> — frágil juridicamente, falsificável e não rastreável. A POK substitui o PDF por credenciais em blockchain, verificáveis publicamente, com prova auditável de que o treinamento aconteceu de verdade." data-es="Toda Norma Regulatoria exige comprobante de capacitación — NR-10 (electricidad), NR-12 (máquinas), NR-33 (espacio confinado), NR-35 (altura), y decenas de otras. Hoy, la mayoría de esos comprobantes se emiten en <strong>PDF</strong> — frágil jurídicamente, falsificable y no rastreable. POK sustituye el PDF por credenciales en blockchain, verificables públicamente, con prueba auditable de que la capacitación realmente ocurrió.">Toda Norma Regulamentadora exige comprovante de capacitação — NR-10 (eletricidade), NR-12 (máquinas), NR-33 (espaço confinado), NR-35 (altura), e dezenas de outras. Hoje, a maioria desses comprovantes é emitida em <strong>PDF</strong> — frágil juridicamente, falsificável e não rastreável. A POK substitui o PDF por credenciais em blockchain, verificáveis publicamente, com prova auditável de que o treinamento aconteceu de verdade.</span></p>
+        <p><span data-pt="A partir de <span class=&quot;date-highlight&quot;>26 de maio de 2026</span>, a <strong>NR-1 atualizada</strong> entra em vigor plena, com PGR (Programa de Gerenciamento de Riscos) ampliado para incluir riscos psicossociais. Toda empresa empregadora no Brasil precisa se adequar — e o mercado de treinamentos NR vai aquecer simultaneamente em volume, auditoria e diferenciação comercial entre prestadores." data-es="A partir del <span class=&quot;date-highlight&quot;>26 de mayo de 2026</span>, la <strong>NR-1 actualizada</strong> entra en vigor pleno, con PGR (Programa de Gestión de Riesgos) ampliado para incluir riesgos psicosociales. Toda empresa empleadora en Brasil debe adecuarse — y el mercado de capacitaciones NR se calentará simultáneamente en volumen, auditoría y diferenciación comercial entre prestadores.">A partir de <span class="date-highlight">26 de maio de 2026</span>, a <strong>NR-1 atualizada</strong> entra em vigor plena, com PGR (Programa de Gerenciamento de Riscos) ampliado para incluir riscos psicossociais. Toda empresa empregadora no Brasil precisa se adequar — e o mercado de treinamentos NR vai aquecer simultaneamente em volume, auditoria e diferenciação comercial entre prestadores.</span></p>
+
+      </div>
     </div>
   </div>
 
@@ -411,7 +443,12 @@ function setLang(lang) {
   currentLang = lang;
   document.documentElement.lang = lang === 'es' ? 'es' : 'pt-BR';
   document.querySelectorAll('[data-pt]').forEach(el => {
-    el.textContent = lang === 'es' ? el.dataset.es : el.dataset.pt;
+    const content = lang === 'es' ? el.dataset.es : el.dataset.pt;
+    if (content.includes('<')) {
+      el.innerHTML = content;
+    } else {
+      el.textContent = content;
+    }
   });
   document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
   document.getElementById('btn-es').classList.toggle('active', lang === 'es');
