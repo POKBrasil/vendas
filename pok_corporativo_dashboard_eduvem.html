@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POK + Eduvem · Dashboard Corporativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root {
+  --purple: #5123a4;
+  --purple-dark: #3a1878;
+  --purple-light: #e4dcf7;
+  --purple-faint: #F3EFF9;
+  --ink: #1E1230;
+  --ink-muted: #5E4E7A;
+  --ink-faint: #A899C2;
+  --border: #D8CEF0;
+  --white: #fff;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --green: #1D9E75;
+  --green-light: #E2F4EB;
+  --green-dark: #0f6e56;
+  --gold: #3B82F6;
+  --gold-light: #DBEAFE;
+  --gold-dark: #1E40AF;
+  --crimson: #3B82F6;
+  --crimson-light: #DBEAFE;
+  --crimson-dark: #1E40AF;
+  --amber: #D97706;
+  --amber-light: #FEF3C7;
+  --red: #B91C1C;
+  --red-light: #FEE2E2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); color: var(--ink); min-height: 100vh; }
+
+/* HERO */
+.hero { background: var(--purple-dark); padding: 44px 64px 36px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 340px; height: 340px; border-radius: 50%; background: rgba(123,79,207,0.25); pointer-events: none; }
+.hero::after { content: ''; position: absolute; bottom: -100px; left: 20%; width: 240px; height: 240px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none; }
+.hero-inner { max-width: 960px; position: relative; z-index: 1; }
+.hero-logos { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 22px; }
+.hero-logo-svg { height: 32px; width: auto; display: block; flex-shrink: 0; }
+.hero-logo-eduvem { height: 26px; }
+.hero-logos-plus { font-size: 24px; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1; user-select: none; }
+.lang-toggle { display: none !important; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(147,197,253,0.18); border: 1px solid rgba(147,197,253,0.3); border-radius: 99px; padding: 5px 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #93c5fd; margin-bottom: 14px; }
+.hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: #60a5fa; display: inline-block; }
+.hero-title { font-size: clamp(20px, 2.8vw, 32px); font-weight: 900; line-height: 1.15; color: #fff; letter-spacing: -0.02em; margin-bottom: 10px; }
+.hero-subtitle { font-size: 13px; color: #ffffff; line-height: 1.7; max-width: 640px; font-weight: 400; }
+
+/* ZONE TABS within hero */
+.zone-tabs { display: inline-flex; gap: 4px; margin-top: 22px; background: rgba(255,255,255,0.08); border: 1px solid rgba(228,220,247,0.2); border-radius: 99px; padding: 4px; }
+.zone-tab { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600; padding: 8px 18px; border-radius: 99px; background: transparent; color: rgba(255,255,255,0.7); border: none; cursor: pointer; transition: all 0.18s; display: inline-flex; align-items: center; gap: 7px; }
+.zone-tab:hover { color: #fff; }
+.zone-tab.active { background: #fff; color: var(--purple); }
+.zone-tab .dot { width: 6px; height: 6px; border-radius: 50%; }
+.zone-tab .dot.dev { background: var(--gold); }
+.zone-tab .dot.com { background: var(--green); }
+.zone-tab .dot.all { background: var(--purple-light); }
+
+/* FILTERS */
+.filters-bar { background: var(--white); border-bottom: 1px solid var(--border); padding: 14px 64px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.filter-select { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; padding: 8px 32px 8px 14px; border: 1.5px solid var(--border); border-radius: 99px; background: var(--white); color: var(--ink); cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235123a4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; transition: border-color 0.15s; }
+.filter-select:hover { border-color: var(--purple); }
+.date-btn { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 500; padding: 8px 16px; border: 1.5px solid var(--border); border-radius: 99px; background: var(--white); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: border-color 0.15s; }
+.date-btn:hover { border-color: var(--purple); }
+.date-btn svg { width: 15px; height: 15px; color: var(--purple); flex-shrink: 0; }
+
+.content { max-width: 1120px; margin: 0 auto; padding: 40px 32px 72px; }
+
+/* SECTION LABELS */
+.section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.section-label .accent { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.section-label .accent.gold { background: var(--gold); }
+.section-label .accent.green { background: var(--green); }
+.section-label .accent.purple { background: var(--purple); }
+
+/* ZONE HEADERS — visual marker for switching context */
+.zone-header { margin-bottom: 28px; padding: 24px 28px; border-radius: var(--radius-lg); position: relative; overflow: hidden; }
+.zone-header.dev { background: linear-gradient(135deg, var(--crimson-light) 0%, #F0F7FF 100%); border: 1px solid #BFDBFE; }
+.zone-header.com { background: linear-gradient(135deg, var(--green-light) 0%, #f4faf7 100%); border: 1px solid #c5e4d6; }
+.zone-header h2 { font-size: 18px; font-weight: 800; color: var(--ink); margin-bottom: 6px; letter-spacing: -0.01em; }
+.zone-header p { font-size: 13px; color: var(--ink); line-height: 1.5; }
+.zone-header-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.7); border: 1px solid rgba(81,35,164,0.15); border-radius: 99px; padding: 4px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; }
+.zone-header-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+.zone-header-pill .dot.gold { background: var(--gold); }
+.zone-header-pill .dot.green { background: var(--green); }
+
+/* OVERVIEW KPIs (zone 0) */
+.overview-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 32px; }
+.overview-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 24px; position: relative; overflow: hidden; }
+.overview-card .info-btn.overview-info { position: absolute; top: 14px; right: 14px; z-index: 2; }
+.overview-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+.overview-card.dev::before { background: var(--gold); }
+.overview-card.com::before { background: var(--green); }
+.overview-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.overview-card-label .dot { width: 5px; height: 5px; border-radius: 50%; }
+.overview-card-label .dot.gold { background: var(--gold); }
+.overview-card-label .dot.green { background: var(--green); }
+.overview-card-value { font-size: 28px; font-weight: 800; color: var(--ink); line-height: 1; margin-bottom: 4px; letter-spacing: -0.02em; }
+.overview-card-sub { font-size: 11px; color: var(--ink-muted); font-weight: 500; }
+.trend-up { color: var(--green); font-weight: 700; }
+.trend-down { color: var(--red); font-weight: 700; }
+
+/* FUNNEL */
+.funnel-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 32px; margin-bottom: 24px; }
+.funnel-card h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.funnel-card > p { font-size: 12px; color: var(--ink); line-height: 1.5; margin-bottom: 20px; }
+.funnel-steps { display: flex; align-items: center; }
+.funnel-step { flex: 1; text-align: center; }
+.funnel-bar { height: 52px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; border-radius: var(--radius-md); margin: 0 3px; color: #fff; }
+.funnel-step-label { font-size: 10px; color: var(--ink-muted); margin-top: 8px; line-height: 1.4; font-weight: 500; }
+.funnel-step-pct { font-size: 10px; color: var(--ink-faint); margin-top: 3px; font-weight: 600; }
+.funnel-arrow { color: var(--ink-faint); font-size: 16px; flex-shrink: 0; padding: 0 2px 30px; }
+
+/* KPIs */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 24px; }
+.kpi-grid.kpi-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.kpi-grid.kpi-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.kpi-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px 22px; position: relative; }
+.kpi-card.highlight-com { border-left: 4px solid var(--green); }
+
+/* AUDIT CALLOUT (Auditabilidade blockchain como destaque institucional) */
+.audit-callout { background: linear-gradient(135deg, var(--green-light) 0%, #f4faf7 100%); border: 1px solid #c5e4d6; border-radius: var(--radius-lg); padding: 22px 28px; margin-bottom: 32px; display: flex; align-items: center; gap: 22px; }
+.audit-callout-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--white); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--green); }
+.audit-callout-icon svg { width: 28px; height: 28px; }
+.audit-callout-content { flex: 1; display: flex; align-items: center; gap: 22px; }
+.audit-callout-value { font-size: 38px; font-weight: 800; color: var(--green-dark); line-height: 1; flex-shrink: 0; }
+.audit-callout-text { flex: 1; }
+.audit-callout-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.audit-callout-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.55; }
+
+/* NR-CALLOUT (Gestão de NRs) */
+.nr-callout { background: linear-gradient(135deg, var(--green-light) 0%, #f4faf7 100%); border: 1px solid #c5e4d6; border-radius: var(--radius-lg); padding: 22px 28px; margin-bottom: 32px; display: flex; align-items: flex-start; gap: 22px; }
+.nr-callout-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--white); border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--green); }
+.nr-callout-icon svg { width: 26px; height: 26px; }
+.nr-callout-content { flex: 1; }
+.nr-callout-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.nr-callout-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 10px; }
+.nr-callout-desc strong { color: var(--ink); font-weight: 700; }
+.nr-callout-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.nr-callout-tag { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; padding: 3px 9px; border-radius: 99px; background: var(--white); border: 1px solid #c5e4d6; color: var(--green-dark); }
+.nr-callout-temporal { font-size: 11px; color: var(--ink-muted); padding-top: 10px; border-top: 1px solid rgba(29,158,117,0.18); display: flex; align-items: center; gap: 8px; }
+.nr-callout-temporal svg { width: 14px; height: 14px; color: var(--green); flex-shrink: 0; }
+.nr-callout-temporal strong { color: var(--green-dark); font-weight: 700; }
+
+@media (max-width: 600px) {
+  .audit-callout { flex-direction: column; align-items: flex-start; padding: 18px 18px; gap: 14px; }
+  .audit-callout-content { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .audit-callout-value { font-size: 32px; }
+  .nr-callout { padding: 18px 18px; gap: 14px; }
+}
+.kpi-value { font-size: 30px; font-weight: 800; color: var(--ink); line-height: 1; margin-bottom: 6px; letter-spacing: -0.02em; }
+.kpi-value.purple { color: var(--purple); }
+.kpi-value.gold { color: var(--gold-dark); }
+.kpi-value.green { color: var(--green-dark); }
+.kpi-label { font-size: 12px; color: var(--ink-muted); line-height: 1.4; font-weight: 500; padding-right: 24px; }
+
+/* CHART */
+.chart-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 32px; margin-bottom: 24px; }
+.chart-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+.chart-card-header h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.chart-card-header p { font-size: 12px; color: var(--ink); line-height: 1.5; }
+.chart-zone-labels { display: flex; margin-bottom: 6px; }
+.zone-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; }
+.zone-label.past { background: #f0edf8; color: var(--ink-faint); }
+.zone-label.future { background: var(--crimson-light); color: var(--crimson-dark); margin-left: auto; }
+.zone-divider-x { flex: 1; }
+
+/* TABLE */
+.table-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 24px; }
+.table-toolbar { display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-bottom: 1px solid var(--border); flex-wrap: wrap; background: var(--purple-faint); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.table-toolbar.com { background: #f4faf7; }
+.table-toolbar input { font-family: 'Poppins', sans-serif; font-size: 13px; padding: 8px 14px; border: 1.5px solid var(--border); border-radius: 99px; background: var(--white); color: var(--ink); outline: none; flex: 1; min-width: 160px; }
+.table-toolbar input:focus { border-color: var(--purple); }
+.table-toolbar select { font-family: 'Poppins', sans-serif; font-size: 13px; padding: 8px 32px 8px 14px; border: 1.5px solid var(--border); border-radius: 99px; background: var(--white); color: var(--ink); outline: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235123a4' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th { padding: 11px 16px; text-align: left; font-size: 10px; font-weight: 700; color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--border); background: var(--white); }
+.th-inner { display: flex; align-items: center; gap: 5px; }
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--purple-faint); }
+tbody td { padding: 13px 16px; color: var(--ink); vertical-align: middle; }
+.td-muted { color: var(--ink-muted) !important; font-size: 12px; }
+
+/* BADGES */
+.badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 5px; letter-spacing: 0.05em; text-transform: uppercase; }
+.badge-promo-int { background: var(--purple-light); color: var(--purple); }
+.badge-mov-lat { background: #e8f0fe; color: #1a56b3; }
+.badge-skill-up { background: var(--gold-light); color: var(--gold-dark); }
+.badge-none { background: #f0edf8; color: var(--ink-faint); }
+.badge-conforme { background: var(--green-light); color: var(--green-dark); }
+.badge-vence { background: var(--amber-light); color: var(--amber); }
+.badge-vencido { background: var(--red-light); color: var(--red); }
+.badge-pendente { background: #f0edf8; color: var(--ink-faint); }
+
+/* SKILLS PROGRESS */
+.skill-progress { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--ink); }
+.skill-progress-bar { width: 60px; height: 6px; background: var(--purple-light); border-radius: 99px; overflow: hidden; }
+.skill-progress-fill { height: 100%; background: var(--gold); border-radius: 99px; }
+
+/* COVERAGE TRAFFIC LIGHT */
+.cov-cell { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; }
+.cov-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.cov-dot.green { background: var(--green); }
+.cov-dot.amber { background: var(--amber); }
+.cov-dot.red { background: var(--red); }
+
+/* TOOLTIPS */
+.info-btn { width: 15px; height: 15px; border-radius: 50%; border: 1.5px solid var(--border); display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: var(--ink-faint); cursor: pointer; font-family: 'Poppins', sans-serif; background: transparent; flex-shrink: 0; vertical-align: middle; padding: 0; transition: border-color 0.12s, color 0.12s; }
+.info-btn:hover { border-color: var(--purple); color: var(--purple); }
+#gtip { position: fixed; z-index: 9999; background: var(--ink); color: #fff; font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 400; padding: 9px 13px; border-radius: 10px; line-height: 1.6; max-width: 240px; pointer-events: none; display: none; box-shadow: 0 4px 16px rgba(30,18,48,0.3); }
+#gtip-arrow { position: fixed; z-index: 9998; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 7px solid #1E1230; pointer-events: none; display: none; }
+
+/* ALERT BANNER for compliance */
+.alert-banner { background: var(--amber-light); border: 1px solid #fde68a; border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: flex-start; gap: 12px; }
+.alert-banner svg { flex-shrink: 0; color: var(--amber); width: 20px; height: 20px; margin-top: 1px; }
+.alert-banner-content { flex: 1; }
+.alert-banner-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.alert-banner-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.5; }
+.alert-banner-action { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600; color: var(--amber); background: var(--white); border: 1px solid #fde68a; border-radius: 99px; padding: 6px 14px; cursor: pointer; flex-shrink: 0; }
+
+/* FOOTER */
+.site-footer { text-align: center; padding: 36px 32px 48px; border-top: 1px solid var(--border); margin-top: 20px; }
+.footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px; }
+.footer-logo-icon { width: 28px; height: 28px; border: 2px solid var(--purple); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+.footer-logo-text { font-size: 18px; font-weight: 800; color: var(--purple); }
+.site-footer p { font-size: 12px; color: var(--ink-faint); }
+
+/* HIDE/SHOW zones */
+.zone-section { display: none; }
+.zone-section.active { display: block; }
+
+/* HRIS CALLOUT — convite para integração que destrava a visão de cobertura */
+.hris-callout { background: linear-gradient(135deg, var(--purple-faint) 0%, #f4faf7 100%); border: 1px dashed var(--border); border-radius: var(--radius-lg); padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: flex-start; gap: 18px; }
+.hris-callout-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--white); border: 2px solid var(--purple); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--purple); }
+.hris-callout-icon svg { width: 22px; height: 22px; }
+.hris-callout-content { flex: 1; }
+.hris-callout-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
+.hris-callout-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 14px; }
+.hris-callout-cta { font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 700; color: var(--purple); background: var(--white); border: 1.5px solid var(--purple); border-radius: 99px; padding: 8px 18px; cursor: pointer; transition: all 0.18s; }
+.hris-callout-cta:hover { background: var(--purple); color: var(--white); }
+
+/* VISION CARDS — &quot;O que esta visão entrega&quot;: dois cards independentes e clicáveis */
+.vision-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.vision-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 28px 24px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.vision-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; }
+.vision-card-dev::before { background: linear-gradient(180deg, var(--crimson) 0%, var(--crimson-dark) 100%); }
+.vision-card-com::before { background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%); }
+.vision-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(81,35,164,0.10); }
+.vision-card-dev:hover { border-color: var(--crimson); }
+.vision-card-com:hover { border-color: var(--green); }
+.vision-card-pill { display: inline-flex; align-items: center; gap: 8px; border-radius: 99px; padding: 5px 13px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; align-self: flex-start; }
+.vision-card-dev .vision-card-pill { background: var(--crimson-light); border: 1px solid #BFDBFE; color: var(--gold-dark); }
+.vision-card-com .vision-card-pill { background: var(--green-light); border: 1px solid #c5e4d6; color: var(--green-dark); }
+.vision-card-pill-dot { width: 6px; height: 6px; border-radius: 50%; }
+.vision-card-dev .vision-card-pill-dot { background: var(--gold); }
+.vision-card-com .vision-card-pill-dot { background: var(--green); }
+.vision-card-title { font-size: 18px; font-weight: 800; color: var(--ink); line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 12px; }
+.vision-card-desc { font-size: 13px; color: var(--ink); line-height: 1.55; margin-bottom: 18px; }
+.vision-card-list { list-style: none; padding: 0; margin: 0 0 18px 0; }
+.vision-card-list li { font-size: 12px; color: var(--ink); padding: 7px 0 7px 22px; position: relative; line-height: 1.4; border-top: 1px solid var(--purple-faint); }
+.vision-card-list li:first-child { border-top: 1px solid var(--border); }
+.vision-card-list li::before { content: ''; position: absolute; left: 4px; top: 13px; width: 8px; height: 8px; border-radius: 50%; }
+.vision-card-dev .vision-card-list li::before { background: var(--gold); }
+.vision-card-com .vision-card-list li::before { background: var(--green); }
+.vision-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); }
+.vision-card-audience { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+.vision-card-cta { font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+.vision-card-dev .vision-card-cta { color: var(--gold-dark); }
+.vision-card-com .vision-card-cta { color: var(--green-dark); }
+
+/* OVERVIEW BLOCKS — dois grupos visualmente separados na Visão Geral */
+.overview-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 32px; }
+.overview-block { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; position: relative; overflow: hidden; }
+.overview-block::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 4px; }
+.overview-block.dev { background: linear-gradient(180deg, #F0F7FF 0%, var(--white) 60%); border-color: #BFDBFE; }
+.overview-block.dev::before { background: var(--gold); }
+.overview-block.com { background: linear-gradient(180deg, #F1FAF6 0%, var(--white) 60%); border-color: #c5e4d6; }
+.overview-block.com::before { background: var(--green); }
+.overview-block-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.overview-block-pill { display: inline-flex; align-items: center; gap: 7px; border-radius: 99px; padding: 5px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.overview-block.dev .overview-block-pill { background: var(--crimson-light); color: var(--crimson-dark); border: 1px solid #BFDBFE; }
+.overview-block.com .overview-block-pill { background: var(--green-light); color: var(--green-dark); border: 1px solid #c5e4d6; }
+.overview-block-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+.overview-block.dev .overview-block-pill .dot { background: var(--gold); }
+.overview-block.com .overview-block-pill .dot { background: var(--green); }
+.overview-block-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.overview-block .overview-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 18px 20px; position: relative; overflow: hidden; }
+.overview-block .overview-card::before { display: none; }
+.overview-block.dev .overview-card { border-left: 4px solid var(--crimson); }
+.overview-block.com .overview-card { border-left: 4px solid var(--green); }
+.overview-block .overview-card-label .dot.crimson { background: var(--gold); }
+
+/* HIGHLIGHT colors for KPI cards - dev now uses crimson */
+.kpi-card.highlight-dev { border-left: 4px solid var(--crimson); }
+
+
+@media (max-width: 1100px) {
+  .hero { padding: 40px 32px 32px; }
+  .filters-bar { padding: 14px 32px; }
+  .content { padding: 36px 24px 60px; }
+}
+
+/* Tablet / desktop pequeno (até 900px) */
+@media (max-width: 900px) {
+  .hero { padding: 36px 24px 28px; }
+  .filters-bar { padding: 12px 24px; flex-wrap: wrap; gap: 8px; }
+  .content { padding: 28px 16px 48px; }
+  .kpi-grid, .overview-grid { grid-template-columns: 1fr 1fr; }
+  .overview-blocks { grid-template-columns: 1fr; gap: 14px; }
+  .funnel-steps { overflow-x: auto; padding-bottom: 12px; -webkit-overflow-scrolling: touch; gap: 4px; }
+  .funnel-step { min-width: 110px; flex-shrink: 0; }
+  .zone-tabs { flex-wrap: wrap; }
+  /* Grids inline da overview (cards informativos e atalhos): viram 1 col */
+  .overview-info-grid, .overview-shortcut-grid, .vision-cards-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  /* Tabelas: scroll horizontal com indicação visual */
+  .table-card .table-scroll, .area-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+  table { min-width: 720px; }
+  .area-table-wrap table { min-width: 640px; }
+  /* Filters bar — distribuição mais equilibrada */
+  .filters-bar > div { flex: 1 1 calc(50% - 8px); min-width: 0; }
+  .filters-bar > div .filter-select,
+  .filters-bar > div .date-btn { flex: 1; min-width: 0; }
+}
+
+/* Mobile (até 600px) */
+@media (max-width: 600px) {
+  body { font-size: 14px; }
+  .hero { padding: 24px 16px 22px; }
+  .hero-logos { gap: 14px; margin-bottom: 18px; }
+  .hero-logo-svg { height: 26px; }
+  .hero-logo-eduvem { height: 22px; }
+  .hero-logos-plus { font-size: 20px; }
+  .hero-eyebrow { font-size: 10px; padding: 4px 12px; margin-bottom: 12px; }
+  .hero-title { font-size: 22px; line-height: 1.2; padding-right: 0; }
+  .hero-subtitle { font-size: 12px; line-height: 1.6; }
+  /* Lang toggle vai pro topo, em fluxo normal (fora do hero-inner) */
+  .hero { display: flex; flex-direction: column; align-items: stretch; }
+  .lang-toggle { position: static; align-self: flex-end; margin-bottom: 14px; }
+  /* Tabs: rolagem horizontal natural */
+  .zone-tabs { display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; padding: 4px; max-width: 100%; }
+  .zone-tab { flex-shrink: 0; padding: 8px 14px; font-size: 11px; }
+  /* Filtros: 1 coluna full-width */
+  .filters-bar { padding: 10px 16px; flex-direction: column; align-items: stretch; gap: 8px; }
+  .filters-bar > div { flex: 1 1 100% !important; width: 100%; }
+  .filter-select, .date-btn { width: 100%; }
+  /* KPIs e Overview cards: 1 ou 2 colunas */
+  .kpi-grid, .overview-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .overview-block { padding: 18px 16px; }
+  .overview-block-cards { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .overview-block .overview-card { padding: 14px 14px; }
+  .kpi-card, .overview-card { padding: 14px; }
+  .kpi-value { font-size: 22px; }
+  .overview-card-value { font-size: 22px; }
+  .kpi-label, .overview-card-sub { font-size: 11px; padding-right: 0; }
+  .kpi-card .info-btn { display: none; } /* tooltip não funciona bem em touch sem long-press */
+  /* Section label */
+  .section-label { padding: 0; font-size: 9px; }
+  /* Zone headers */
+  .zone-header { padding: 18px 16px; }
+  .zone-header h2 { font-size: 16px; }
+  .zone-header p { font-size: 12px; }
+  /* Cards de funil/gráfico: padding menor */
+  .funnel-card, .chart-card { padding: 18px 14px; }
+  .funnel-card h3, .chart-card-header h3 { font-size: 14px; }
+  .funnel-card > p, .chart-card-header p { font-size: 11px; }
+  /* Funil em mobile: rolagem horizontal */
+  .funnel-steps { display: flex; flex-direction: row; overflow-x: auto; gap: 4px; padding-bottom: 12px; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
+  .funnel-step { scroll-snap-align: start; min-width: 96px; flex-shrink: 0; }
+  .funnel-bar { height: 44px; font-size: 16px; margin: 0 2px; }
+  .funnel-step-label { font-size: 9px; line-height: 1.3; }
+  .funnel-step-pct { font-size: 9px; }
+  .funnel-arrow { display: none; } /* setas atrapalham em mobile */
+  /* Chart container: altura menor */
+  .chart-card canvas { max-height: 240px; }
+  /* Tabelas com indicador de scroll */
+  table { min-width: 640px; font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  tbody td { padding: 11px 12px; }
+  .table-toolbar { padding: 12px 14px; gap: 8px; }
+  .table-toolbar input { width: 100%; }
+  .table-toolbar select { width: 100%; }
+  /* Banner de alerta: layout vertical */
+  .alert-banner { flex-direction: column; align-items: stretch; gap: 10px; padding: 14px; }
+  .alert-banner-action { align-self: flex-start; }
+  .alert-banner-title { font-size: 13px; }
+  .alert-banner-desc { font-size: 11px; }
+  /* Section labels — esconder a linha decorativa em mobile, fica feia */
+  .section-label::after { display: none; }
+  .section-label { margin-bottom: 10px; }
+  /* Vision cards em mobile */
+  .vision-card { padding: 22px 20px 20px; }
+  .vision-card-title { font-size: 16px; }
+  .vision-card-desc { font-size: 12px; }
+  .vision-card-list li { font-size: 11px; padding-left: 20px; }
+  .vision-card-list li::before { left: 2px; top: 12px; width: 7px; height: 7px; }
+  /* HRIS callout em mobile: layout vertical */
+  .hris-callout { flex-direction: column; padding: 20px 18px; gap: 14px; }
+  .hris-callout-icon { width: 40px; height: 40px; }
+  .hris-callout-title { font-size: 13px; }
+  .hris-callout-desc { font-size: 11px; }
+  /* Footer */
+  .site-footer { padding: 28px 16px 36px; }
+  .site-footer p { font-size: 11px; }
+  /* Chart legend em mobile: vertical */
+  .chart-card > div:last-child { flex-direction: column !important; gap: 6px !important; align-items: flex-start !important; }
+}
+
+/* Mobile pequeno (até 380px) — iPhone SE etc. */
+@media (max-width: 380px) {
+  .kpi-grid, .overview-grid { grid-template-columns: 1fr; }
+  .overview-block-cards { grid-template-columns: 1fr; }
+  .hero-title { font-size: 20px; }
+  .zone-tab { padding: 7px 12px; font-size: 10px; }
+}
+
+.lang-toggle { position: absolute; top: 24px; right: 32px; display: inline-flex; gap: 2px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 99px; padding: 3px; z-index: 5; }
+.lang-btn { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; padding: 6px 12px; border-radius: 99px; background: transparent; color: rgba(255,255,255,0.65); border: none; cursor: pointer; transition: all 0.18s; min-width: 36px; }
+.lang-btn:hover { color: #fff; }
+.lang-btn.active { background: #fff; color: var(--purple); }
+@media (max-width: 900px) {
+  .lang-toggle { top: 16px; right: 16px; }
+  .lang-btn { padding: 5px 11px; font-size: 10px; min-width: 32px; }
+}
+
+
+/* SOCIAL ICONS (tabela) */
+.social-icons { display: flex; gap: 6px; }
+.social-btn { width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; background: var(--white); }
+.social-btn.active { background: #dff0fd; border-color: #8ec8f4; }
+
+/* TOGGLE LABEL (Ver só com postagem compartilhada) */
+.toggle-label { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink-muted); cursor: pointer; user-select: none; padding: 4px 8px; }
+.toggle-label input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--purple); cursor: pointer; }
+
+/* BADGES da tabela (corporativo) */
+.badge-saida { background: var(--green-light); color: var(--green-dark); }
+.badge-mobilidade { background: var(--purple-light); color: var(--purple); }
+
+/* DRAWER */
+.drawer-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(30,18,48,0.45); opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+.drawer { position: fixed; top: 0; right: 0; height: 100vh; width: min(520px, 96vw); background: var(--white); z-index: 301; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; box-shadow: -8px 0 40px rgba(81,35,164,0.15); }
+.drawer.open { transform: translateX(0); }
+.drawer-head { padding: 22px 24px 18px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.drawer-head-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+.drawer-name { font-size: 17px; font-weight: 800; color: var(--ink); }
+.drawer-close { background: none; border: none; cursor: pointer; color: var(--ink-faint); padding: 4px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.drawer-close:hover { background: var(--purple-faint); color: var(--purple); }
+.drawer-meta { font-size: 12px; color: var(--ink-muted); display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.drawer-meta-item { display: flex; align-items: center; gap: 5px; }
+.drawer-cert-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--purple-faint); border: 1px solid var(--purple-light); border-radius: 99px; padding: 4px 12px; font-size: 11px; font-weight: 600; color: var(--purple); margin-top: 10px; }
+.drawer-cert-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); }
+.drawer-body { flex: 1; overflow-y: auto; padding: 24px 24px 32px; }
+.drawer-section { margin-bottom: 28px; }
+.drawer-section-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.drawer-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* timeline */
+.timeline { position: relative; padding-left: 20px; }
+.timeline::before { content: ''; position: absolute; left: 6px; top: 6px; bottom: 6px; width: 1.5px; background: var(--border); }
+.tl-item { position: relative; margin-bottom: 18px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot { position: absolute; left: -20px; top: 5px; width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--white); box-shadow: 0 0 0 1.5px var(--border); background: var(--white); }
+.tl-dot.before { background: var(--ink-faint); box-shadow: 0 0 0 1.5px var(--ink-faint); }
+.tl-dot.cert { background: var(--purple); box-shadow: 0 0 0 2px var(--purple-light); width: 15px; height: 15px; left: -21px; top: 3px; }
+.tl-dot.after { background: var(--green); box-shadow: 0 0 0 1.5px var(--green); }
+.tl-card { background: var(--purple-faint); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+.tl-card.cert-marker { background: var(--purple); border-color: var(--purple); }
+.tl-card.cert-marker .tl-card-title { color: #fff; }
+.tl-card.cert-marker .tl-card-sub { color: rgba(228,220,247,0.75); }
+.tl-card.after-cert { border-left: 3px solid var(--green); }
+.tl-card-period { font-size: 10px; font-weight: 700; color: var(--ink-faint); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+.tl-card.cert-marker .tl-card-period { color: rgba(228,220,247,0.6); }
+.tl-card-title { font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.tl-card-sub { font-size: 12px; color: var(--ink-muted); margin-top: 2px; }
+.tl-card-type { display: inline-flex; margin-top: 6px; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 99px; }
+.type-full { background: var(--green-light); color: var(--green-dark); }
+.type-intern { background: var(--purple-light); color: var(--purple); }
+.type-part { background: #fff3cd; color: #856404; }
+
+/* skills chips */
+.skills-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-chip { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 99px; background: var(--purple-faint); border: 1px solid var(--border); color: var(--ink-muted); }
+
+/* education */
+.edu-item { display: flex; gap: 12px; margin-bottom: 14px; }
+.edu-icon { width: 34px; height: 34px; border-radius: 8px; background: var(--purple-faint); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.edu-body .edu-degree { font-size: 13px; font-weight: 700; color: var(--ink); }
+.edu-body .edu-school { font-size: 12px; color: var(--ink-muted); }
+.edu-body .edu-period { font-size: 11px; color: var(--ink-faint); margin-top: 2px; }
+
+@media (max-width: 600px) {
+  .drawer { width: 100vw; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="gtip"></div>
+<div id="gtip-arrow"></div>
+
+<header class="hero">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="pt" onclick="setLang('pt')">PT</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+    </div>
+
+  <div class="hero-inner">
+    <div class="hero-logos">
+      <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" aria-label="POK"><path d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z" fill="#ffffff"/></svg>
+      <span class="hero-logos-plus">+</span>
+      <svg class="hero-logo-svg hero-logo-eduvem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1072.3 334.3" aria-label="Eduvem"><path fill="#ffffff" d="M162.5,299.2h-65.3c-43.7,0-65.6-23.3-65.6-70s21.9-70.2,65.6-70.2,65.3,23.4,65.3,70.1v13.7H59.9c2.8,19.4,15.3,29.1,37.3,29.1h65.3v27.2ZM134.2,215.7c-2.8-19.6-15.2-29.4-37-29.4s-34.5,9.8-37.3,29.4h74.3ZM313,229.1c0,46.9-21.8,70.4-65.3,70.4s-65.6-23.5-65.6-70.4,21.9-70.1,65.6-70.1h37.8v-55.3h27.5v125.4h0ZM285.5,229.1v-42.9h-37.8c-14.6,0-24.9,3.9-30.7,11.7-4.8,6.4-7.1,16.8-7.1,31.1s2.4,24.7,7.1,31.1c5.8,8,16,12,30.7,12s24.9-4,30.7-12c4.8-6.4,7.1-16.8,7.1-31.1h0ZM466.7,229.3c0,46.6-21.9,70-65.6,70s-65.3-23.3-65.3-70v-70.2h27.5v70.4c0,14.3,2.4,24.6,7.1,30.9,5.8,7.8,16,11.6,30.7,11.6s24.9-3.9,30.7-11.6c4.8-6.3,7.1-16.7,7.1-30.9v-70.4h27.8v70.2h0ZM609,159l-56.1,142h-25.7l-56.1-142h29.6l39.1,99.5,39.4-99.5h29.6,0Z"/><path fill="#ffffff" d="M744.4,299.2h-65.3c-43.7,0-65.6-23.3-65.6-70s21.9-70.2,65.6-70.2,65.3,23.4,65.3,70.1v13.7h-102.6c2.8,19.4,15.3,29.1,37.3,29.1h65.3v27.2ZM716.1,215.7c-2.8-19.6-15.2-29.4-37-29.4s-34.5,9.8-37.3,29.4h74.3Z"/><path fill="#ffffff" d="M1000.7,299.2h-27.5v-70.1c0-14.3-2.4-24.6-7.1-30.9-6-7.9-16.3-11.9-30.9-11.9s-24.9,4-30.7,11.9c-4.8,6.3-7.1,16.7-7.1,30.9v70.1h-27.5v-70.1c0-14.3-2.4-24.6-7.1-30.9-6-7.9-16.3-11.9-31-11.9s-24.9,4-30.7,11.9c-4.8,6.3-7.1,16.7-7.1,30.9v70.1h-27.5v-70c0-46.8,21.8-70.2,65.3-70.2s40.6,7.1,51.9,21.2c11.1-14.1,28.3-21.2,51.6-21.2,43.7,0,65.6,23.4,65.6,70.2v70Z"/><path fill="#00afef" d="M1029.3,106.7h0c-8.3,11.7-21,21.1-36.5,28.3,28.2,29.1,46.8,68.4,55.6,117.2-27.1-50.7-105.1-102.2-106-102.6-43.9,7.2-94.3,3.9-132.6-8-33.3,8.2-57.7,26.5-126.4,18.9l13.5,9.7c-284.3,50-191.4-89.1-59.8-138.6,64.3-24.1,161.9-6.6,210.9,39.2-39.1-3.5-88.6-1-122.7,3.8-24.5-23.5-54.8-30-85.5-16.1-28.5,12.9-30.3,52.3,1.1,39.9h0c60.8-19.7,121.8-24.3,188.5-23.6,60.6.6,109.2,15.6,145.5,43.9,19.2-3.7,37.4-7.9,53.4-11.9l1-.3Z"/></svg>
+    </div>
+    <div class="hero-eyebrow"><span></span> Módulo Corporativo · Capital Humano</div>
+    <h1 class="hero-title"><span data-pt="Capital humano em movimento" data-es="Capital humano en movimiento">Capital humano em movimento</span></h1>
+    <p class="hero-subtitle"><span data-pt="Cada credencial POK emitida no programa corporativo gera duas leituras complementares: o desenvolvimento real do colaborador (skills internalizadas, mobilidade interna, retenção) e o compliance da empresa (cobertura, validade, auditabilidade). Os dados são lidos do perfil público do LinkedIn e cruzados com os metadados da credencial." data-es="Cada credencial POK emitida en el programa corporativo genera dos lecturas complementarias: el desarrollo real del colaborador (habilidades internalizadas, movilidad interna, retención) y el compliance de la empresa (cobertura, validez, auditabilidad). Los datos se leen del perfil público de LinkedIn y se cruzan con los metadatos de la credencial.">Cada credencial POK emitida no programa corporativo gera duas leituras complementares: o desenvolvimento real do colaborador (skills internalizadas, mobilidade interna, retenção) e o compliance da empresa (cobertura, validade, auditabilidade). Os dados são lidos do perfil público do LinkedIn e cruzados com os metadados da credencial.</span></p>
+
+    <div class="zone-tabs" role="tablist">
+      <button class="zone-tab active" data-zone="overview" onclick="setZone('overview')"><span class="dot all"></span> <span data-pt="Visão geral" data-es="Visión general">Visão geral</span></button>
+      <button class="zone-tab" data-zone="dev" onclick="setZone('dev')"><span class="dot dev"></span> <span data-pt="Desenvolvimento humano" data-es="Desarrollo humano">Desenvolvimento humano</span></button>
+      <button class="zone-tab" data-zone="com" onclick="setZone('com')"><span class="dot com"></span> <span data-pt="Compliance" data-es="Compliance">Compliance</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="filters-bar" style="justify-content:space-between;">
+
+  <div style="display:flex;align-items:center;gap:6px;">
+    <select class="filter-select" id="filterCert">
+      <option value="" data-opt-pt="Todos os programas" data-opt-es="Todos los programas">Todos os programas</option>
+      <option>AI Bootcamp 2025</option>
+      <option>Executive Program - T15</option>
+      <option>Missão IA</option>
+    </select>
+    <button class="info-btn" data-tip="Filtra pelo nome do programa." data-tip-pt="Filtra pelo nome do programa." data-tip-es="Filtra por el nombre del programa.">i</button>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:6px;">
+    <button class="date-btn" onclick="openCal('emissao')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <span id="labelEmissao"><span data-pt="Data de emissão" data-es="Fecha de emisión">Data de emissão</span></span>
+    </button>
+    <button class="info-btn" data-tip="Filtra pelo período em que a credencial foi emitida pela POK." data-tip-pt="Filtra pelo período em que a credencial foi emitida pela POK." data-tip-es="Filtra por el período en que la credencial fue emitida por POK.">i</button>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:6px;">
+    <button class="date-btn" onclick="openCal('compartilhamento')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <span id="labelCompartilhamento"><span data-pt="Data de compartilhamento" data-es="Fecha de compartición">Data de compartilhamento</span></span>
+    </button>
+    <button class="info-btn" data-tip="Filtra pelo período em que o portador compartilhou a credencial no LinkedIn." data-tip-pt="Filtra pelo período em que o portador compartilhou a credencial no LinkedIn." data-tip-es="Filtra por el período en que el portador compartió la credencial en LinkedIn.">i</button>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:6px;">
+    <select class="filter-select" id="filterTitulo">
+      <option value="" data-opt-pt="Todos os títulos" data-opt-es="Todos los títulos">Todos os títulos</option>
+      <option>Tecnólogo em Análise e Desenvolvimento de Sistemas</option>
+      <option>Bacharel em Administração</option>
+      <option>MBA em Gestão de Projetos</option>
+      <option>Especialização em Inteligência Artificial</option>
+    </select>
+    <button class="info-btn" data-tip="Filtra pelo título de formação registrado na credencial POK." data-tip-pt="Filtra pelo título de formação registrado na credencial POK." data-tip-es="Filtra por el título de formación registrado en la credencial POK.">i</button>
+  </div>
+
+</div>
+
+<main class="content">
+
+  <!-- ─────────────────────────────────────────────────────────────────────── -->
+  <!-- ZONE: OVERVIEW -->
+  <!-- ─────────────────────────────────────────────────────────────────────── -->
+  <section class="zone-section active" id="zone-overview">
+
+    <div class="section-label"><span class="accent purple"></span> <span data-pt="Síntese executiva" data-es="Síntesis ejecutiva">Síntese executiva</span></div>
+    <div class="overview-blocks">
+
+      <div class="overview-block dev">
+        <div class="overview-block-header">
+          <span class="overview-block-pill"><span class="dot"></span> <span data-pt="Desenvolvimento humano" data-es="Desarrollo humano">Desenvolvimento humano</span></span>
+        </div>
+        <div class="overview-block-cards">
+          <div class="overview-card">
+            <div class="overview-card-label"><span class="dot crimson"></span> <span data-pt="Internalização" data-es="Internalización">Internalização</span></div>
+            <div class="overview-card-value">54%</div>
+            <div class="overview-card-sub"><span data-pt="internalizaram habilidades do programa" data-es="internalizaron habilidades del programa">internalizaram habilidades do programa</span></div>
+            <button class="info-btn overview-info" data-tip="Entre os colaboradores que compartilharam a credencial, % que passou a listar no perfil do LinkedIn pelo menos uma das habilidades reconhecidas pelo certificado POK." data-tip-pt="Entre os colaboradores que compartilharam a credencial, % que passou a listar no perfil do LinkedIn pelo menos uma das habilidades reconhecidas pelo certificado POK." data-tip-es="Entre los colaboradores que compartieron la credencial, % que pasó a listar en el perfil de LinkedIn al menos una de las habilidades reconocidas por el certificado POK.">i</button>
+          </div>
+          <div class="overview-card">
+            <div class="overview-card-label"><span class="dot crimson"></span> <span data-pt="Mobilidade" data-es="Movilidad">Mobilidade</span></div>
+            <div class="overview-card-value">38</div>
+            <div class="overview-card-sub"><span data-pt="eventos de mobilidade interna" data-es="eventos de movilidad interna">eventos de mobilidade interna</span></div>
+            <button class="info-btn overview-info" data-tip="Quantas mudanças de cargo dentro da mesma empresa foram registradas no LinkedIn dos colaboradores compartilhadores. O mesmo colaborador pode contribuir com mais de um evento." data-tip-pt="Quantas mudanças de cargo dentro da mesma empresa foram registradas no LinkedIn dos colaboradores compartilhadores. O mesmo colaborador pode contribuir com mais de um evento." data-tip-es="Cuántos cambios de cargo dentro de la misma empresa fueron registrados en LinkedIn de los colaboradores que compartieron. El mismo colaborador puede contribuir con más de un evento.">i</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview-block com">
+        <div class="overview-block-header">
+          <span class="overview-block-pill"><span class="dot"></span> <span data-pt="Compliance" data-es="Compliance">Compliance</span></span>
+        </div>
+        <div class="overview-block-cards">
+          <div class="overview-card">
+            <div class="overview-card-label"><span class="dot green"></span> <span data-pt="Credenciais ativas" data-es="Credenciales activas">Credenciais ativas</span></div>
+            <div class="overview-card-value">382</div>
+            <div class="overview-card-sub"><span data-pt="credenciais vigentes em blockchain" data-es="credenciales vigentes en blockchain">credenciais vigentes em blockchain</span></div>
+            <button class="info-btn overview-info" data-tip="Total de credenciais POK do programa corporativo dentro do prazo de validade." data-tip-pt="Total de credenciais POK do programa corporativo dentro do prazo de validade." data-tip-es="Total de credenciales POK del programa corporativo dentro del plazo de validez.">i</button>
+          </div>
+          <div class="overview-card">
+            <div class="overview-card-label"><span class="dot green"></span> <span data-pt="Retenção" data-es="Retención">Retenção</span></div>
+            <div class="overview-card-value">91%</div>
+            <div class="overview-card-sub"><span data-pt="continuam na empresa" data-es="continúan en la empresa">continuam na empresa</span></div>
+            <button class="info-btn overview-info" data-tip="% de colaboradores que continuam na mesma empresa após o compartilhamento da credencial. Quem mudou de empresa no LinkedIn é contabilizado como saída." data-tip-pt="% de colaboradores que continuam na mesma empresa após o compartilhamento da credencial. Quem mudou de empresa no LinkedIn é contabilizado como saída." data-tip-es="% de colaboradores que continúan en la misma empresa después del compartir de la credencial. Quien cambió de empresa en LinkedIn se contabiliza como salida.">i</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-label"><span class="accent purple"></span> <span data-pt="O que esta visão entrega" data-es="Qué entrega esta visión">O que esta visão entrega</span></div>
+    <div class="vision-cards-grid">
+
+      <div class="vision-card vision-card-dev" onclick="setZone('dev')">
+        <div class="vision-card-pill">
+          <span class="vision-card-pill-dot"></span>
+          <span data-pt="Desenvolvimento humano" data-es="Desarrollo humano">Desenvolvimento humano</span>
+        </div>
+        <h3 class="vision-card-title"><span data-pt="Quem está crescendo, em que ritmo, com qual evidência" data-es="Quién está creciendo, a qué ritmo, con qué evidencia">Quem está crescendo, em que ritmo, com qual evidência</span></h3>
+        <p class="vision-card-desc"><span data-pt="A partir do compartilhamento da credencial no LinkedIn, acompanha a internalização das habilidades ensinadas, mobilidade interna detectada via mudança de cargo dentro da mesma empresa, e retenção dos talentos certificados." data-es="A partir del compartir de la credencial en LinkedIn, acompaña la internalización de las habilidades enseñadas, movilidad interna detectada vía cambio de cargo dentro de la misma empresa, y retención de los talentos certificados.">A partir do compartilhamento da credencial no LinkedIn, acompanha a internalização das habilidades ensinadas, mobilidade interna detectada via mudança de cargo dentro da mesma empresa, e retenção dos talentos certificados.</span></p>
+        <ul class="vision-card-list">
+          <li><span data-pt="Funil completo: da credencial à evidência de desenvolvimento" data-es="Embudo completo: de la credencial a la evidencia de desarrollo">Funil completo: da credencial à evidência de desenvolvimento</span></li>
+          <li><span data-pt="Taxa de internalização de habilidades" data-es="Tasa de internalización de habilidades">Taxa de internalização de habilidades</span></li>
+          <li><span data-pt="Mobilidade interna e retenção pós-credencial" data-es="Movilidad interna y retención post-credencial">Mobilidade interna e retenção pós-credencial</span></li>
+          <li><span data-pt="Tabela individual de portadores" data-es="Tabla individual de portadores">Tabela individual de portadores</span></li>
+        </ul>
+        <div class="vision-card-footer">
+          <span class="vision-card-audience"><span data-pt="Para RH/T&amp;D, Talentos, Sucessão" data-es="Para RR.HH./Capacitación, Talento, Sucesión">Para RH/T&D, Talentos, Sucessão</span></span>
+          <span class="vision-card-cta"><span data-pt="Ver detalhes" data-es="Ver detalles">Ver detalhes</span> →</span>
+        </div>
+      </div>
+
+      <div class="vision-card vision-card-com" onclick="setZone('com')">
+        <div class="vision-card-pill">
+          <span class="vision-card-pill-dot"></span>
+          <span data-pt="Compliance" data-es="Compliance">Compliance</span>
+        </div>
+        <h3 class="vision-card-title"><span data-pt="A empresa está em ordem, com prova auditável" data-es="La empresa está en orden, con prueba auditable">A empresa está em ordem, com prova auditável</span></h3>
+        <p class="vision-card-desc"><span data-pt="Monitora vencimentos próximos, garante a integridade auditável das credenciais em blockchain e mostra o ciclo de vida completo de cada certificação no programa corporativo." data-es="Monitorea vencimientos próximos, garantiza la integridad auditable de las credenciales en blockchain y muestra el ciclo de vida completo de cada certificación en el programa corporativo.">Monitora vencimentos próximos, garante a integridade auditável das credenciais em blockchain e mostra o ciclo de vida completo de cada certificação no programa corporativo.</span></p>
+        <ul class="vision-card-list">
+          <li><span data-pt="Ciclo de vida completo da credencial" data-es="Ciclo de vida completo de la credencial">Ciclo de vida completo da credencial</span></li>
+          <li><span data-pt="Alertas de vencimentos próximos" data-es="Alertas de vencimientos próximos">Alertas de vencimentos próximos</span></li>
+          <li><span data-pt="Linha do tempo de vencimentos por categoria regulatória" data-es="Línea de tiempo de vencimientos por categoría regulatoria">Linha do tempo de vencimentos por categoria regulatória</span></li>
+          <li><span data-pt="Auditabilidade blockchain (100%)" data-es="Auditabilidad blockchain (100%)">Auditabilidade blockchain (100%)</span></li>
+        </ul>
+        <div class="vision-card-footer">
+          <span class="vision-card-audience"><span data-pt="Para Compliance, Jurídico, Auditoria" data-es="Para Cumplimiento, Legal, Auditoría">Para Compliance, Jurídico, Auditoria</span></span>
+          <span class="vision-card-cta"><span data-pt="Ver detalhes" data-es="Ver detalles">Ver detalhes</span> →</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Callout institucional: Gestão de NRs -->
+    <div class="section-label"><span class="accent green"></span> <span data-pt="Compliance regulatório" data-es="Compliance regulatorio">Compliance regulatório</span></div>
+    <div class="nr-callout">
+      <div class="nr-callout-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11H5a2 2 0 00-2 2v7h18v-7a2 2 0 00-2-2h-4"/><path d="M9 11V7a3 3 0 016 0v4"/><path d="M12 15v2"/></svg>
+      </div>
+      <div class="nr-callout-content">
+        <div class="nr-callout-title"><span data-pt="Gestão de NRs: do PDF frágil à credencial verificável" data-es="Gestión de NRs: del PDF frágil a la credencial verificable">Gestão de NRs: do PDF frágil à credencial verificável</span></div>
+        <div class="nr-callout-desc"><span data-pt="Toda Norma Regulamentadora exige comprovante de capacitação. A POK substitui o PDF tradicional por credenciais em blockchain, com prova auditável de que o treinamento aconteceu, gestão de validade e fluxo de renovação — tudo integrado à categoria regulatória Segurança e Saúde do Trabalho." data-es="Toda Norma Regulatoria exige comprobante de capacitación. POK sustituye el PDF tradicional por credenciales en blockchain, con prueba auditable de que la capacitación ocurrió, gestión de validez y flujo de renovación — todo integrado a la categoría regulatoria Seguridad y Salud Laboral.">Toda Norma Regulamentadora exige comprovante de capacitação. A POK substitui o PDF tradicional por credenciais em blockchain, com prova auditável de que o treinamento aconteceu, gestão de validade e fluxo de renovação — tudo integrado à categoria regulatória Segurança e Saúde do Trabalho.</span></div>
+        <div class="nr-callout-tags">
+          <span class="nr-callout-tag">NR-1</span>
+          <span class="nr-callout-tag">NR-10</span>
+          <span class="nr-callout-tag">NR-12</span>
+          <span class="nr-callout-tag">NR-33</span>
+          <span class="nr-callout-tag">NR-35</span>
+          <span class="nr-callout-tag"><span data-pt="e outras" data-es="y otras">e outras</span></span>
+        </div>
+        <div class="nr-callout-temporal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span><span data-pt="A <strong>NR-1 atualizada</strong> entra em vigor pleno em 26 de maio de 2026, com PGR ampliado para incluir riscos psicossociais — aquecendo a demanda por gestão estruturada de credenciais regulatórias." data-es="La <strong>NR-1 actualizada</strong> entra en vigor pleno el 26 de mayo de 2026, con PGR ampliado para incluir riesgos psicosociales — calentando la demanda por gestión estructurada de credenciales regulatorias.">A <strong>NR-1 atualizada</strong> entra em vigor pleno em 26 de maio de 2026, com PGR ampliado para incluir riscos psicossociais — aquecendo a demanda por gestão estruturada de credenciais regulatórias.</span></span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────────── -->
+  <!-- ZONE: DESENVOLVIMENTO HUMANO -->
+  <!-- ─────────────────────────────────────────────────────────────────────── -->
+  <section class="zone-section" id="zone-dev">
+
+    <div class="zone-header dev">
+      <div class="zone-header-pill"><span class="dot gold"></span> <span data-pt="Zona de desenvolvimento" data-es="Zona de desarrollo">Zona de desenvolvimento</span></div>
+      <h2><span data-pt="O que está acontecendo com seus talentos" data-es="Qué está pasando con tus talentos">O que está acontecendo com seus talentos</span></h2>
+      <p><span data-pt="Quando o portador compartilha a credencial no LinkedIn, a POK passa a ler o perfil profissional dele. A partir desse marco, acompanhamos a internalização das habilidades ensinadas, a mobilidade interna e a retenção dos talentos certificados." data-es="Cuando el portador comparte la credencial en LinkedIn, POK pasa a leer su perfil profesional. A partir de ese hito, acompañamos la internalización de las habilidades enseñadas, la movilidad interna y la retención de los talentos certificados.">Quando o portador compartilha a credencial no LinkedIn, a POK passa a ler o perfil profissional dele. A partir desse marco, acompanhamos a internalização das habilidades ensinadas, a mobilidade interna e a retenção dos talentos certificados.</span></p>
+    </div>
+
+    <!-- Funnel -->
+    <div class="section-label"><span class="accent gold"></span> <span data-pt="Funil de desenvolvimento" data-es="Embudo de desarrollo">Funil de desenvolvimento</span></div>
+    <div class="funnel-card">
+      <h3><span data-pt="Da credencial à evidência de desenvolvimento" data-es="De la credencial a la evidencia de desarrollo">Da credencial à evidência de desenvolvimento</span></h3>
+      <p><span data-pt="Cada etapa mostra quantos portadores de certificados avançaram no processo — do compartilhamento inicial até a mudança de carreira detectada no perfil." data-es="Cada etapa muestra cuántos portadores de certificados avanzaron en el proceso — desde el compartir inicial hasta el cambio de carrera detectado en el perfil.">Cada etapa mostra quantos portadores de certificados avançaram no processo — do compartilhamento inicial até a mudança de carreira detectada no perfil.</span></p>
+      <div class="funnel-steps">
+        <div class="funnel-step"><div class="funnel-bar" style="background:#3a1878;">312</div><div class="funnel-step-label"><span data-pt="Credenciais&lt;br&gt;emitidas" data-es="Credenciales&lt;br&gt;emitidas">Credenciais<br>emitidas</span></div><div class="funnel-step-pct">100%</div></div>
+        <div class="funnel-arrow">›</div>
+        <div class="funnel-step"><div class="funnel-bar" style="background:#5123a4;">248</div><div class="funnel-step-label"><span data-pt="Compartilhada&lt;br&gt;no LinkedIn" data-es="Compartida&lt;br&gt;en LinkedIn">Compartilhada<br>no LinkedIn</span></div><div class="funnel-step-pct">79%</div></div>
+        <div class="funnel-arrow">›</div>
+        <div class="funnel-step"><div class="funnel-bar" style="background:#6b45bb;">221</div><div class="funnel-step-label"><span data-pt="Adicionada&lt;br&gt;ao perfil" data-es="Añadida&lt;br&gt;al perfil">Adicionada<br>ao perfil</span></div><div class="funnel-step-pct">71%</div></div>
+        <div class="funnel-arrow">›</div>
+        <div class="funnel-step"><div class="funnel-bar" style="background:#3B82F6;">169</div><div class="funnel-step-label"><span data-pt="Habilidades do programa&lt;br&gt;declaradas" data-es="Habilidades del programa&lt;br&gt;declaradas">Habilidades do programa<br>declaradas</span></div><div class="funnel-step-pct">54%</div></div>
+        <div class="funnel-arrow">›</div>
+        <div class="funnel-step"><div class="funnel-bar" style="background:#60A5FA;">28</div><div class="funnel-step-label"><span data-pt="Tiveram mobilidade&lt;br&gt;interna" data-es="Tuvieron movilidad&lt;br&gt;interna">Tiveram mobilidade<br>interna</span></div><div class="funnel-step-pct">9%</div></div>
+        <div class="funnel-arrow">›</div>
+        <div class="funnel-step"><div class="funnel-bar" style="background:#1D9E75;">226</div><div class="funnel-step-label"><span data-pt="Continuam&lt;br&gt;na empresa" data-es="Continúan&lt;br&gt;en la empresa">Continuam<br>na empresa</span></div><div class="funnel-step-pct">91%</div></div>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="section-label"><span class="accent gold"></span> <span data-pt="Métricas-chave de desenvolvimento" data-es="Métricas clave de desarrollo">Métricas-chave de desenvolvimento</span></div>
+    <p style="font-size:11px; color:var(--ink-muted); margin:-8px 0 14px 0; line-height:1.5; padding:8px 14px; background:var(--purple-faint); border-left:3px solid var(--purple-light); border-radius:4px;"><span data-pt="Métricas calculadas sobre os portadores que compartilharam a credencial no LinkedIn — único caminho pelo qual a POK conecta a credencial ao perfil profissional do colaborador." data-es="Métricas calculadas sobre los portadores que compartieron la credencial en LinkedIn — único camino por el cual POK conecta la credencial al perfil profesional del colaborador.">Métricas calculadas sobre os portadores que compartilharam a credencial no LinkedIn — único caminho pelo qual a POK conecta a credencial ao perfil profissional do colaborador.</span></p>
+    <div class="kpi-grid kpi-grid-3">
+      <div class="kpi-card highlight-dev">
+        <div class="kpi-value gold">54%</div>
+        <div class="kpi-label"><span data-pt="Taxa de internalização de habilidades" data-es="Tasa de internalización de habilidades">Taxa de internalização de habilidades</span></div>
+        <button class="info-btn" data-tip="Entre os colaboradores que compartilharam a credencial, % que passou a listar no perfil do LinkedIn pelo menos uma das habilidades reconhecidas pelo certificado POK." data-tip-pt="Entre os colaboradores que compartilharam a credencial, % que passou a listar no perfil do LinkedIn pelo menos uma das habilidades reconhecidas pelo certificado POK." data-tip-es="Entre los colaboradores que compartieron la credencial, % que pasó a listar en el perfil de LinkedIn al menos una de las habilidades reconocidas por el certificado POK.">i</button>
+      </div>
+      <div class="kpi-card highlight-dev">
+        <div class="kpi-value gold">38</div>
+        <div class="kpi-label"><span data-pt="Eventos de mobilidade interna" data-es="Eventos de movilidad interna">Eventos de mobilidade interna</span></div>
+        <button class="info-btn" data-tip="Quantas mudanças de cargo dentro da mesma empresa foram registradas no LinkedIn dos colaboradores compartilhadores. O mesmo colaborador pode contribuir com mais de um evento." data-tip-pt="Quantas mudanças de cargo dentro da mesma empresa foram registradas no LinkedIn dos colaboradores compartilhadores. O mesmo colaborador pode contribuir com mais de um evento." data-tip-es="Cuántos cambios de cargo dentro de la misma empresa fueron registrados en LinkedIn de los colaboradores que compartieron. El mismo colaborador puede contribuir con más de un evento.">i</button>
+      </div>
+      <div class="kpi-card highlight-dev">
+        <div class="kpi-value gold">91%</div>
+        <div class="kpi-label"><span data-pt="Taxa de retenção pós-credencial" data-es="Tasa de retención post-credencial">Taxa de retenção pós-credencial</span></div>
+        <button class="info-btn" data-tip="% de colaboradores que continuam na mesma empresa após o compartilhamento da credencial. Quem mudou de empresa no LinkedIn é contabilizado como saída." data-tip-pt="% de colaboradores que continuam na mesma empresa após o compartilhamento da credencial. Quem mudou de empresa no LinkedIn é contabilizado como saída." data-tip-es="% de colaboradores que continúan en la misma empresa después del compartir de la credencial. Quien cambió de empresa en LinkedIn se contabiliza como salida.">i</button>
+      </div>
+    </div>
+
+    <!-- Chart antes/depois -->
+    <div class="section-label"><span class="accent gold"></span> <span data-pt="Trajetória de carreira após o compartilhamento" data-es="Trayectoria de carrera después del compartir">Trajetória de carreira após o compartilhamento</span></div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <h3><span data-pt="Trajetória agregada — eventos acumulados" data-es="Trayectoria agregada — eventos acumulados">Trajetória agregada — eventos acumulados</span></h3>
+          <p><span data-pt="Média de eventos acumulados pelos portadores de acordo com o filtro selecionado — cada novo vínculo profissional registrado no LinkedIn (mudança de cargo na mesma empresa ou mudança de empresa) conta como um evento. À esquerda do marco: dados históricos anteriores ao compartilhamento da credencial. À direita: evolução registrada após o compartilhamento, com leituras bimestrais." data-es="Promedio de eventos acumulados por los portadores de acuerdo con el filtro seleccionado — cada nuevo vínculo profesional registrado en LinkedIn (cambio de cargo en la misma empresa o cambio de empresa) cuenta como un evento. A la izquierda del hito: datos históricos anteriores al compartir de la credencial. A la derecha: evolución registrada después del compartir, con lecturas bimestrales.">Média de eventos acumulados pelos portadores de acordo com o filtro selecionado — cada novo vínculo profissional registrado no LinkedIn (mudança de cargo na mesma empresa ou mudança de empresa) conta como um evento. À esquerda do marco: dados históricos anteriores ao compartilhamento da credencial. À direita: evolução registrada após o compartilhamento, com leituras bimestrais.</span></p>
+        </div>
+      </div>
+      <div class="chart-zone-labels">
+        <span class="zone-label past"><span data-pt="← Antes do compartilhamento" data-es="← Antes del compartir">← Antes do compartilhamento</span></span>
+        <span class="zone-divider-x"></span>
+        <span class="zone-label future"><span data-pt="Após o compartilhamento →" data-es="Después del compartir →">Após o compartilhamento →</span></span>
+      </div>
+      <div style="position:relative; width:100%; height:280px;">
+        <canvas id="devChart"></canvas>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-top:14px; font-size:11px; color:var(--ink-faint);">
+        <div style="width:24px; height:2px; background:var(--crimson); border-radius:1px;"></div>
+        <span data-pt="Nº médio de eventos acumulados" data-es="Nº medio de eventos acumulados">Nº médio de eventos acumulados</span>
+        <div style="width:1px; height:12px; background:var(--border); margin:0 8px;"></div>
+        <div style="width:2px; height:16px; background:var(--ink); border-radius:1px; opacity:0.3;"></div>
+        <span data-pt="Marco do compartilhamento" data-es="Hito del compartir">Marco do compartilhamento</span>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="section-label"><span class="accent gold"></span> <span data-pt="Portadores individuais" data-es="Portadores individuales">Portadores individuais</span></div>
+    <div class="table-card">
+      <div class="table-toolbar">
+        <input type="text" id="searchInputCorp" placeholder="Buscar portador ou programa..." data-ph-pt="Buscar portador ou programa..." data-ph-es="Buscar portador o programa..." oninput="filterTableCorp()" />
+        <select id="impactFilterCorp" onchange="filterTableCorp()">
+          <option value="" data-opt-pt="Todos os impactos" data-opt-es="Todos los impactos">Todos os impactos</option>
+          <option value="saida" data-opt-pt="Saída da empresa" data-opt-es="Salida de la empresa">Saída da empresa</option>
+          <option value="mobilidade" data-opt-pt="Mobilidade interna" data-opt-es="Movilidad interna">Mobilidade interna</option>
+          <option value="none" data-opt-pt="Sem impacto ainda" data-opt-es="Sin impacto todavía">Sem impacto ainda</option>
+        </select>
+        <label class="toggle-label"><input type="checkbox" id="sharedOnlyCorp" onchange="filterTableCorp()" /> <span data-pt="Ver só com postagem compartilhada" data-es="Ver solo con publicación compartida">Ver só com postagem compartilhada</span></label>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th><div class="th-inner"><span data-pt="Data de compartilhamento" data-es="Fecha de compartición">Data de compartilhamento</span> <button class="info-btn" data-tip="Data em que o portador compartilhou o certificado no LinkedIn." data-tip-pt="Data em que o portador compartilhou o certificado no LinkedIn." data-tip-es="Fecha en que el portador compartió el certificado en LinkedIn.">i</button></div></th>
+              <th><div class="th-inner"><span data-pt="Programa" data-es="Programa">Programa</span> <button class="info-btn" data-tip="Nome do programa ou certificado POK que o portador concluiu." data-tip-pt="Nome do programa ou certificado POK que o portador concluiu." data-tip-es="Nombre del programa o certificado POK que el portador concluyó.">i</button></div></th>
+              <th><div class="th-inner"><span data-pt="Portador" data-es="Portador">Portador</span> <button class="info-btn" data-tip="Nome do colaborador que recebeu e compartilhou o certificado." data-tip-pt="Nome do colaborador que recebeu e compartilhou o certificado." data-tip-es="Nombre del colaborador que recibió y compartió el certificado.">i</button></div></th>
+              <th><div class="th-inner"><span data-pt="Cargo detectado" data-es="Cargo detectado">Cargo detectado</span> <button class="info-btn" data-tip="Cargo e empresa registrados no perfil do LinkedIn no momento do compartilhamento ou em leitura posterior." data-tip-pt="Cargo e empresa registrados no perfil do LinkedIn no momento do compartilhamento ou em leitura posterior." data-tip-es="Cargo y empresa registrados en el perfil de LinkedIn en el momento del compartir o en lectura posterior.">i</button></div></th>
+              <th><div class="th-inner"><span data-pt="Impacto" data-es="Impacto">Impacto</span> <button class="info-btn" data-tip="Tipo de mudança detectada: saída da empresa (mudou de empresa) ou mobilidade interna (mesmo empregador, novo cargo)." data-tip-pt="Tipo de mudança detectada: saída da empresa (mudou de empresa) ou mobilidade interna (mesmo empregador, novo cargo)." data-tip-es="Tipo de cambio detectado: salida de la empresa (cambió de empresa) o movilidad interna (mismo empleador, nuevo cargo).">i</button></div></th>
+              <th><div class="th-inner"><span data-pt="Dias até impacto" data-es="Días hasta impacto">Dias até impacto</span> <button class="info-btn" data-tip="Número de dias entre o compartilhamento e a detecção da mudança no perfil." data-tip-pt="Número de dias entre o compartilhamento e a detecção da mudança no perfil." data-tip-es="Número de días entre el compartir y la detección del cambio en el perfil.">i</button></div></th>
+              <th><div class="th-inner"><span data-pt="LinkedIn" data-es="LinkedIn">LinkedIn</span> <button class="info-btn" data-tip="Ícone de post: indica se foi detectada uma publicação sobre o certificado. Ícone de perfil: acessa o LinkedIn do portador. Ícone de gráfico: abre a trajetória detalhada do portador." data-tip-pt="Ícone de post: indica se foi detectada uma publicação sobre o certificado. Ícone de perfil: acessa o LinkedIn do portador. Ícone de gráfico: abre a trajetória detalhada do portador." data-tip-es="Icono de post: indica si se detectó una publicación sobre el certificado. Icono de perfil: accede al LinkedIn del portador. Icono de gráfico: abre la trayectoria detallada del portador.">i</button></div></th>
+            </tr>
+          </thead>
+          <tbody id="tableBodyCorp"></tbody>
+        </table>
+      </div>
+      <div id="emptyStateCorp" style="display:none; padding:2.5rem; text-align:center; color:var(--ink-faint); font-size:13px; font-weight:500;"><span data-pt="Nenhum portador encontrado com os filtros aplicados." data-es="Ningún portador encontrado con los filtros aplicados.">Nenhum portador encontrado com os filtros aplicados.</span></div>
+    </div>          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────────────── -->
+  <!-- ZONE: COMPLIANCE -->
+  <!-- ─────────────────────────────────────────────────────────────────────── -->
+  <section class="zone-section" id="zone-com">
+
+    <div class="zone-header com">
+      <div class="zone-header-pill"><span class="dot green"></span> <span data-pt="Zona de compliance" data-es="Zona de compliance">Zona de compliance</span></div>
+      <h2><span data-pt="Credenciais auditáveis, vigência sob controle" data-es="Credenciales auditables, vigencia bajo control">Credenciais auditáveis, vigência sob controle</span></h2>
+      <p><span data-pt="Cada credencial POK é registrada em blockchain com data de emissão, validade e prova criptográfica de integridade. Esta visão mostra o ciclo de vida das credenciais ativas, vencimentos próximos e a auditabilidade do conjunto." data-es="Cada credencial POK se registra en blockchain con fecha de emisión, validez y prueba criptográfica de integridad. Esta visión muestra el ciclo de vida de las credenciales activas, vencimientos próximos y la auditabilidad del conjunto.">Cada credencial POK é registrada em blockchain com data de emissão, validade e prova criptográfica de integridade. Esta visão mostra o ciclo de vida das credenciais ativas, vencimentos próximos e a auditabilidade do conjunto.</span></p>
+    </div>
+
+    <!-- Status das credenciais -->
+    <div class="section-label"><span class="accent green"></span> <span data-pt="Status das credenciais" data-es="Estado de las credenciales">Status das credenciais</span></div>
+    <div class="kpi-grid kpi-grid-4" style="margin-bottom:24px;">
+      <div class="kpi-card highlight-com">
+        <div class="kpi-value green">405</div>
+        <div class="kpi-label"><span data-pt="Credenciais emitidas" data-es="Credenciales emitidas">Credenciais emitidas</span></div>
+        <button class="info-btn" data-tip="Total de credenciais POK já emitidas no programa corporativo." data-tip-pt="Total de credenciais POK já emitidas no programa corporativo." data-tip-es="Total de credenciales POK ya emitidas en el programa corporativo.">i</button>
+      </div>
+      <div class="kpi-card highlight-com">
+        <div class="kpi-value green">382</div>
+        <div class="kpi-label"><span data-pt="Vigentes" data-es="Vigentes">Vigentes</span></div>
+        <button class="info-btn" data-tip="Credenciais dentro do prazo de validade. Considera apenas credenciais com campo de validade preenchido pelo programa." data-tip-pt="Credenciais dentro do prazo de validade. Considera apenas credenciais com campo de validade preenchido pelo programa." data-tip-es="Credenciales dentro del plazo de validez. Considera solo credenciales con campo de validez completado por el programa.">i</button>
+      </div>
+      <div class="kpi-card highlight-com">
+        <div class="kpi-value green">23</div>
+        <div class="kpi-label"><span data-pt="A vencer (30 dias)" data-es="Por vencer (30 días)">A vencer (30 dias)</span></div>
+        <button class="info-btn" data-tip="Credenciais vigentes cuja validade expira nos próximos 30 dias." data-tip-pt="Credenciais vigentes cuja validade expira nos próximos 30 dias." data-tip-es="Credenciales vigentes cuya validez expira en los próximos 30 días.">i</button>
+      </div>
+      <div class="kpi-card highlight-com">
+        <div class="kpi-value green">23</div>
+        <div class="kpi-label"><span data-pt="Vencidas" data-es="Vencidas">Vencidas</span></div>
+        <button class="info-btn" data-tip="Credenciais cuja data de validade já expirou. Considera apenas credenciais com campo de validade preenchido pelo programa." data-tip-pt="Credenciais cuja data de validade já expirou. Considera apenas credenciais com campo de validade preenchido pelo programa." data-tip-es="Credenciales cuya fecha de validez ya expiró. Considera solo credenciales con campo de validez completado por el programa.">i</button>
+      </div>
+    </div>
+
+    <!-- Auditabilidade blockchain (destaque institucional) -->
+    <div class="audit-callout">
+      <div class="audit-callout-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div class="audit-callout-content">
+        <div class="audit-callout-value">100%</div>
+        <div class="audit-callout-text">
+          <div class="audit-callout-title"><span data-pt="Auditabilidade blockchain" data-es="Auditabilidad blockchain">Auditabilidade blockchain</span></div>
+          <div class="audit-callout-desc"><span data-pt="Todas as credenciais POK são registradas em blockchain com prova criptográfica de integridade — verificáveis publicamente, sem dependência da plataforma." data-es="Todas las credenciales POK se registran en blockchain con prueba criptográfica de integridad — verificables públicamente, sin dependencia de la plataforma.">Todas as credenciais POK são registradas em blockchain com prova criptográfica de integridade — verificáveis publicamente, sem dependência da plataforma.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráfico — distribuição de vencimentos nos próximos 12 meses (projeção, não histórico) -->
+    <div class="section-label"><span class="accent green"></span> <span data-pt="Linha do tempo de vencimentos" data-es="Línea de tiempo de vencimientos">Linha do tempo de vencimentos</span></div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <h3><span data-pt="Quando suas credenciais vão vencer" data-es="Cuándo vencerán sus credenciales">Quando suas credenciais vão vencer</span></h3>
+          <p><span data-pt="Distribuição mensal das credenciais vigentes pelo mês de vencimento, agrupadas pela categoria regulatória cadastrada no programa POK. Permite antecipar picos de reciclagem e planejar turmas com antecedência." data-es="Distribución mensual de las credenciales vigentes por mes de vencimiento, agrupadas por la categoría regulatoria registrada en el programa POK. Permite anticipar picos de reciclaje y planificar grupos con antelación.">Distribuição mensal das credenciais vigentes pelo mês de vencimento, agrupadas pela categoria regulatória cadastrada no programa POK. Permite antecipar picos de reciclagem e planejar turmas com antecedência.</span></p>
+        </div>
+      </div>
+      <div style="position:relative; width:100%; height:280px;">
+        <canvas id="comChart"></canvas>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; gap:14px; margin-top:14px; font-size:11px; color:var(--ink-faint); flex-wrap:wrap;">
+        <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:14px; height:10px; background:#0f6e56; border-radius:2px;"></span> <span data-pt="Segurança e Saúde do Trabalho" data-es="Seguridad y Salud Laboral">Segurança e Saúde do Trabalho</span></span>
+        <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:14px; height:10px; background:var(--purple); border-radius:2px;"></span> <span data-pt="Proteção de Dados e Segurança" data-es="Protección de Datos y Seguridad">Proteção de Dados e Segurança</span></span>
+        <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:14px; height:10px; background:#B83A4B; border-radius:2px;"></span> <span data-pt="Ética e Anticorrupção" data-es="Ética y Anticorrupción">Ética e Anticorrupção</span></span>
+        <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:14px; height:10px; background:var(--green); border-radius:2px;"></span> <span data-pt="ESG e Sustentabilidade" data-es="ESG y Sostenibilidad">ESG e Sustentabilidade</span></span>
+        <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:14px; height:10px; background:#94A3B8; border-radius:2px;"></span> <span data-pt="Outros" data-es="Otros">Outros</span></span>
+      </div>
+    </div>
+
+    <!-- Tabela de status individual (sem &quot;Pendente&quot;) -->
+    <div class="section-label"><span class="accent green"></span> <span data-pt="Credenciais por colaborador" data-es="Credenciales por colaborador">Credenciais por colaborador</span></div>
+    <div class="table-card">
+      <div class="table-toolbar com">
+        <input type="text" placeholder="Buscar colaborador, programa ou categoria..." data-ph-pt="Buscar colaborador, programa ou categoria..." data-ph-es="Buscar colaborador, programa o categoría..." />
+        <select>
+          <option value="" data-opt-pt="Todos os status" data-opt-es="Todos los estados">Todos os status</option>
+          <option data-opt-pt="Conforme" data-opt-es="Conforme">Conforme</option>
+          <option data-opt-pt="Vence em breve" data-opt-es="Vence pronto">Vence em breve</option>
+          <option data-opt-pt="Vencido" data-opt-es="Vencido">Vencido</option>
+        </select>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th><div class="th-inner"><span data-pt="Colaborador" data-es="Colaborador">Colaborador</span></div></th>
+              <th><div class="th-inner"><span data-pt="Programa" data-es="Programa">Programa</span> <button class="info-btn" data-tip="Nome do programa POK que emitiu a credencial." data-tip-pt="Nome do programa POK que emitiu a credencial." data-tip-es="Nombre del programa POK que emitió la credencial.">i</button></div></th>
+              <th><div class="th-inner"><span data-pt="Categoria regulatória" data-es="Categoría regulatoria">Categoria regulatória</span> <button class="info-btn" data-tip="Categoria regulatória cadastrada no programa POK. Programas sem categoria não aparecem aqui." data-tip-pt="Categoria regulatória cadastrada no programa POK. Programas sem categoria não aparecem aqui." data-tip-es="Categoría regulatoria registrada en el programa POK. Programas sin categoría no aparecen aquí.">i</button></div></th>
+              <th><div class="th-inner"><span data-pt="Status" data-es="Estado">Status</span> <button class="info-btn" data-tip="Conforme: credencial vigente. Vence em breve: vencimento em até 30 dias. Vencido: fora do prazo." data-tip-pt="Conforme: credencial vigente. Vence em breve: vencimento em até 30 dias. Vencido: fora do prazo." data-tip-es="Conforme: credencial vigente. Vence pronto: vencimiento en hasta 30 días. Vencido: fuera de plazo.">i</button></div></th>
+              <th><div class="th-inner"><span data-pt="Emitida em" data-es="Emitida el">Emitida em</span></div></th>
+              <th><div class="th-inner"><span data-pt="Validade" data-es="Validez">Validade</span></div></th>
+              <th><div class="th-inner"><span data-pt="Prova blockchain" data-es="Prueba blockchain">Prova blockchain</span> <button class="info-btn" data-tip="Prova auditável da credencial em blockchain. Clique para verificar." data-tip-pt="Prova auditável da credencial em blockchain. Clique para verificar." data-tip-es="Prueba auditable de la credencial en blockchain. Clic para verificar.">i</button></div></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span style="font-weight:600;">Ana Beatriz Costa</span></td>
+              <td class="td-muted"><span data-pt="Reciclagem NR-10 2025" data-es="Reciclaje NR-10 2025">Reciclagem NR-10 2025</span></td>
+              <td class="td-muted"><span data-pt="Segurança e Saúde do Trabalho" data-es="Seguridad y Salud Laboral">Segurança e Saúde do Trabalho</span></td>
+              <td><span class="badge badge-conforme"><span data-pt="Conforme" data-es="Conforme">Conforme</span></span></td>
+              <td class="td-muted">15/03/2025</td>
+              <td class="td-muted">15/03/2027</td>
+              <td><span style="font-family:monospace; font-size:11px; color:var(--purple);">0xA3F2...8B1C</span></td>
+            </tr>
+            <tr>
+              <td><span style="font-weight:600;">Bruno Henrique Silva</span></td>
+              <td class="td-muted"><span data-pt="LGPD para Áreas de Negócio" data-es="LGPD para Áreas de Negocio">LGPD para Áreas de Negócio</span></td>
+              <td class="td-muted"><span data-pt="Proteção de Dados e Segurança" data-es="Protección de Datos y Seguridad">Proteção de Dados e Segurança</span></td>
+              <td><span class="badge badge-vence"><span data-pt="Vence em 18 dias" data-es="Vence en 18 días">Vence em 18 dias</span></span></td>
+              <td class="td-muted">17/05/2024</td>
+              <td class="td-muted">17/05/2026</td>
+              <td><span style="font-family:monospace; font-size:11px; color:var(--purple);">0xC4D7...9F2A</span></td>
+            </tr>
+            <tr>
+              <td><span style="font-weight:600;">Camila Fernandes Rocha</span></td>
+              <td class="td-muted"><span data-pt="Compliance Antissuborno" data-es="Cumplimiento Antisoborno">Compliance Antissuborno</span></td>
+              <td class="td-muted"><span data-pt="Ética e Anticorrupção" data-es="Ética y Anticorrupción">Ética e Anticorrupção</span></td>
+              <td><span class="badge badge-conforme"><span data-pt="Conforme" data-es="Conforme">Conforme</span></span></td>
+              <td class="td-muted">22/11/2025</td>
+              <td class="td-muted">22/11/2026</td>
+              <td><span style="font-family:monospace; font-size:11px; color:var(--purple);">0xE8B1...2D4F</span></td>
+            </tr>
+            <tr>
+              <td><span style="font-weight:600;">Diogo Antunes Lima</span></td>
+              <td class="td-muted"><span data-pt="LGPD para Áreas de Negócio" data-es="LGPD para Áreas de Negocio">LGPD para Áreas de Negócio</span></td>
+              <td class="td-muted"><span data-pt="Proteção de Dados e Segurança" data-es="Protección de Datos y Seguridad">Proteção de Dados e Segurança</span></td>
+              <td><span class="badge badge-conforme"><span data-pt="Conforme" data-es="Conforme">Conforme</span></span></td>
+              <td class="td-muted">08/02/2025</td>
+              <td class="td-muted">08/02/2027</td>
+              <td><span style="font-family:monospace; font-size:11px; color:var(--purple);">0x7A12...E3C8</span></td>
+            </tr>
+            <tr>
+              <td><span style="font-weight:600;">Eduardo Vasconcelos</span></td>
+              <td class="td-muted"><span data-pt="Reciclagem NR-10 2024" data-es="Reciclaje NR-10 2024">Reciclagem NR-10 2024</span></td>
+              <td class="td-muted"><span data-pt="Segurança e Saúde do Trabalho" data-es="Seguridad y Salud Laboral">Segurança e Saúde do Trabalho</span></td>
+              <td><span class="badge badge-vencido"><span data-pt="Vencido há 12 dias" data-es="Vencido hace 12 días">Vencido há 12 dias</span></span></td>
+              <td class="td-muted">17/04/2024</td>
+              <td class="td-muted">17/04/2026</td>
+              <td><span style="font-family:monospace; font-size:11px; color:var(--purple);">0xB5F4...1A9D</span></td>
+            </tr>
+            <tr>
+              <td><span style="font-weight:600;">Fernanda Toledo</span></td>
+              <td class="td-muted"><span data-pt="Compliance Antissuborno" data-es="Cumplimiento Antisoborno">Compliance Antissuborno</span></td>
+              <td class="td-muted"><span data-pt="Ética e Anticorrupção" data-es="Ética y Anticorrupción">Ética e Anticorrupção</span></td>
+              <td><span class="badge badge-vence"><span data-pt="Vence em 26 dias" data-es="Vence en 26 días">Vence em 26 dias</span></span></td>
+              <td class="td-muted">25/05/2025</td>
+              <td class="td-muted">25/05/2026</td>
+              <td><span style="font-family:monospace; font-size:11px; color:var(--purple);">0x2E91...7B3F</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Box informativo: integração com HRIS abre nova camada de visibilidade -->
+    <div class="hris-callout">
+      <div class="hris-callout-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <div class="hris-callout-content">
+        <div class="hris-callout-title"><span data-pt="Quer ver cobertura da população obrigada e gaps por área?" data-es="¿Quiere ver cobertura de la población obligada y brechas por área?">Quer ver cobertura da população obrigada e gaps por área?</span></div>
+        <div class="hris-callout-desc"><span data-pt="Conectando o HRIS da sua empresa (SuccessFactors, Workday, TOTVS, Senior, Sankhya e outros), o dashboard passa a mostrar também: cobertura por área, identificação de pendentes, mapas de risco regulatório por departamento e relatórios de auditoria automatizados." data-es="Al conectar el HRIS de su empresa (SuccessFactors, Workday, TOTVS, Senior, Sankhya y otros), el dashboard pasa a mostrar también: cobertura por área, identificación de pendientes, mapas de riesgo regulatorio por departamento e informes de auditoría automatizados.">Conectando o HRIS da sua empresa (SuccessFactors, Workday, TOTVS, Senior, Sankhya e outros), o dashboard passa a mostrar também: cobertura por área, identificação de pendentes, mapas de risco regulatório por departamento e relatórios de auditoria automatizados.</span></div>
+        <button class="hris-callout-cta"><span data-pt="Falar sobre integração HRIS" data-es="Hablar sobre integración HRIS">Falar sobre integração HRIS</span> →</button>
+      </div>
+    </div>
+
+    </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-logo">
+    <div class="footer-logo-icon">
+      <svg viewBox="0 0 18 18" fill="none" width="16" height="16"><rect x="1" y="1" width="16" height="16" rx="3" stroke="#5123a4" stroke-width="2"/><polyline points="4,9 7.5,13 14,5" stroke="#5123a4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <span class="footer-logo-text">pok</span>
+  </div>
+  <p>Muito mais que certificados digitais · <a href="https://pok.tech" target="_blank" style="color:var(--purple);font-weight:600;text-decoration:none;">pok.tech</a></p>
+</footer>
+
+<script>
+// ─── ZONE SWITCHING ───────────────────────────────────────────────────────────
+function setZone(zone) {
+  document.querySelectorAll('.zone-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('zone-' + zone).classList.add('active');
+  document.querySelectorAll('.zone-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.zone-tab[data-zone="' + zone + '"]').classList.add('active');
+  // re-init charts when switching to ensure proper render
+  if (zone === 'dev') setTimeout(initDevChart, 50);
+  if (zone === 'com') setTimeout(initComChart, 50);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── DEV CHART (skills internalizadas — antes/depois) ─────────────────────────
+const pastLabels = ['-12m', '-10m', '-8m', '-6m', '-4m', '-2m'];
+const futureLabels = ['+2m', '+4m', '+6m', '+8m', '+10m', '+12m'];
+const allLabels = [...pastLabels, 'Credencial', ...futureLabels];
+const shareIndex = pastLabels.length;
+
+let devChartInstance = null;
+function initDevChart() {
+  const canvas = document.getElementById('devChart');
+  if (!canvas) return;
+  if (devChartInstance) devChartInstance.destroy();
+
+  // Cada ponto representa o número médio de eventos acumulados (mudanças de cargo
+  // ou de empresa registradas no LinkedIn) por portador, em cada bimestre.
+  const past = [0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+  const share = 1.0;
+  const future = [1.3, 1.6, 1.9, 2.1, 2.3, 2.4];
+  const values = [...past, share, ...future];
+
+  const pointBg = allLabels.map((_, i) => {
+    if (i === shareIndex) return '#3B82F6';
+    if (i < shareIndex) return '#fff';
+    return '#fff';
+  });
+  const pointR = allLabels.map((_, i) => i === shareIndex ? 7 : 4);
+
+  const ctx = canvas.getContext('2d');
+  const grad = ctx.createLinearGradient(0, 0, ctx.canvas.width, 0);
+  grad.addColorStop(0, 'rgba(168,184,210,0.5)');
+  grad.addColorStop(shareIndex / (allLabels.length - 1), 'rgba(59,130,246,0.5)');
+  grad.addColorStop(1, 'rgba(59,130,246,0.9)');
+
+  devChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: allLabels,
+      datasets: [{
+        label: 'Nº médio de eventos acumulados',
+        data: values,
+        borderColor: grad,
+        borderWidth: 2.5,
+        pointBackgroundColor: pointBg,
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: pointR,
+        pointHoverRadius: 7,
+        tension: 0,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { top: 36 } },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: ctx => ctx[0].label,
+            label: ctx => {
+              const v = ctx.parsed.y;
+              const labelPt = v === 1 ? '1 evento' : v + ' eventos';
+              const labelEs = v === 1 ? '1 evento' : v + ' eventos';
+              return currentLang === 'es' ? labelEs : labelPt;
+            }
+          },
+          bodyFont: { family: 'Poppins', size: 12 },
+          titleFont: { family: 'Poppins', size: 12, weight: '600' }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            font: { size: 11, family: 'Poppins' },
+            color: ctx => {
+              const i = ctx.index;
+              if (i === shareIndex) return '#3B82F6';
+              if (i < shareIndex) return '#A899C2';
+              return '#5E4E7A';
+            },
+            maxRotation: 0
+          },
+          grid: { color: 'rgba(216,206,240,0.5)' }
+        },
+        y: {
+          min: 0,
+          max: 3,
+          title: { display: true, text: currentLang === 'es' ? 'Eventos acumulados' : 'Eventos acumulados', font: { size: 11, family: 'Poppins' }, color: '#A899C2' },
+          ticks: { font: { size: 11, family: 'Poppins' }, color: '#A899C2', stepSize: 0.5 },
+          grid: { color: 'rgba(216,206,240,0.4)' }
+        }
+      }
+    },
+    plugins: [{
+      id: 'shareMarker',
+      afterDraw(chart) {
+        const { ctx, chartArea, scales } = chart;
+        const xScale = scales.x;
+        const shareX = xScale.getPixelForValue(shareIndex);
+        ctx.save();
+        ctx.fillStyle = 'rgba(219,234,254,0.5)';
+        ctx.fillRect(chartArea.left, chartArea.top, shareX - chartArea.left, chartArea.bottom - chartArea.top);
+        ctx.fillStyle = 'rgba(147,197,253,0.18)';
+        ctx.fillRect(shareX, chartArea.top, chartArea.right - shareX, chartArea.bottom - chartArea.top);
+        ctx.beginPath();
+        ctx.setLineDash([5, 4]);
+        ctx.strokeStyle = 'rgba(59,130,246,0.7)';
+        ctx.lineWidth = 1.5;
+        ctx.moveTo(shareX, chartArea.top);
+        ctx.lineTo(shareX, chartArea.bottom);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        const pillText = currentLang === 'es' ? 'Compartir' : 'Compartilhamento';
+        ctx.font = '600 11px Poppins, sans-serif';
+        ctx.textAlign = 'center';
+        const pillW = ctx.measureText(pillText).width + 20;
+        const pillH = 22;
+        const pillX = shareX - pillW / 2;
+        const pillY = chartArea.top - pillH - 6;
+        ctx.fillStyle = '#3B82F6';
+        ctx.beginPath();
+        ctx.roundRect(pillX, pillY, pillW, pillH, 6);
+        ctx.fill();
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(pillText, shareX, pillY + 15);
+        ctx.beginPath();
+        ctx.moveTo(shareX - 6, pillY + pillH);
+        ctx.lineTo(shareX + 6, pillY + pillH);
+        ctx.lineTo(shareX, pillY + pillH + 6);
+        ctx.closePath();
+        ctx.fillStyle = '#3B82F6';
+        ctx.fill();
+        ctx.restore();
+      }
+    }]
+  });
+}
+
+// ─── COMPLIANCE CHART (cobertura por norma ao longo do tempo) ─────────────────
+let comChartInstance = null;
+function initComChart() {
+  const canvas = document.getElementById('comChart');
+  if (!canvas) return;
+  if (comChartInstance) comChartInstance.destroy();
+
+  // Próximos 12 meses: distribuição de credenciais vigentes pelo mês de vencimento.
+  // Dados 100% derivados da POK (data de emissão + duração de validade do programa).
+  const months = ['Mai/26', 'Jun/26', 'Jul/26', 'Ago/26', 'Set/26', 'Out/26', 'Nov/26', 'Dez/26', 'Jan/27', 'Fev/27', 'Mar/27', 'Abr/27'];
+  const ctx = canvas.getContext('2d');
+
+  comChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [
+        {
+          label: currentLang === 'es' ? 'Seguridad y Salud Laboral' : 'Segurança e Saúde do Trabalho',
+          data: [12, 18, 14, 9, 22, 16, 11, 8, 19, 24, 13, 10],
+          backgroundColor: '#0f6e56',
+          borderRadius: 4,
+          stack: 'venc',
+          maxBarThickness: 36
+        },
+        {
+          label: currentLang === 'es' ? 'Protección de Datos y Seguridad' : 'Proteção de Dados e Segurança',
+          data: [8, 11, 19, 14, 7, 23, 18, 12, 9, 16, 21, 15],
+          backgroundColor: '#5123a4',
+          borderRadius: 4,
+          stack: 'venc',
+          maxBarThickness: 36
+        },
+        {
+          label: currentLang === 'es' ? 'Ética y Anticorrupción' : 'Ética e Anticorrupção',
+          data: [3, 5, 8, 11, 6, 9, 14, 7, 5, 8, 12, 6],
+          backgroundColor: '#B83A4B',
+          borderRadius: 4,
+          stack: 'venc',
+          maxBarThickness: 36
+        },
+        {
+          label: currentLang === 'es' ? 'ESG y Sostenibilidad' : 'ESG e Sustentabilidade',
+          data: [2, 3, 6, 4, 5, 7, 4, 3, 6, 8, 5, 4],
+          backgroundColor: '#1D9E75',
+          borderRadius: 4,
+          stack: 'venc',
+          maxBarThickness: 36
+        },
+        {
+          label: currentLang === 'es' ? 'Otros' : 'Outros',
+          data: [4, 6, 3, 5, 8, 4, 6, 5, 3, 7, 5, 4],
+          backgroundColor: '#94A3B8',
+          borderRadius: 4,
+          stack: 'venc',
+          maxBarThickness: 36
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + (currentLang === 'es' ? ' credenciales' : ' credenciais')
+          },
+          bodyFont: { family: 'Poppins', size: 12 },
+          titleFont: { family: 'Poppins', size: 12, weight: '600' }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          ticks: { font: { size: 10, family: 'Poppins' }, color: '#A899C2', maxRotation: 0 },
+          grid: { display: false }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          title: { display: true, text: (currentLang === 'es' ? 'Credenciales por vencer' : 'Credenciais a vencer'), font: { size: 11, family: 'Poppins' }, color: '#A899C2' },
+          ticks: { font: { size: 11, family: 'Poppins' }, color: '#A899C2', stepSize: 10 },
+          grid: { color: 'rgba(216,206,240,0.4)' }
+        }
+      }
+    }
+  });
+}
+
+// ─── TOOLTIPS ─────────────────────────────────────────────────────────────────
+const gtip = document.getElementById('gtip');
+const garrow = document.getElementById('gtip-arrow');
+document.addEventListener('mouseover', (e) => {
+  const btn = e.target.closest('.info-btn');
+  if (!btn) return;
+  const tip = btn.getAttribute('data-tip');
+  if (!tip) return;
+  gtip.innerHTML = tip;
+  gtip.style.display = 'block';
+  garrow.style.display = 'block';
+  const rect = btn.getBoundingClientRect();
+  const tipRect = gtip.getBoundingClientRect();
+  let left = rect.left + rect.width/2 - tipRect.width/2;
+  let top = rect.top - tipRect.height - 12;
+  if (left < 10) left = 10;
+  if (left + tipRect.width > window.innerWidth - 10) left = window.innerWidth - tipRect.width - 10;
+  if (top < 10) {
+    top = rect.bottom + 12;
+    garrow.style.borderTop = 'none';
+    garrow.style.borderBottom = '7px solid #1E1230';
+  } else {
+    garrow.style.borderTop = '7px solid #1E1230';
+    garrow.style.borderBottom = 'none';
+  }
+  gtip.style.left = left + 'px';
+  gtip.style.top = top + 'px';
+  garrow.style.left = (rect.left + rect.width/2 - 6) + 'px';
+  garrow.style.top = (top < rect.top ? top + tipRect.height : top - 7) + 'px';
+});
+document.addEventListener('mouseout', (e) => {
+  const btn = e.target.closest('.info-btn');
+  if (!btn) return;
+  gtip.style.display = 'none';
+  garrow.style.display = 'none';
+});
+
+// initial render — gráficos inicializam ao trocar de aba via setZone()
+// (a aba inicial é "overview", que não tem gráficos)
+</script>
+
+<script>
+let currentLang = 'pt';
+function setLang(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+  document.documentElement.lang = (lang === 'pt') ? 'pt-BR' : 'es';
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  document.querySelectorAll('[data-pt][data-es]').forEach(el => {
+    el.innerHTML = (lang === 'pt') ? el.dataset.pt : el.dataset.es;
+  });
+  document.querySelectorAll('[data-tip-pt][data-tip-es]').forEach(el => {
+    el.setAttribute('data-tip', (lang === 'pt') ? el.dataset.tipPt : el.dataset.tipEs);
+  });
+  document.querySelectorAll('[data-ph-pt][data-ph-es]').forEach(el => {
+    el.setAttribute('placeholder', (lang === 'pt') ? el.dataset.phPt : el.dataset.phEs);
+  });
+  document.querySelectorAll('option[data-opt-pt][data-opt-es]').forEach(el => {
+    el.textContent = (lang === 'pt') ? el.dataset.optPt : el.dataset.optEs;
+  });
+}
+</script>
+
+
+<!-- DRAWER (espelhado do dashboard de empregabilidade) -->
+<div class="drawer-overlay" id="drawerOverlayCorp" onclick="closeDrawerCorp()"></div>
+<div class="drawer" id="drawerCorp">
+  <div class="drawer-head">
+    <div class="drawer-head-top">
+      <div>
+        <div class="drawer-name" id="drawerNameCorp">—</div>
+        <div class="drawer-meta">
+          <span class="drawer-meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span id="drawerLocationCorp">São Paulo, SP</span>
+          </span>
+          <span class="drawer-meta-item">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span id="drawerConnectionsCorp">320 <span data-pt="conexões" data-es="conexiones">conexões</span></span>
+          </span>
+        </div>
+      </div>
+      <button class="drawer-close" onclick="closeDrawerCorp()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-cert-badge">
+      <span class="dot"></span>
+      <span id="drawerCertNameCorp">—</span>
+      <span style="color:var(--ink-faint); font-weight:400;"><span data-pt="· compartilhado em" data-es="· compartido el">· compartilhado em</span></span>
+      <span id="drawerCertDateCorp">—</span>
+    </div>
+  </div>
+
+  <div class="drawer-body">
+
+    <!-- GRÁFICO INDIVIDUAL -->
+    <div class="drawer-section">
+      <div class="drawer-section-title"><span data-pt="Eventos acumulados" data-es="Eventos acumulados">Eventos acumulados</span></div>
+      <div style="position:relative; height:160px; margin-bottom:4px;">
+        <canvas id="drawerChartCorp"></canvas>
+      </div>
+      <p style="font-size:11px; color:var(--ink-faint); line-height:1.5; margin-top:6px;"><span data-pt="Eventos acumulados deste portador — antes e após o compartilhamento da credencial. Eixo X: anual antes, bimestral depois." data-es="Eventos acumulados de este portador — antes y después del compartir de la credencial. Eje X: anual antes, bimestral después.">Eventos acumulados deste portador — antes e após o compartilhamento da credencial. Eixo X: anual antes, bimestral depois.</span></p>
+    </div>
+
+    <!-- TRAJETÓRIA PROFISSIONAL -->
+    <div class="drawer-section">
+      <div class="drawer-section-title"><span data-pt="Trajetória profissional" data-es="Trayectoria profesional">Trajetória profissional</span></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot before"></div>
+          <div class="tl-card">
+            <div class="tl-card-period"><span data-pt="Antes do certificado" data-es="Antes del certificado">Antes do certificado</span> · Mar 2018 — Jul 2020</div>
+            <div class="tl-card-title">Analista de Operações</div>
+            <div class="tl-card-sub">Empresa Alpha · São Paulo, SP</div>
+            <span class="tl-card-type type-full">Full-time</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot before"></div>
+          <div class="tl-card">
+            <div class="tl-card-period">Ago 2020 — Set 2025 · <span data-pt="Antes do certificado" data-es="Antes del certificado">Antes do certificado</span></div>
+            <div class="tl-card-title">Analista Pleno de Operações</div>
+            <div class="tl-card-sub">Empresa Atual · São Paulo, SP</div>
+            <span class="tl-card-type type-full">Full-time · On-site</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot cert"></div>
+          <div class="tl-card cert-marker">
+            <div class="tl-card-period" id="drawerCertDateTlCorp">Out 2025</div>
+            <div class="tl-card-title"><span data-pt="Credencial POK compartilhada" data-es="Credencial POK compartida">Credencial POK compartilhada</span></div>
+            <div class="tl-card-sub" id="drawerCertProgramTlCorp">AI Bootcamp 2025</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot after"></div>
+          <div class="tl-card after-cert">
+            <div class="tl-card-period">Nov 2025 — <span data-pt="Presente" data-es="Presente">Presente</span> · <span data-pt="Após o certificado" data-es="Después del certificado">Após o certificado</span></div>
+            <div class="tl-card-title">Coordenador de Operações</div>
+            <div class="tl-card-sub">Empresa Atual · São Paulo, SP</div>
+            <span class="tl-card-type type-full">Full-time · On-site</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORMAÇÃO -->
+    <div class="drawer-section">
+      <div class="drawer-section-title"><span data-pt="Formação acadêmica" data-es="Formación académica">Formação acadêmica</span></div>
+      <div class="edu-item">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-body">
+          <div class="edu-degree">MBA em Gestão de Projetos</div>
+          <div class="edu-school">FGV</div>
+          <div class="edu-period">Jan 2020 — Dez 2021</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-body">
+          <div class="edu-degree"><span data-pt="Bacharel em Administração" data-es="Bachiller en Administración">Bacharel em Administração</span></div>
+          <div class="edu-school">USP</div>
+          <div class="edu-period">Fev 2014 — Dez 2017</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HABILIDADES -->
+    <div class="drawer-section">
+      <div class="drawer-section-title"><span data-pt="Habilidades declaradas no LinkedIn" data-es="Habilidades declaradas en LinkedIn">Habilidades declaradas no LinkedIn</span></div>
+      <div class="skills-wrap">
+        <span class="skill-chip">Project Management</span>
+        <span class="skill-chip">Operations</span>
+        <span class="skill-chip">Process Improvement</span>
+        <span class="skill-chip">Leadership</span>
+        <span class="skill-chip">Data Analysis</span>
+        <span class="skill-chip">Stakeholder Management</span>
+        <span class="skill-chip">Agile</span>
+        <span class="skill-chip">Excel</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+// ─── TABLE DATA (Corporativo) ───────────────────────────────────────────────
+const rowsCorp = [
+  {date:'08/15/25', program:'Executive Program - T15', name:'Ana Beatriz Costa', cargo:'Gerente de Operações', empresa:'Empresa Atual', impact:'mobilidade', dias:38, shared:true, hasPost:true},
+  {date:'08/15/25', program:'Executive Program - T15', name:'Camila Fernandes Rocha', cargo:'Especialista em CX', empresa:'Empresa Atual', impact:'none', dias:null, shared:true, hasPost:true},
+  {date:'10/30/25', program:'AI Bootcamp 2025', name:'Bruno Henrique Silva', cargo:'Analista Pleno de Dados', empresa:'Empresa Atual', impact:'mobilidade', dias:61, shared:true, hasPost:true},
+  {date:'10/30/25', program:'AI Bootcamp 2025', name:'Elaine Pereira Santos', cargo:null, empresa:null, impact:'none', dias:null, shared:false, hasPost:true},
+  {date:'10/30/25', program:'AI Bootcamp 2025', name:'Felipe Ramos Oliveira', cargo:'Tech Lead', empresa:'Empresa Atual', impact:'mobilidade', dias:29, shared:true, hasPost:true},
+  {date:'12/01/25', program:'Missão IA', name:'Diogo Antunes Lima', cargo:'Analista Sênior Financeiro', empresa:'Outra Empresa', impact:'saida', dias:54, shared:true, hasPost:true},
+  {date:'12/01/25', program:'Missão IA', name:'Gabriela Mendes Souza', cargo:'Analista Sênior de RH', empresa:'Empresa Atual', impact:'mobilidade', dias:47, shared:true, hasPost:true},
+];
+
+function badgeCorp(i) {
+  if (i === 'saida') return '<span class="badge badge-saida"><span data-pt="Saída da empresa" data-es="Salida de la empresa">Saída da empresa</span></span>';
+  if (i === 'mobilidade') return '<span class="badge badge-mobilidade"><span data-pt="Mobilidade interna" data-es="Movilidad interna">Mobilidade interna</span></span>';
+  return '<span class="badge badge-none"><span data-pt="Sem impacto ainda" data-es="Sin impacto todavía">Sem impacto ainda</span></span>';
+}
+
+function renderTableCorp(data) {
+  const tb = document.getElementById('tableBodyCorp');
+  const empty = document.getElementById('emptyStateCorp');
+  if (!tb) return;
+  if (data.length === 0) {
+    tb.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  const diasLabel = currentLang === 'es' ? 'días' : 'dias';
+  tb.innerHTML = data.map(r => `<tr>
+    <td class="td-muted">${r.date}</td>
+    <td class="td-muted">${r.program}</td>
+    <td><span style="font-weight:600;">${r.name}</span></td>
+    <td>${r.cargo ? `<span style="font-weight:500;">${r.cargo}</span><br><span class="td-muted">${r.empresa}</span>` : '<span class="td-muted">—</span>'}</td>
+    <td>${badgeCorp(r.impact)}</td>
+    <td>${r.dias ? `<span style="font-weight:700;">${r.dias}</span> <span class="td-muted">${diasLabel}</span>` : '<span class="td-muted">—</span>'}</td>
+    <td><div class="social-icons">
+      <div class="social-btn ${r.shared ? 'active' : ''}" title="${r.shared ? 'Post compartilhado no LinkedIn' : 'Sem post detectado'}">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="20" height="20" rx="4" stroke="${r.shared ? '#5123a4' : '#A899C2'}" stroke-width="1.5" fill="white"/>
+          <rect x="5" y="7" width="12" height="1.5" rx="0.75" fill="${r.shared ? '#5123a4' : '#A899C2'}"/>
+          <rect x="5" y="10.5" width="8" height="1.5" rx="0.75" fill="${r.shared ? '#5123a4' : '#A899C2'}"/>
+          <rect x="5" y="14" width="10" height="1.5" rx="0.75" fill="${r.shared ? '#5123a4' : '#A899C2'}"/>
+        </svg>
+      </div>
+      <div class="social-btn ${r.hasPost ? 'active' : ''}" title="${r.hasPost ? 'Ver perfil LinkedIn' : 'Sem perfil detectado'}">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="20" height="20" rx="4" stroke="${r.hasPost ? '#5123a4' : '#A899C2'}" stroke-width="1.5" fill="white"/>
+          <circle cx="11" cy="8.5" r="3" stroke="${r.hasPost ? '#5123a4' : '#A899C2'}" stroke-width="1.5" fill="none"/>
+          <path d="M5.5 17.5c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke="${r.hasPost ? '#5123a4' : '#A899C2'}" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="social-btn" title="Ver trajetória do portador" onclick="openDrawerCorp('${r.name}','${r.program}','${r.date}','${r.impact}')" style="cursor:pointer;">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="20" height="20" rx="4" stroke="#5123a4" stroke-width="1.5" fill="white"/>
+          <rect x="5" y="13" width="3" height="4" rx="0.5" fill="#5123a4"/>
+          <rect x="9.5" y="9" width="3" height="8" rx="0.5" fill="#5123a4"/>
+          <rect x="14" y="5" width="3" height="12" rx="0.5" fill="#5123a4"/>
+        </svg>
+      </div>
+    </div></td>
+  </tr>`).join('');
+}
+
+function filterTableCorp() {
+  const q = document.getElementById('searchInputCorp').value.toLowerCase();
+  const imp = document.getElementById('impactFilterCorp').value;
+  const so = document.getElementById('sharedOnlyCorp').checked;
+  renderTableCorp(rowsCorp.filter(r => {
+    if (q && !r.name.toLowerCase().includes(q) && !r.program.toLowerCase().includes(q)) return false;
+    if (imp && r.impact !== imp) return false;
+    if (so && !r.shared) return false;
+    return true;
+  }));
+}
+
+// ─── DRAWER ─────────────────────────────────────────────────────────────────
+let drawerChartInstanceCorp = null;
+
+function openDrawerCorp(name, program, date, impact) {
+  document.getElementById('drawerNameCorp').textContent = name;
+  document.getElementById('drawerCertNameCorp').textContent = program;
+  document.getElementById('drawerCertProgramTlCorp').textContent = program;
+  document.getElementById('drawerCertDateCorp').textContent = date;
+  document.getElementById('drawerCertDateTlCorp').textContent = date;
+  document.getElementById('drawerCorp').classList.add('open');
+  document.getElementById('drawerOverlayCorp').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => {
+    const ctx = document.getElementById('drawerChartCorp').getContext('2d');
+    if (drawerChartInstanceCorp) drawerChartInstanceCorp.destroy();
+
+    const pastLabels = ['2018','2019','2020','2021','2022','2023','2024','2025'];
+    const futureLabels = currentLang === 'es'
+      ? ['2 meses','4 meses','6 meses','8 meses','10 meses','12 meses']
+      : ['2 meses','4 meses','6 meses','8 meses','10 meses','12 meses'];
+    const shareLabel = currentLang === 'es' ? 'Compartir' : 'Compartilhamento';
+    const allLabels = [...pastLabels, shareLabel, ...futureLabels];
+    const shareIdx = pastLabels.length;
+
+    const pastData = [0, 0, 1, 1, 1, 2, 2, 2];
+    const shareVal = 2;
+    const futureData = [2, 3, 3, 3, 3, 4];
+    const values = [...pastData, shareVal, ...futureData];
+
+    const pointBg = values.map((_, i) => i === shareIdx ? '#5123a4' : '#fff');
+    const pointR = values.map((_, i) => i === shareIdx ? 6 : 4);
+
+    const purple = '#5123a4';
+    const sharePlugin = {
+      id: 'drawerShareLineCorp',
+      afterDraw(chart) {
+        const { ctx, chartArea, scales } = chart;
+        const x = scales.x.getPixelForValue(shareIdx);
+        ctx.save();
+        ctx.setLineDash([4, 3]);
+        ctx.strokeStyle = purple;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(x, chartArea.top);
+        ctx.lineTo(x, chartArea.bottom);
+        ctx.stroke();
+        ctx.restore();
+      }
+    };
+
+    drawerChartInstanceCorp = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: allLabels,
+        datasets: [{
+          data: values,
+          borderColor: purple,
+          backgroundColor: 'rgba(81,35,164,0.08)',
+          borderWidth: 2,
+          pointBackgroundColor: pointBg,
+          pointBorderColor: purple,
+          pointRadius: pointR,
+          pointHoverRadius: 6,
+          tension: 0,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { top: 8 } },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y + (currentLang === 'es' ? ' evento(s)' : ' evento(s)')
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { font: { size: 9, family: 'Poppins' }, color: '#A899C2', maxRotation: 45 },
+            grid: { color: 'rgba(216,206,240,0.4)' }
+          },
+          y: {
+            beginAtZero: true,
+            ticks: { font: { size: 9, family: 'Poppins' }, color: '#A899C2', stepSize: 1 },
+            grid: { color: 'rgba(216,206,240,0.4)' },
+            title: { display: true, text: currentLang === 'es' ? 'Eventos' : 'Eventos', font: { size: 9 }, color: '#A899C2' }
+          }
+        }
+      },
+      plugins: [sharePlugin]
+    });
+  }, 100);
+}
+
+function closeDrawerCorp() {
+  document.getElementById('drawerCorp').classList.remove('open');
+  document.getElementById('drawerOverlayCorp').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Render inicial
+document.addEventListener('DOMContentLoaded', () => {
+  renderTableCorp(rowsCorp);
+});
+</script>
+
+</body>
+</html>
