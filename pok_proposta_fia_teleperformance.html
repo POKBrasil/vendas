@@ -989,7 +989,6 @@
     color: white;
     padding: 5rem 4rem;
     max-width: none;
-    text-align: center;
     position: relative;
     overflow: hidden;
   }
@@ -997,73 +996,125 @@
   .contact-section::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle at 50% 50%, rgba(169, 133, 232, 0.12) 0%, transparent 60%);
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(228, 220, 247, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .contact-section::after {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    left: -120px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(169, 133, 232, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
   }
 
   .contact-content {
     position: relative;
     z-index: 2;
-    max-width: 600px;
-    margin: 0 auto;
   }
 
-  .contact-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--pok-accent-light);
-    font-weight: 600;
-    margin-bottom: 1rem;
+  .contact-section .section-eyebrow {
+    background: rgba(228, 220, 247, 0.15);
+    color: #e4dcf7;
+    padding: 0.4rem 0.85rem;
+    border-radius: 100px;
+    display: inline-block;
+    border: none;
   }
+
+  .contact-section .section-eyebrow::before { display: none; }
 
   .contact-title {
-    font-size: 2rem;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
     font-weight: 700;
+    color: white;
+    line-height: 1.2;
     letter-spacing: -0.02em;
-    margin-bottom: 2rem;
-    color: white;
+    margin-bottom: 0;
   }
 
-  .contact-card {
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.15);
-    padding: 2.5rem;
-    border-radius: 20px;
-    margin-top: 2rem;
-  }
-
-  .contact-name {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.4rem;
-    color: white;
-  }
-
-  .contact-role {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 1.2rem;
-  }
-
-  .contact-email {
-    display: inline-flex;
+  .contato-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 64px;
     align-items: center;
-    gap: 0.6rem;
-    color: var(--pok-accent-light);
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    padding: 0.7rem 1.5rem;
-    border: 1px solid var(--pok-accent);
-    border-radius: 100px;
-    transition: all 0.2s ease;
+    margin-top: 48px;
+    max-width: 880px;
   }
 
-  .contact-email:hover {
-    background: var(--pok-accent);
-    color: var(--pok-purple-deep);
+  .contato-qr {
+    background: white;
+    padding: 24px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  }
+
+  .contato-qr img {
+    width: 200px;
+    height: 200px;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .contato-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contato-cargo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pok-accent);
+    margin-bottom: 4px;
+  }
+
+  .contato-info h3 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: white;
+    letter-spacing: -1px;
+    margin-bottom: 4px;
+  }
+
+  .contato-email {
+    font-size: 18px;
+    color: #e4dcf7;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(228, 220, 247, 0.4);
+    align-self: flex-start;
+    transition: all 0.2s ease;
+    padding-bottom: 2px;
+  }
+
+  .contato-email:hover {
+    color: var(--pok-accent);
+    border-bottom-color: var(--pok-accent);
+  }
+
+  @media (max-width: 700px) {
+    .contato-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      max-width: 100%;
+    }
+    .contato-info h3 { font-size: 28px; }
+    .contato-qr img { width: 180px; height: 180px; }
   }
 
   /* ==================== FOOTER ==================== */
@@ -1686,16 +1737,21 @@
   <!-- ==================== CONTATO ==================== -->
   <section id="contato" class="contact-section">
     <div class="contact-content">
-      <div class="contact-label">Fale Conosco</div>
-      <h2 class="contact-title">Vamos construir este case juntas?</h2>
+      <div class="section-header">
+        <span class="section-eyebrow">10 · Comercial</span>
+        <h2 class="contact-title">Fale Conosco</h2>
+      </div>
 
-      <div class="contact-card">
-        <div class="contact-name">Carolina Ferrés</div>
-        <div class="contact-role">POK — Proof of Knowledge</div>
-        <a href="mailto:carolina@pok.tech" class="contact-email">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          carolina@pok.tech
-        </a>
+      <div class="contato-grid">
+        <div class="contato-qr">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCCAIAAADzel4SAAAKNElEQVR4nO3dMY4bSxJF0emBPO1/qbLruzIGCYzuT0UU+xy3QbLYJC/Keciv53n+A8Cf+u/0BQC8m4wCJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkMgoQCKjAImMAiQyCpD8KA/++fPnv3UdS/z69evw1/P7PT/2rDzzvcdOmfpPFm983c/75hTlM3I3CpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkKQV09m95UZR1hf33tHU2uTeUmVqAzO1gHrjt33q+zzl3rfO3ShAIqMAiYwCJDIKkMgoQCKjAImMAiQyCpDIKEByccV0tnPHUnze6TRn5f88tZ4qj3Vy0b/l83777kYBEhkFSGQUIJFRgERGARIZBUhkFCCRUYBERgGSsRXTG+3cokxtQu5tjcrr3jt9aOfGyXpqA3ejAImMAiQyCpDIKEAiowCJjAIkMgqQyChAIqMAiRXTv2Zq5XJvx2ID87up/8bO5RW/czcKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkMgqQjK2YbCR+d29rZB/1d0zthe6d43TP5/323Y0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkF1dMn7dUueeN5zi98bFnO6/5jWcxfbffvrtRgERGARIZBUhkFCCRUYBERgESGQVIZBQgkVGAJK2YPu9MlSlvXH3s3Pycfd7/ubi3j/pu3I0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkX8/z/PGD753lcu91d+5Y3njuzdTnezb1n9y56tn5bS/ufb7lmd2NAiQyCpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJOkspjeaWpucFxT39jNvXAQVZakytX+bWgPu3KGVZy6fb+FuFCCRUYBERgESGQVIZBQgkVGAREYBEhkFSGQUILl4FlPxxhN17p0QtXOnNGXnSVw7X/ds6htb7Lxmd6MAiYwCJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJs5j+knsLip3v6Gzqmu9tje59vlNXtfN1d26r3I0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkF1dMO89TeuOpOFOve29bVV535+e7cwG183WLe59v4W4UIJFRgERGARIZBUhkFCCRUYBERgESGQVIZBQg+XqeZ/oa/oc3nuXy3bYoU3uSN65rphZuZ9/tu3HvM3I3CpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkKSzmHaei3I2dWbOzq3Rzk3X+bFvPLfqjWdPFW+85sLdKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkMgoQJLOYtq5zDnbuTWa8nm7rLOpdzR1ntLOc5ymdmj3uBsFSGQUIJFRgERGARIZBUhkFCCRUYBERgESGQVI0llMZzu3Cm9cquy0c8dSznGaOk/p7I2rrSlTzXE3CpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkFxcMU3Zub64t2PZ+X53bm/KxunsjRu2qXOczsr3eeq34G4UIJFRgERGARIZBUhkFCCRUYBERgESGQVIZBQg+Xqe59JTf95ZTDt3HVN7ofLMU6be0dQJYN/tLKaze+/X3ShAIqMAiYwCJDIKkMgoQCKjAImMAiQyCpDIKEAydhbTveXGvde998xvXNfcO9do5zuaet3zY6fe0ZSduyx3owCJjAIkMgqQyChAIqMAiYwCJDIKkMgoQCKjAMnFFdPUuUZTO4epBcXUWUw79yT37Fz1nO08a+vzfvvuRgESGQVIZBQgkVGAREYBEhkFSGQUIJFRgERGAZKv53n++MFWLr+bOgXojcurs51nbe38fN+4nbtn6hvrbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCC5eBbT1M7hjYuRqXOrzqZWalPn/LxxO/fddkqFs5gAlpJRgERGARIZBUhkFCCRUYBERgESGQVIZBQgSWcx3fPGU552vu6UqSXS2c6d0tTubsrU79eKCWApGQVIZBQgkVGAREYBEhkFSGQUIJFRgERGAZKlK6azz9s4ne3c3ky59+kXO9c15XXPdl7V2b1rdjcKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkMgqQ/Lj31Ds3ElNrk6nX3bmQuXfNU+93ytQ5TlNbo52nS7kbBUhkFCCRUYBERgESGQVIZBQgkVGAREYBEhkFSC6umKZ83r5i567j3l7o3vudWtZNfUb3PoWze5/RzjOv3I0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkacV078ycN65NPu+cn2LnbmfnQqb8FnYu66auauokLnejAImMAiQyCpDIKEAiowCJjAIkMgqQyChAIqMAydfzPNPX8H+bWsh8N5+3CDq7t3K5946mHnu2c0noLCaApWQUIJFRgERGARIZBUhkFCCRUYBERgESGQVI0opp6qSXe3aeIHT2edf8xvVU8cbTls52fietmACWklGAREYBEhkFSGQUIJFRgERGARIZBUhkFCD5UR48tTUq3njCzM5r3rlUOfu8T6G8bvl8p377O5vjbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCBJK6YpU7uOYuqUmLOpM5Hu7aPK/+qNW6N773fnb+Fs6nfkbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCBJK6apnUN57NQJQsXnXfPUPured+ONK7WpZ57aZd3jbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCD5ep5n+hpeY+fKZerkojde85TPOz2s2PnfKO/X3ShAIqMAiYwCJDIKkMgoQCKjAImMAiQyCpDIKECy9CymKTsXMlN7oZ1nIk3tdna+7tQ1T50utZO7UYBERgESGQVIZBQgkVGAREYBEhkFSGQUIJFRgCStmM52Lhk+7+SinafxTC1zpr51O9dE9+z8dZ/du2Z3owCJjAIkMgqQyChAIqMAiYwCJDIKkMgoQCKjAMnFFdPZzu3N2Ru3KFPLq7OdOyWnLf2dZ55y73vlbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCAZWzG90c4tyr1Vz9R+ZufyqrzuPZ/3Gd17rLOYAJaSUYBERgESGQVIZBQgkVGAREYBEhkFSGQUILFi+kvurS/urafOj51aBE3tZ86+28Lt3jdn6tN3FhPAGBkFSGQUIJFRgERGARIZBUhkFCCRUYBERgGSsRXTvX3FG33eGUFvXLkUO89iOpvaR937X019Cu5GARIZBUhkFCCRUYBERgESGQVIZBQgkVGAREYBkosrpqlFwT3f7YygKTuXV2f31lPfbdP1xpOp3I0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkX8/zTF8DwIu5GwVIZBQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCCRUYBERgESGQVIZBQgkVGAREYBEhkFSGQUIJFRgOQf7jif0R8BY3oAAAAASUVORK5CYII=" alt="QR Code de contato — Carolina Ferrés">
+        </div>
+
+        <div class="contato-info">
+          <div class="contato-cargo">Contato POK</div>
+          <h3>Carolina Ferrés</h3>
+          <a href="mailto:carolina@pok.tech" class="contato-email">carolina@pok.tech</a>
+        </div>
       </div>
     </div>
   </section>
