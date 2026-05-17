@@ -120,7 +120,7 @@
   section {
     padding: 5rem 4rem;
     max-width: 1200px;
-    scroll-margin-top: 2rem;
+    scroll-margin-top: 0;
   }
 
   /* ==================== HERO SECTION ==================== */
@@ -199,26 +199,27 @@
 
   .hero-meta {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    padding-top: 2.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding-top: 1.8rem;
     border-top: 1px solid rgba(255,255,255,0.15);
-    max-width: 800px;
+    max-width: 900px;
   }
 
   .hero-meta-item .label {
-    font-size: 0.72rem;
+    font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: rgba(255,255,255,0.5);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.25rem;
     font-weight: 500;
   }
 
   .hero-meta-item .value {
-    font-size: 1rem;
+    font-size: 0.78rem;
     color: white;
     font-weight: 500;
+    line-height: 1.35;
   }
 
   /* ==================== SECTION HEADERS ==================== */
@@ -376,8 +377,8 @@
 
   /* ==================== MICRO-CREDENTIALS SECTION ==================== */
   .micro-section {
-    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
-    color: white;
+    background: linear-gradient(135deg, #f7f5fb 0%, #ede5fa 100%);
+    color: var(--pok-text);
     padding: 5rem 4rem;
     max-width: none;
     position: relative;
@@ -388,13 +389,13 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 80% 20%, rgba(169, 133, 232, 0.1) 0%, transparent 60%);
+    background-image: radial-gradient(circle at 80% 20%, rgba(81, 35, 164, 0.06) 0%, transparent 60%);
   }
 
-  .micro-section .section-eyebrow { color: var(--pok-accent-light); }
-  .micro-section .section-eyebrow::before { background: var(--pok-accent); }
-  .micro-section .section-title { color: white; }
-  .micro-section .section-intro { color: rgba(255,255,255,0.8); }
+  .micro-section .section-eyebrow { color: var(--pok-purple); }
+  .micro-section .section-eyebrow::before { background: var(--pok-purple); }
+  .micro-section .section-title { color: var(--pok-text); }
+  .micro-section .section-intro { color: var(--pok-text-muted); }
 
   .micro-content {
     position: relative;
@@ -404,13 +405,13 @@
 
   .micro-text {
     font-size: 0.92rem;
-    color: rgba(255,255,255,0.9);
+    color: var(--pok-text);
     line-height: 1.7;
     margin-bottom: 1.2rem;
     max-width: 800px;
   }
 
-  .micro-text strong { color: var(--pok-accent-light); font-weight: 600; }
+  .micro-text strong { color: var(--pok-purple); font-weight: 600; }
 
   /* Cycle diagram */
   .cycle-grid {
@@ -421,18 +422,18 @@
   }
 
   .cycle-card {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
     border: 1px solid rgba(255,255,255,0.12);
     padding: 1.8rem;
     border-radius: 14px;
     transition: all 0.3s ease;
+    color: white;
   }
 
   .cycle-card:hover {
-    background: rgba(255,255,255,0.1);
     border-color: var(--pok-accent);
     transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(81, 35, 164, 0.25);
   }
 
   .cycle-card-header {
@@ -1113,10 +1114,14 @@
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
+    section, .hero, .micro-section, .contact-section {
+      scroll-margin-top: 4rem;
+    }
     .about-grid, .two-col, .plans-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
+    .hero-meta { grid-template-columns: repeat(2, 1fr); }
     .hero { padding-top: 5rem; }
   }
 
@@ -1182,7 +1187,7 @@
     <div class="hero-grid-pattern"></div>
     <div class="hero-content">
       <span class="hero-eyebrow">Proposta Comercial · 2026</span>
-      <h1>Credenciais digitais <br>para a parceria <br><span class="accent">FIA × Teleperformance.</span></h1>
+      <h1>Credenciais digitais <br>para a parceria <br><span class="accent">FIA × Teleperformance</span></h1>
       <p class="hero-subtitle">
         Uma camada de micro-credenciais em blockchain sobre o programa FIA de Excelência no Varejo — transformando cada nanodegree, trilha e certificação em prova verificável de desenvolvimento profissional.
       </p>
@@ -1211,7 +1216,7 @@
   <section id="sobre">
     <div class="section-header">
       <span class="section-eyebrow">Sobre a POK</span>
-      <h2 class="section-title">Mais que uma certificação digital.</h2>
+      <h2 class="section-title">Mais que uma certificação digital</h2>
       <p class="section-intro">
         A POK (Proof of Knowledge) é uma plataforma que permite a instituições emitirem credenciais digitais seguras e verificáveis por meio da tecnologia blockchain.
       </p>
@@ -1250,7 +1255,7 @@
   <section id="diferenciais">
     <div class="section-header">
       <span class="section-eyebrow">O que nos diferencia</span>
-      <h2 class="section-title">Diferenciais da plataforma.</h2>
+      <h2 class="section-title">Diferenciais da plataforma</h2>
     </div>
 
     <div class="features-grid">
@@ -1289,7 +1294,7 @@
 
     <div class="section-header" style="margin-top: 4rem;">
       <span class="section-eyebrow">Benefícios para Instituições</span>
-      <h2 class="section-title">Resultados tangíveis para sua instituição.</h2>
+      <h2 class="section-title">Resultados tangíveis para sua instituição</h2>
     </div>
 
     <ul class="check-list">
@@ -1383,7 +1388,7 @@
   <section id="certificado">
     <div class="section-header">
       <span class="section-eyebrow">Como funciona</span>
-      <h2 class="section-title">O Certificado.</h2>
+      <h2 class="section-title">O Certificado</h2>
       <p class="section-intro">Autenticidade verificável em tempo real, garantida pela tecnologia blockchain.</p>
     </div>
 
@@ -1438,7 +1443,7 @@
   <section id="recursos">
     <div class="section-header">
       <span class="section-eyebrow">Recursos Premium</span>
-      <h2 class="section-title">Métricas e integrações.</h2>
+      <h2 class="section-title">Métricas e integrações</h2>
     </div>
 
     <div class="features-grid">
@@ -1491,7 +1496,7 @@
   <section id="desafios">
     <div class="section-header">
       <span class="section-eyebrow">O Contexto</span>
-      <h2 class="section-title">Um programa de capital humano em escala.</h2>
+      <h2 class="section-title">Um programa de capital humano em escala</h2>
       <p class="section-intro">A Teleperformance opera no Brasil com mais de 20 mil colaboradores, atendendo marcas como Amazon, Sephora e Shopee. O posicionamento estratégico da companhia — formadora e desenvolvedora de talentos — encontra na FIA o parceiro educacional ideal, e na POK a camada de comprovação digital que dá visibilidade ao impacto.</p>
     </div>
 
@@ -1538,7 +1543,7 @@
   <section id="oportunidades">
     <div class="section-header">
       <span class="section-eyebrow">Valor Estratégico da Parceria</span>
-      <h2 class="section-title">Mais que uma operação — um <em>showroom</em> de referência.</h2>
+      <h2 class="section-title">Mais que uma operação — um <em>showroom</em> de referência</h2>
       <p class="section-intro">Esta operação FIA × TP × POK não é apenas um projeto isolado: é a construção de um case demonstrável para o mercado corporativo brasileiro, com potencial de replicação em outras indústrias intensivas em capital humano.</p>
     </div>
 
@@ -1558,7 +1563,7 @@
   <section id="proposta" class="proposal-section">
     <div class="section-header">
       <span class="section-eyebrow">Investimento</span>
-      <h2 class="section-title">Proposta Comercial.</h2>
+      <h2 class="section-title">Proposta Comercial</h2>
       <p class="section-intro">Desenho dedicado à operação FIA × Teleperformance, considerando o escopo anual de 12.000 credenciais digitais e o valor estratégico da parceria.</p>
     </div>
 

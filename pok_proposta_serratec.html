@@ -371,7 +371,7 @@
   section {
     padding: 5rem 4rem;
     max-width: 1200px;
-    scroll-margin-top: 2rem;
+    scroll-margin-top: 0;
   }
 
   /* ==================== HERO SECTION ==================== */
@@ -695,8 +695,8 @@
 
   /* ==================== MICRO-CREDENTIALS SECTION ==================== */
   .micro-section {
-    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
-    color: white;
+    background: var(--pok-bg);
+    color: var(--pok-text);
     padding: 5rem 4rem;
     max-width: none;
     position: relative;
@@ -707,13 +707,13 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 80% 20%, rgba(169, 133, 232, 0.1) 0%, transparent 60%);
+    background-image: radial-gradient(circle at 80% 20%, rgba(169, 133, 232, 0.08) 0%, transparent 60%);
   }
 
-  .micro-section .section-eyebrow { color: var(--pok-accent-light); }
-  .micro-section .section-eyebrow::before { background: var(--pok-accent); }
-  .micro-section .section-title { color: white; }
-  .micro-section .section-intro { color: rgba(255,255,255,0.8); }
+  .micro-section .section-eyebrow { color: var(--pok-purple); }
+  .micro-section .section-eyebrow::before { background: var(--pok-purple); }
+  .micro-section .section-title { color: var(--pok-text); }
+  .micro-section .section-intro { color: var(--pok-text-muted); }
 
   .micro-content {
     position: relative;
@@ -723,15 +723,15 @@
 
   .micro-text {
     font-size: 0.92rem;
-    color: rgba(255,255,255,0.9);
+    color: var(--pok-text);
     line-height: 1.7;
     margin-bottom: 1.2rem;
     max-width: 800px;
   }
 
-  .micro-text strong { color: var(--pok-accent-light); font-weight: 600; }
+  .micro-text strong { color: var(--pok-purple); font-weight: 600; }
 
-  /* Cycle diagram */
+  /* Cycle diagram — cards roxos sólidos como destaque sobre o fundo claro */
   .cycle-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -740,18 +740,19 @@
   }
 
   .cycle-card {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
+    border: 1px solid var(--pok-purple-deep);
     padding: 1.8rem;
     border-radius: 14px;
     transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 2;
   }
 
   .cycle-card:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: var(--pok-accent);
     transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
   }
 
   .cycle-card-header {
@@ -786,7 +787,7 @@
 
   .cycle-card p {
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255,0.9);
     line-height: 1.6;
   }
 
@@ -1743,6 +1744,11 @@
       cursor: pointer;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(81, 35, 164, 0.4);
     }
+    /* Ajusta o scroll-margin-top das âncoras para que o título da seção
+       não fique escondido atrás do hambúrguer flutuante */
+    section, .hero, .micro-section, .contact-section {
+      scroll-margin-top: 4rem;
+    }
   }
 
   @media (min-width: 1025px) { .menu-toggle { display: none; } }
@@ -1980,7 +1986,7 @@
   <section id="sobre">
     <div class="section-header">
       <span class="section-eyebrow">Sobre a POK</span>
-      <h2 class="section-title">Mais que uma certificação digital.</h2>
+      <h2 class="section-title">Mais que uma certificação digital</h2>
       <p class="section-intro">
         A POK (Proof of Knowledge) é uma plataforma que permite a instituições emitirem credenciais digitais seguras e verificáveis por meio da tecnologia blockchain.
       </p>
@@ -2019,7 +2025,7 @@
   <section id="diferenciais">
     <div class="section-header">
       <span class="section-eyebrow">O que nos diferencia</span>
-      <h2 class="section-title">Diferenciais da plataforma.</h2>
+      <h2 class="section-title">Diferenciais da plataforma</h2>
     </div>
 
     <div class="features-grid">
@@ -2058,7 +2064,7 @@
 
     <div class="section-header" style="margin-top: 4rem;">
       <span class="section-eyebrow">Benefícios para Instituições</span>
-      <h2 class="section-title">Resultados tangíveis para sua instituição.</h2>
+      <h2 class="section-title">Resultados tangíveis para sua instituição</h2>
     </div>
 
     <ul class="check-list">
@@ -2152,7 +2158,7 @@
   <section id="certificado">
     <div class="section-header">
       <span class="section-eyebrow">Como funciona</span>
-      <h2 class="section-title">O Certificado.</h2>
+      <h2 class="section-title">O Certificado</h2>
       <p class="section-intro">Autenticidade verificável em tempo real, garantida pela tecnologia blockchain.</p>
     </div>
 
@@ -2207,7 +2213,7 @@
   <section id="recursos">
     <div class="section-header">
       <span class="section-eyebrow">Recursos Premium</span>
-      <h2 class="section-title">Métricas e integrações.</h2>
+      <h2 class="section-title">Métricas e integrações</h2>
     </div>
 
     <div class="features-grid">
@@ -2260,7 +2266,7 @@
   <section id="desafios">
     <div class="section-header">
       <span class="section-eyebrow serratec">A Parceria</span>
-      <h2 class="section-title">Uma parceria estratégica entre POK e <span style="color: var(--partner-serratec);">Serratec</span>.</h2>
+      <h2 class="section-title">Uma parceria estratégica entre POK e <span style="color: var(--partner-serratec);">Serratec</span></h2>
       <p class="section-intro">O Serratec é o principal indutor de negócios de TI do interior do Estado do Rio de Janeiro, com mais de mil profissionais qualificados em cinco anos de Residências em TIC e taxa de contratação imediata superior a 50%. A POK contribui com uma camada de credenciamento digital verificável, e o Serratec abre as portas para um ecossistema regional de instituições parceiras. A parceria se organiza em cinco compromissos recíprocos.</p>
     </div>
 
@@ -2338,7 +2344,7 @@
   <section id="oportunidades">
     <div class="section-header">
       <span class="section-eyebrow">Valor Estratégico da Parceria</span>
-      <h2 class="section-title">Ganhos recíprocos — um modelo de articulação regional.</h2>
+      <h2 class="section-title">Ganhos recíprocos — um modelo de articulação regional</h2>
       <p class="section-intro">A parceria não é uma troca de serviços: é a construção conjunta de um modelo de credenciamento digital regional, em que o Serratec amplia o reconhecimento das suas Residências TIC e a POK ganha um hub de articulação institucional consolidado no interior do RJ.</p>
     </div>
 
@@ -2358,7 +2364,7 @@
   <section id="proposta" class="proposal-section">
     <div class="section-header">
       <span class="section-eyebrow">Comercial</span>
-      <h2 class="section-title">Parceria comercial.</h2>
+      <h2 class="section-title">Parceria comercial</h2>
       <p class="section-intro">O Serratec atua como revendedor da POK no ecossistema regional, com uma divisão de receita pactuada sobre cada venda fechada. As tabelas oficiais da POK — por certificado ou por aluno ativo — servem como referência de preço para as negociações.</p>
     </div>
 
