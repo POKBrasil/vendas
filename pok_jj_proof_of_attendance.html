@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POK × J&J — Proof of Attendance</title>
+<meta name="description" content="Proposta POK para Johnson &amp; Johnson: solução de proof of attendance com credenciais blockchain para eventos corporativos.">
+<meta property="og:title" content="POK × J&J — Proof of Attendance">
+<meta property="og:description" content="Proposta POK para Johnson &amp; Johnson: solução de proof of attendance com credenciais blockchain para eventos corporativos.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="POK × J&J — Proof of Attendance">
+<meta name="twitter:description" content="Proposta POK para Johnson &amp; Johnson: solução de proof of attendance com credenciais blockchain para eventos corporativos.">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Poppins', sans-serif; background: #f8f6fc; color: #1a1a1a; line-height: 1.5; }
+
+  /* Layout geral */
+  .layout { display: flex; min-height: 100vh; }
+
+  /* Menu lateral */
+  .sidebar { width: 280px; background: #5123a4; color: white; padding: 32px 0; position: sticky; top: 0; height: 100vh; flex-shrink: 0; display: flex; flex-direction: column; }
+  .sidebar-brand { padding: 0 24px 28px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .sidebar-logo { font-size: 28px; font-weight: 800; letter-spacing: -1px; }
+  .sidebar-logo sup { font-size: 11px; vertical-align: top; font-weight: 500; opacity: 0.7; }
+  .sidebar-tagline { font-size: 11px; opacity: 0.75; margin-top: 4px; letter-spacing: 0.5px; }
+
+  .sidebar-client { padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+  .sidebar-client-label { font-size: 10px; opacity: 0.65; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .sidebar-client-name { font-size: 14px; font-weight: 600; }
+  .sidebar-client-sub { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+
+  .sidebar-nav { padding: 20px 0; flex: 1; }
+  .sidebar-nav-label { font-size: 10px; opacity: 0.55; letter-spacing: 1px; text-transform: uppercase; padding: 0 24px 12px; }
+  .nav-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 24px; cursor: pointer; transition: background 0.2s; border-left: 3px solid transparent; }
+  .nav-item:hover { background: rgba(255,255,255,0.08); }
+  .nav-item.active { background: rgba(255,255,255,0.12); border-left-color: #e4dcf7; }
+  .nav-item-num { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .nav-item.active .nav-item-num { background: #e4dcf7; color: #5123a4; }
+  .nav-item-content { flex: 1; }
+  .nav-item-title { font-size: 13px; font-weight: 600; line-height: 1.3; margin-bottom: 2px; }
+  .nav-item-sub { font-size: 10px; opacity: 0.7; line-height: 1.3; }
+
+  .sidebar-footer { padding: 20px 24px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 10px; opacity: 0.7; }
+  .sidebar-footer strong { display: block; font-size: 11px; opacity: 1; margin-bottom: 4px; }
+
+  /* Conteúdo principal */
+  .content { flex: 1; padding: 48px 56px; max-width: 1200px; }
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-eyebrow { font-size: 12px; color: #5123a4; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .section-title { font-size: 32px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; letter-spacing: -0.5px; }
+  .section-lead { font-size: 16px; color: #555; line-height: 1.6; max-width: 720px; margin-bottom: 32px; }
+
+  h2 { font-size: 20px; font-weight: 600; color: #1a1a1a; margin: 32px 0 14px; }
+  h3 { font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 18px 0 8px; }
+  p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 12px; }
+
+  /* Cards de conceito */
+  .concept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+  .concept-card { background: white; border-radius: 12px; padding: 20px; border: 1px solid #eee; }
+  .concept-card-icon { width: 40px; height: 40px; background: #f1ecfd; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #5123a4; font-size: 20px; margin-bottom: 12px; }
+  .concept-card-title { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
+  .concept-card-text { font-size: 12px; color: #666; line-height: 1.5; }
+
+  /* Fluxo mobile (seção 1) */
+  .flow-container { background: white; border-radius: 16px; padding: 28px 24px; margin: 24px 0; border: 1px solid #eee; }
+  .flow-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px 20px; justify-items: center; }
+  .flow-step { display: flex; flex-direction: column; align-items: center; }
+  .flow-step-label { text-align: center; font-size: 11px; color: #5123a4; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
+  .phone { width: 240px; background: #000; border-radius: 30px; padding: 7px; }
+  .screen { background: #ffffff; border-radius: 24px; overflow: hidden; height: 460px; display: flex; flex-direction: column; position: relative; }
+
+  .status-bar { display: flex; justify-content: space-between; align-items: center; padding: 9px 20px 2px; font-size: 9px; color: #1a1a1a; font-weight: 600; }
+  .status-icons { display: flex; gap: 3px; font-size: 9px; }
+
+  /* Tela 1 - QR */
+  .pok-header-screen { background: #5123a4; color: white; padding: 12px 16px 14px; display: flex; align-items: center; gap: 9px; }
+  .pok-header-logo { width: 22px; height: 22px; background: white; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #5123a4; font-weight: 700; font-size: 11px; }
+  .pok-header-title { font-size: 11px; font-weight: 500; }
+  .screen-body { flex: 1; padding: 16px 14px; display: flex; flex-direction: column; }
+  .qr-frame { width: 140px; height: 140px; margin: 6px auto 11px; border-radius: 12px; background: white; padding: 8px; position: relative; }
+  .qr-corners::before, .qr-corners::after { content: ''; position: absolute; width: 22px; height: 22px; border: 2.5px solid #5123a4; }
+  .qr-corners::before { top: -2px; left: -2px; border-right: none; border-bottom: none; border-radius: 7px 0 0 0; }
+  .qr-corners::after { bottom: -2px; right: -2px; border-left: none; border-top: none; border-radius: 0 0 7px 0; }
+  .qr-pattern { width: 100%; height: 100%; background-image: 
+    radial-gradient(#5123a4 25%, transparent 26%),
+    radial-gradient(#5123a4 25%, transparent 26%);
+    background-size: 10px 10px; background-position: 0 0, 5px 5px; }
+  .scan-line { position: absolute; left: 8px; right: 8px; top: 50%; height: 2px; background: #e4dcf7; box-shadow: 0 0 8px #c9bce5; }
+  .event-tag { background: white; border-radius: 9px; padding: 8px 11px; margin: 4px 0; text-align: center; border: 1px solid #e8e3f5; }
+  .event-tag-label { font-size: 8px; color: #5123a4; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; }
+  .event-tag-name { font-size: 11px; color: #1a1a1a; font-weight: 500; margin-top: 2px; }
+  .btn-primary { background: #5123a4; color: white; border: none; border-radius: 9px; padding: 10px; font-size: 12px; font-weight: 600; margin-top: auto; text-align: center; }
+
+  /* Tela 2 - geolocalização */
+  .geo-bg-screen { flex: 1; position: relative; background: #f6f4ff; padding: 0; }
+  .geo-bg-content { padding: 16px 14px; opacity: 0.4; }
+  .geo-bg-title { font-size: 12px; color: #1a1a1a; font-weight: 600; margin-bottom: 4px; }
+  .geo-bg-sub { font-size: 10px; color: #666; line-height: 1.4; margin-bottom: 14px; }
+  .geo-bg-icon { width: 56px; height: 56px; background: #ebe5f9; border-radius: 50%; margin: 14px auto; display: flex; align-items: center; justify-content: center; color: #5123a4; font-size: 26px; }
+  .geo-popup { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; background: #f5f5f7; border-radius: 11px; overflow: hidden; box-shadow: 0 6px 22px rgba(0,0,0,0.3); }
+  .geo-popup-body { padding: 12px 12px 9px; text-align: center; }
+  .geo-popup-title { font-size: 11px; font-weight: 600; color: #1a1a1a; margin-bottom: 3px; }
+  .geo-popup-sub { font-size: 9px; color: #555; line-height: 1.4; }
+  .geo-popup-actions { display: flex; border-top: 0.5px solid #ccc; }
+  .geo-popup-btn { flex: 1; padding: 9px; font-size: 11px; color: #007aff; text-align: center; background: transparent; font-weight: 400; }
+  .geo-popup-btn.primary { font-weight: 600; border-left: 0.5px solid #ccc; }
+
+  /* Tela 3 - CPF */
+  .geo-banner { background: white; border-radius: 8px; padding: 7px 10px; display: flex; align-items: center; gap: 7px; margin-bottom: 11px; border: 1px solid #d1f0d9; }
+  .geo-icon { width: 20px; height: 20px; background: #d1f0d9; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1d6b3a; font-size: 11px; flex-shrink: 0; }
+  .geo-text-mini { font-size: 9px; line-height: 1.3; }
+  .geo-text-mini strong { color: #1d6b3a; font-weight: 600; display: block; font-size: 9px; }
+  .geo-text-mini span { color: #555; font-size: 8px; }
+  .form-title-mini { font-size: 13px; font-weight: 600; color: #1a1a1a; margin: 4px 0 3px; }
+  .form-sub-mini { font-size: 10px; color: #666; margin-bottom: 12px; }
+  .input-label-mini { font-size: 9px; color: #5123a4; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .cpf-input { background: white; border: 1.5px solid #e8e3f5; border-radius: 9px; padding: 10px 12px; font-size: 12px; font-weight: 500; color: #1a1a1a; letter-spacing: 1px; }
+  .checks-mini { margin-top: 11px; display: flex; flex-direction: column; gap: 5px; }
+  .check-row-mini { display: flex; align-items: center; gap: 6px; font-size: 9px; color: #1d6b3a; }
+  .check-row-mini .ic { color: #1d9e75; font-size: 11px; }
+  .check-row-mini.pending { color: #888; }
+  .check-row-mini.pending .ic { color: #c9bce5; }
+
+  /* Tela 4 - confirmação */
+  .confirm-card { background: white; border-radius: 11px; padding: 13px; margin-top: 6px; border: 1px solid #e8e3f5; }
+  .avatar-circle { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #5123a4, #7d4dd6); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 15px; margin: 0 auto 9px; }
+  .confirm-greeting { font-size: 9px; color: #888; text-align: center; margin-bottom: 1px; }
+  .confirm-name { font-size: 14px; font-weight: 600; color: #1a1a1a; text-align: center; margin-bottom: 10px; }
+  .confirm-line { display: flex; justify-content: space-between; padding: 5px 0; border-top: 1px solid #f0ecf9; font-size: 9px; }
+  .confirm-line .lbl { color: #888; }
+  .confirm-line .val { color: #1a1a1a; font-weight: 500; max-width: 60%; text-align: right; }
+  .btn-secondary { background: transparent; color: #5123a4; border: 1.5px solid #5123a4; border-radius: 9px; padding: 9px; font-size: 11px; font-weight: 500; margin-top: 7px; text-align: center; }
+
+  /* Tela 5 - sucesso */
+  .success-screen { background: linear-gradient(180deg, #5123a4 0%, #3a1980 100%); color: white; text-align: center; padding: 28px 18px; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .success-icon { width: 50px; height: 50px; background: #e4dcf7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #5123a4; margin-bottom: 12px; }
+  .success-title { font-size: 15px; font-weight: 600; margin-bottom: 5px; }
+  .success-sub { font-size: 10px; opacity: 0.9; line-height: 1.5; margin-bottom: 14px; max-width: 180px; }
+  .cert-preview-bx { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 9px; padding: 11px; width: 100%; }
+  .cert-preview-label { font-size: 8px; opacity: 0.7; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 3px; }
+  .cert-preview-name { font-size: 11px; font-weight: 500; margin-bottom: 2px; }
+  .cert-preview-mail { font-size: 9px; opacity: 0.8; }
+
+  /* Tela 6 - credencial J&J no fluxo (versão compacta) */
+  .flow-step .jj-bar { display: flex; justify-content: space-between; align-items: center; padding: 7px 14px 4px; }
+  .flow-step .jj-logo-placeholder { display: inline-flex; align-items: center; justify-content: center; height: 22px; min-width: 42px; }
+  .flow-step .jj-logo-text { color: #EB1700; font-weight: 700; font-size: 18px; letter-spacing: -1px; }
+  .flow-step .lang-tag { font-size: 9px; color: #1a1a1a; font-weight: 600; }
+  .flow-step .jj-strip { background: #EB1700; padding: 18px 12px; text-align: center; position: relative; overflow: hidden; min-height: 60px; display: flex; flex-direction: column; justify-content: center; }
+  .flow-step .jj-strip::before { content: ''; position: absolute; top: -30px; right: -30px; width: 90px; height: 90px; border-radius: 50%; background: rgba(255,255,255,0.06); }
+  .flow-step .jj-strip::after { content: ''; position: absolute; bottom: -40px; left: -20px; width: 70px; height: 70px; border-radius: 50%; background: rgba(255,255,255,0.06); }
+  .flow-step .jj-strip-title { color: white; font-size: 11px; font-weight: 600; position: relative; z-index: 1; }
+  .flow-step .cred-title-small { text-align: center; font-size: 11px; font-weight: 700; color: #1a1a1a; margin: 6px 0 3px; }
+  .flow-step .cred-tabs { display: flex; padding: 0 14px; border-bottom: 1px solid #ececec; }
+  .flow-step .cred-tab { flex: 1; padding: 4px 0; text-align: center; font-size: 8px; color: #888; font-weight: 500; }
+  .flow-step .cred-tab.active { color: #1a1a1a; font-weight: 600; border-bottom: 2px solid #5123a4; margin-bottom: -1px; }
+  .flow-step .cert-card-mini-flow { margin: 8px 11px; border: 2px solid #EB1700; border-radius: 5px; background: white; padding: 8px 6px; position: relative; }
+  .flow-step .cert-card-mini-flow::before { content: ''; position: absolute; top: 0; right: 0; width: 14px; height: 14px; background: #e4dcf7; clip-path: polygon(100% 0, 0 0, 100% 100%); }
+  .flow-step .cert-header-mini-flow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .flow-step .cert-event-badge-flow { background: #EB1700; color: white; font-size: 5px; padding: 1.5px 3px; border-radius: 2px; font-weight: 700; letter-spacing: 0.5px; }
+  .flow-step .cert-qr-mini-flow { width: 14px; height: 14px; background: white; border: 1px solid #1a1a1a; padding: 1px; }
+  .flow-step .cert-qr-inner-flow { width: 100%; height: 100%; background-image: 
+    radial-gradient(#000 35%, transparent 36%),
+    radial-gradient(#000 35%, transparent 36%);
+    background-size: 2.5px 2.5px; background-position: 0 0, 1.25px 1.25px; }
+  .flow-step .cert-title-mini-flow { text-align: center; font-size: 6px; font-weight: 700; color: #1a1a1a; letter-spacing: 0.8px; margin-bottom: 2px; }
+  .flow-step .cert-awarded-mini-flow { text-align: center; font-size: 5px; color: #666; margin-bottom: 2px; }
+  .flow-step .cert-name-mini-flow { text-align: center; font-size: 9px; font-weight: 600; color: #EB1700; font-style: italic; margin-bottom: 4px; padding-bottom: 3px; border-bottom: 1px solid #eee; }
+  .flow-step .cert-body-mini-flow { font-size: 5px; color: #444; text-align: center; line-height: 1.4; margin-bottom: 4px; padding: 0 2px; }
+  .flow-step .cert-location-mini-flow { text-align: center; font-size: 5px; color: #1a1a1a; font-weight: 500; margin-bottom: 4px; }
+  .flow-step .cert-signatures-mini-flow { display: flex; justify-content: space-around; margin-top: 4px; padding-top: 3px; border-top: 1px solid #eee; }
+  .flow-step .sig-mini-flow { text-align: center; font-size: 4px; }
+  .flow-step .sig-line-mini-flow { font-family: 'Brush Script MT', cursive; font-size: 7px; color: #1a1a1a; margin-bottom: 1px; }
+  .flow-step .sig-name-mini-flow { font-weight: 700; color: #1a1a1a; font-size: 4.5px; margin-bottom: 1px; }
+  .flow-step .sig-role-mini-flow { color: #666; font-size: 4px; }
+  .flow-step .share-card-mini-flow { margin: 7px 11px; border: 1px solid #ececec; border-radius: 7px; padding: 8px; background: #fafafa; }
+  .flow-step .share-title-mini-flow { font-size: 9px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+  .flow-step .share-sub-mini-flow { font-size: 7px; color: #555; line-height: 1.3; margin-bottom: 5px; }
+  .flow-step .btn-linkedin-mini-flow { background: #0A66C2; color: white; border: none; border-radius: 5px; padding: 6px; width: 100%; font-size: 8px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 4px; }
+  .flow-step .scroll-area-flow { flex: 1; overflow: hidden; }
+
+  /* Tela 6 - credencial J&J */
+  .jj-bar { display: flex; justify-content: space-between; align-items: center; padding: 8px 18px 6px; }
+  .jj-logo-placeholder { display: inline-flex; align-items: center; justify-content: center; height: 28px; min-width: 50px; }
+  .jj-logo-text { color: #EB1700; font-weight: 700; font-size: 22px; letter-spacing: -1px; }
+  .lang-tag { font-size: 10px; color: #1a1a1a; font-weight: 600; }
+  .jj-strip { background: #EB1700; padding: 28px 14px; text-align: center; position: relative; overflow: hidden; min-height: 88px; display: flex; flex-direction: column; justify-content: center; }
+  .jj-strip::before { content: ''; position: absolute; top: -40px; right: -40px; width: 130px; height: 130px; border-radius: 50%; background: rgba(255,255,255,0.06); }
+  .jj-strip::after { content: ''; position: absolute; bottom: -50px; left: -30px; width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.06); }
+  .jj-strip-title { color: white; font-size: 14px; font-weight: 600; position: relative; z-index: 1; }
+  .cred-title-small { text-align: center; font-size: 14px; font-weight: 700; color: #1a1a1a; margin: 8px 0 4px; }
+  .cred-tabs { display: flex; padding: 0 18px; border-bottom: 1px solid #ececec; }
+  .cred-tab { flex: 1; padding: 5px 0; text-align: center; font-size: 10px; color: #888; font-weight: 500; }
+  .cred-tab.active { color: #1a1a1a; font-weight: 600; border-bottom: 2px solid #5123a4; margin-bottom: -1px; }
+  .scroll-area { flex: 1; overflow-y: auto; padding-bottom: 6px; }
+  .scroll-area::-webkit-scrollbar { width: 3px; }
+  .scroll-area::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+  .cert-card-mini { margin: 10px 14px; border: 3px solid #EB1700; border-radius: 6px; background: white; padding: 10px 8px; position: relative; }
+  .cert-card-mini::before { content: ''; position: absolute; top: 0; right: 0; width: 20px; height: 20px; background: #e4dcf7; clip-path: polygon(100% 0, 0 0, 100% 100%); }
+  .cert-header-mini { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+  .cert-event-badge { background: #EB1700; color: white; font-size: 6px; padding: 2px 4px; border-radius: 3px; font-weight: 700; letter-spacing: 0.5px; }
+  .cert-qr-mini { width: 18px; height: 18px; background: white; border: 1px solid #1a1a1a; padding: 1px; }
+  .cert-qr-inner-mini { width: 100%; height: 100%; background-image: 
+    radial-gradient(#000 35%, transparent 36%),
+    radial-gradient(#000 35%, transparent 36%);
+    background-size: 3px 3px; background-position: 0 0, 1.5px 1.5px; }
+  .cert-title-mini { text-align: center; font-size: 8px; font-weight: 700; color: #1a1a1a; letter-spacing: 1px; margin-bottom: 3px; }
+  .cert-awarded-mini { text-align: center; font-size: 6.5px; color: #666; margin-bottom: 3px; }
+  .cert-name-mini { text-align: center; font-size: 11px; font-weight: 600; color: #EB1700; font-style: italic; margin-bottom: 5px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
+  .cert-body-mini { font-size: 6px; color: #444; text-align: center; line-height: 1.5; margin-bottom: 5px; padding: 0 4px; }
+  .cert-location-mini { text-align: center; font-size: 6.5px; color: #1a1a1a; font-weight: 500; margin-bottom: 6px; }
+  .cert-signatures-mini { display: flex; justify-content: space-around; margin-top: 6px; padding-top: 5px; border-top: 1px solid #eee; }
+  .sig-mini { text-align: center; font-size: 5px; }
+  .sig-line-mini { font-family: 'Brush Script MT', cursive; font-size: 9px; color: #1a1a1a; margin-bottom: 1px; }
+  .sig-name-mini { font-weight: 700; color: #1a1a1a; font-size: 5.5px; margin-bottom: 1px; }
+  .sig-role-mini { color: #666; font-size: 5px; }
+  .cert-footer-mini { display: flex; justify-content: flex-end; margin-top: 5px; padding-top: 4px; border-top: 1px solid #eee; font-size: 5.5px; color: #888; }
+  .share-card-mini { margin: 10px 14px; border: 1px solid #ececec; border-radius: 10px; padding: 12px; background: #fafafa; }
+  .share-title-mini { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .share-sub-mini { font-size: 10px; color: #555; line-height: 1.4; margin-bottom: 8px; }
+  .btn-linkedin-mini { background: #0A66C2; color: white; border: none; border-radius: 8px; padding: 9px; width: 100%; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .verify-card-mini { margin: 0 14px 10px; border: 1px solid #ececec; border-radius: 10px; padding: 12px; }
+  .verify-title-mini { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 7px; }
+  .verify-row-mini { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .verify-icon-mini { width: 20px; height: 20px; background: #5123a4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; flex-shrink: 0; }
+  .verify-text-mini { font-size: 10px; color: #1a1a1a; line-height: 1.4; }
+  .verify-text-mini strong { font-weight: 700; }
+  .btn-validate-mini { background: #1d6b3a; color: white; border: none; border-radius: 8px; padding: 9px; width: 100%; font-size: 11px; font-weight: 600; }
+
+  /* Bullets explicativos */
+  .bullets { margin: 16px 0; }
+  .bullet-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #eee; }
+  .bullet-item:last-child { border-bottom: none; }
+  .bullet-num { width: 28px; height: 28px; border-radius: 50%; background: #5123a4; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .bullet-content { flex: 1; }
+  .bullet-title { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+  .bullet-text { font-size: 13px; color: #555; line-height: 1.5; }
+
+  /* Seção 2 - certificado como marketing */
+  .value-prop { background: white; border-radius: 16px; padding: 28px; margin: 24px 0; border: 1px solid #eee; }
+  .value-prop-title { font-size: 18px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; }
+  .value-prop-sub { font-size: 13px; color: #666; margin-bottom: 16px; }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+  .pillar { background: #f8f6fc; border-radius: 12px; padding: 18px; border-left: 3px solid #5123a4; }
+  .pillar-icon { width: 36px; height: 36px; background: #5123a4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; margin-bottom: 10px; }
+  .pillar-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 6px; }
+  .pillar-text { font-size: 12px; color: #555; line-height: 1.5; }
+  .cert-showcase { background: white; border-radius: 16px; padding: 28px; border: 1px solid #eee; display: flex; gap: 28px; align-items: center; }
+  .cert-showcase-content { flex: 1; }
+  .cert-showcase-phone { flex-shrink: 0; }
+  .cert-showcase-phone .phone { width: 280px; padding: 8px; border-radius: 32px; }
+  .cert-showcase-phone .screen { height: 580px; border-radius: 24px; }
+
+  /* Dois boxes do certificado lado a lado */
+  .cert-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+  .cert-box { border: 1px solid #ececec; border-radius: 12px; padding: 16px 18px; background: #fafafa; }
+  .cert-box-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .cert-box-sub { font-size: 12px; color: #555; line-height: 1.5; margin-bottom: 12px; }
+  .cert-box-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .cert-box-shield { width: 26px; height: 26px; background: #5123a4; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; flex-shrink: 0; }
+  .cert-box-row-text { font-size: 12px; color: #1a1a1a; line-height: 1.4; }
+  .cert-box-row-text strong { font-weight: 700; }
+  .cert-box-btn { width: 100%; border: none; border-radius: 10px; padding: 11px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Poppins', sans-serif; }
+  .cert-box-btn.linkedin { background: #0A66C2; color: white; }
+  .cert-box-btn.validate { background: #1d6b3a; color: white; }
+  .cert-box-btn .ti { font-size: 16px; }
+  .insight-card { background: linear-gradient(135deg, #5123a4, #7d4dd6); border-radius: 12px; padding: 20px; color: white; margin: 20px 0; }
+  .insight-card-eyebrow { font-size: 11px; opacity: 0.85; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .insight-card-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .insight-card-text { font-size: 13px; opacity: 0.95; line-height: 1.6; }
+
+  /* Seção 3 - Dashboard */
+  /* ===== DASHBOARD INSPIRADO NO POK CORPORATIVO ===== */
+  /* Síntese executiva */
+  .synth-block { margin: 28px 0 20px; }
+  .synth-eyebrow { font-size: 11px; color: #5123a4; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .synth-title { font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 18px; }
+  .synth-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .synth-card { background: white; border: 1px solid #ececec; border-radius: 12px; padding: 18px 16px; }
+  .synth-card-label { font-size: 10px; color: #888; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+  .synth-card-value { font-size: 28px; font-weight: 700; color: #5123a4; line-height: 1.1; margin-bottom: 4px; }
+  .synth-card-sub { font-size: 11px; color: #666; line-height: 1.4; }
+
+  /* Zonas do dashboard */
+  .zone { background: white; border-radius: 16px; padding: 28px 28px; margin: 24px 0; border: 1px solid #eee; }
+  .zone-eyebrow { font-size: 11px; color: #5123a4; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .zone-title { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px; }
+  .zone-intro { font-size: 13px; color: #555; line-height: 1.6; max-width: 720px; margin-bottom: 22px; }
+  .zone-section-title { font-size: 14px; font-weight: 600; color: #1a1a1a; margin: 22px 0 12px; padding-top: 6px; }
+
+  /* Funil horizontal */
+  .funnel { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 16px 0 24px; }
+  .funnel-step { background: #f8f6fc; border-radius: 10px; padding: 14px 10px; text-align: center; position: relative; }
+  .funnel-step.first { background: #ebe5f9; }
+  .funnel-step-value { font-size: 22px; font-weight: 700; color: #5123a4; line-height: 1; margin-bottom: 4px; }
+  .funnel-step-label { font-size: 10px; color: #666; line-height: 1.3; min-height: 26px; }
+  .funnel-step-pct { font-size: 10px; color: #5123a4; font-weight: 600; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(81,35,164,0.15); }
+  .funnel-arrow { position: absolute; right: -8px; top: 50%; transform: translateY(-50%); color: #c9bce5; font-size: 14px; font-weight: 700; z-index: 1; }
+
+  /* KPI ribbon (3 cards destacados) */
+  .kpi-ribbon { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+  .kpi-tile { background: #f1ecfd; border-radius: 12px; padding: 18px; border-left: 3px solid #5123a4; }
+  .kpi-tile-value { font-size: 30px; font-weight: 700; color: #5123a4; line-height: 1; margin-bottom: 6px; }
+  .kpi-tile-label { font-size: 12px; color: #3a1980; font-weight: 600; }
+
+  /* Gráfico de trajetória */
+  .trajectory-card { background: #fafafa; border-radius: 10px; padding: 18px; margin: 16px 0; }
+  .trajectory-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+  .trajectory-sub { font-size: 11px; color: #666; line-height: 1.5; margin-bottom: 12px; }
+  .trajectory-chart { height: 200px; position: relative; }
+  .trajectory-chart svg { width: 100%; height: 100%; display: block; }
+  .trajectory-legend { display: flex; justify-content: space-between; font-size: 10px; color: #888; margin-top: 6px; }
+
+  /* Status compliance */
+  .status-grid { display: grid; grid-template-columns: repeat(4, 1fr) 1.2fr; gap: 10px; margin: 16px 0; }
+  .status-card { background: white; border: 1px solid #ececec; border-radius: 10px; padding: 16px 14px; }
+  .status-card-value { font-size: 26px; font-weight: 700; color: #1a1a1a; line-height: 1; margin-bottom: 6px; }
+  .status-card-value.warn { color: #c47a00; }
+  .status-card-value.danger { color: #c43030; }
+  .status-card-value.success { color: #1d6b3a; }
+  .status-card-label { font-size: 11px; color: #666; line-height: 1.3; }
+  .status-card.audit { background: linear-gradient(135deg, #5123a4, #3a1980); color: white; border: none; }
+  .status-card.audit .status-card-value { color: white; }
+  .status-card.audit .status-card-label { color: rgba(255,255,255,0.9); }
+
+  /* Tabela aprimorada */
+  .table-card { background: white; border: 1px solid #ececec; border-radius: 12px; overflow: hidden; margin: 16px 0; }
+  .table-filters { display: flex; gap: 8px; padding: 14px 18px; background: #fafafa; border-bottom: 1px solid #ececec; flex-wrap: wrap; }
+  .filter-chip { background: white; border: 1px solid #ddd; border-radius: 20px; padding: 5px 12px; font-size: 11px; color: #666; }
+  .filter-chip.active { background: #5123a4; color: white; border-color: #5123a4; }
+  .table-card table { font-size: 12px; }
+  .table-card th { padding: 12px 14px; background: #fafafa; border-bottom: 1px solid #ececec; font-size: 10px; color: #888; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+  .table-card td { padding: 11px 14px; border-bottom: 1px solid #f6f6f6; color: #1a1a1a; }
+  .table-card tr:last-child td { border-bottom: none; }
+  .badge-conforme { background: #e0f5ea; color: #1d6b3a; padding: 3px 9px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .badge-warn { background: #fff3df; color: #c47a00; padding: 3px 9px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .badge-danger { background: #fbe5e5; color: #c43030; padding: 3px 9px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .badge-share-li { background: #e7f3ff; color: #0A66C2; padding: 3px 9px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .blockchain-hash { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #5123a4; background: #f1ecfd; padding: 2px 6px; border-radius: 4px; }
+
+  /* Cross-zone CTA */
+  .cross-cta { background: linear-gradient(135deg, #5123a4, #7d4dd6); border-radius: 14px; padding: 24px; color: white; margin: 28px 0 16px; }
+  .cross-cta-eyebrow { font-size: 11px; opacity: 0.85; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .cross-cta-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .cross-cta-text { font-size: 13px; opacity: 0.95; line-height: 1.6; margin-bottom: 14px; }
+  .cross-cta-link { display: inline-block; color: white; background: rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+
+  /* ===== fim dashboard ===== */
+
+  /* (LEGADO - mantido para compat) */
+  .dashboard-mockup { background: white; border: 1px solid #eee; border-radius: 16px; overflow: hidden; margin: 24px 0; }
+  .dash-header { padding: 20px 24px; border-bottom: 1px solid #eee; background: #fafafa; display: flex; justify-content: space-between; align-items: center; }
+  .dash-title { font-size: 16px; font-weight: 600; color: #1a1a1a; }
+  .dash-filter { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 6px 12px; font-size: 12px; color: #666; }
+  .dash-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 20px 24px; background: #fafafa; }
+  .kpi-card { background: white; border-radius: 8px; padding: 14px; border: 1px solid #eee; }
+  .kpi-label { font-size: 10px; color: #888; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .kpi-value { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+  .kpi-delta { font-size: 10px; color: #1d9e75; font-weight: 600; }
+  .kpi-delta.negative { color: #d04545; }
+
+  .dash-charts { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; padding: 20px 24px; }
+  .chart-card { background: white; border: 1px solid #eee; border-radius: 8px; padding: 16px; }
+  .chart-card-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px; }
+  .chart-mock { height: 180px; position: relative; padding: 8px 4px 24px; }
+  .chart-mock svg { width: 100%; height: 100%; }
+  .chart-legend { display: flex; gap: 16px; margin-top: 8px; font-size: 11px; color: #666; }
+  .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+
+  .funnel-card { padding: 0; }
+  .funnel-row { display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid #eee; }
+  .funnel-row:last-child { border-bottom: none; }
+  .funnel-label { font-size: 11px; color: #666; }
+  .funnel-value { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .funnel-pct { font-size: 10px; color: #888; margin-left: 6px; }
+
+  .dash-table { padding: 20px 24px; }
+  .dash-table-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th { text-align: left; padding: 10px 8px; border-bottom: 1px solid #eee; font-size: 11px; color: #888; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; }
+  td { padding: 10px 8px; border-bottom: 1px solid #f6f6f6; color: #1a1a1a; }
+  .badge-share { background: #e7f3ff; color: #0A66C2; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .badge-validated { background: #e0f5ea; color: #1d6b3a; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+
+  /* Cabeçalho J&J no topo da página */
+  .top-bar { background: white; border-bottom: 1px solid #eee; padding: 16px 56px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; }
+  .top-bar-left { font-size: 13px; color: #888; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+  .top-bar-left strong { color: #5123a4; }
+  .top-bar-right { display: flex; align-items: center; gap: 14px; }
+  .top-bar-jj { background: #EB1700; color: white; padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 14px; letter-spacing: -0.5px; }
+  .top-bar-date { font-size: 12px; color: #666; }
+
+  .main-wrapper { flex: 1; display: flex; flex-direction: column; }
+
+  /* Note box */
+  .note-box { background: #f1ecfd; border-left: 3px solid #5123a4; border-radius: 6px; padding: 14px 16px; margin: 18px 0; }
+  .note-box-title { font-size: 12px; font-weight: 700; color: #5123a4; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .note-box-text { font-size: 13px; color: #3a1980; line-height: 1.5; }
+
+  /* Variação: QR pessoal */
+  .variation-block { margin: 48px 0 20px; padding-top: 32px; border-top: 1px solid #ececec; }
+  .variation-eyebrow { font-size: 11px; font-weight: 700; color: #5123a4; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+  .variation-title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; }
+  .variation-lead { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 24px; max-width: 760px; }
+  .variation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .variation-card { border: 1px solid #ececec; border-radius: 12px; padding: 20px; background: white; }
+  .variation-card.primary { border-color: #5123a4; background: #faf8ff; }
+  .variation-card-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; margin-bottom: 12px; }
+  .variation-card.primary .variation-card-tag { background: #5123a4; color: white; }
+  .variation-card:not(.primary) .variation-card-tag { background: #ececec; color: #555; }
+  .variation-card-title { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+  .variation-card-sub { font-size: 12px; color: #777; margin-bottom: 14px; line-height: 1.5; }
+  .variation-card ul { list-style: none; padding: 0; margin: 0; }
+  .variation-card li { font-size: 12px; color: #333; padding: 6px 0 6px 18px; position: relative; line-height: 1.5; }
+  .variation-card li::before { content: '+'; position: absolute; left: 0; top: 6px; color: #5123a4; font-weight: 700; }
+  .variation-card li.minus::before { content: '−'; color: #999; }
+
+  /* Ícones simples via CSS */
+  .ic { font-style: normal; display: inline-block; }
+
+  /* Responsividade */
+  @media (max-width: 1100px) {
+    .concept-grid, .pillars, .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+    .dash-charts { grid-template-columns: 1fr; }
+    .cert-showcase { flex-direction: column; }
+    .cert-boxes { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .layout { flex-direction: column; }
+    .sidebar {
+      width: 100%;
+      min-height: auto;
+      padding: 16px 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .sidebar-brand { padding-bottom: 12px; }
+    .sidebar-tagline,
+    .sidebar-client,
+    .sidebar-nav-label,
+    .sidebar-footer,
+    .nav-item-sub { display: none; }
+    .sidebar-nav {
+      display: flex;
+      gap: 4px;
+      padding: 8px 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-item {
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      border-left: none;
+      border-bottom: 3px solid transparent;
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+    .nav-item.active {
+      border-left: none;
+      border-bottom-color: #e4dcf7;
+      background: rgba(255,255,255,0.12);
+    }
+    .nav-item-num { margin-top: 0; }
+    .nav-item-title { font-size: 11px; text-align: center; }
+    .content { padding: 20px 16px 40px; }
+    .top-bar { padding: 14px 16px; }
+    .top-bar-label { font-size: 11px; }
+    .section-title { font-size: 26px; }
+    .section-lead { font-size: 14px; }
+    .flow-row { flex-wrap: wrap; justify-content: center; gap: 16px !important; }
+    .flow-step { flex: 0 0 auto; }
+    .concept-grid, .pillars, .dash-kpis { grid-template-columns: 1fr !important; }
+    .cert-showcase { flex-direction: column; padding: 20px; }
+    .cert-showcase-phone .phone { width: 240px !important; }
+    .cert-boxes { grid-template-columns: 1fr; }
+    .variation-grid { grid-template-columns: 1fr; }
+    .variation-title { font-size: 20px; }
+    .contact-section { padding: 40px 20px; border-radius: 12px; }
+    .contato-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-top: 28px;
+    }
+    .contato-info h3 { font-size: 26px; }
+    .contato-qr img { width: 160px; height: 160px; }
+    .contato-qr { padding: 16px; }
+  }
+
+
+/* ════════════════════════════════════════════════════════════════════
+   CSS do dashboard POK Corporativo — escopado em #dashboard
+   Reproduz os elementos visuais reais do dashboard que a J&J terá acesso
+   ════════════════════════════════════════════════════════════════════ */
+#dashboard {
+  --pkpurple: #5123a4;
+  --pkpurple-dark: #3a1878;
+  --pkpurple-light: #e4dcf7;
+  --pkpurple-faint: #F3EFF9;
+  --pkink: #1E1230;
+  --pkink-muted: #5E4E7A;
+  --pkink-faint: #A899C2;
+  --pkborder: #D8CEF0;
+  --pkgreen: #1D9E75;
+  --pkgreen-light: #E2F4EB;
+  --pkgreen-dark: #0f6e56;
+  --pkgold: #3B82F6;
+  --pkgold-light: #DBEAFE;
+  --pkgold-dark: #1E40AF;
+  --pkcrimson: #3B82F6;
+  --pkcrimson-light: #DBEAFE;
+  --pkcrimson-dark: #1E40AF;
+  --pkamber: #D97706;
+  --pkamber-light: #FEF3C7;
+  --pkred: #B91C1C;
+  --pkred-light: #FEE2E2;
+  --pkradius-lg: 20px;
+  --pkradius-md: 12px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--pkink);
+}
+
+/* Aviso visual */
+#dashboard .dash-intro-note { background: #f1ecfd; border-left: 3px solid #5123a4; border-radius: 6px; padding: 14px 18px; margin: 16px 0 28px; font-size: 13px; color: #3a1980; line-height: 1.6; }
+#dashboard .dash-intro-note strong { color: #5123a4; font-weight: 700; }
+
+/* Hero (caixa demo) */
+#dashboard .dh-hero { background: var(--pkpurple-dark); padding: 36px 36px 32px; position: relative; overflow: hidden; border-radius: 16px; margin-bottom: 28px; }
+#dashboard .dh-hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 280px; height: 280px; border-radius: 50%; background: rgba(123,79,207,0.25); pointer-events: none; }
+#dashboard .dh-hero::after { content: ''; position: absolute; bottom: -100px; left: 20%; width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none; }
+#dashboard .dh-hero-inner { position: relative; z-index: 1; }
+#dashboard .dh-hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(147,197,253,0.18); border: 1px solid rgba(147,197,253,0.3); border-radius: 99px; padding: 5px 14px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #93c5fd; margin-bottom: 14px; }
+#dashboard .dh-hero-eyebrow span.eb-dot { width: 6px; height: 6px; border-radius: 50%; background: #60a5fa; display: inline-block; }
+#dashboard .dh-hero-title { font-size: 26px; font-weight: 900; line-height: 1.15; color: #fff; letter-spacing: -0.02em; margin-bottom: 10px; }
+#dashboard .dh-hero-subtitle { font-size: 13px; color: #ffffff; line-height: 1.7; max-width: 720px; font-weight: 400; }
+
+/* Section labels */
+#dashboard .dh-section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pkink-faint); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+#dashboard .dh-section-label::after { content: ''; flex: 1; height: 1px; background: var(--pkborder); }
+#dashboard .dh-section-label .accent { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+#dashboard .dh-section-label .accent.gold { background: var(--pkgold); }
+#dashboard .dh-section-label .accent.green { background: var(--pkgreen); }
+#dashboard .dh-section-label .accent.purple { background: var(--pkpurple); }
+
+/* Zone header */
+#dashboard .dh-zone-header { margin-bottom: 28px; padding: 24px 28px; border-radius: var(--pkradius-lg); position: relative; overflow: hidden; }
+#dashboard .dh-zone-header.dev { background: linear-gradient(135deg, var(--pkcrimson-light) 0%, #F0F7FF 100%); border: 1px solid #BFDBFE; }
+#dashboard .dh-zone-header.com { background: linear-gradient(135deg, var(--pkgreen-light) 0%, #f4faf7 100%); border: 1px solid #c5e4d6; }
+#dashboard .dh-zone-header h3 { font-size: 18px; font-weight: 800; color: var(--pkink); margin-bottom: 6px; letter-spacing: -0.01em; }
+#dashboard .dh-zone-header p { font-size: 13px; color: var(--pkink); line-height: 1.5; }
+#dashboard .dh-zone-header-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.7); border: 1px solid rgba(81,35,164,0.15); border-radius: 99px; padding: 4px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pkpurple); margin-bottom: 12px; }
+#dashboard .dh-zone-header-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+#dashboard .dh-zone-header-pill .dot.gold { background: var(--pkgold); }
+#dashboard .dh-zone-header-pill .dot.green { background: var(--pkgreen); }
+
+/* Overview blocks */
+#dashboard .dh-overview-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 32px; }
+#dashboard .dh-overview-block { background: #fff; border: 1px solid var(--pkborder); border-radius: var(--pkradius-lg); padding: 24px; position: relative; overflow: hidden; }
+#dashboard .dh-overview-block::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 4px; }
+#dashboard .dh-overview-block.dev { background: linear-gradient(180deg, #F0F7FF 0%, #fff 60%); border-color: #BFDBFE; }
+#dashboard .dh-overview-block.dev::before { background: var(--pkgold); }
+#dashboard .dh-overview-block.com { background: linear-gradient(180deg, #F1FAF6 0%, #fff 60%); border-color: #c5e4d6; }
+#dashboard .dh-overview-block.com::before { background: var(--pkgreen); }
+#dashboard .dh-overview-block-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+#dashboard .dh-overview-block-pill { display: inline-flex; align-items: center; gap: 7px; border-radius: 99px; padding: 5px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+#dashboard .dh-overview-block.dev .dh-overview-block-pill { background: var(--pkcrimson-light); color: var(--pkcrimson-dark); border: 1px solid #BFDBFE; }
+#dashboard .dh-overview-block.com .dh-overview-block-pill { background: var(--pkgreen-light); color: var(--pkgreen-dark); border: 1px solid #c5e4d6; }
+#dashboard .dh-overview-block-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+#dashboard .dh-overview-block.dev .dh-overview-block-pill .dot { background: var(--pkgold); }
+#dashboard .dh-overview-block.com .dh-overview-block-pill .dot { background: var(--pkgreen); }
+#dashboard .dh-overview-block-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+#dashboard .dh-ov-card { background: #fff; border: 1px solid var(--pkborder); border-radius: var(--pkradius-md); padding: 18px 20px; }
+#dashboard .dh-overview-block.dev .dh-ov-card { border-left: 4px solid var(--pkcrimson); }
+#dashboard .dh-overview-block.com .dh-ov-card { border-left: 4px solid var(--pkgreen); }
+#dashboard .dh-ov-card-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pkink-faint); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+#dashboard .dh-ov-card-label .dot { width: 5px; height: 5px; border-radius: 50%; }
+#dashboard .dh-ov-card-label .dot.gold { background: var(--pkgold); }
+#dashboard .dh-ov-card-label .dot.green { background: var(--pkgreen); }
+#dashboard .dh-ov-card-value { font-size: 28px; font-weight: 800; color: var(--pkink); line-height: 1; margin-bottom: 4px; letter-spacing: -0.02em; }
+#dashboard .dh-ov-card-sub { font-size: 11px; color: var(--pkink-muted); font-weight: 500; }
+
+/* Funnel */
+#dashboard .dh-funnel-card { background: #fff; border: 1px solid var(--pkborder); border-radius: var(--pkradius-lg); padding: 28px 32px; margin-bottom: 24px; }
+#dashboard .dh-funnel-card h3 { font-size: 15px; font-weight: 700; color: var(--pkink); margin-bottom: 4px; }
+#dashboard .dh-funnel-card > p { font-size: 12px; color: var(--pkink); line-height: 1.5; margin-bottom: 20px; }
+#dashboard .dh-funnel-steps { display: flex; align-items: center; }
+#dashboard .dh-funnel-step { flex: 1; text-align: center; }
+#dashboard .dh-funnel-bar { height: 52px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; border-radius: var(--pkradius-md); margin: 0 3px; color: #fff; }
+#dashboard .dh-funnel-step-label { font-size: 10px; color: var(--pkink-muted); margin-top: 8px; line-height: 1.4; font-weight: 500; }
+#dashboard .dh-funnel-step-pct { font-size: 10px; color: var(--pkink-faint); margin-top: 3px; font-weight: 600; }
+#dashboard .dh-funnel-arrow { color: var(--pkink-faint); font-size: 16px; flex-shrink: 0; padding: 0 2px 30px; }
+
+/* KPIs */
+#dashboard .dh-kpi-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-bottom: 24px; }
+#dashboard .dh-kpi-grid.k4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+#dashboard .dh-kpi-card { background: #fff; border: 1px solid var(--pkborder); border-radius: var(--pkradius-lg); padding: 20px 22px; }
+#dashboard .dh-kpi-card.hl-dev { border-left: 4px solid var(--pkcrimson); }
+#dashboard .dh-kpi-card.hl-com { border-left: 4px solid var(--pkgreen); }
+#dashboard .dh-kpi-value { font-size: 30px; font-weight: 800; color: var(--pkink); line-height: 1; margin-bottom: 6px; letter-spacing: -0.02em; }
+#dashboard .dh-kpi-value.gold { color: var(--pkgold-dark); }
+#dashboard .dh-kpi-value.green { color: var(--pkgreen-dark); }
+#dashboard .dh-kpi-label { font-size: 12px; color: var(--pkink-muted); line-height: 1.4; font-weight: 500; }
+
+/* Audit callout */
+#dashboard .dh-audit-callout { background: linear-gradient(135deg, var(--pkgreen-light) 0%, #f4faf7 100%); border: 1px solid #c5e4d6; border-radius: var(--pkradius-lg); padding: 22px 28px; margin-bottom: 32px; display: flex; align-items: center; gap: 22px; }
+#dashboard .dh-audit-icon { width: 52px; height: 52px; border-radius: 50%; background: #fff; border: 2px solid var(--pkgreen); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--pkgreen); font-size: 26px; }
+#dashboard .dh-audit-content { flex: 1; display: flex; align-items: center; gap: 22px; }
+#dashboard .dh-audit-value { font-size: 38px; font-weight: 800; color: var(--pkgreen-dark); line-height: 1; flex-shrink: 0; }
+#dashboard .dh-audit-text { flex: 1; }
+#dashboard .dh-audit-title { font-size: 13px; font-weight: 700; color: var(--pkink); margin-bottom: 4px; }
+#dashboard .dh-audit-desc { font-size: 12px; color: var(--pkink-muted); line-height: 1.55; }
+
+/* NR callout */
+#dashboard .dh-nr-callout { background: linear-gradient(135deg, var(--pkgreen-light) 0%, #f4faf7 100%); border: 1px solid #c5e4d6; border-radius: var(--pkradius-lg); padding: 22px 28px; margin-bottom: 24px; display: flex; align-items: flex-start; gap: 22px; }
+#dashboard .dh-nr-icon { width: 52px; height: 52px; border-radius: 12px; background: #fff; border: 2px solid var(--pkgreen); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--pkgreen); font-size: 24px; }
+#dashboard .dh-nr-content { flex: 1; }
+#dashboard .dh-nr-title { font-size: 13px; font-weight: 700; color: var(--pkink); margin-bottom: 6px; }
+#dashboard .dh-nr-desc { font-size: 12px; color: var(--pkink-muted); line-height: 1.6; margin-bottom: 10px; }
+#dashboard .dh-nr-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+#dashboard .dh-nr-tag { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; padding: 3px 9px; border-radius: 99px; background: #fff; border: 1px solid #c5e4d6; color: var(--pkgreen-dark); }
+
+/* Chart card */
+#dashboard .dh-chart-card { background: #fff; border: 1px solid var(--pkborder); border-radius: var(--pkradius-lg); padding: 28px 32px; margin-bottom: 24px; }
+#dashboard .dh-chart-card h3 { font-size: 15px; font-weight: 700; color: var(--pkink); margin-bottom: 4px; }
+#dashboard .dh-chart-card > p { font-size: 12px; color: var(--pkink); line-height: 1.5; margin-bottom: 20px; }
+#dashboard .dh-chart-zone-labels { display: flex; margin-bottom: 6px; }
+#dashboard .dh-zone-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; }
+#dashboard .dh-zone-label.past { background: #f0edf8; color: var(--pkink-faint); }
+#dashboard .dh-zone-label.future { background: var(--pkcrimson-light); color: var(--pkcrimson-dark); margin-left: auto; }
+#dashboard .dh-zone-divider-x { flex: 1; }
+
+/* Table */
+#dashboard .dh-table-card { background: #fff; border: 1px solid var(--pkborder); border-radius: var(--pkradius-lg); margin-bottom: 24px; overflow: hidden; }
+#dashboard .dh-table-toolbar { display: flex; align-items: center; gap: 10px; padding: 16px 20px; border-bottom: 1px solid var(--pkborder); flex-wrap: wrap; background: var(--pkpurple-faint); }
+#dashboard .dh-table-toolbar.com { background: #f4faf7; }
+#dashboard .dh-table-toolbar input { font-family: 'Poppins', sans-serif; font-size: 13px; padding: 8px 14px; border: 1.5px solid var(--pkborder); border-radius: 99px; background: #fff; color: var(--pkink); outline: none; flex: 1; min-width: 160px; }
+#dashboard .dh-table-toolbar select { font-family: 'Poppins', sans-serif; font-size: 13px; padding: 8px 32px 8px 14px; border: 1.5px solid var(--pkborder); border-radius: 99px; background: #fff; color: var(--pkink); outline: none; }
+#dashboard .dh-table-wrap { overflow-x: auto; }
+#dashboard .dh-table-card table { width: 100%; border-collapse: collapse; font-size: 13px; }
+#dashboard .dh-table-card thead th { padding: 11px 16px; text-align: left; font-size: 10px; font-weight: 700; color: var(--pkink-faint); letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid var(--pkborder); background: #fff; }
+#dashboard .dh-table-card tbody tr { border-bottom: 1px solid var(--pkborder); }
+#dashboard .dh-table-card tbody tr:last-child { border-bottom: none; }
+#dashboard .dh-table-card tbody td { padding: 13px 16px; color: var(--pkink); vertical-align: middle; }
+#dashboard .dh-td-muted { color: var(--pkink-muted) !important; font-size: 12px; }
+#dashboard .dh-bc-mono { font-family: monospace; font-size: 11px; color: var(--pkpurple); }
+
+/* Badges */
+#dashboard .dh-badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 5px; letter-spacing: 0.05em; text-transform: uppercase; }
+#dashboard .dh-badge-conforme { background: var(--pkgreen-light); color: var(--pkgreen-dark); }
+#dashboard .dh-badge-vence { background: var(--pkamber-light); color: var(--pkamber); }
+#dashboard .dh-badge-vencido { background: var(--pkred-light); color: var(--pkred); }
+#dashboard .dh-badge-mob { background: var(--pkpurple-light); color: var(--pkpurple); }
+#dashboard .dh-badge-saida { background: var(--pkgreen-light); color: var(--pkgreen-dark); }
+#dashboard .dh-badge-none { background: #f0edf8; color: var(--pkink-faint); }
+
+/* HRIS callout */
+#dashboard .dh-hris-callout { background: linear-gradient(135deg, var(--pkpurple-faint) 0%, #f4faf7 100%); border: 1px dashed var(--pkborder); border-radius: var(--pkradius-lg); padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: flex-start; gap: 18px; }
+#dashboard .dh-hris-icon { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 2px solid var(--pkpurple); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--pkpurple); font-size: 22px; }
+#dashboard .dh-hris-content { flex: 1; }
+#dashboard .dh-hris-title { font-size: 14px; font-weight: 700; color: var(--pkink); margin-bottom: 6px; line-height: 1.4; }
+#dashboard .dh-hris-desc { font-size: 12px; color: var(--pkink-muted); line-height: 1.6; }
+
+@media (max-width: 900px) {
+  #dashboard .dh-overview-blocks { grid-template-columns: 1fr; }
+  #dashboard .dh-kpi-grid { grid-template-columns: 1fr 1fr; }
+  #dashboard .dh-funnel-steps { overflow-x: auto; }
+  #dashboard .dh-funnel-step { min-width: 100px; flex-shrink: 0; }
+}
+/* ════════════════════════════════════════════════════════════════════
+   SEÇÃO CONTATO — copiada exatamente do template Serratec
+   ════════════════════════════════════════════════════════════════════ */
+.contact-section {
+  background: linear-gradient(135deg, #5123a4 0%, #3a1878 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 64px;
+  border-radius: 20px;
+}
+
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(228, 220, 247, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.contact-section::after {
+  content: '';
+  position: absolute;
+  bottom: -120px;
+  left: -120px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(255, 198, 41, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.contact-content {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-section .section-eyebrow {
+  background: rgba(228, 220, 247, 0.15);
+  color: #e4dcf7;
+  padding: 0.4rem 0.85rem;
+  border-radius: 100px;
+  display: inline-block;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.contact-title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
+  margin-top: 12px;
+}
+
+.contato-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 48px;
+  max-width: 880px;
+}
+
+.contato-qr {
+  background: white;
+  padding: 24px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.contato-qr img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  border-radius: 8px;
+}
+
+.contato-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contato-cargo {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #e4dcf7;
+  margin-bottom: 4px;
+}
+
+.contato-info h3 {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: white;
+  letter-spacing: -1px;
+  margin-bottom: 4px;
+}
+
+.contato-email {
+  font-size: 18px;
+  color: #e4dcf7;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(228, 220, 247, 0.4);
+  align-self: flex-start;
+  transition: all 0.2s ease;
+  padding-bottom: 2px;
+}
+
+.contato-email:hover {
+  color: #f1ce0a;
+  border-bottom-color: #f1ce0a;
+}
+
+@media (max-width: 700px) {
+  .contato-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 100%;
+  }
+  .contato-info h3 { font-size: 28px; }
+  .contato-qr img { width: 180px; height: 180px; }
+  .contact-section { padding: 48px 24px; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ============ MENU LATERAL ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" style="height: 34px; width: auto;"><path fill="#fff" d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/></svg>
+      </div>
+      <div class="sidebar-tagline">Credenciais digitais verificáveis</div>
+    </div>
+
+    <div class="sidebar-client">
+      <div class="sidebar-client-label">Proposta para</div>
+      <div class="sidebar-client-name">Johnson &amp; Johnson</div>
+      <div class="sidebar-client-sub">Proof of Attendance · 2026</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-nav-label">A solução</div>
+
+      <div class="nav-item active" data-section="checkin">
+        <div class="nav-item-num">1</div>
+        <div class="nav-item-content">
+          <div class="nav-item-title">Check-in de entrada</div>
+          <div class="nav-item-sub">Como validamos a presença do participante</div>
+        </div>
+      </div>
+
+      <div class="nav-item" data-section="certificado">
+        <div class="nav-item-num">2</div>
+        <div class="nav-item-content">
+          <div class="nav-item-title">O certificado</div>
+          <div class="nav-item-sub">Marketing institucional e presente ao participante</div>
+        </div>
+      </div>
+
+      <div class="nav-item" data-section="dashboard">
+        <div class="nav-item-num">3</div>
+        <div class="nav-item-content">
+          <div class="nav-item-title">Gestão de certificados</div>
+          <div class="nav-item-sub">Dashboard POK com métricas do programa</div>
+        </div>
+      </div>
+
+      <div class="nav-item" data-section="contato">
+        <div class="nav-item-num">4</div>
+        <div class="nav-item-content">
+          <div class="nav-item-title">Contato</div>
+          <div class="nav-item-sub">Fale conosco</div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <strong>POK</strong>
+      Plataforma de credenciais blockchain<br>
+      pok.tech
+    </div>
+  </aside>
+
+  <!-- ============ CONTEÚDO PRINCIPAL ============ -->
+  <div class="main-wrapper">
+
+    <div class="top-bar">
+      <div class="top-bar-left">Proposta · <strong>Proof of Attendance</strong></div>
+      <div class="top-bar-right">
+        <span class="top-bar-date">Maio 2026</span>
+        <span class="top-bar-jj">J&amp;J</span>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ============ SEÇÃO 1: CHECK-IN DE ENTRADA ============ -->
+      <section class="section active" id="checkin">
+        <div class="section-eyebrow">Etapa 1 · Validação de presença</div>
+        <h1 class="section-title">Check-in de entrada</h1>
+        <p class="section-lead">Uma forma simples e segura de comprovar que o participante está mesmo no evento. Sem aplicativo, sem cadastro novo, sem selfie. Apenas três toques no celular.</p>
+
+        <div class="concept-grid">
+          <div class="concept-card">
+            <div class="concept-card-icon">📱</div>
+            <div class="concept-card-title">QR code único e fixo</div>
+            <div class="concept-card-text">O mesmo QR é impresso e divulgado apenas no local físico do evento. Não circula em email nem online.</div>
+          </div>
+          <div class="concept-card">
+            <div class="concept-card-icon">📍</div>
+            <div class="concept-card-title">Geolocalização silenciosa</div>
+            <div class="concept-card-text">Confirma que o participante está dentro do raio do evento, validando presença física real.</div>
+          </div>
+          <div class="concept-card">
+            <div class="concept-card-icon">✓</div>
+            <div class="concept-card-title">CPF cruzado com lista</div>
+            <div class="concept-card-text">A lista de convidados pré-cadastrada da J&amp;J é a chave para identificar quem é quem.</div>
+          </div>
+        </div>
+
+        <h2>O fluxo, do escaneamento ao certificado</h2>
+
+        <div class="flow-container">
+          <div class="flow-row">
+
+            <!-- Tela 1 - QR -->
+            <div class="flow-step">
+              <div class="flow-step-label">1 · escaneamento</div>
+              <div class="phone"><div class="screen">
+                <div class="status-bar"><span>9:42</span><span class="status-icons">●●● 5G ▮</span></div>
+                <div class="pok-header-screen">
+                  <div class="pok-header-logo">P</div>
+                  <div class="pok-header-title">Check-in de presença</div>
+                </div>
+                <div class="screen-body">
+                  <div class="qr-frame qr-corners"><div class="qr-pattern"></div><div class="scan-line"></div></div>
+                  <div class="event-tag">
+                    <div class="event-tag-label">Evento detectado</div>
+                    <div class="event-tag-name">Encontro J&amp;J · São Paulo 2026</div>
+                  </div>
+                  <div class="btn-primary">Continuar</div>
+                </div>
+              </div></div>
+            </div>
+
+            <!-- Tela 2 - geolocalização -->
+            <div class="flow-step">
+              <div class="flow-step-label">2 · solicitando localização</div>
+              <div class="phone"><div class="screen">
+                <div class="status-bar"><span>9:42</span><span class="status-icons">●●● 5G ▮</span></div>
+                <div class="pok-header-screen">
+                  <div class="pok-header-logo">P</div>
+                  <div class="pok-header-title">Validando localização</div>
+                </div>
+                <div class="geo-bg-screen">
+                  <div class="geo-bg-content">
+                    <div class="geo-bg-title">Confirmando sua presença</div>
+                    <div class="geo-bg-sub">Precisamos confirmar que você está no local do evento. Autorize o acesso à sua localização.</div>
+                    <div class="geo-bg-icon">📍</div>
+                  </div>
+                  <div class="geo-popup">
+                    <div class="geo-popup-body">
+                      <div class="geo-popup-title">"pok.tech" quer acessar sua localização</div>
+                      <div class="geo-popup-sub">Sua localização será usada apenas para validar sua presença no evento.</div>
+                    </div>
+                    <div class="geo-popup-actions">
+                      <div class="geo-popup-btn">Não permitir</div>
+                      <div class="geo-popup-btn primary">Permitir</div>
+                    </div>
+                  </div>
+                </div>
+              </div></div>
+            </div>
+
+            <!-- Tela 3 - CPF -->
+            <div class="flow-step">
+              <div class="flow-step-label">3 · CPF + localização ok</div>
+              <div class="phone"><div class="screen">
+                <div class="status-bar"><span>9:42</span><span class="status-icons">●●● 5G ▮</span></div>
+                <div class="pok-header-screen">
+                  <div class="pok-header-logo">P</div>
+                  <div class="pok-header-title">Validação de presença</div>
+                </div>
+                <div class="screen-body">
+                  <div class="geo-banner">
+                    <div class="geo-icon">✓</div>
+                    <div class="geo-text-mini"><strong>Localização confirmada</strong><span>Você está no local do evento</span></div>
+                  </div>
+                  <div class="form-title-mini">Informe seu CPF</div>
+                  <div class="form-sub-mini">Vamos validar com a lista de convidados.</div>
+                  <div class="input-label-mini">CPF</div>
+                  <div class="cpf-input">123.456.789-00</div>
+                  <div class="checks-mini">
+                    <div class="check-row-mini"><span class="ic">✓</span>CPF válido</div>
+                    <div class="check-row-mini pending"><span class="ic">○</span>Cruzando com lista J&amp;J…</div>
+                  </div>
+                  <div class="btn-primary" style="margin-top: 16px;">Validar presença</div>
+                </div>
+              </div></div>
+            </div>
+
+            <!-- Tela 4 - confirmação -->
+            <div class="flow-step">
+              <div class="flow-step-label">4 · confirmação</div>
+              <div class="phone"><div class="screen">
+                <div class="status-bar"><span>9:43</span><span class="status-icons">●●● 5G ▮</span></div>
+                <div class="pok-header-screen">
+                  <div class="pok-header-logo">P</div>
+                  <div class="pok-header-title">Confirme seus dados</div>
+                </div>
+                <div class="screen-body">
+                  <div class="confirm-card">
+                    <div class="avatar-circle">MS</div>
+                    <div class="confirm-greeting">Identificamos você</div>
+                    <div class="confirm-name">Maria Silva</div>
+                    <div class="confirm-line"><span class="lbl">Evento</span><span class="val">Encontro J&amp;J SP</span></div>
+                    <div class="confirm-line"><span class="lbl">Data</span><span class="val">20/05/2026</span></div>
+                    <div class="confirm-line"><span class="lbl">Certificado</span><span class="val">m.silva@email.com</span></div>
+                  </div>
+                  <div class="btn-primary" style="margin-top: 12px;">Confirmar presença</div>
+                  <div class="btn-secondary">Não sou eu</div>
+                </div>
+              </div></div>
+            </div>
+
+            <!-- Tela 5 - sucesso -->
+            <div class="flow-step">
+              <div class="flow-step-label">5 · sucesso</div>
+              <div class="phone"><div class="screen">
+                <div class="status-bar" style="color: white;"><span>9:43</span><span class="status-icons">●●● 5G ▮</span></div>
+                <div class="success-screen">
+                  <div class="success-icon">✓</div>
+                  <div class="success-title">Presença confirmada!</div>
+                  <div class="success-sub">Seu certificado POK chegará por email em alguns minutos.</div>
+                  <div class="cert-preview-bx">
+                    <div class="cert-preview-label">Certificado para</div>
+                    <div class="cert-preview-name">Maria Silva</div>
+                    <div class="cert-preview-mail">m.silva@email.com</div>
+                  </div>
+                </div>
+              </div></div>
+            </div>
+
+            <!-- Tela 6 - credencial J&J -->
+            <div class="flow-step">
+              <div class="flow-step-label">6 · certificado recebido</div>
+              <div class="phone"><div class="screen">
+                <div class="status-bar"><span>9:48</span><span class="status-icons">●●● 5G ▮</span></div>
+                <div class="jj-bar">
+                  <div class="jj-logo-placeholder"><span class="jj-logo-text">J&amp;J</span></div>
+                  <div class="lang-tag">PT</div>
+                </div>
+                <div class="jj-strip">
+                  <div class="jj-strip-title">Encontro J&amp;J · São Paulo 2026</div>
+                </div>
+                <div class="cred-title-small">Credencial</div>
+                <div class="cred-tabs">
+                  <div class="cred-tab active">Certificado</div>
+                  <div class="cred-tab">Informações</div>
+                </div>
+                <div class="scroll-area-flow">
+                  <div class="cert-card-mini-flow">
+                    <div class="cert-header-mini-flow">
+                      <div class="cert-event-badge-flow">J&amp;J · 2026</div>
+                      <div class="cert-qr-mini-flow"><div class="cert-qr-inner-flow"></div></div>
+                    </div>
+                    <div class="cert-title-mini-flow">CERTIFICADO DE PARTICIPAÇÃO</div>
+                    <div class="cert-awarded-mini-flow">Este certificado é concedido a</div>
+                    <div class="cert-name-mini-flow">Maria Silva</div>
+                    <div class="cert-body-mini-flow">Pela participação no Encontro J&amp;J SP 2026.</div>
+                    <div class="cert-location-mini-flow">São Paulo, 20/05/2026</div>
+                    <div class="cert-signatures-mini-flow">
+                      <div class="sig-mini-flow">
+                        <div class="sig-line-mini-flow">Ana Souza</div>
+                        <div class="sig-name-mini-flow">ANA SOUZA</div>
+                        <div class="sig-role-mini-flow">J&amp;J</div>
+                      </div>
+                      <div class="sig-mini-flow">
+                        <div class="sig-line-mini-flow">Carlos Lima</div>
+                        <div class="sig-name-mini-flow">CARLOS LIMA</div>
+                        <div class="sig-role-mini-flow">Coord.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="share-card-mini-flow">
+                    <div class="share-title-mini-flow">Compartilhar no LinkedIn</div>
+                    <div class="share-sub-mini-flow">Adicione ao seu perfil profissional.</div>
+                    <div class="btn-linkedin-mini-flow">in&nbsp;&nbsp;Compartilhar</div>
+                  </div>
+                </div>
+              </div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <h2>Por que essa combinação funciona</h2>
+
+        <div class="bullets">
+          <div class="bullet-item">
+            <div class="bullet-num">1</div>
+            <div class="bullet-content">
+              <div class="bullet-title">A pessoa precisa estar fisicamente no local</div>
+              <div class="bullet-text">O QR fixo só é divulgado no evento e a geolocalização confirma a posição. Não é possível fazer check-in de casa.</div>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <div class="bullet-num">2</div>
+            <div class="bullet-content">
+              <div class="bullet-title">O CPF é a chave de identificação</div>
+              <div class="bullet-text">Cruza com a lista de convidados pré-cadastrada da J&amp;J. Só quem foi convidado consegue validar presença. Nada de cadastro novo, senha ou app.</div>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <div class="bullet-num">3</div>
+            <div class="bullet-content">
+              <div class="bullet-title">Três toques, do início ao fim</div>
+              <div class="bullet-text">Continuar → Validar → Confirmar. O participante completa o check-in em poucos toques e recebe o certificado por email em alguns minutos.</div>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <div class="bullet-num">4</div>
+            <div class="bullet-content">
+              <div class="bullet-title">Camadas de segurança configuráveis</div>
+              <div class="bullet-text">Possibilidade de adicionar validação via Datavalid/Serasa (CPF + nome contra Receita) para eventos que exigem nível extra de garantia.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="note-box">
+          <div class="note-box-title">Sobre privacidade</div>
+          <div class="note-box-text">A localização é coletada apenas no momento da validação e não fica rastreando o participante. Conformidade total com LGPD, incluindo termo de aceite no fluxo.</div>
+        </div>
+
+        <div class="variation-block">
+          <div class="variation-eyebrow">Variação</div>
+          <h2 class="variation-title">QR pessoal por convidado</h2>
+          <p class="variation-lead">A J&amp;J também pode enviar um QR code único para cada convidado no momento da inscrição. Quando esse QR é escaneado na entrada, ele dispara exatamente o mesmo fluxo descrito acima — geolocalização, validação de CPF, confirmação e emissão da credencial — mas agora com uma camada extra de identidade vinculada ao token do convidado.</p>
+
+          <div class="variation-grid">
+            <div class="variation-card primary">
+              <span class="variation-card-tag">Modelo principal</span>
+              <div class="variation-card-title">QR fixo no local</div>
+              <div class="variation-card-sub">Um único QR impresso na entrada do evento, escaneado por cada participante.</div>
+              <ul>
+                <li>Zero operação no dia: não precisa de staff com leitor</li>
+                <li>Escala infinita: o mesmo QR serve para 50 ou 5.000 pessoas</li>
+                <li>Sem logística de envio individual</li>
+                <li class="minus">Identidade validada só por CPF + lista de convidados</li>
+              </ul>
+            </div>
+
+            <div class="variation-card">
+              <span class="variation-card-tag">Variação</span>
+              <div class="variation-card-title">QR pessoal por convidado</div>
+              <div class="variation-card-sub">QR único enviado por email no momento da inscrição, vinculado à identidade do convidado.</div>
+              <ul>
+                <li>Identidade pré-vinculada ao QR (token único)</li>
+                <li>CPF vira segunda checagem: confirma que quem carrega o QR é o dono</li>
+                <li>Camada extra de segurança contra fraude</li>
+                <li class="minus">Requer envio individual e gestão de tokens</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <div class="note-box-title">Quando faz sentido cada modelo</div>
+            <div class="note-box-text">Para a maioria dos eventos, o QR fixo já entrega rastreabilidade e auditoria suficientes. A variação com QR pessoal faz sentido em eventos onde o rigor de identidade é crítico — como treinamentos regulatórios, eventos com convidados externos de alto perfil ou casos em que a J&amp;J precisa de prova individual blindada de presença. Os dois modelos podem inclusive coexistir no mesmo evento, conforme o público.</div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ SEÇÃO 2: O CERTIFICADO ============ -->
+      <section class="section" id="certificado">
+        <div class="section-eyebrow">Etapa 2 · Entrega de valor</div>
+        <h1 class="section-title">O certificado</h1>
+        <p class="section-lead">O certificado POK não é apenas um comprovante. É marketing institucional ativo, um presente ao participante e uma extensão da marca J&amp;J no LinkedIn e nas redes profissionais.</p>
+
+        <div class="cert-showcase">
+          <div class="cert-showcase-content">
+            <h2 style="margin-top: 0;">Um ativo de marca que viaja com o participante</h2>
+            <p>Cada certificado emitido se torna um ponto de contato espontâneo com a marca J&amp;J no perfil profissional do participante. Quando ele compartilha no LinkedIn, a marca aparece para toda a rede de contatos dele — clientes, colegas, líderes de mercado.</p>
+            <p>É a diferença entre <strong>um evento que acabou</strong> e <strong>um evento que continua gerando valor</strong> nos meses seguintes.</p>
+
+            <div class="cert-boxes">
+              <div class="cert-box">
+                <div class="cert-box-title">Compartilhar no LinkedIn</div>
+                <div class="cert-box-sub">Adicione seu certificado J&amp;J ao seu perfil profissional.</div>
+                <button class="cert-box-btn linkedin">
+                  <i class="ti ti-brand-linkedin"></i>
+                  Compartilhar no LinkedIn
+                </button>
+              </div>
+              <div class="cert-box">
+                <div class="cert-box-title">Verificar credencial</div>
+                <div class="cert-box-row">
+                  <div class="cert-box-shield"><i class="ti ti-check"></i></div>
+                  <div class="cert-box-row-text">Esta credencial é de um <strong>emissor verificado</strong></div>
+                </div>
+                <button class="cert-box-btn validate">Validar credencial</button>
+              </div>
+            </div>
+          </div>
+          <div class="cert-showcase-phone">
+
+            <!-- Tela 6 - credencial J&J completa -->
+            <div class="phone"><div class="screen">
+              <div class="status-bar"><span>9:48</span><span class="status-icons">●●● 5G ▮</span></div>
+              <div class="jj-bar">
+                <div class="jj-logo-placeholder"><span class="jj-logo-text">J&amp;J</span></div>
+                <div class="lang-tag">PT</div>
+              </div>
+              <div class="jj-strip">
+                <div class="jj-strip-title">Encontro J&amp;J · São Paulo 2026</div>
+              </div>
+              <div class="cred-title-small">Credencial</div>
+              <div class="cred-tabs">
+                <div class="cred-tab active">Certificado</div>
+                <div class="cred-tab">Informações adicionais</div>
+              </div>
+              <div class="scroll-area">
+                <div class="cert-card-mini">
+                  <div class="cert-header-mini">
+                    <div class="cert-event-badge">J&amp;J · 2026</div>
+                    <div class="cert-qr-mini"><div class="cert-qr-inner-mini"></div></div>
+                  </div>
+                  <div class="cert-title-mini">CERTIFICADO DE PARTICIPAÇÃO</div>
+                  <div class="cert-awarded-mini">Este certificado é concedido a</div>
+                  <div class="cert-name-mini">Maria Silva</div>
+                  <div class="cert-body-mini">Por sua participação no Encontro J&amp;J São Paulo 2026, realizado em 20 de maio de 2026.</div>
+                  <div class="cert-location-mini">São Paulo, 20 de maio de 2026</div>
+                  <div class="cert-signatures-mini">
+                    <div class="sig-mini">
+                      <div class="sig-line-mini">Ana Souza</div>
+                      <div class="sig-name-mini">ANA SOUZA</div>
+                      <div class="sig-role-mini">Diretora · J&amp;J</div>
+                    </div>
+                    <div class="sig-mini">
+                      <div class="sig-line-mini">Carlos Lima</div>
+                      <div class="sig-name-mini">CARLOS LIMA</div>
+                      <div class="sig-role-mini">Coordenador</div>
+                    </div>
+                  </div>
+                  <div class="cert-footer-mini">Emitido em: 20/05/2026</div>
+                </div>
+                <div class="share-card-mini">
+                  <div class="share-title-mini">Compartilhar no LinkedIn</div>
+                  <div class="share-sub-mini">Adicione seu certificado J&amp;J ao seu perfil profissional.</div>
+                  <div class="btn-linkedin-mini">in &nbsp;Compartilhar no LinkedIn</div>
+                </div>
+                <div class="verify-card-mini">
+                  <div class="verify-title-mini">Verificar credencial</div>
+                  <div class="verify-row-mini">
+                    <div class="verify-icon-mini">✓</div>
+                    <div class="verify-text-mini">Esta credencial é de um <strong>emissor verificado</strong></div>
+                  </div>
+                  <div class="btn-validate-mini">Validar credencial</div>
+                </div>
+              </div>
+            </div></div>
+
+          </div>
+        </div>
+
+        <h2>Os três pilares de valor do certificado POK</h2>
+
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-icon">📢</div>
+            <div class="pillar-title">Marketing institucional</div>
+            <div class="pillar-text">A marca J&amp;J aparece com destaque na credencial e em todo compartilhamento no LinkedIn. Cada participante vira um divulgador espontâneo da marca em sua rede profissional.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🎁</div>
+            <div class="pillar-title">Presente ao participante</div>
+            <div class="pillar-text">Reconhecimento formal e verificável da participação. Algo que ele pode guardar, exibir, compartilhar — e que valoriza o tempo investido no evento.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🌐</div>
+            <div class="pillar-title">Visibilidade de marca</div>
+            <div class="pillar-text">Alcance ampliado para fora do evento: cada compartilhamento no LinkedIn alcança em média 300 a 500 contatos profissionais qualificados do participante.</div>
+          </div>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-card-eyebrow">Insight</div>
+          <div class="insight-card-title">Um evento com 500 participantes pode gerar mais de 150 mil impressões orgânicas da marca J&amp;J</div>
+          <div class="insight-card-text">Considerando taxa média de 30% de compartilhamento no LinkedIn e alcance médio de 1.000 visualizações por post. É marketing institucional que se paga sozinho — e o participante é quem leva a marca J&amp;J para a rede dele.</div>
+        </div>
+
+        <h2>Elementos da credencial POK</h2>
+
+        <div class="bullets">
+          <div class="bullet-item">
+            <div class="bullet-num">A</div>
+            <div class="bullet-content">
+              <div class="bullet-title">Identidade visual J&amp;J no destaque</div>
+              <div class="bullet-text">Logo, cor institucional e nome do evento ocupam a área principal da credencial. A marca POK aparece de forma discreta apenas como selo de emissor verificado.</div>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <div class="bullet-num">B</div>
+            <div class="bullet-content">
+              <div class="bullet-title">Certificado visualmente trabalhado</div>
+              <div class="bullet-text">Layout profissional, com QR code de verificação, assinaturas, data e local. Pronto para ser compartilhado ou impresso, mantendo a qualidade visual.</div>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <div class="bullet-num">C</div>
+            <div class="bullet-content">
+              <div class="bullet-title">Botão "Compartilhar no LinkedIn"</div>
+              <div class="bullet-text">Integração direta com a API do LinkedIn. O participante adiciona o certificado à seção "Licenças e certificações" do perfil dele com um clique.</div>
+            </div>
+          </div>
+          <div class="bullet-item">
+            <div class="bullet-num">D</div>
+            <div class="bullet-content">
+              <div class="bullet-title">Verificação blockchain</div>
+              <div class="bullet-text">Cada certificado é registrado em blockchain e pode ser validado publicamente. Não é "mais um PDF" — é uma credencial digital verificável que ninguém pode falsificar.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SEÇÃO 3: GESTÃO DE CERTIFICADOS ============ -->
+      <section class="section" id="dashboard">
+        <div class="section-eyebrow">Etapa 3 · Gestão e métricas</div>
+        <h1 class="section-title">Gestão de certificados</h1>
+        <p class="section-lead">A J&amp;J terá acesso ao Dashboard POK Corporativo — a mesma plataforma que outras empresas usam para gerenciar credenciais blockchain. Abaixo, uma prévia dos elementos do dashboard com dados ilustrativos da demo institucional.</p>
+
+        <div class="dash-intro-note">
+          <strong>Sobre os dados mostrados aqui:</strong> os números, nomes e programas exibidos abaixo (Reciclagem NR-10, AI Bootcamp, portadores como Ana Beatriz Costa etc.) são da demo padrão do dashboard POK. No ambiente real da J&amp;J, esses dados são substituídos pelos eventos e participantes da empresa.
+        </div>
+
+        <!-- HERO do dashboard -->
+        <div class="dh-hero">
+          <div class="dh-hero-inner">
+            <div class="dh-hero-eyebrow"><span class="eb-dot"></span> Módulo Corporativo · Capital Humano</div>
+            <h2 class="dh-hero-title">Capital humano em movimento</h2>
+            <p class="dh-hero-subtitle">Cada credencial POK emitida no programa corporativo gera duas leituras complementares: o desenvolvimento real do colaborador (skills internalizadas, mobilidade interna, retenção) e o compliance da empresa (cobertura, validade, auditabilidade). Os dados são lidos do perfil público do LinkedIn e cruzados com os metadados da credencial.</p>
+          </div>
+        </div>
+
+        <!-- Texto descritivo + Síntese executiva -->
+        <h2>Síntese executiva</h2>
+        <p>A primeira tela do dashboard mostra um resumo dividido em duas leituras: <strong>desenvolvimento humano</strong> (azul) e <strong>compliance</strong> (verde). Cada bloco traz dois cards de KPI principais que dão a leitura rápida do programa.</p>
+
+        <div class="dh-section-label"><span class="accent purple"></span> Síntese executiva</div>
+        <div class="dh-overview-blocks">
+
+          <div class="dh-overview-block dev">
+            <div class="dh-overview-block-header">
+              <span class="dh-overview-block-pill"><span class="dot"></span> Desenvolvimento humano</span>
+            </div>
+            <div class="dh-overview-block-cards">
+              <div class="dh-ov-card">
+                <div class="dh-ov-card-label"><span class="dot gold"></span> Internalização</div>
+                <div class="dh-ov-card-value">54%</div>
+                <div class="dh-ov-card-sub">internalizaram habilidades do programa</div>
+              </div>
+              <div class="dh-ov-card">
+                <div class="dh-ov-card-label"><span class="dot gold"></span> Mobilidade</div>
+                <div class="dh-ov-card-value">38</div>
+                <div class="dh-ov-card-sub">eventos de mobilidade interna</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dh-overview-block com">
+            <div class="dh-overview-block-header">
+              <span class="dh-overview-block-pill"><span class="dot"></span> Compliance</span>
+            </div>
+            <div class="dh-overview-block-cards">
+              <div class="dh-ov-card">
+                <div class="dh-ov-card-label"><span class="dot green"></span> Credenciais ativas</div>
+                <div class="dh-ov-card-value">382</div>
+                <div class="dh-ov-card-sub">credenciais vigentes em blockchain</div>
+              </div>
+              <div class="dh-ov-card">
+                <div class="dh-ov-card-label"><span class="dot green"></span> Retenção</div>
+                <div class="dh-ov-card-value">91%</div>
+                <div class="dh-ov-card-sub">continuam na empresa</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- NR Callout (compliance regulatório) -->
+        <h2>Compliance regulatório</h2>
+        <p>O dashboard tem destaque institucional para a gestão de Normas Regulamentadoras (NRs). A POK substitui o PDF tradicional por credenciais em blockchain, com prova auditável e fluxo de renovação automatizado.</p>
+
+        <div class="dh-nr-callout">
+          <div class="dh-nr-icon"><i class="ti ti-shield-check"></i></div>
+          <div class="dh-nr-content">
+            <div class="dh-nr-title">Gestão de NRs: do PDF frágil à credencial verificável</div>
+            <div class="dh-nr-desc">Toda Norma Regulamentadora exige comprovante de capacitação. A POK substitui o PDF tradicional por credenciais em blockchain, com prova auditável de que o treinamento aconteceu, gestão de validade e fluxo de renovação — tudo integrado à categoria regulatória Segurança e Saúde do Trabalho.</div>
+            <div class="dh-nr-tags">
+              <span class="dh-nr-tag">NR-1</span>
+              <span class="dh-nr-tag">NR-10</span>
+              <span class="dh-nr-tag">NR-12</span>
+              <span class="dh-nr-tag">NR-33</span>
+              <span class="dh-nr-tag">NR-35</span>
+              <span class="dh-nr-tag">e outras</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ZONA DE DESENVOLVIMENTO HUMANO -->
+        <h2>Zona de desenvolvimento humano</h2>
+        <p>Ao entrar nesta zona, o gestor visualiza o que está acontecendo com os talentos: quem está crescendo, em que ritmo e com qual evidência. Quando o portador compartilha a credencial no LinkedIn, a POK passa a ler o perfil profissional dele e acompanha a internalização das habilidades, a mobilidade interna e a retenção.</p>
+
+        <div class="dh-zone-header dev">
+          <div class="dh-zone-header-pill"><span class="dot gold"></span> Zona de desenvolvimento</div>
+          <h3>O que está acontecendo com seus talentos</h3>
+          <p>Quando o portador compartilha a credencial no LinkedIn, a POK passa a ler o perfil profissional dele. A partir desse marco, acompanhamos a internalização das habilidades ensinadas, a mobilidade interna e a retenção dos talentos certificados.</p>
+        </div>
+
+        <!-- Funil -->
+        <p>O <strong>funil de desenvolvimento</strong> mostra quantos colaboradores avançaram em cada etapa, da emissão da credencial até a mudança de carreira detectada no LinkedIn:</p>
+
+        <div class="dh-section-label"><span class="accent gold"></span> Funil de desenvolvimento</div>
+        <div class="dh-funnel-card">
+          <h3>Da credencial à evidência de desenvolvimento</h3>
+          <p>Cada etapa mostra quantos portadores de certificados avançaram no processo — do compartilhamento inicial até a mudança de carreira detectada no perfil.</p>
+          <div class="dh-funnel-steps">
+            <div class="dh-funnel-step"><div class="dh-funnel-bar" style="background:#3a1878;">312</div><div class="dh-funnel-step-label">Credenciais<br>emitidas</div><div class="dh-funnel-step-pct">100%</div></div>
+            <div class="dh-funnel-arrow">›</div>
+            <div class="dh-funnel-step"><div class="dh-funnel-bar" style="background:#5123a4;">248</div><div class="dh-funnel-step-label">Compartilhada<br>no LinkedIn</div><div class="dh-funnel-step-pct">79%</div></div>
+            <div class="dh-funnel-arrow">›</div>
+            <div class="dh-funnel-step"><div class="dh-funnel-bar" style="background:#6b45bb;">221</div><div class="dh-funnel-step-label">Adicionada<br>ao perfil</div><div class="dh-funnel-step-pct">71%</div></div>
+            <div class="dh-funnel-arrow">›</div>
+            <div class="dh-funnel-step"><div class="dh-funnel-bar" style="background:#3B82F6;">169</div><div class="dh-funnel-step-label">Habilidades do programa<br>declaradas</div><div class="dh-funnel-step-pct">54%</div></div>
+            <div class="dh-funnel-arrow">›</div>
+            <div class="dh-funnel-step"><div class="dh-funnel-bar" style="background:#60A5FA;">28</div><div class="dh-funnel-step-label">Tiveram mobilidade<br>interna</div><div class="dh-funnel-step-pct">9%</div></div>
+            <div class="dh-funnel-arrow">›</div>
+            <div class="dh-funnel-step"><div class="dh-funnel-bar" style="background:#1D9E75;">226</div><div class="dh-funnel-step-label">Continuam<br>na empresa</div><div class="dh-funnel-step-pct">91%</div></div>
+          </div>
+        </div>
+
+        <!-- KPIs -->
+        <p>As <strong>métricas-chave</strong> são calculadas sobre os colaboradores que compartilharam a credencial no LinkedIn — único caminho pelo qual a POK conecta a credencial ao perfil profissional do colaborador:</p>
+
+        <div class="dh-section-label"><span class="accent gold"></span> Métricas-chave de desenvolvimento</div>
+        <div class="dh-kpi-grid">
+          <div class="dh-kpi-card hl-dev">
+            <div class="dh-kpi-value gold">54%</div>
+            <div class="dh-kpi-label">Taxa de internalização de habilidades</div>
+          </div>
+          <div class="dh-kpi-card hl-dev">
+            <div class="dh-kpi-value gold">38</div>
+            <div class="dh-kpi-label">Eventos de mobilidade interna</div>
+          </div>
+          <div class="dh-kpi-card hl-dev">
+            <div class="dh-kpi-value gold">91%</div>
+            <div class="dh-kpi-label">Taxa de retenção pós-credencial</div>
+          </div>
+        </div>
+
+        <!-- Chart -->
+        <p>O <strong>gráfico de trajetória</strong> mostra a média de eventos acumulados pelos portadores antes e depois do compartilhamento. Cada novo vínculo profissional registrado no LinkedIn (mudança de cargo ou de empresa) conta como um evento. À esquerda do marco: histórico anterior. À direita: evolução pós-credencial em leituras bimestrais.</p>
+
+        <div class="dh-section-label"><span class="accent gold"></span> Trajetória de carreira após o compartilhamento</div>
+        <div class="dh-chart-card">
+          <h3>Trajetória agregada — eventos acumulados</h3>
+          <p>Média de eventos acumulados pelos portadores de acordo com o filtro selecionado — cada novo vínculo profissional registrado no LinkedIn conta como um evento.</p>
+          <div class="dh-chart-zone-labels">
+            <span class="dh-zone-label past">← Antes do compartilhamento</span>
+            <span class="dh-zone-divider-x"></span>
+            <span class="dh-zone-label future">Após o compartilhamento →</span>
+          </div>
+          <div style="position:relative; width:100%; height:280px;">
+            <canvas id="dhDevChart"></canvas>
+          </div>
+          <div style="display:flex; align-items:center; justify-content:center; gap:6px; margin-top:14px; font-size:11px; color:#A899C2;">
+            <div style="width:24px; height:2px; background:#3B82F6; border-radius:1px;"></div>
+            <span>Nº médio de eventos acumulados</span>
+            <div style="width:1px; height:12px; background:#D8CEF0; margin:0 8px;"></div>
+            <div style="width:2px; height:16px; background:#1E1230; border-radius:1px; opacity:0.3;"></div>
+            <span>Marco do compartilhamento</span>
+          </div>
+        </div>
+
+        <!-- Tabela de portadores -->
+        <p>Na <strong>tabela de portadores</strong>, cada colaborador aparece com programa, cargo detectado no LinkedIn, impacto observado e dias até o impacto. Clicando em uma linha, abre um painel lateral com a trajetória profissional completa:</p>
+
+        <div class="dh-section-label"><span class="accent gold"></span> Portadores individuais</div>
+        <div class="dh-table-card">
+          <div class="dh-table-toolbar">
+            <input type="text" placeholder="Buscar portador ou programa..." />
+            <select><option>Todos os impactos</option><option>Saída da empresa</option><option>Mobilidade interna</option><option>Sem impacto ainda</option></select>
+          </div>
+          <div class="dh-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Data de compartilhamento</th>
+                  <th>Programa</th>
+                  <th>Portador</th>
+                  <th>Cargo detectado</th>
+                  <th>Impacto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="dh-td-muted">12/03/2025</td>
+                  <td class="dh-td-muted">AI Bootcamp 2025</td>
+                  <td><span style="font-weight:600;">Rafael Ferreira</span></td>
+                  <td class="dh-td-muted">Coordenador de Operações · Empresa Atual</td>
+                  <td><span class="dh-badge dh-badge-mob">Mobilidade interna</span></td>
+                </tr>
+                <tr>
+                  <td class="dh-td-muted">28/04/2025</td>
+                  <td class="dh-td-muted">Executive Program - T15</td>
+                  <td><span style="font-weight:600;">Larissa Antunes</span></td>
+                  <td class="dh-td-muted">Gerente de Inovação · Empresa Atual</td>
+                  <td><span class="dh-badge dh-badge-mob">Mobilidade interna</span></td>
+                </tr>
+                <tr>
+                  <td class="dh-td-muted">15/06/2025</td>
+                  <td class="dh-td-muted">Missão IA</td>
+                  <td><span style="font-weight:600;">Pedro Henrique Aguiar</span></td>
+                  <td class="dh-td-muted">Analista Sênior · Empresa Atual</td>
+                  <td><span class="dh-badge dh-badge-none">Sem impacto ainda</span></td>
+                </tr>
+                <tr>
+                  <td class="dh-td-muted">03/07/2025</td>
+                  <td class="dh-td-muted">AI Bootcamp 2025</td>
+                  <td><span style="font-weight:600;">Mariana Castro</span></td>
+                  <td class="dh-td-muted">Data Scientist · Outra Empresa</td>
+                  <td><span class="dh-badge dh-badge-saida">Saída da empresa</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ZONA DE COMPLIANCE -->
+        <h2>Zona de compliance</h2>
+        <p>A segunda zona é dedicada à auditoria das credenciais. Mostra status individual, vencimentos próximos e a auditabilidade blockchain de todas as credenciais emitidas — fundamental para empresas com obrigações regulatórias.</p>
+
+        <div class="dh-zone-header com">
+          <div class="dh-zone-header-pill"><span class="dot green"></span> Zona de compliance</div>
+          <h3>Credenciais auditáveis, vigência sob controle</h3>
+          <p>Cada credencial POK é registrada em blockchain com data de emissão, validade e prova criptográfica de integridade. Esta visão mostra o ciclo de vida das credenciais ativas, vencimentos próximos e a auditabilidade do conjunto.</p>
+        </div>
+
+        <p>O <strong>status das credenciais</strong> é apresentado em quatro KPIs principais, mostrando o panorama de emitidas, vigentes, a vencer e vencidas:</p>
+
+        <div class="dh-section-label"><span class="accent green"></span> Status das credenciais</div>
+        <div class="dh-kpi-grid k4">
+          <div class="dh-kpi-card hl-com">
+            <div class="dh-kpi-value">405</div>
+            <div class="dh-kpi-label">Credenciais emitidas</div>
+          </div>
+          <div class="dh-kpi-card hl-com">
+            <div class="dh-kpi-value green">382</div>
+            <div class="dh-kpi-label">Vigentes</div>
+          </div>
+          <div class="dh-kpi-card hl-com">
+            <div class="dh-kpi-value">23</div>
+            <div class="dh-kpi-label">A vencer (30 dias)</div>
+          </div>
+          <div class="dh-kpi-card hl-com">
+            <div class="dh-kpi-value">23</div>
+            <div class="dh-kpi-label">Vencidas</div>
+          </div>
+        </div>
+
+        <!-- Audit callout -->
+        <p>Em destaque institucional, o <strong>selo de auditabilidade blockchain</strong> garante que cada credencial é verificável publicamente:</p>
+
+        <div class="dh-audit-callout">
+          <div class="dh-audit-icon"><i class="ti ti-shield-check"></i></div>
+          <div class="dh-audit-content">
+            <div class="dh-audit-value">100%</div>
+            <div class="dh-audit-text">
+              <div class="dh-audit-title">Auditabilidade blockchain</div>
+              <div class="dh-audit-desc">Todas as credenciais POK são registradas em blockchain com prova criptográfica de integridade — verificáveis publicamente, sem dependência da plataforma.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabela compliance -->
+        <p>Na <strong>tabela de credenciais por colaborador</strong>, cada linha mostra status (Conforme, Vence em breve, Vencido), datas e hash blockchain auditável:</p>
+
+        <div class="dh-section-label"><span class="accent green"></span> Credenciais por colaborador</div>
+        <div class="dh-table-card">
+          <div class="dh-table-toolbar com">
+            <input type="text" placeholder="Buscar colaborador, programa ou categoria..." />
+            <select><option>Todos os status</option><option>Conforme</option><option>Vence em breve</option><option>Vencido</option></select>
+          </div>
+          <div class="dh-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Colaborador</th>
+                  <th>Programa</th>
+                  <th>Categoria regulatória</th>
+                  <th>Status</th>
+                  <th>Validade</th>
+                  <th>Prova blockchain</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span style="font-weight:600;">Ana Beatriz Costa</span></td>
+                  <td class="dh-td-muted">Reciclagem NR-10 2025</td>
+                  <td class="dh-td-muted">Segurança e Saúde do Trabalho</td>
+                  <td><span class="dh-badge dh-badge-conforme">Conforme</span></td>
+                  <td class="dh-td-muted">15/03/2027</td>
+                  <td><span class="dh-bc-mono">0xA3F2...8B1C</span></td>
+                </tr>
+                <tr>
+                  <td><span style="font-weight:600;">Bruno Henrique Silva</span></td>
+                  <td class="dh-td-muted">LGPD para Áreas de Negócio</td>
+                  <td class="dh-td-muted">Proteção de Dados e Segurança</td>
+                  <td><span class="dh-badge dh-badge-vence">Vence em 18 dias</span></td>
+                  <td class="dh-td-muted">17/05/2026</td>
+                  <td><span class="dh-bc-mono">0xC4D7...9F2A</span></td>
+                </tr>
+                <tr>
+                  <td><span style="font-weight:600;">Camila Fernandes Rocha</span></td>
+                  <td class="dh-td-muted">Compliance Antissuborno</td>
+                  <td class="dh-td-muted">Ética e Anticorrupção</td>
+                  <td><span class="dh-badge dh-badge-conforme">Conforme</span></td>
+                  <td class="dh-td-muted">22/11/2026</td>
+                  <td><span class="dh-bc-mono">0xE8B1...2D4F</span></td>
+                </tr>
+                <tr>
+                  <td><span style="font-weight:600;">Eduardo Vasconcelos</span></td>
+                  <td class="dh-td-muted">Reciclagem NR-10 2024</td>
+                  <td class="dh-td-muted">Segurança e Saúde do Trabalho</td>
+                  <td><span class="dh-badge dh-badge-vencido">Vencido há 12 dias</span></td>
+                  <td class="dh-td-muted">17/04/2026</td>
+                  <td><span class="dh-bc-mono">0xB5F4...1A9D</span></td>
+                </tr>
+                <tr>
+                  <td><span style="font-weight:600;">Fernanda Toledo</span></td>
+                  <td class="dh-td-muted">Compliance Antissuborno</td>
+                  <td class="dh-td-muted">Ética e Anticorrupção</td>
+                  <td><span class="dh-badge dh-badge-vence">Vence em 26 dias</span></td>
+                  <td class="dh-td-muted">25/05/2026</td>
+                  <td><span class="dh-bc-mono">0x2E91...7B3F</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ SEÇÃO 4: CONTATO ============ -->
+      <section class="section" id="contato">
+        <div class="contact-section">
+          <div class="contact-content">
+            <div class="section-header">
+              <span class="section-eyebrow">4 · Comercial</span>
+              <h2 class="contact-title">Fale Conosco</h2>
+            </div>
+
+            <div class="contato-grid">
+              <div class="contato-qr">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCCAIAAADzel4SAAAKNElEQVR4nO3dMY4bSxJF0emBPO1/qbLruzIGCYzuT0UU+xy3QbLYJC/Keciv53n+A8Cf+u/0BQC8m4wCJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkMgoQCKjAImMAiQyCpD8KA/++fPnv3UdS/z69evw1/P7PT/2rDzzvcdOmfpPFm983c/75hTlM3I3CpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkKQV09m95UZR1hf33tHU2uTeUmVqAzO1gHrjt33q+zzl3rfO3ShAIqMAiYwCJDIKkMgoQCKjAImMAiQyCpDIKEByccV0tnPHUnze6TRn5f88tZ4qj3Vy0b/l83777kYBEhkFSGQUIJFRgERGARIZBUhkFCCRUYBERgGSsRXTG+3cokxtQu5tjcrr3jt9aOfGyXpqA3ejAImMAiQyCpDIKEAiowCJjAIkMgqQyChAIqMAiRXTv2Zq5XJvx2ID87up/8bO5RW/czcKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkMgqQjK2YbCR+d29rZB/1d0zthe6d43TP5/323Y0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkF1dMn7dUueeN5zi98bFnO6/5jWcxfbffvrtRgERGARIZBUhkFCCRUYBERgESGQVIZBQgkVGAJK2YPu9MlSlvXH3s3Pycfd7/ubi3j/pu3I0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkX8/z/PGD753lcu91d+5Y3njuzdTnezb1n9y56tn5bS/ufb7lmd2NAiQyCpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJOkspjeaWpucFxT39jNvXAQVZakytX+bWgPu3KGVZy6fb+FuFCCRUYBERgESGQVIZBQgkVGAREYBEhkFSGQUILl4FlPxxhN17p0QtXOnNGXnSVw7X/ds6htb7Lxmd6MAiYwCJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJs5j+knsLip3v6Gzqmu9tje59vlNXtfN1d26r3I0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkF1dMO89TeuOpOFOve29bVV535+e7cwG183WLe59v4W4UIJFRgERGARIZBUhkFCCRUYBERgESGQVIZBQg+XqeZ/oa/oc3nuXy3bYoU3uSN65rphZuZ9/tu3HvM3I3CpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkKSzmHaei3I2dWbOzq3Rzk3X+bFvPLfqjWdPFW+85sLdKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkMgoQJLOYtq5zDnbuTWa8nm7rLOpdzR1ntLOc5ymdmj3uBsFSGQUIJFRgERGARIZBUhkFCCRUYBERgESGQVI0llMZzu3Cm9cquy0c8dSznGaOk/p7I2rrSlTzXE3CpDIKEAiowCJjAIkMgqQyChAIqMAiYwCJDIKkFxcMU3Zub64t2PZ+X53bm/KxunsjRu2qXOczsr3eeq34G4UIJFRgERGARIZBUhkFCCRUYBERgESGQVIZBQg+Xqe59JTf95ZTDt3HVN7ofLMU6be0dQJYN/tLKaze+/X3ShAIqMAiYwCJDIKkMgoQCKjAImMAiQyCpDIKEAydhbTveXGvde998xvXNfcO9do5zuaet3zY6fe0ZSduyx3owCJjAIkMgqQyChAIqMAiYwCJDIKkMgoQCKjAMnFFdPUuUZTO4epBcXUWUw79yT37Fz1nO08a+vzfvvuRgESGQVIZBQgkVGAREYBEhkFSGQUIJFRgERGAZKv53n++MFWLr+bOgXojcurs51nbe38fN+4nbtn6hvrbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCC5eBbT1M7hjYuRqXOrzqZWalPn/LxxO/fddkqFs5gAlpJRgERGARIZBUhkFCCRUYBERgESGQVIZBQgSWcx3fPGU552vu6UqSXS2c6d0tTubsrU79eKCWApGQVIZBQgkVGAREYBEhkFSGQUIJFRgERGAZKlK6azz9s4ne3c3ky59+kXO9c15XXPdl7V2b1rdjcKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkMgqQ/Lj31Ds3ElNrk6nX3bmQuXfNU+93ytQ5TlNbo52nS7kbBUhkFCCRUYBERgESGQVIZBQgkVGAREYBEhkFSC6umKZ83r5i567j3l7o3vudWtZNfUb3PoWze5/RzjOv3I0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkacV078ycN65NPu+cn2LnbmfnQqb8FnYu66auauokLnejAImMAiQyCpDIKEAiowCJjAIkMgqQyChAIqMAydfzPNPX8H+bWsh8N5+3CDq7t3K5946mHnu2c0noLCaApWQUIJFRgERGARIZBUhkFCCRUYBERgESGQVI0opp6qSXe3aeIHT2edf8xvVU8cbTls52fietmACWklGAREYBEhkFSGQUIJFRgERGARIZBUhkFCD5UR48tTUq3njCzM5r3rlUOfu8T6G8bvl8p377O5vjbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCBJK6YpU7uOYuqUmLOpM5Hu7aPK/+qNW6N773fnb+Fs6nfkbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCBJK6apnUN57NQJQsXnXfPUPured+ONK7WpZ57aZd3jbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCD5ep5n+hpeY+fKZerkojde85TPOz2s2PnfKO/X3ShAIqMAiYwCJDIKkMgoQCKjAImMAiQyCpDIKECy9CymKTsXMlN7oZ1nIk3tdna+7tQ1T50utZO7UYBERgESGQVIZBQgkVGAREYBEhkFSGQUIJFRgCStmM52Lhk+7+SinafxTC1zpr51O9dE9+z8dZ/du2Z3owCJjAIkMgqQyChAIqMAiYwCJDIKkMgoQCKjAMnFFdPZzu3N2Ru3KFPLq7OdOyWnLf2dZ55y73vlbhQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCAZWzG90c4tyr1Vz9R+ZufyqrzuPZ/3Gd17rLOYAJaSUYBERgESGQVIZBQgkVGAREYBEhkFSGQUILFi+kvurS/urafOj51aBE3tZ86+28Lt3jdn6tN3FhPAGBkFSGQUIJFRgERGARIZBUhkFCCRUYBERgGSsRXTvX3FG33eGUFvXLkUO89iOpvaR937X019Cu5GARIZBUhkFCCRUYBERgESGQVIZBQgkVGAREYBkosrpqlFwT3f7YygKTuXV2f31lPfbdP1xpOp3I0CJDIKkMgoQCKjAImMAiQyCpDIKEAiowCJjAIkX8/zTF8DwIu5GwVIZBQgkVGAREYBEhkFSGQUIJFRgERGARIZBUhkFCCRUYBERgESGQVIZBQgkVGAREYBEhkFSGQUIJFRgOQf7jif0R8BY3oAAAAASUVORK5CYII=" alt="QR Code de contato — Carolina Ferrés">
+              </div>
+
+              <div class="contato-info">
+                <div class="contato-cargo">Contato POK</div>
+                <h3>Carolina Ferrés</h3>
+                <a href="mailto:carolina@pok.tech" class="contato-email">carolina@pok.tech</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Navegação entre seções
+  const navItems = document.querySelectorAll('.nav-item');
+  const sections = document.querySelectorAll('.section');
+
+  navItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.dataset.section;
+      navItems.forEach(n => n.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      item.classList.add('active');
+      document.getElementById(target).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (target === 'dashboard') setTimeout(initDhChart, 100);
+    });
+  });
+
+  // Chart do dashboard (trajetória de carreira antes/depois)
+  let dhChartInstance = null;
+  function initDhChart() {
+    const canvas = document.getElementById('dhDevChart');
+    if (!canvas || typeof Chart === 'undefined') return;
+    if (dhChartInstance) dhChartInstance.destroy();
+    const pastLabels = ['-12m', '-10m', '-8m', '-6m', '-4m', '-2m'];
+    const futureLabels = ['+2m', '+4m', '+6m', '+8m', '+10m', '+12m'];
+    const allLabels = [...pastLabels, 'Credencial', ...futureLabels];
+    const shareIndex = pastLabels.length;
+    const data = [0.2, 0.3, 0.4, 0.5, 0.7, 0.9, 1.0, 1.4, 1.9, 2.3, 2.6, 2.9, 3.1];
+    dhChartInstance = new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: allLabels,
+        datasets: [{
+          data: data,
+          borderColor: '#3B82F6',
+          backgroundColor: (ctx) => {
+            const c = ctx.chart.ctx;
+            const g = c.createLinearGradient(0, 0, 0, 280);
+            g.addColorStop(0, 'rgba(59,130,246,0.25)');
+            g.addColorStop(1, 'rgba(59,130,246,0)');
+            return g;
+          },
+          borderWidth: 2.5,
+          tension: 0.35,
+          fill: true,
+          pointRadius: (ctx) => ctx.dataIndex === shareIndex ? 6 : 3,
+          pointBackgroundColor: (ctx) => ctx.dataIndex === shareIndex ? '#5123a4' : '#3B82F6',
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1E1230',
+            titleFont: { family: 'Poppins', size: 11, weight: '600' },
+            bodyFont: { family: 'Poppins', size: 12 },
+            padding: 10,
+            cornerRadius: 8
+          }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { family: 'Poppins', size: 10 }, color: '#A899C2' } },
+          y: { beginAtZero: true, grid: { color: '#F3EFF9', drawBorder: false }, ticks: { font: { family: 'Poppins', size: 10 }, color: '#A899C2' } }
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
