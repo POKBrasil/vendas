@@ -334,6 +334,22 @@
     margin-top: 2rem;
   }
 
+  .features-grid--4col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 1100px) {
+    .features-grid--4col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .features-grid--4col {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .feature-card {
     background: var(--pok-bg-card);
     padding: 2rem;
@@ -416,9 +432,17 @@
   /* Cycle diagram */
   .cycle-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.2rem;
     margin-top: 3rem;
+  }
+
+  @media (max-width: 900px) {
+    .cycle-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .cycle-grid { grid-template-columns: 1fr; }
   }
 
   .cycle-card {
@@ -910,6 +934,53 @@
     .coverage-note { grid-template-columns: 1fr; }
   }
 
+  /* ==================== CERTIFICATE CTA ==================== */
+  .certificate-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .certificate-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
+    color: white;
+    padding: 0.95rem 1.8rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 18px rgba(81, 35, 164, 0.25);
+    border: 2px solid transparent;
+  }
+
+  .certificate-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(81, 35, 164, 0.35);
+  }
+
+  .certificate-cta-button--secondary {
+    background: white;
+    color: var(--pok-purple);
+    border: 2px solid var(--pok-purple);
+    box-shadow: 0 6px 18px rgba(81, 35, 164, 0.10);
+  }
+
+  .certificate-cta-button--secondary:hover {
+    background: var(--pok-bg);
+    box-shadow: 0 10px 28px rgba(81, 35, 164, 0.18);
+  }
+
+  .certificate-cta-button svg {
+    flex-shrink: 0;
+  }
+
   /* ==================== COVERAGE NOTE ==================== */
   .coverage-note {
     display: grid;
@@ -1277,7 +1348,7 @@
       <div class="stats-card">
         <div class="stats-grid">
           <div class="stat-item">
-            <div class="number">+800</div>
+            <div class="number">+1.200</div>
             <div class="label">Instituições</div>
           </div>
           <div class="stat-item">
@@ -1309,7 +1380,7 @@
       <h2 class="section-title">Diferenciais da plataforma</h2>
     </div>
 
-    <div class="features-grid">
+    <div class="features-grid features-grid--4col">
       <div class="feature-card">
         <div class="feature-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -1487,6 +1558,17 @@
           </li>
         </ul>
       </div>
+    </div>
+
+    <div class="certificate-cta">
+      <a href="https://view.pok.tech/c/374dd571-8a06-45b8-bcc6-fb389df87f84" target="_blank" class="certificate-cta-button">
+        Ver um certificado
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="https://view.pok.tech/c/ae6824a2-74d4-4af6-a545-362c16ebd466" target="_blank" class="certificate-cta-button certificate-cta-button--secondary">
+        Ver uma trilha formativa
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
     </div>
   </section>
 
