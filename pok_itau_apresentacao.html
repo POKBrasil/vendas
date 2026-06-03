@@ -36,7 +36,7 @@
 body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); color: var(--ink); min-height: 100vh; }
 
 /* ─── HERO ─────────────────────────────────────────────────────────────── */
-.hero { background: var(--purple-dark); padding: 64px 64px 72px; position: relative; overflow: hidden; }
+.hero { background: var(--purple-dark); padding: 64px 64px 96px; position: relative; overflow: hidden; }
 .hero::before { content: ''; position: absolute; top: -120px; right: -120px; width: 420px; height: 420px; border-radius: 50%; background: rgba(123,79,207,0.25); pointer-events: none; }
 .hero::after { content: ''; position: absolute; bottom: -150px; left: 18%; width: 300px; height: 300px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none; }
 .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
@@ -46,8 +46,8 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
 .hero-eyebrow-wrap { margin-bottom: 18px; }
 .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(228,220,247,0.18); border: 1px solid rgba(228,220,247,0.3); border-radius: 99px; padding: 6px 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-light); }
 .hero-eyebrow > span:first-child { width: 6px; height: 6px; border-radius: 50%; background: var(--purple-light); display: inline-block; flex-shrink: 0; }
-.hero-title { font-size: clamp(22px, 2.6vw, 34px); font-weight: 900; line-height: 1.1; color: #fff; letter-spacing: -0.023em; margin-bottom: 18px; max-width: 900px; white-space: nowrap; }
-.hero-subtitle { font-size: clamp(14px, 1.5vw, 17px); color: rgba(255,255,255,0.85); line-height: 1.65; max-width: 870px; font-weight: 400; }
+.hero-title { font-size: clamp(23px, 3.2vw, 40px); font-weight: 900; line-height: 1.1; color: #fff; letter-spacing: -0.023em; margin-bottom: 18px; max-width: 900px; white-space: nowrap; }
+.hero-subtitle { font-size: clamp(13px, 1.3vw, 15px); color: rgba(255,255,255,0.85); line-height: 1.65; max-width: 870px; font-weight: 400; }
 
 /* ─── LANG TOGGLE ───────────────────────────────────────────────────────── */
 .lang-toggle { position: absolute; top: 24px; right: 32px; z-index: 5; display: inline-flex; gap: 2px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 99px; padding: 3px; }
@@ -55,10 +55,17 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
 .lang-btn.active { background: var(--white); color: var(--purple-dark); }
 
 /* ─── CONTENT ───────────────────────────────────────────────────────────── */
-.content { max-width: 1200px; margin: 0 auto; padding: 48px 32px 64px; position: relative; z-index: 3; }
+.content { max-width: 1200px; margin: -64px auto 0; padding: 0 32px 64px; position: relative; z-index: 3; }
 .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #000; }
 .section-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple); }
 .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ─── INTRO BLOCK ───────────────────────────────────────────────────────── */
+.intro-block { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 44px 56px; margin-bottom: 48px; box-shadow: 0 12px 40px rgba(81,35,164,0.06); }
+.intro-block h2 { font-size: clamp(20px, 2vw, 26px); font-weight: 800; color: var(--ink); margin-bottom: 18px; line-height: 1.25; letter-spacing: -0.01em; }
+.intro-block p { font-size: 13px; color: #000; line-height: 1.75; margin-bottom: 14px; }
+.intro-block p:last-child { margin-bottom: 0; }
+.intro-block strong { color: #000; font-weight: 700; }
 
 /* ─── MARKET CARDS (padrão apresentação geral) ──────────────────────────── */
 .markets { margin-bottom: 56px; }
@@ -183,8 +190,9 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
 
 /* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .hero { padding: 56px 40px 56px; }
-  .content { padding: 36px 24px 48px; }
+  .hero { padding: 56px 40px 84px; }
+  .content { padding: 0 24px 48px; margin-top: -56px; }
+  .intro-block { padding: 36px 36px; }
   .markets-grid { grid-template-columns: 1fr; }
   .leituras-grid { grid-template-columns: 1fr; }
   .comp-grid { grid-template-columns: 1fr; }
@@ -192,8 +200,9 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
   .contato-grid { gap: 36px; }
 }
 @media (max-width: 720px) {
-  .hero { padding: 64px 24px 48px; }
-  .content { padding: 32px 16px 40px; }
+  .hero { padding: 64px 24px 72px; }
+  .content { padding: 0 16px 40px; margin-top: -48px; }
+  .intro-block { padding: 28px 22px; }
   .lang-toggle { top: 16px; right: 16px; }
   .market-card { padding: 30px 24px; }
   .comp-card { padding: 28px 24px; }
@@ -225,7 +234,7 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
     <div class="hero-eyebrow-wrap">
       <div class="hero-eyebrow">
         <span></span>
-        <span data-pt="Proposta comercial · Itaú Unibanco" data-es="Propuesta comercial · Itaú Unibanco">Proposta comercial · Itaú Unibanco</span>
+        <span data-pt="Apresentação · Itaú Unibanco" data-es="Presentación · Itaú Unibanco">Apresentação · Itaú Unibanco</span>
       </div>
     </div>
     <h1 class="hero-title">
@@ -239,12 +248,13 @@ body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); colo
 
 <div class="content">
 
-  <!-- PITCH ITAÚ -->
-  <div style="margin-bottom: 40px; max-width: 860px;">
-    <p style="font-size: 15px; color: #000; line-height: 1.75; margin-bottom: 14px;">
-      <span data-pt="O Itaú Unibanco possui um dos mais sofisticados ecossistemas de aprendizagem corporativa do Brasil – a <strong>iox</strong> –, que reúne mais de <strong>90.000 colaboradores</strong> em trilhas de desenvolvimento contínuo, rodando sobre o Degreed como plataforma LXP e emitindo badges em cada conclusão de trilha ou assessment." data-es="Itaú Unibanco posee uno de los ecosistemas de aprendizaje corporativo más sofisticados de Brasil – la <strong>iox</strong> –, que reúne a más de <strong>90.000 colaboradores</strong> en itinerarios de desarrollo continuo, corriendo sobre Degreed como plataforma LXP y emitiendo badges en cada conclusión de itinerario o assessment.">O Itaú Unibanco possui um dos mais sofisticados ecossistemas de aprendizagem corporativa do Brasil – a <strong>iox</strong> –, que reúne mais de <strong>90.000 colaboradores</strong> em trilhas de desenvolvimento contínuo, rodando sobre o Degreed como plataforma LXP e emitindo badges em cada conclusão de trilha ou assessment.</span>
+  <!-- INTRO -->
+  <div class="intro-block">
+    <h2><span data-pt="O ecossistema iox e a oportunidade POK" data-es="El ecosistema iox y la oportunidad POK">O ecossistema iox e a oportunidade POK</span></h2>
+    <p>
+      <span data-pt="No <strong>eixo Corporativo</strong>, o Itaú Unibanco possui um dos mais sofisticados ecossistemas de aprendizagem corporativa do Brasil – a <strong>iox</strong> –, que reúne mais de <strong>90.000 colaboradores</strong> em trilhas de desenvolvimento contínuo, rodando sobre o Degreed como plataforma de upskilling e emitindo badges em cada conclusão de trilha ou assessment." data-es="En el <strong>eje Corporativo</strong>, Itaú Unibanco posee uno de los ecosistemas de aprendizaje corporativo más sofisticados de Brasil – la <strong>iox</strong> –, que reúne a más de <strong>90.000 colaboradores</strong> en itinerarios de desarrollo continuo, corriendo sobre Degreed como plataforma de upskilling y emitiendo badges en cada conclusión de itinerario o assessment.">No <strong>eixo Corporativo</strong>, o Itaú Unibanco possui um dos mais sofisticados ecossistemas de aprendizagem corporativa do Brasil – a <strong>iox</strong> –, que reúne mais de <strong>90.000 colaboradores</strong> em trilhas de desenvolvimento contínuo, rodando sobre o Degreed como plataforma de upskilling e emitindo badges em cada conclusão de trilha ou assessment.</span>
     </p>
-    <p style="font-size: 15px; color: #000; line-height: 1.75;">
+    <p>
       <span data-pt="A POK propõe substituir a camada de emissão de credenciais atual com uma solução compatível com Open Badge 3.0 e integração via API ao Degreed – sem alterar nenhuma outra camada da iox. E vai além: cada credencial emitida alimenta dois dashboards complementares que transformam certificação em inteligência de gestão." data-es="POK propone sustituir la capa de emisión de credenciales actual con una solución compatible con Open Badge 3.0 e integración vía API con Degreed – sin alterar ninguna otra capa de la iox. Y va más allá: cada credencial emitida alimenta dos dashboards complementarios que transforman la certificación en inteligencia de gestión.">A POK propõe substituir a camada de emissão de credenciais atual com uma solução compatível com Open Badge 3.0 e integração via API ao Degreed – sem alterar nenhuma outra camada da iox. E vai além: cada credencial emitida alimenta dois dashboards complementares que transformam certificação em inteligência de gestão.</span>
     </p>
   </div>
