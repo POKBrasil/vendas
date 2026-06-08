@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>POK · Apresentação Itaú Unibanco</title>
+<meta property="og:title" content="POK + Itaú: credenciais digitais com inteligência de gestão"/>
+<meta property="og:description" content="Plataforma de credenciais digitais em blockchain – Open Badge 3.0 – com dashboard de desenvolvimento humano e compliance regulatório."/>
+<meta property="og:image" content="https://pokbrasil.github.io/content/pok_itau_og.png"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #5123a4;
+  --purple-dark: #2d1659;
+  --purple-light: #e4dcf7;
+  --purple-faint: #f3eff9;
+  --white: #ffffff;
+  --ink: #000;
+  --ink-muted: #3d3d3d;
+  --ink-faint: #A899C2;
+  --border: #e4dcf7;
+  --green: #1D9E75;
+  --green-light: #E2F4EB;
+  --green-dark: #0f6e56;
+  --blue: #3B82F6;
+  --blue-light: #DBEAFE;
+  --blue-dark: #1E40AF;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); color: var(--ink); min-height: 100vh; }
+
+/* ─── HERO ─────────────────────────────────────────────────────────────── */
+.hero { background: var(--purple-dark); padding: 64px 64px 96px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -120px; right: -120px; width: 420px; height: 420px; border-radius: 50%; background: rgba(123,79,207,0.25); pointer-events: none; }
+.hero::after { content: ''; position: absolute; bottom: -150px; left: 18%; width: 300px; height: 300px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none; }
+.hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+.hero-logos { margin-bottom: 32px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.hero-logo-svg { height: 36px; width: auto; display: block; flex-shrink: 0; }
+.hero-logos-plus { font-size: 28px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1; user-select: none; }
+.hero-eyebrow-wrap { margin-bottom: 18px; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(228,220,247,0.18); border: 1px solid rgba(228,220,247,0.3); border-radius: 99px; padding: 6px 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-light); }
+.hero-eyebrow > span:first-child { width: 6px; height: 6px; border-radius: 50%; background: var(--purple-light); display: inline-block; flex-shrink: 0; }
+.hero-title { font-size: clamp(23px, 3.2vw, 40px); font-weight: 900; line-height: 1.1; color: #fff; letter-spacing: -0.023em; margin-bottom: 18px; max-width: 900px; }
+.hero-subtitle { font-size: clamp(13px, 1.3vw, 15px); color: rgba(255,255,255,0.85); line-height: 1.65; max-width: 870px; font-weight: 400; }
+
+/* ─── LANG TOGGLE ───────────────────────────────────────────────────────── */
+.lang-toggle { position: absolute; top: 24px; right: 32px; z-index: 5; display: inline-flex; gap: 2px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 99px; padding: 3px; }
+.lang-btn { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; padding: 6px 12px; border-radius: 99px; background: transparent; color: rgba(255,255,255,0.65); border: none; cursor: pointer; transition: all 0.18s; min-width: 36px; }
+.lang-btn.active { background: var(--white); color: var(--purple-dark); }
+
+/* ─── CONTENT ───────────────────────────────────────────────────────────── */
+.content { max-width: 1200px; margin: -64px auto 0; padding: 0 32px 64px; position: relative; z-index: 3; }
+.section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #000; }
+.section-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple); }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ─── INTRO BLOCK ───────────────────────────────────────────────────────── */
+.intro-block { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 44px 56px; margin-bottom: 48px; box-shadow: 0 12px 40px rgba(81,35,164,0.06); }
+.intro-block h2 { font-size: clamp(20px, 2vw, 26px); font-weight: 800; color: var(--ink); margin-bottom: 18px; line-height: 1.25; letter-spacing: -0.01em; }
+.intro-block p { font-size: 13px; color: #000; line-height: 1.75; margin-bottom: 14px; }
+.intro-block p:last-child { margin-bottom: 0; }
+.intro-block strong { color: #000; font-weight: 700; }
+
+/* ─── MARKET CARDS (padrão apresentação geral) ──────────────────────────── */
+.markets { margin-bottom: 56px; }
+.markets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.market-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 38px 36px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.market-card::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 4px; }
+.market-card.capital::before { background: linear-gradient(90deg, var(--blue-dark) 0%, var(--blue) 100%); }
+.market-card.compliance::before { background: linear-gradient(90deg, var(--green-dark) 0%, var(--green) 100%); }
+.market-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(81,35,164,0.10); transition: transform 0.18s, box-shadow 0.18s; }
+.market-card.capital:hover { border-color: var(--blue); }
+.market-card.compliance:hover { border-color: var(--green); }
+
+.market-card-icon { width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.market-card.capital .market-card-icon { background: var(--blue-light); color: var(--blue-dark); border: 1px solid #BFDBFE; }
+.market-card.compliance .market-card-icon { background: var(--green-light); color: var(--green-dark); border: 1px solid #a7ddc8; }
+.market-card-icon svg { width: 32px; height: 32px; }
+
+.market-card-pill { display: inline-flex; align-items: center; gap: 7px; border-radius: 99px; padding: 5px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; align-self: flex-start; }
+.market-card.capital .market-card-pill { background: var(--blue-light); color: var(--blue-dark); border: 1px solid #BFDBFE; }
+.market-card.compliance .market-card-pill { background: var(--green-light); color: var(--green-dark); border: 1px solid #a7ddc8; }
+.market-card-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+.market-card.capital .market-card-pill .dot { background: var(--blue); }
+.market-card.compliance .market-card-pill .dot { background: var(--green); }
+
+.market-card h3 { font-size: 18px; font-weight: 800; color: #000; margin-bottom: 8px; line-height: 1.25; letter-spacing: -0.01em; }
+.market-card-subtitle { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px; }
+.market-card.capital .market-card-subtitle { color: var(--blue-dark); }
+.market-card.compliance .market-card-subtitle { color: var(--green-dark); }
+.market-card-desc { font-size: 13px; color: #000; line-height: 1.65; margin-bottom: 22px; }
+.market-card-features { list-style: none; padding: 0; margin: 0 0 28px; }
+.market-card-features li { font-size: 12.5px; color: #000; padding: 8px 0; padding-left: 24px; position: relative; line-height: 1.5; border-bottom: 1px solid var(--border); }
+.market-card-features li:last-child { border-bottom: none; }
+.market-card-features li::before { content: ''; position: absolute; left: 6px; top: 16px; width: 6px; height: 6px; border-radius: 50%; }
+.market-card.capital .market-card-features li::before { background: var(--blue); }
+.market-card.compliance .market-card-features li::before { background: var(--green); }
+
+.market-card-cta { font-family: 'Poppins', sans-serif; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; border: none; cursor: pointer; transition: all 0.18s; align-self: flex-start; margin-top: auto; text-decoration: none; }
+.market-card.capital .market-card-cta { background: var(--blue-dark); color: #fff; }
+.market-card.capital .market-card-cta:hover { background: #1538a0; }
+.market-card.compliance .market-card-cta { background: var(--green-dark); color: #fff; }
+.market-card.compliance .market-card-cta:hover { background: #0a4d3a; }
+.market-card-cta svg { width: 14px; height: 14px; transition: transform 0.18s; }
+.market-card:hover .market-card-cta svg { transform: translateX(3px); }
+
+/* ─── FLUXO ─────────────────────────────────────────────────────────────── */
+.comp-flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 12px 14px; border-radius: var(--radius-md); margin-bottom: 20px; }
+.comp-card.pok .comp-flow { background: var(--purple-faint); border: 1px solid var(--purple-light); }
+.comp-card.atual .comp-flow { background: #F7F6FA; border: 1px solid var(--border); }
+.flow-pill { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 99px; }
+.comp-card.pok .flow-pill { background: var(--purple-light); color: var(--purple); }
+.comp-card.pok .flow-pill.highlight { background: var(--purple); color: #fff; }
+.comp-card.atual .flow-pill { background: #EBEBF0; color: #6B6B7A; }
+.comp-card.atual .flow-pill.highlight { background: #6B6B7A; color: #fff; }
+.flow-arrow { font-size: 12px; color: var(--ink-faint); }
+
+/* ─── LEITURA BOXES ─────────────────────────────────────────────────────── */
+.leituras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 28px; }
+.cert-cta-wrap { display: flex; justify-content: center; margin-bottom: 56px; }
+.cert-cta { display: inline-flex; align-items: center; gap: 11px; background: var(--purple); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 14px; font-weight: 700; letter-spacing: 0.01em; text-decoration: none; transition: transform 0.18s, box-shadow 0.18s, background 0.18s; }
+.cert-cta:hover { background: var(--purple-dark); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(81,35,164,0.25); }
+.cert-cta svg:first-child { width: 18px; height: 18px; }
+.cert-cta svg:last-child { width: 15px; height: 15px; transition: transform 0.18s; }
+.cert-cta:hover svg:last-child { transform: translateX(3px); }
+.leitura-box { background: var(--purple-dark); border: 1px solid var(--purple-dark); border-radius: var(--radius-lg); padding: 26px 30px; position: relative; overflow: hidden; }
+.leitura-box::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 4px; }
+.leitura-hoje::before { background: linear-gradient(90deg, var(--purple-dark) 0%, #8b5cf6 100%); }
+.leitura-serasa::before { background: linear-gradient(90deg, #5DCAA5 0%, #1D9E75 100%); }
+.leitura-tag { display: inline-flex; align-items: center; gap: 7px; border-radius: 99px; padding: 4px 11px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.leitura-hoje .leitura-tag { background: rgba(228,220,247,0.2); color: var(--purple-light); border: 1px solid rgba(228,220,247,0.35); }
+.leitura-serasa .leitura-tag { background: rgba(29,158,117,0.2); color: #5DCAA5; border: 1px solid rgba(93,202,165,0.4); }
+.leitura-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
+.leitura-hoje .leitura-tag .dot { background: var(--purple-light); }
+.leitura-serasa .leitura-tag .dot { background: #5DCAA5; }
+.leitura-box h4 { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 8px; line-height: 1.3; letter-spacing: -0.01em; }
+.leitura-box p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+.comparativo { margin-bottom: 56px; }
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.comp-card { border-radius: var(--radius-lg); padding: 40px 40px; display: flex; flex-direction: column; gap: 28px; }
+.comp-card.pok { background: var(--white); border: 2px solid var(--purple); }
+.comp-card.atual { background: var(--white); border: 1px solid var(--border); }
+.comp-card-header { display: flex; align-items: center; gap: 14px; }
+.comp-badge { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 99px; }
+.comp-card.pok .comp-badge { background: var(--purple); color: #fff; }
+.comp-card.atual .comp-badge { background: #F1F0F5; color: var(--ink-faint); }
+.comp-card h3 { font-size: 20px; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; }
+.comp-card.pok h3 { color: var(--ink); }
+.comp-card.atual h3 { color: var(--ink-muted); }
+.comp-items { display: flex; flex-direction: column; gap: 0; }
+.comp-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.comp-item:last-child { border-bottom: none; padding-bottom: 0; }
+.comp-item-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.comp-card.pok .comp-item-icon { background: var(--purple-light); color: var(--purple); }
+.comp-card.atual .comp-item-icon { background: #F1F0F5; color: var(--ink-faint); }
+.comp-item-icon svg { width: 16px; height: 16px; }
+.comp-item-text { flex: 1; }
+.comp-item-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
+.comp-card.atual .comp-item-title { color: var(--ink-muted); }
+.comp-item-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.55; }
+.comp-card.atual .comp-item-desc { color: var(--ink-faint); }
+
+/* ─── CTA FINAL ─────────────────────────────────────────────────────────── */
+.cta-final { background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%); border-radius: var(--radius-lg); padding: 56px; color: #fff; position: relative; overflow: hidden; margin-bottom: 32px; }
+.cta-final::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(228,220,247,0.12) 0%, transparent 70%); pointer-events: none; }
+.cta-final::after { content: ''; position: absolute; bottom: -120px; left: -120px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%); pointer-events: none; }
+.cta-inner { position: relative; z-index: 2; }
+.contato-grid { display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; max-width: 820px; }
+.contato-qr { background: white; padding: 22px; border-radius: 18px; display: flex; flex-direction: column; align-items: center; gap: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.18); flex-shrink: 0; }
+.contato-qr img { width: 180px; height: 180px; display: block; border-radius: 8px; }
+.contato-info { display: flex; flex-direction: column; gap: 10px; }
+.contato-cargo { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 4px; }
+.contato-info h3 { font-size: clamp(20px, 1.8vw, 24px); font-weight: 700; line-height: 1.1; color: #fff; letter-spacing: -0.02em; margin-bottom: 4px; }
+.contato-email { font-size: 17px; color: var(--purple-light); text-decoration: none; font-weight: 500; border-bottom: 1px solid rgba(228,220,247,0.4); align-self: flex-start; padding-bottom: 2px; transition: all 0.2s; }
+.contato-email:hover { color: #fff; border-bottom-color: #fff; }
+
+/* ─── FOOTER ────────────────────────────────────────────────────────────── */
+.site-footer { text-align: center; padding: 40px 32px 56px; border-top: 1px solid var(--border); margin-top: 32px; }
+.footer-logo { display: inline-flex; align-items: center; margin-bottom: 12px; }
+.footer-logo svg { height: 32px; width: auto; display: block; fill: var(--purple); }
+.site-footer p { font-size: 12px; color: var(--ink-faint); line-height: 1.6; }
+.site-footer a { color: var(--purple); text-decoration: none; font-weight: 600; }
+.site-footer a:hover { text-decoration: underline; }
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .hero { padding: 56px 40px 84px; }
+  .content { padding: 0 24px 48px; margin-top: -56px; }
+  .intro-block { padding: 36px 36px; }
+  .markets-grid { grid-template-columns: 1fr; }
+  .leituras-grid { grid-template-columns: 1fr; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .cta-final { padding: 44px 36px; }
+  .contato-grid { gap: 36px; }
+}
+@media (max-width: 720px) {
+  .hero { padding: 64px 24px 72px; }
+  .content { padding: 0 16px 40px; margin-top: -48px; }
+  .intro-block { padding: 28px 22px; }
+  .lang-toggle { top: 16px; right: 16px; }
+  .market-card { padding: 30px 24px; }
+  .comp-card { padding: 28px 24px; }
+  .cta-final { padding: 36px 22px; }
+  .contato-grid { grid-template-columns: 1fr; gap: 28px; }
+  .contato-qr img { width: 160px; height: 160px; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-pt" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-logos">
+      <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" fill="white" aria-label="POK">
+        <path d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/>
+      </svg>
+
+    </div>
+    <div class="hero-eyebrow-wrap">
+      <div class="hero-eyebrow">
+        <span></span>
+        <span data-pt="Apresentação · Itaú Unibanco" data-es="Presentación · Itaú Unibanco">Apresentação · Itaú Unibanco</span>
+      </div>
+    </div>
+    <h1 class="hero-title">
+      <span data-pt="Credenciais digitais com inteligência de gestão" data-es="Credenciales digitales con inteligencia de gestión">Credenciais digitais com inteligência de gestão</span>
+    </h1>
+    <p class="hero-subtitle">
+      <span data-pt="A <a href='https://pok.tech' target='_blank' style='color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px;'>POK</a> é uma plataforma de credenciais digitais em blockchain – padrão Open Badge 3.0 – com dashboard integrado de desenvolvimento humano e compliance regulatório. Cada credencial emitida se torna uma fonte de inteligência sobre o capital humano da organização." data-es="<a href='https://pok.tech' target='_blank' style='color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px;'>POK</a> es una plataforma de credenciales digitales en blockchain – estándar Open Badge 3.0 – con dashboard integrado de desarrollo humano y compliance regulatorio. Cada credencial emitida se convierte en una fuente de inteligencia sobre el capital humano de la organización.">A <a href="https://pok.tech" target="_blank" style="color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px;">POK</a> é uma plataforma de credenciais digitais em blockchain – padrão Open Badge 3.0 – com dashboard integrado de desenvolvimento humano e compliance regulatório. Cada credencial emitida se torna uma fonte de inteligência sobre o capital humano da organização.</span>
+    </p>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- INTRO -->
+  <div class="intro-block">
+    <h2><span data-pt="O ecossistema iox e a oportunidade POK" data-es="El ecosistema iox y la oportunidad POK">O ecossistema iox e a oportunidade POK</span></h2>
+    <p>
+      <span data-pt="No <strong>eixo Corporativo</strong>, o Itaú Unibanco possui um dos mais sofisticados ecossistemas de aprendizagem corporativa do Brasil – a <strong>iox</strong> –, que reúne mais de <strong>90.000 colaboradores</strong> em trilhas de desenvolvimento contínuo, rodando sobre o Degreed como plataforma de upskilling e emitindo badges em cada conclusão de trilha ou assessment." data-es="En el <strong>eje Corporativo</strong>, Itaú Unibanco posee uno de los ecosistemas de aprendizaje corporativo más sofisticados de Brasil – la <strong>iox</strong> –, que reúne a más de <strong>90.000 colaboradores</strong> en itinerarios de desarrollo continuo, corriendo sobre Degreed como plataforma de upskilling y emitiendo badges en cada conclusión de itinerario o assessment.">No <strong>eixo Corporativo</strong>, o Itaú Unibanco possui um dos mais sofisticados ecossistemas de aprendizagem corporativa do Brasil – a <strong>iox</strong> –, que reúne mais de <strong>90.000 colaboradores</strong> em trilhas de desenvolvimento contínuo, rodando sobre o Degreed como plataforma de upskilling e emitindo badges em cada conclusão de trilha ou assessment.</span>
+    </p>
+    <p>
+      <span data-pt="A POK resolve esse problema. Cada credencial emitida – em blockchain, padrão Open Badge 3.0, integrada ao seu ecossistema via API – alimenta dois dashboards complementares: desenvolvimento humano e compliance regulatório. Certificação deixa de ser fim de linha e passa a ser fonte de inteligência sobre o capital humano da organização." data-es="POK resuelve ese problema. Cada credencial emitida – en blockchain, estándar Open Badge 3.0, integrada a su ecosistema vía API – alimenta dos dashboards complementarios: desarrollo humano y compliance regulatorio. La certificación deja de ser el fin del proceso y se convierte en fuente de inteligencia sobre el capital humano de la organización.">A POK resolve esse problema. Cada credencial emitida – em blockchain, padrão Open Badge 3.0, integrada ao seu ecossistema via API – alimenta dois dashboards complementares: desenvolvimento humano e compliance regulatório. Certificação deixa de ser fim de linha e passa a ser fonte de inteligência sobre o capital humano da organização.</span>
+    </p>
+  </div>
+
+  <!-- DOIS EIXOS -->
+  <div class="markets">
+    <div class="section-label"><span class="dot"></span> <span data-pt="O que a POK entrega" data-es="Lo que POK entrega">O que a POK entrega</span></div>
+    <div class="markets-grid">
+
+      <!-- CAPITAL HUMANO -->
+      <div class="market-card capital">
+        <div class="market-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <span class="market-card-pill"><span class="dot"></span> <span data-pt="Capital humano" data-es="Capital humano">Capital humano</span></span>
+        <h3><span data-pt="Desenvolvimento humano com evidência" data-es="Desarrollo humano con evidencia">Desenvolvimento humano com evidência</span></h3>
+        <div class="market-card-subtitle"><span data-pt="Para RH · T&D · Talentos · Sucessão" data-es="Para RRHH · T&D · Talentos · Sucesión">Para RH · T&D · Talentos · Sucessão</span></div>
+        <p class="market-card-desc"><span data-pt="Cada credencial POK emitida no programa de desenvolvimento dos itubers alimenta um dashboard de capital humano. A partir do compartilhamento no LinkedIn, a POK acompanha a internalização das habilidades ensinadas, a mobilidade interna e a retenção dos talentos certificados – transformando certificação em dado vivo sobre o crescimento real do colaborador." data-es="Cada credencial POK emitida en el programa de desarrollo de los itubers alimenta un dashboard de capital humano. A partir del compartir en LinkedIn, POK acompaña la internalización de las habilidades enseñadas, la movilidad interna y la retención de los talentos certificados – transformando la certificación en dato vivo sobre el crecimiento real del colaborador.">Cada credencial POK emitida no programa de desenvolvimento dos itubers alimenta um dashboard de capital humano. A partir do compartilhamento no LinkedIn, a POK acompanha a internalização das habilidades ensinadas, a mobilidade interna e a retenção dos talentos certificados – transformando certificação em dado vivo sobre o crescimento real do colaborador.</span></p>
+        <ul class="market-card-features">
+          <li><span data-pt="Trilhas com badges intermediários e certificado final" data-es="Itinerarios con badges intermedios y certificado final">Trilhas com badges intermediários e certificado final</span></li>
+          <li><span data-pt="Taxa de internalização de habilidades levantada via LinkedIn" data-es="Tasa de internalización de habilidades obtenida vía LinkedIn">Taxa de internalização de habilidades levantada via LinkedIn</span></li>
+          <li><span data-pt="Mobilidade interna e retenção de talentos pós-credencial" data-es="Movilidad interna y retención de talentos post-credencial">Mobilidade interna e retenção de talentos pós-credencial</span></li>
+          <li><span data-pt="Funil completo: da credencial à evidência de desenvolvimento" data-es="Embudo completo: del certificado a la evidencia de desarrollo">Funil completo: da credencial à evidência de desenvolvimento</span></li>
+        </ul>
+        <a class="market-card-cta" href="https://pokbrasil.github.io/marketing/pok_corporativo_dashboard_publico.html" target="_blank">
+          <span data-pt="Ver métricas de capital humano" data-es="Ver métricas de capital humano">Ver métricas de capital humano</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <!-- COMPLIANCE -->
+      <div class="market-card compliance">
+        <div class="market-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <span class="market-card-pill"><span class="dot"></span> <span data-pt="Compliance regulatório" data-es="Compliance regulatorio">Compliance regulatório</span></span>
+        <h3><span data-pt="A empresa em ordem, com prova auditável" data-es="La empresa en orden, con prueba auditable">A empresa em ordem, com prova auditável</span></h3>
+        <div class="market-card-subtitle"><span data-pt="Para Compliance · Jurídico · Auditoria · ESG" data-es="Para Compliance · Legal · Auditoría · ESG">Para Compliance · Jurídico · Auditoria · ESG</span></div>
+        <p class="market-card-desc"><span data-pt="Cada credencial POK é registrada em blockchain com data de emissão, validade e categoria regulatória. O dashboard de compliance monitora cobertura por NR e categoria, alerta vencimentos próximos e entrega prova criptográfica de integridade – 100% auditável, sem depender de PDF ou planilha." data-es="Cada credencial POK es registrada en blockchain con fecha de emisión, vigencia y categoría regulatoria. El dashboard de compliance monitorea cobertura por NR y categoría, alerta vencimientos próximos y entrega prueba criptográfica de integridad – 100% auditable, sin depender de PDF o planilla.">Cada credencial POK é registrada em blockchain com data de emissão, validade e categoria regulatória. O dashboard de compliance monitora cobertura por NR e categoria, alerta vencimentos próximos e entrega prova criptográfica de integridade – 100% auditável, sem depender de PDF ou planilha.</span></p>
+        <ul class="market-card-features">
+          <li><span data-pt="Credenciais em blockchain · Open Badge 3.0 · verificáveis publicamente" data-es="Credenciales en blockchain · Open Badge 3.0 · verificables públicamente">Credenciais em blockchain · Open Badge 3.0 · verificáveis publicamente</span></li>
+          <li><span data-pt="Gestão de validade e alertas de vencimento por categoria regulatória" data-es="Gestión de vigencia y alertas de vencimiento por categoría regulatoria">Gestão de validade e alertas de vencimento por categoria regulatória</span></li>
+          <li><span data-pt="Cobertura de NRs: NR-1, NR-10, NR-12, LGPD, Anticorrupção e outras" data-es="Cobertura de NRs: NR-1, NR-10, NR-12, LGPD, Anticorrupción y otras">Cobertura de NRs: NR-1, NR-10, NR-12, LGPD, Anticorrupção e outras</span></li>
+          <li><span data-pt="Auditabilidade blockchain – prova criptográfica de integridade" data-es="Auditabilidad blockchain – prueba criptográfica de integridad">Auditabilidade blockchain – prova criptográfica de integridade</span></li>
+        </ul>
+        <a class="market-card-cta" href="https://pokbrasil.github.io/marketing/pok_corporativo_dashboard_publico.html" target="_blank">
+          <span data-pt="Ver métricas de compliance" data-es="Ver métricas de compliance">Ver métricas de compliance</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LEITURA BOXES -->
+  <div class="leituras-grid">
+    <div class="leitura-box leitura-hoje">
+      <span class="leitura-tag"><span class="dot"></span> <span data-pt="Hoje · Leitura via LinkedIn" data-es="Hoy · Lectura vía LinkedIn">Hoje · Leitura via LinkedIn</span></span>
+      <h4><span data-pt="Métricas levantadas através da certificação" data-es="Métricas obtenidas a partir de la certificación">Métricas levantadas através da certificação</span></h4>
+      <p><span data-pt="O dashboard de desenvolvimento humano lê informações públicas do LinkedIn a partir do momento em que o portador compartilha a credencial – empregos conquistados, promoções e mobilidade profissional." data-es="El dashboard de desarrollo humano lee información pública de LinkedIn a partir del momento en que el portador comparte la credencial – empleos conquistados, promociones y movilidad profesional.">O dashboard de desenvolvimento humano lê informações públicas do LinkedIn a partir do momento em que o portador compartilha a credencial – empregos conquistados, promoções e mobilidade profissional.</span></p>
+    </div>
+    <div class="leitura-box leitura-serasa">
+      <span class="leitura-tag"><span class="dot"></span> <span data-pt="Em breve · Parceria Serasa Experian" data-es="Próximamente · Alianza Serasa Experian">Em breve · Parceria Serasa Experian</span></span>
+      <h4><span data-pt="Leitura por CPF, sem depender do compartilhamento" data-es="Lectura por CPF, sin depender de compartir en LinkedIn">Leitura por CPF, sem depender do compartilhamento</span></h4>
+      <p><span data-pt="O CPF gravado no certificado permitirá uma segunda fonte de leitura – vínculo formal, renda estimada e trajetória de mercado via base Serasa Experian –, sempre em formato agregado e anonimizado." data-es="El CPF registrado en el certificado permitirá una segunda fuente de lectura – vínculo formal, renta estimada y trayectoria de mercado vía base Serasa Experian –, siempre en formato agregado y anonimizado.">O CPF gravado no certificado permitirá uma segunda fonte de leitura – vínculo formal, renda estimada e trajetória de mercado via base Serasa Experian –, sempre em formato agregado e anonimizado.</span></p>
+    </div>
+  </div>
+
+  <!-- LEITURA BOXES -->
+  <div class="leituras-grid">
+    <div class="leitura-box leitura-hoje">
+      <span class="leitura-tag"><span class="dot"></span> <span data-pt="Hoje · Leitura via LinkedIn" data-es="Hoy · Lectura vía LinkedIn">Hoje · Leitura via LinkedIn</span></span>
+      <h4><span data-pt="Métricas levantadas através da certificação" data-es="Métricas obtenidas a partir de la certificación">Métricas levantadas através da certificação</span></h4>
+      <p><span data-pt="Os dois dashboards acima leem informações públicas do LinkedIn a partir do momento em que o portador compartilha o certificado – empregos conquistados, promoções e mobilidade profissional." data-es="Los dos dashboards anteriores leen información pública de LinkedIn a partir del momento en que el portador comparte el certificado – empleos conquistados, promociones y movilidad profesional.">Os dois dashboards acima leem informações públicas do LinkedIn a partir do momento em que o portador compartilha o certificado – empregos conquistados, promoções e mobilidade profissional.</span></p>
+    </div>
+    <div class="leitura-box leitura-serasa">
+      <span class="leitura-tag"><span class="dot"></span> <span data-pt="Em breve · Parceria Serasa Experian" data-es="Próximamente · Alianza Serasa Experian">Em breve · Parceria Serasa Experian</span></span>
+      <h4><span data-pt="Leitura por CPF, sem depender do compartilhamento" data-es="Lectura por CPF, sin depender de compartir en LinkedIn">Leitura por CPF, sem depender do compartilhamento</span></h4>
+      <p><span data-pt="O CPF gravado no certificado permitirá uma segunda fonte de leitura – vínculo formal, renda estimada e trajetória de mercado via base Serasa Experian –, sempre em formato agregado e anonimizado." data-es="El CPF registrado en el certificado permitirá una segunda fuente de lectura – vínculo formal, renta estimada y trayectoria de mercado vía base Serasa Experian –, siempre en formato agregado y anonimizado.">O CPF gravado no certificado permitirá uma segunda fonte de leitura – vínculo formal, renda estimada e trajetória de mercado via base Serasa Experian –, sempre em formato agregado e anonimizado.</span></p>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div class="cert-cta-wrap">
+    <a class="cert-cta" href="https://certificates.the-world-university.com/c/5b7dd714-80e5-4c21-8beb-13130c3d0478" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 21l5-2.5L17 21l-1.5-8.5"/></svg>
+      <span data-pt="Conheça o certificado POK" data-es="Conozca el certificado POK">Conheça o certificado POK</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div class="comparativo">
+    <div class="section-label"><span class="dot"></span> <span data-pt="POK vs solução atual" data-es="POK vs solución actual">POK vs solução atual</span></div>
+    <div class="comp-grid">
+
+      <!-- POK -->
+      <div class="comp-card pok">
+        <div class="comp-card-header">
+          <span class="comp-badge">POK</span>
+        </div>
+        <div class="comp-flow">
+          <span class="flow-pill">iox</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill">Degreed</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill">Udemy</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill highlight">POK</span>
+        </div>
+        <h3><span data-pt="Credencial + gestão + inteligência" data-es="Credencial + gestión + inteligencia">Credencial + gestão + inteligência</span></h3>
+        <div class="comp-items">
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Emissão em blockchain · Open Badge 3.0" data-es="Emisión en blockchain · Open Badge 3.0">Emissão em blockchain · Open Badge 3.0</span></div>
+              <div class="comp-item-desc"><span data-pt="Verificáveis publicamente, sem dependência da plataforma" data-es="Verificables públicamente, sin dependencia de la plataforma">Verificáveis publicamente, sem dependência da plataforma</span></div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Dashboard de desenvolvimento humano" data-es="Dashboard de desarrollo humano">Dashboard de desenvolvimento humano</span></div>
+              <div class="comp-item-desc"><span data-pt="Internalização de skills, mobilidade interna e retenção rastreados via LinkedIn" data-es="Internalización de skills, movilidad interna y retención rastreados vía LinkedIn">Internalização de skills, mobilidade interna e retenção rastreados via LinkedIn</span></div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Gestão de compliance regulatório" data-es="Gestión de compliance regulatorio">Gestão de compliance regulatório</span></div>
+              <div class="comp-item-desc"><span data-pt="Validade, vencimentos e auditabilidade por categoria regulatória" data-es="Vigencia, vencimientos y auditabilidad por categoría regulatoria">Validade, vencimentos e auditabilidade por categoria regulatória</span></div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Trilhas com badges intermediários e certificado final" data-es="Itinerarios con badges intermedios y certificado final">Trilhas com badges intermediários e certificado final</span></div>
+              <div class="comp-item-desc"><span data-pt="Cada etapa gera um badge; a conclusão emite o certificado final" data-es="Cada etapa genera un badge; la conclusión emite el certificado final">Cada etapa gera um badge; a conclusão emite o certificado final</span></div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Credencial nominal verificável" data-es="Credencial nominal verificable">Credencial nominal verificável</span></div>
+              <div class="comp-item-desc"><span data-pt="Nome, CPF e data do portador registrados em blockchain – o receptor sabe exatamente quem conquistou" data-es="Nombre, CPF y fecha del portador registrados en blockchain – el receptor sabe exactamente quién obtuvo la credencial">Nome, CPF e data do portador registrados em blockchain – o receptor sabe exatamente quem conquistou</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATUAL -->
+      <div class="comp-card atual">
+        <div class="comp-card-header">
+          <span class="comp-badge" data-pt="Solução atual" data-es="Solución actual">Solução atual</span>
+        </div>
+        <div class="comp-flow">
+          <span class="flow-pill">Treinamento</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill">Credencial emitida</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill" style="opacity:0.5;">?</span>
+        </div>
+        <h3><span data-pt="Formação sem visibilidade de impacto" data-es="Formación sin visibilidad de impacto">Formação sem visibilidade de impacto</span></h3>
+        <div class="comp-items">
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Analytics limitado à emissão" data-es="Analytics limitado a la emisión">Analytics limitado à emissão</span></div>
+              <div class="comp-item-desc"><span data-pt="Rastreia se o badge foi compartilhado, mas não o que aconteceu depois na carreira do colaborador" data-es="Rastrea si el badge fue compartido, pero no lo que ocurrió después en la carrera del colaborador">Rastreia se o badge foi compartilhado, mas não o que aconteceu depois na carreira do colaborador</span></div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Sem dashboard de gestão" data-es="Sin dashboard de gestión">Sem dashboard de gestão</span></div>
+              <div class="comp-item-desc"><span data-pt="Não há visão sobre o que acontece com o colaborador após o badge" data-es="No hay visión sobre lo que ocurre con el colaborador tras el badge">Não há visão sobre o que acontece com o colaborador após o badge</span></div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Sem gestão de compliance" data-es="Sin gestión de compliance">Sem gestão de compliance</span></div>
+              <div class="comp-item-desc"><span data-pt="Sem controle de validade, alertas de vencimento ou rastreabilidade regulatória" data-es="Sin control de vigencia, alertas de vencimiento ni trazabilidad regulatoria">Sem controle de validade, alertas de vencimento ou rastreabilidade regulatória</span></div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Sem estrutura de trilhas" data-es="Sin estructura de itinerarios">Sem estrutura de trilhas</span></div>
+              <div class="comp-item-desc"><span data-pt="Apenas badges avulsos, sem progressão estruturada ou certificado final" data-es="Solo badges sueltos, sin progresión estructurada ni certificado final">Apenas badges avulsos, sem progressão estruturada ou certificado final</span></div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title"><span data-pt="Badges não nominais" data-es="Badges no nominales">Badges não nominais</span></div>
+              <div class="comp-item-desc"><span data-pt="Não identificam o portador – qualquer pessoa com o link pode apresentar o badge" data-es="No identifican al portador – cualquier persona con el enlace puede presentar el badge">Não identificam o portador – qualquer pessoa com o link pode apresentar o badge</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-final">
+    <div class="cta-inner">
+      <div class="contato-grid">
+        <div class="contato-qr">
+          <img src="data:image/png;base64,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" alt="QR Code de contato – Carolina Ferrés – POK">
+        </div>
+        <div class="contato-info">
+          <div class="contato-cargo"><span data-pt="Contato POK" data-es="Contacto POK">Contato POK</span></div>
+          <h3>Carolina Ferrés</h3>
+          <a href="mailto:carolina@pok.tech" class="contato-email">carolina@pok.tech</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" aria-label="POK"><path d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/></svg>
+  </div>
+  <p><span data-pt="Muito mais que certificados digitais" data-es="Mucho más que certificados digitales">Muito mais que certificados digitais</span> · <a href="https://pok.tech" target="_blank" style="color:var(--purple);font-weight:600;text-decoration:none;">pok.tech</a></p>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.documentElement.lang = lang === 'es' ? 'es' : 'pt-BR';
+  document.querySelectorAll('[data-pt]').forEach(el => {
+    const content = lang === 'es' ? el.dataset.es : el.dataset.pt;
+    if (content) {
+      if (content.includes('<')) el.innerHTML = content;
+      else el.textContent = content;
+    }
+  });
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+}
+</script>
+</body>
+</html>
