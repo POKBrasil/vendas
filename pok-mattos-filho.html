@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>POK · Apresentação Institucional · Mattos Filho</title>
+<meta property="og:title" content="POK + Mattos Filho: infraestrutura de prova auditável para cadeias de compliance"/>
+<meta property="og:description" content="Credenciais digitais em blockchain – Open Badge 3.0 – com painéis de métricas de capital humano e compliance de cadeias regulatórias."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #5123a4;
+  --purple-dark: #2d1659;
+  --purple-light: #e4dcf7;
+  --purple-faint: #f3eff9;
+  --white: #ffffff;
+  --ink: #000;
+  --ink-muted: #3d3d3d;
+  --ink-faint: #A899C2;
+  --border: #e4dcf7;
+  --green: #1D9E75;
+  --green-light: #E2F4EB;
+  --green-dark: #0f6e56;
+  --blue: #3B82F6;
+  --blue-light: #DBEAFE;
+  --blue-dark: #1E40AF;
+  --gold: #f1ce0a;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Poppins', sans-serif; background: var(--purple-faint); color: var(--ink); min-height: 100vh; }
+
+/* ─── HERO ─────────────────────────────────────────────────────────────── */
+.hero { background: var(--purple-dark); padding: 64px 64px 96px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -120px; right: -120px; width: 420px; height: 420px; border-radius: 50%; background: rgba(123,79,207,0.25); pointer-events: none; }
+.hero::after { content: ''; position: absolute; bottom: -150px; left: 18%; width: 300px; height: 300px; border-radius: 50%; background: rgba(255,255,255,0.04); pointer-events: none; }
+.hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+.hero-logos { margin-bottom: 32px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.hero-logo-svg { height: 36px; width: auto; display: block; flex-shrink: 0; }
+.hero-logos-plus { font-size: 28px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1; user-select: none; }
+.hero-destinatario { display: inline-flex; align-items: center; gap: 10px; padding: 7px 16px; border: 1px solid rgba(228,220,247,0.3); border-radius: 99px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.05); }
+.hero-eyebrow-wrap { margin-bottom: 18px; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(228,220,247,0.18); border: 1px solid rgba(228,220,247,0.3); border-radius: 99px; padding: 6px 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-light); }
+.hero-eyebrow > span:first-child { width: 6px; height: 6px; border-radius: 50%; background: var(--purple-light); display: inline-block; flex-shrink: 0; }
+.hero-title { font-size: clamp(23px, 3.2vw, 40px); font-weight: 900; line-height: 1.1; color: #fff; letter-spacing: -0.023em; margin-bottom: 18px; max-width: 900px; }
+.hero-subtitle { font-size: clamp(13px, 1.3vw, 15px); color: rgba(255,255,255,0.85); line-height: 1.65; max-width: 870px; font-weight: 400; }
+
+/* ─── CONTENT ───────────────────────────────────────────────────────────── */
+.content { max-width: 1200px; margin: -64px auto 0; padding: 0 32px 64px; position: relative; z-index: 3; }
+.section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #000; }
+.section-label .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--purple); }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ─── INTRO BLOCK ───────────────────────────────────────────────────────── */
+.intro-block { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 44px 56px; margin-bottom: 48px; box-shadow: 0 12px 40px rgba(81,35,164,0.06); }
+.intro-block h2 { font-size: clamp(20px, 2vw, 26px); font-weight: 800; color: var(--ink); margin-bottom: 18px; line-height: 1.25; letter-spacing: -0.01em; }
+.intro-block p { font-size: 13px; color: #000; line-height: 1.75; margin-bottom: 14px; }
+.intro-block p:last-child { margin-bottom: 0; }
+.intro-block strong { color: #000; font-weight: 700; }
+
+/* ─── MARKET CARDS ──────────────────────────────────────────────────────── */
+.markets { margin-bottom: 56px; }
+.markets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.market-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 38px 36px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.market-card::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 4px; }
+.market-card.capital::before { background: linear-gradient(90deg, var(--blue-dark) 0%, var(--blue) 100%); }
+.market-card.compliance::before { background: linear-gradient(90deg, var(--green-dark) 0%, var(--green) 100%); }
+.market-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(81,35,164,0.10); transition: transform 0.18s, box-shadow 0.18s; }
+.market-card.capital:hover { border-color: var(--blue); }
+.market-card.compliance:hover { border-color: var(--green); }
+
+.market-card-icon { width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.market-card.capital .market-card-icon { background: var(--blue-light); color: var(--blue-dark); border: 1px solid #BFDBFE; }
+.market-card.compliance .market-card-icon { background: var(--green-light); color: var(--green-dark); border: 1px solid #a7ddc8; }
+.market-card-icon svg { width: 32px; height: 32px; }
+
+.market-card-pill { display: inline-flex; align-items: center; gap: 7px; border-radius: 99px; padding: 5px 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; align-self: flex-start; }
+.market-card.capital .market-card-pill { background: var(--blue-light); color: var(--blue-dark); border: 1px solid #BFDBFE; }
+.market-card.compliance .market-card-pill { background: var(--green-light); color: var(--green-dark); border: 1px solid #a7ddc8; }
+.market-card-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
+.market-card.capital .market-card-pill .dot { background: var(--blue); }
+.market-card.compliance .market-card-pill .dot { background: var(--green); }
+
+.market-card h3 { font-size: 18px; font-weight: 800; color: #000; margin-bottom: 8px; line-height: 1.25; letter-spacing: -0.01em; }
+.market-card-subtitle { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px; }
+.market-card.capital .market-card-subtitle { color: var(--blue-dark); }
+.market-card.compliance .market-card-subtitle { color: var(--green-dark); }
+.market-card-desc { font-size: 13px; color: #000; line-height: 1.65; margin-bottom: 22px; }
+.market-card-features { list-style: none; padding: 0; margin: 0 0 12px; }
+.market-card-features li { font-size: 12.5px; color: #000; padding: 8px 0; padding-left: 24px; position: relative; line-height: 1.5; border-bottom: 1px solid var(--border); }
+.market-card-features li:last-child { border-bottom: none; }
+.market-card-features li::before { content: ''; position: absolute; left: 6px; top: 16px; width: 6px; height: 6px; border-radius: 50%; }
+.market-card.capital .market-card-features li::before { background: var(--blue); }
+.market-card.compliance .market-card-features li::before { background: var(--green); }
+
+.market-card-subsection { margin: 12px 0 0; padding: 0; }
+.market-card-subsection:last-of-type { margin-bottom: 18px; }
+.market-card-subsection-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green-dark); margin-bottom: 6px; }
+.market-card-subsection-text { font-size: 12px; color: #000; line-height: 1.55; }
+.market-card-cta { font-family: 'Poppins', sans-serif; display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; border: none; cursor: pointer; transition: all 0.18s; align-self: flex-start; margin-top: auto; text-decoration: none; }
+.market-card.capital .market-card-cta { background: var(--blue-dark); color: #fff; }
+.market-card.capital .market-card-cta:hover { background: #1538a0; }
+.market-card.compliance .market-card-cta { background: var(--green-dark); color: #fff; }
+.market-card.compliance .market-card-cta:hover { background: #0a4d3a; }
+.market-card-cta svg { width: 14px; height: 14px; transition: transform 0.18s; }
+.market-card:hover .market-card-cta svg { transform: translateX(3px); }
+
+/* ─── CERT CTA ─── */
+.cert-cta-wrap { display: flex; justify-content: center; margin: 8px 0 56px; }
+.cert-cta { display: inline-flex; align-items: center; gap: 11px; background: var(--purple); color: #fff; padding: 14px 28px; border-radius: 10px; font-size: 14px; font-weight: 700; letter-spacing: 0.01em; text-decoration: none; transition: transform 0.18s, box-shadow 0.18s, background 0.18s; }
+.cert-cta:hover { background: var(--purple-dark); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(81,35,164,0.25); }
+.cert-cta svg:first-child { width: 18px; height: 18px; }
+.cert-cta svg:last-child { width: 15px; height: 15px; transition: transform 0.18s; }
+.cert-cta:hover svg:last-child { transform: translateX(3px); }
+
+/* ─── COMPARATIVO ─── */
+.comparativo { margin-bottom: 56px; }
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.comp-card { border-radius: var(--radius-lg); padding: 40px; display: flex; flex-direction: column; gap: 28px; }
+.comp-card.pok { background: var(--white); border: 2px solid var(--purple); }
+.comp-card.atual { background: var(--white); border: 1px solid var(--border); }
+.comp-card-header { display: flex; align-items: center; gap: 14px; }
+.comp-badge { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 99px; }
+.comp-card.pok .comp-badge { background: var(--purple); color: #fff; }
+.comp-card.atual .comp-badge { background: #F1F0F5; color: var(--ink-faint); }
+.comp-card h3 { font-size: 20px; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em; }
+.comp-card.pok h3 { color: var(--ink); }
+.comp-card.atual h3 { color: var(--ink-muted); }
+.comp-flow { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 12px 14px; border-radius: var(--radius-md); margin-bottom: 20px; }
+.comp-card.pok .comp-flow { background: var(--purple-faint); border: 1px solid var(--purple-light); }
+.comp-card.atual .comp-flow { background: #F7F6FA; border: 1px solid var(--border); }
+.flow-pill { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 99px; }
+.comp-card.pok .flow-pill { background: var(--purple-light); color: var(--purple); }
+.comp-card.pok .flow-pill.highlight { background: var(--purple); color: #fff; }
+.comp-card.atual .flow-pill { background: #EBEBF0; color: #6B6B7A; }
+.comp-card.atual .flow-pill.highlight { background: #6B6B7A; color: #fff; }
+.flow-arrow { font-size: 12px; color: var(--ink-faint); }
+.comp-items { display: flex; flex-direction: column; gap: 0; }
+.comp-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.comp-item:last-child { border-bottom: none; padding-bottom: 0; }
+.comp-item-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.comp-card.pok .comp-item-icon { background: var(--purple-light); color: var(--purple); }
+.comp-card.atual .comp-item-icon { background: #F1F0F5; color: var(--ink-faint); }
+.comp-item-icon svg { width: 16px; height: 16px; }
+.comp-item-text { flex: 1; }
+.comp-item-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
+.comp-card.atual .comp-item-title { color: var(--ink-muted); }
+.comp-item-desc { font-size: 12px; color: var(--ink-muted); line-height: 1.55; }
+.comp-card.atual .comp-item-desc { color: var(--ink-faint); }
+
+/* ─── LEITURA BOXES (roxo escuro com sub-eixos) ────────────────────────── */
+.leituras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 56px; }
+.leitura-box { background: var(--purple-dark); border: 1px solid var(--purple-dark); border-radius: var(--radius-lg); padding: 30px 32px; position: relative; overflow: hidden; }
+.leitura-box::before { content: ''; position: absolute; left: 0; top: 0; right: 0; height: 4px; }
+.leitura-humano::before { background: linear-gradient(90deg, var(--blue-dark) 0%, var(--blue) 100%); }
+.leitura-cadeias::before { background: linear-gradient(90deg, var(--green-dark) 0%, var(--green) 100%); }
+.leitura-tag { display: inline-flex; align-items: center; gap: 7px; border-radius: 99px; padding: 4px 11px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+.leitura-humano .leitura-tag { background: rgba(59,130,246,0.2); color: #93C5FD; border: 1px solid rgba(147,197,253,0.4); }
+.leitura-cadeias .leitura-tag { background: rgba(29,158,117,0.2); color: #5DCAA5; border: 1px solid rgba(93,202,165,0.4); }
+.leitura-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
+.leitura-humano .leitura-tag .dot { background: #93C5FD; }
+.leitura-cadeias .leitura-tag .dot { background: #5DCAA5; }
+.leitura-box h4 { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 10px; line-height: 1.3; letter-spacing: -0.01em; }
+.leitura-box p { font-size: 12.5px; color: rgba(255,255,255,0.82); line-height: 1.65; }
+.leitura-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; padding: 11px 20px; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: all 0.18s; }
+.leitura-cta svg { width: 14px; height: 14px; transition: transform 0.18s; }
+.leitura-cta:hover svg { transform: translateX(3px); }
+.leitura-humano .leitura-cta { background: var(--blue); color: #fff; }
+.leitura-humano .leitura-cta:hover { background: #2f6fd6; }
+.leitura-cadeias .leitura-cta { background: var(--green); color: #fff; }
+.leitura-cadeias .leitura-cta:hover { background: #178a64; }
+
+/* ─── VERTICAIS GRID ───────────────────────────────────────────────────── */
+.verticais { margin-bottom: 56px; }
+.verticais-intro { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px 36px; margin-bottom: 22px; box-shadow: 0 8px 24px rgba(81,35,164,0.05); }
+.verticais-intro h3 { font-size: clamp(18px, 1.7vw, 22px); font-weight: 800; color: #000; margin-bottom: 10px; letter-spacing: -0.01em; }
+.verticais-intro p { font-size: 13px; color: #000; line-height: 1.7; }
+.verticais-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.vert-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 22px 24px; transition: all 0.18s; position: relative; }
+.vert-card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(81,35,164,0.08); border-color: var(--purple-light); }
+.vert-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 10px; }
+.vert-card h4 { font-size: 14px; font-weight: 800; color: #000; line-height: 1.3; letter-spacing: -0.005em; flex: 1; }
+.vert-card-tags { display: flex; gap: 5px; flex-shrink: 0; }
+.vert-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; white-space: nowrap; }
+.vert-tag.azul { background: var(--blue-light); color: var(--blue-dark); border: 1px solid #BFDBFE; }
+.vert-tag.verde { background: var(--green-light); color: var(--green-dark); border: 1px solid #a7ddc8; }
+.vert-card p { font-size: 12px; color: var(--ink-muted); line-height: 1.6; }
+
+/* ─── COMO FUNCIONA (FLUXO) ─────────────────────────────────────────────── */
+.como-funciona { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px 44px; margin-bottom: 56px; box-shadow: 0 12px 40px rgba(81,35,164,0.06); }
+.como-funciona h3 { font-size: clamp(18px, 1.7vw, 22px); font-weight: 800; color: #000; margin-bottom: 22px; letter-spacing: -0.01em; }
+.fluxo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.fluxo-step { background: var(--purple-faint); border: 1px solid var(--purple-light); border-radius: var(--radius-md); padding: 20px 18px; position: relative; }
+.fluxo-num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--purple); color: #fff; font-size: 11px; font-weight: 800; margin-bottom: 10px; }
+.fluxo-step h5 { font-size: 13px; font-weight: 800; color: #000; margin-bottom: 6px; letter-spacing: -0.005em; }
+.fluxo-step p { font-size: 11.5px; color: var(--ink-muted); line-height: 1.55; }
+
+/* ─── CTA / PRÓXIMOS PASSOS ────────────────────────────────────────────── */
+.cta-final { background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%); border-radius: var(--radius-lg); padding: 48px 52px; position: relative; overflow: hidden; color: #fff; box-shadow: 0 20px 60px rgba(81,35,164,0.20); }
+.cta-final::before { content: ''; position: absolute; top: -80px; right: -80px; width: 320px; height: 320px; border-radius: 50%; background: rgba(255,255,255,0.06); }
+.cta-final::after { content: ''; position: absolute; bottom: -100px; left: -60px; width: 260px; height: 260px; border-radius: 50%; background: rgba(228,220,247,0.06); }
+.cta-inner { position: relative; z-index: 2; }
+.cta-eyebrow { display: inline-flex; align-items: center; gap: 7px; background: rgba(228,220,247,0.18); border: 1px solid rgba(228,220,247,0.3); border-radius: 99px; padding: 5px 14px; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 14px; }
+.cta-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple-light); }
+.cta-final h3 { font-size: clamp(22px, 2.4vw, 30px); font-weight: 900; color: #fff; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 14px; max-width: 800px; }
+.cta-final > .cta-inner > p { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.7; max-width: 720px; margin-bottom: 30px; }
+.cta-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; }
+.cta-step { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-md); padding: 18px 20px; transition: all 0.2s; }
+.cta-step:hover { background: rgba(255,255,255,0.12); border-color: rgba(228,220,247,0.4); }
+.cta-step-num { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--purple-light); margin-bottom: 6px; }
+.cta-step h5 { font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.cta-step p { font-size: 11.5px; color: rgba(255,255,255,0.78); line-height: 1.55; }
+
+/* ─── FOOTER ───────────────────────────────────────────────────────────── */
+.site-footer { background: var(--purple-dark); padding: 40px 64px; text-align: center; color: rgba(255,255,255,0.7); }
+.footer-logo { margin-bottom: 12px; }
+.footer-logo svg { height: 28px; fill: #fff; }
+.site-footer p { font-size: 11.5px; letter-spacing: 0.04em; }
+
+/* ─── RESPONSIVE ───────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero { padding: 48px 24px 80px; }
+  .content { padding: 0 16px 48px; }
+  .intro-block { padding: 30px 24px; }
+  .markets-grid, .leituras-grid, .verticais-grid, .fluxo-grid, .cta-steps, .comp-grid { grid-template-columns: 1fr; }
+  .market-card { padding: 28px 24px; }
+  .comp-card { padding: 28px 24px; }
+  .leitura-box { padding: 24px 24px; }
+  .vert-card { padding: 20px 22px; }
+  .cta-final { padding: 36px 28px; }
+  .como-funciona { padding: 30px 24px; }
+  .site-footer { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ HERO ════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-logos">
+      <svg class="hero-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" fill="white" aria-label="POK">
+        <path d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/>
+      </svg>
+      <span class="hero-logos-plus">+</span>
+      <span class="hero-destinatario">Mattos Filho Advogados</span>
+    </div>
+    <h1 class="hero-title">Infraestrutura de prova auditável para cadeias de compliance</h1>
+    <p class="hero-subtitle">
+      A POK é a infraestrutura de cadeia de certificados em blockchain – padrão Open Badge 3.0 – que torna auditável cada relação de compliance, da formação de uma pessoa à conformidade de um fornecedor. Sobre essa infraestrutura operam painéis com métricas de capital humano e compliance regulatório.
+    </p>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- ════════ INTRO BLOCK ════════ -->
+  <div class="intro-block">
+    <h2>Uma camada técnica, duas cadeias de compliance</h2>
+    <p>
+      A POK é a <strong>infraestrutura técnica que dá auditabilidade à segurança jurídica</strong>. Cada credencial emitida – em blockchain, padrão Open Badge 3.0 – torna-se uma prova permanente, nominal e verificável. A mesma camada serve a duas cadeias: <strong>capital humano</strong> (formação, capacitação, mobilidade) e <strong>compliance de cadeias</strong> (NRs trabalhistas, ESG, anticorrupção, due diligence de terceiros, programas de integridade).
+    </p>
+    <p>
+      <strong>Uma única plataforma</strong> conecta o Trabalhista, o ESG, o Compliance e o Regulatório setorial em torno de uma mesma lógica de evidência blockchain.
+    </p>
+  </div>
+
+  <!-- ════════ DOIS EIXOS ════════ -->
+  <div class="markets">
+    <div class="section-label"><span class="dot"></span> O que a POK entrega</div>
+    <div class="markets-grid">
+
+      <!-- EIXO 1: CAPITAL HUMANO -->
+      <div class="market-card capital">
+        <div class="market-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <span class="market-card-pill"><span class="dot"></span> Eixo 1 · Capital humano</span>
+        <h3>Cadeia de formação e desenvolvimento</h3>
+        <div class="market-card-subtitle">RH · Talentos · Capacitação de clientes</div>
+        <p class="market-card-desc">Cada credencial POK emitida ao longo da trajetória de um profissional alimenta um painel de métricas de capital humano. Internalização de habilidades, mobilidade interna e retenção de talentos passam a ser dados vivos.</p>
+        <ul class="market-card-features">
+          <li>Badges intermediários e certificado final para as trilhas formativas do escritório</li>
+          <li>Credencial nominal verificável para a capacitação que o escritório oferece a clientes</li>
+          <li>Taxa de internalização e mobilidade rastreadas via LinkedIn</li>
+          <li>Reconhecimento portável para iniciativas pro bono, ESG e diversidade</li>
+        </ul>
+      </div>
+
+      <!-- EIXO 2: COMPLIANCE DE CADEIAS -->
+      <div class="market-card compliance">
+        <div class="market-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <span class="market-card-pill"><span class="dot"></span> Eixo 2 · Compliance de cadeias</span>
+        <h3>Cadeia de evidência regulatória e operacional</h3>
+        <div class="market-card-subtitle">Compliance · Jurídico · Auditoria · ESG · Regulatório</div>
+        <p class="market-card-desc">A mesma infraestrutura blockchain registra, com data de emissão, validade e categoria, qualquer evento de compliance que componha uma cadeia auditável – do treinamento obrigatório de um colaborador à conformidade documentada de um fornecedor em programa de integridade.</p>
+
+        <ul class="market-card-features">
+          <li>Credenciais nominais em blockchain · Open Badge 3.0 · verificação pública</li>
+          <li>Gestão de validade e alertas de vencimento por categoria</li>
+          <li>Prova criptográfica de integridade – auditável</li>
+          <li>Aplicável a pessoas, fornecedores, ativos e eventos de cadeia</li>
+        </ul>
+
+        <div class="market-card-subsection">
+          <div class="market-card-subsection-label">Compliance de colaboradores</div>
+          <div class="market-card-subsection-text">NR-1, NR-10, NR-12, LGPD, anticorrupção, código de conduta. Cobertura, vencimentos e auditabilidade por categoria regulatória.</div>
+        </div>
+
+        <div class="market-card-subsection">
+          <div class="market-card-subsection-label">Certificação de cadeias produtivas e processuais</div>
+          <div class="market-card-subsection-text">ESG (cadeia agro, mineração, têxtil), due diligence de fornecedores, rastreabilidade regulatória setorial, programas de integridade com terceiros, cadeia de custódia digital.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ LEITURA BOXES ════════ -->
+  <div class="leituras-grid">
+    <div class="leitura-box leitura-humano">
+      <span class="leitura-tag"><span class="dot"></span> Eixo 1 · Métricas de capital humano</span>
+      <h4>Da credencial à evidência de desenvolvimento real</h4>
+      <p>As métricas de capital humano leem informações – empregos conquistados, promoções, mobilidade profissional. O CPF gravado no certificado permite uma segunda fonte de leitura – vínculo formal, renda estimada e trajetória de mercado via base Serasa Experian –, sempre em formato agregado e anonimizado. A formação deixa de ser ponto de chegada e passa a ser fonte de inteligência sobre o crescimento real do profissional ao longo da carreira.</p>
+      <a class="leitura-cta" href="https://pokbrasil.github.io/marketing/pok_corporativo_dashboard_publico.html" target="_blank">
+        Ver métricas de capital humano
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="leitura-box leitura-cadeias">
+      <span class="leitura-tag"><span class="dot"></span> Eixo 2 · Métricas de compliance de cadeias</span>
+      <h4>Cobertura, vigência e auditabilidade</h4>
+      <p>As métricas de compliance monitoram cobertura por categoria, alertam vencimentos próximos e entregam prova criptográfica de integridade. Aplica-se igualmente a treinamentos obrigatórios de colaboradores e a certificações de cadeia – fornecedores em due diligence, ativos em programa de integridade, eventos regulatórios rastreáveis.</p>
+      <a class="leitura-cta" href="https://pokbrasil.github.io/marketing/pok_corporativo_dashboard_publico.html" target="_blank">
+        Ver métricas de compliance
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════ BOTÃO CERTIFICADO ════════ -->
+  <div class="cert-cta-wrap">
+    <a class="cert-cta" href="https://certificates.the-world-university.com/c/5b7dd714-80e5-4c21-8beb-13130c3d0478" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 21l5-2.5L17 21l-1.5-8.5"/></svg>
+      Conheça o certificado POK
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
+
+  <!-- ════════ COMPARATIVO ════════ -->
+  <div class="comparativo">
+    <div class="section-label"><span class="dot"></span> POK vs solução atual</div>
+    <div class="comp-grid">
+
+      <!-- POK -->
+      <div class="comp-card pok">
+        <div class="comp-card-header">
+          <span class="comp-badge">POK</span>
+        </div>
+        <h3>Credencial + gestão + inteligência</h3>
+        <div class="comp-items">
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Emissão em blockchain · Open Badge 3.0</div>
+              <div class="comp-item-desc">Verificáveis publicamente, sem dependência da plataforma</div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Métricas de capital humano</div>
+              <div class="comp-item-desc">Internalização de skills, mobilidade interna e retenção rastreados via LinkedIn</div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Gestão de compliance regulatório</div>
+              <div class="comp-item-desc">Validade, vencimentos e auditabilidade por categoria regulatória</div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Trilhas com badges intermediários e certificado final</div>
+              <div class="comp-item-desc">Cada etapa gera um badge; a conclusão emite o certificado final</div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Credencial nominal verificável</div>
+              <div class="comp-item-desc">Nome, CPF e data do portador registrados em blockchain – o receptor sabe exatamente quem conquistou</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATUAL -->
+      <div class="comp-card atual">
+        <div class="comp-card-header">
+          <span class="comp-badge">Sem POK</span>
+        </div>
+        <h3>Formação sem visibilidade de impacto</h3>
+        <div class="comp-items">
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Analytics limitado à emissão</div>
+              <div class="comp-item-desc">Rastreia se o badge foi compartilhado, mas não o que aconteceu depois na carreira do colaborador</div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Sem métricas de gestão</div>
+              <div class="comp-item-desc">Não há visão sobre o que acontece com o colaborador após o badge</div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Sem gestão de compliance</div>
+              <div class="comp-item-desc">Sem controle de validade, alertas de vencimento ou rastreabilidade regulatória</div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Sem estrutura de trilhas</div>
+              <div class="comp-item-desc">Apenas badges avulsos, sem progressão estruturada ou certificado final</div>
+            </div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="comp-item-text">
+              <div class="comp-item-title">Badges não nominais</div>
+              <div class="comp-item-desc">Não identificam o portador – qualquer pessoa com o link pode apresentar o badge</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ════════ COMO FUNCIONA ════════ -->
+  <div class="como-funciona">
+    <h3>Etapas</h3>
+    <div class="fluxo-grid">
+      <div class="fluxo-step">
+        <div class="fluxo-num">1</div>
+        <h5>Desenho da cadeia</h5>
+        <p>Define-se o que constitui uma evidência válida em cada categoria – competência humana, treinamento regulatório, qualificação de fornecedor.</p>
+      </div>
+      <div class="fluxo-step">
+        <div class="fluxo-num">2</div>
+        <h5>Emissão da credencial</h5>
+        <p>Ao satisfeito o critério, a credencial é emitida pela plataforma com registro permanente em blockchain.</p>
+      </div>
+      <div class="fluxo-step">
+        <div class="fluxo-num">3</div>
+        <h5>Recebimento nominal</h5>
+        <p>O portador – pessoa, empresa ou ativo – recebe a credencial nominal, vinculada ao identificador e à categoria.</p>
+      </div>
+      <div class="fluxo-step">
+        <div class="fluxo-num">4</div>
+        <h5>Verificação pública</h5>
+        <p>Qualquer terceiro – auditor, regulador, contraparte em litígio – confere a autenticidade sem depender da POK ou do emissor.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ VERTICAIS DO ESCRITÓRIO ════════ -->
+  <div class="verticais">
+    <div class="section-label"><span class="dot"></span> Áreas de prática × eixos POK</div>
+    <div class="verticais-intro">
+      <h3>Como cada área do escritório se conecta aos dois eixos</h3>
+      <p>O mapeamento abaixo indica em qual eixo POK (capital humano <strong style="color:var(--blue-dark);">●</strong> ou compliance de cadeias <strong style="color:var(--green-dark);">●</strong>) cada área de prática do Mattos Filho encontra aplicação. Áreas marcadas com os dois eixos têm aplicação dupla, com sinergia operacional entre formação e compliance.</p>
+    </div>
+
+    <div class="verticais-grid">
+
+      <div class="vert-card">
+        <div class="vert-card-head">
+          <h4>Trabalhista &amp; Previdenciário</h4>
+          <div class="vert-card-tags">
+            <span class="vert-tag azul">Humano</span>
+            <span class="vert-tag verde">Cadeias</span>
+          </div>
+        </div>
+        <p>Compliance de NRs e treinamentos obrigatórios, programas de saúde e segurança, capacitação de equipes de RH dos clientes. Cobertura, vencimentos e auditabilidade em uma única camada.</p>
+      </div>
+
+      <div class="vert-card">
+        <div class="vert-card-head">
+          <h4>ESG &amp; Ambiental</h4>
+          <div class="vert-card-tags">
+            <span class="vert-tag verde">Cadeias</span>
+          </div>
+        </div>
+        <p>Certificação de cadeias produtivas (agro, mineração, têxtil), rastreabilidade socioambiental de fornecedores, programas de devida diligência ESG com prova auditável para investidores e reguladores.</p>
+      </div>
+
+      <div class="vert-card">
+        <div class="vert-card-head">
+          <h4>Compliance &amp; Anticorrupção</h4>
+          <div class="vert-card-tags">
+            <span class="vert-tag azul">Humano</span>
+            <span class="vert-tag verde">Cadeias</span>
+          </div>
+        </div>
+        <p>Programas de integridade com prova criptográfica de treinamentos, due diligence de terceiros, certificação de cadeia de relacionamento com agentes intermediários e cadeia de custódia documental.</p>
+      </div>
+
+      <div class="vert-card">
+        <div class="vert-card-head">
+          <h4>Societário &amp; M&amp;A</h4>
+          <div class="vert-card-tags">
+            <span class="vert-tag verde">Cadeias</span>
+          </div>
+        </div>
+        <p>Due diligence pré-deal com evidência blockchain de programas de compliance da target, certificação de cadeia de fornecedores estratégicos, preservação de prova auditável em integrações pós-deal.</p>
+      </div>
+
+      <div class="vert-card">
+        <div class="vert-card-head">
+          <h4>Tecnologia, Privacidade &amp; Dados</h4>
+          <div class="vert-card-tags">
+            <span class="vert-tag azul">Humano</span>
+            <span class="vert-tag verde">Cadeias</span>
+          </div>
+        </div>
+        <p>Capacitação LGPD para colaboradores e clientes, evidência operacional de tratamento conforme, programas de privacy by design com cadeia de evidências auditável para ANPD e contrapartes.</p>
+      </div>
+
+      <div class="vert-card">
+        <div class="vert-card-head">
+          <h4>Bancário &amp; Financeiro</h4>
+          <div class="vert-card-tags">
+            <span class="vert-tag azul">Humano</span>
+            <span class="vert-tag verde">Cadeias</span>
+          </div>
+        </div>
+        <p>Treinamentos PLD e prevenção a lavagem, certificação de cadeia KYC de contrapartes, prova auditável para BACEN/CVM, programas de educação financeira a clientes.</p>
+      </div>
+
+      <div class="vert-card">
+        <div class="vert-card-head">
+          <h4>Penal Empresarial</h4>
+          <div class="vert-card-tags">
+            <span class="vert-tag verde">Cadeias</span>
+          </div>
+        </div>
+        <p>Programas de integridade com prova de implementação efetiva, cadeia de custódia digital, evidência blockchain de boa-fé organizacional em defesa criminal corporativa.</p>
+      </div>
+
+      <div class="vert-card">
+        <div class="vert-card-head">
+          <h4>Litígios &amp; Arbitragem</h4>
+          <div class="vert-card-tags">
+            <span class="vert-tag verde">Cadeias</span>
+          </div>
+        </div>
+        <p>Preservação probatória com timestamp blockchain, cadeia de custódia digital em disputas complexas, demonstração de conformidade histórica como matéria de defesa.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" aria-label="POK">
+      <path d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/>
+    </svg>
+  </div>
+  <p>Muito mais que certificados digitais · <a href="https://pok.tech" target="_blank" style="color:var(--purple-light);font-weight:600;text-decoration:none;">pok.tech</a></p>
+</footer>
+
+</body>
+</html>
