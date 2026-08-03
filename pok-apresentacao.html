@@ -451,11 +451,13 @@
 
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 3rem;
     align-items: start;
     margin-top: 32px;
   }
+
+  .about-text { max-width: 900px; }
 
   .about-text p:last-child { margin-bottom: 0; }
 
@@ -827,59 +829,6 @@
     color: var(--pok-roxo-escuro);
   }
 
-  /* Nota final dos planos */
-  .nota-final {
-    background: linear-gradient(135deg, var(--pok-roxo) 0%, var(--pok-roxo-escuro) 100%);
-    color: var(--pok-branco);
-    border-radius: 20px;
-    padding: 40px 48px;
-    margin-top: 48px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .nota-final::before {
-    content: '';
-    position: absolute;
-    top: -60px;
-    right: -60px;
-    width: 220px;
-    height: 220px;
-    background: radial-gradient(circle, rgba(228, 220, 247, 0.15) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-
-  .nota-final-tag {
-    display: inline-block;
-    background: var(--pok-lilas-bg);
-    color: var(--pok-roxo-escuro);
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .nota-final p {
-    font-size: 15.5px;
-    line-height: 1.7;
-    color: var(--pok-lilas-bg);
-    max-width: 640px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-  }
-
-  .nota-final p strong {
-    color: var(--pok-branco);
-    font-weight: 700;
-  }
-
   /* ==================== CONTATO ==================== */
   .contato-section {
     background: linear-gradient(135deg, var(--pok-roxo) 0%, var(--pok-roxo-escuro) 100%);
@@ -1040,7 +989,6 @@
     .hero-stat { padding: 18px 14px; }
 
     .plano-card { padding: 36px 28px; }
-    .nota-final { padding: 32px 28px; }
   }
 
   @media (max-width: 640px) {
@@ -1062,7 +1010,6 @@
     .hero-stat { padding: 18px 16px; border-radius: 14px; }
     .hero-stat .num { font-size: 26px; }
 
-    .nota-final { padding: 28px 20px; }
     .feature-card { padding: 1.6rem; }
     .plano-card { padding: 28px 20px; overflow-x: auto; }
     .plano-header { gap: 12px; }
@@ -1195,15 +1142,12 @@
       <div class="section-header">
         <span class="section-tag" data-i18n="sobre_tag">02 · Plataforma</span>
         <h2 class="section-title" data-i18n="sobre_titulo">Mais que uma certificação digital</h2>
-        <p class="section-subtitle" data-i18n="sobre_sub">A POK (Proof of Knowledge) é uma plataforma que permite a instituições emitirem credenciais digitais seguras e verificáveis por meio da tecnologia blockchain.</p>
+        <p class="section-subtitle" data-i18n="sobre_sub">A POK (Proof of Knowledge) é uma plataforma que permite a instituições emitirem credenciais digitais seguras e verificáveis em blockchain.</p>
       </div>
 
       <div class="about-grid">
         <div class="about-text">
-          <p data-i18n-html="sobre_p1">Credenciais registradas como <strong>NFTs</strong> garantem autenticidade e fácil verificação, fortalecendo a reputação institucional no ecossistema educacional e produtivo.</p>
-        </div>
-        <div class="about-text">
-          <p data-i18n-html="sobre_p2">A POK proporciona uma ferramenta de gestão orientada por <strong>resultados</strong>, reconhecimento de saberes e valorização dos estudantes como protagonistas de suas trajetórias formativas.</p>
+          <p data-i18n-html="sobre_p1">Credenciais registradas como <strong>NFTs</strong> garantem autenticidade e fácil verificação, fortalecendo a reputação institucional no ecossistema educacional e produtivo. A POK proporciona uma ferramenta de gestão orientada por <strong>resultados</strong>, reconhecimento de saberes e valorização dos estudantes como protagonistas de suas trajetórias formativas.</p>
         </div>
       </div>
     </div>
@@ -1524,11 +1468,6 @@
           </table>
         </div>
       </div>
-
-      <div class="nota-final">
-        <span class="nota-final-tag" data-i18n="nota_tag">Volumes maiores</span>
-        <p data-i18n-html="nota_p">Para operações com mais de <strong>100.000 créditos</strong> ou <strong>100.000 alunos ativos</strong>, condições comerciais especiais são negociadas caso a caso, conforme cronograma de adoção e perfil de uso da instituição.</p>
-      </div>
     </div>
   </section>
 
@@ -1615,16 +1554,12 @@
     "sobre_tag": { "pt": "02 · Plataforma", "es": "02 · Plataforma" },
     "sobre_titulo": { "pt": "Mais que uma certificação digital", "es": "Más que una certificación digital" },
     "sobre_sub": {
-      "pt": "A POK (Proof of Knowledge) é uma plataforma que permite a instituições emitirem credenciais digitais seguras e verificáveis por meio da tecnologia blockchain.",
-      "es": "POK (Proof of Knowledge) es una plataforma que permite a las instituciones emitir credenciales digitales seguras y verificables mediante tecnología blockchain."
+      "pt": "A POK (Proof of Knowledge) é uma plataforma que permite a instituições emitirem credenciais digitais seguras e verificáveis em blockchain.",
+      "es": "POK (Proof of Knowledge) es una plataforma que permite a las instituciones emitir credenciales digitales seguras y verificables en blockchain."
     },
     "sobre_p1": {
-      "pt": "Credenciais registradas como <strong>NFTs</strong> garantem autenticidade e fácil verificação, fortalecendo a reputação institucional no ecossistema educacional e produtivo.",
-      "es": "Credenciales registradas como <strong>NFTs</strong> garantizan autenticidad y fácil verificación, fortaleciendo la reputación institucional en el ecosistema educativo y productivo."
-    },
-    "sobre_p2": {
-      "pt": "A POK proporciona uma ferramenta de gestão orientada por <strong>resultados</strong>, reconhecimento de saberes e valorização dos estudantes como protagonistas de suas trajetórias formativas.",
-      "es": "POK proporciona una herramienta de gestión orientada por <strong>resultados</strong>, reconocimiento de saberes y valorización de los estudiantes como protagonistas de sus trayectorias formativas."
+      "pt": "Credenciais registradas como <strong>NFTs</strong> garantem autenticidade e fácil verificação, fortalecendo a reputação institucional no ecossistema educacional e produtivo. A POK proporciona uma ferramenta de gestão orientada por <strong>resultados</strong>, reconhecimento de saberes e valorização dos estudantes como protagonistas de suas trajetórias formativas.",
+      "es": "Credenciales registradas como <strong>NFTs</strong> garantizan autenticidad y fácil verificación, fortaleciendo la reputación institucional en el ecosistema educativo y productivo. POK proporciona una herramienta de gestión orientada por <strong>resultados</strong>, reconocimiento de saberes y valorización de los estudiantes como protagonistas de sus trayectorias formativas."
     },
 
     "dif_tag": { "pt": "03 · Plataforma", "es": "03 · Plataforma" },
@@ -1753,11 +1688,6 @@
     "plano2_th1": { "pt": "Alunos", "es": "Estudiantes" },
     "plano2_th2": { "pt": "Preço · aluno/mês", "es": "Precio · estudiante/mes" },
     "plano2_th3": { "pt": "Pacote mensal", "es": "Paquete mensual" },
-    "nota_tag": { "pt": "Volumes maiores", "es": "Volúmenes mayores" },
-    "nota_p": {
-      "pt": "Para operações com mais de <strong>100.000 créditos</strong> ou <strong>100.000 alunos ativos</strong>, condições comerciais especiais são negociadas caso a caso, conforme cronograma de adoção e perfil de uso da instituição.",
-      "es": "Para operaciones con más de <strong>100.000 créditos</strong> o <strong>100.000 estudiantes activos</strong>, las condiciones comerciales especiales se negocian caso por caso, conforme al cronograma de adopción y perfil de uso de la institución."
-    },
 
     "cont_tag": { "pt": "08 · Comercial", "es": "08 · Comercial" },
     "cont_titulo": { "pt": "Fale Conosco", "es": "Contáctenos" },
