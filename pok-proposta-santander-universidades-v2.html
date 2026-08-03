@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POK × Santander Universidades · Proposta Comercial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pok-purple: #5123a4;
+    --pok-purple-deep: #3d1a7d;
+    --pok-purple-light: #7c4dd9;
+    --pok-purple-soft: #a985e8;
+    --pok-accent: #a985e8;
+    --pok-accent-light: #c9b0f0;
+    --pok-bg: #f7f5fb;
+    --pok-bg-card: #ffffff;
+    --pok-text: #1a1033;
+    --pok-text-muted: #000000;
+    --pok-border: #e8e0f3;
+    --shadow-sm: 0 2px 8px rgba(81, 35, 164, 0.06);
+    --shadow-md: 0 8px 24px rgba(81, 35, 164, 0.10);
+    --shadow-lg: 0 20px 60px rgba(81, 35, 164, 0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--pok-bg);
+    color: var(--pok-text);
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  /* ==================== SIDEBAR NAVIGATION ==================== */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
+    padding: 2.5rem 1.5rem;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 4px 0 24px rgba(81, 35, 164, 0.15);
+  }
+
+  .sidebar-logo {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .sidebar-logo svg {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+    display: block;
+  }
+
+  .nav-label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 0.6rem;
+    padding-left: 0.8rem;
+    font-weight: 600;
+  }
+
+  .nav-list { list-style: none; margin-bottom: 1.8rem; }
+
+  .nav-list a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.55rem 0.9rem;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    margin-bottom: 0.15rem;
+    border-left: 2px solid transparent;
+  }
+
+  .nav-list a:hover {
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border-left-color: var(--pok-accent);
+  }
+
+  .nav-list a.active {
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border-left-color: var(--pok-accent);
+    font-weight: 500;
+  }
+
+  .nav-number {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--pok-accent-light);
+    min-width: 22px;
+  }
+
+  /* ==================== MAIN CONTENT ==================== */
+  .main {
+    margin-left: 280px;
+    min-height: 100vh;
+  }
+
+  section {
+    padding: 5rem 4rem;
+    max-width: 1200px;
+    scroll-margin-top: 0;
+  }
+
+  /* ==================== HERO SECTION ==================== */
+  .hero {
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
+    color: white;
+    padding: 6rem 4rem 5rem;
+    max-width: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(169, 133, 232, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(124, 77, 217, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-grid-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pok-accent-light);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(169, 133, 232, 0.3);
+    border-radius: 100px;
+    background: rgba(169, 133, 232, 0.08);
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--pok-accent-light) 0%, var(--pok-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    color: #ffffff;
+    max-width: 580px;
+    margin-bottom: 3rem;
+    line-height: 1.65;
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    max-width: 900px;
+  }
+
+  .hero-meta-item .label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+
+  .hero-meta-item .value {
+    font-size: 0.78rem;
+    color: white;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  /* ==================== SECTION HEADERS ==================== */
+  .section-header {
+    margin-bottom: 3rem;
+    max-width: 800px;
+  }
+
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pok-purple);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--pok-accent);
+    vertical-align: middle;
+    margin-right: 0.7rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--pok-text);
+    margin-bottom: 1rem;
+  }
+
+  .section-title.nowrap-title {
+    white-space: nowrap;
+    font-size: clamp(1.4rem, 2.3vw, 2rem);
+  }
+  @media (max-width: 1024px) {
+    .section-title.nowrap-title {
+      white-space: normal;
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    }
+  }
+
+  .section-intro {
+    font-size: 0.92rem;
+    color: #000000;
+    line-height: 1.65;
+    max-width: 700px;
+  }
+
+  /* ==================== ABOUT SECTION ==================== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .stats-card {
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
+    padding: 3rem 2.5rem;
+    border-radius: 24px;
+    color: white;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -30%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(169, 133, 232, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-item .number {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--pok-accent-light);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-item .label {
+    font-size: 0.95rem;
+    color: #ffffff;
+    font-weight: 400;
+  }
+
+  .about-text p {
+    font-size: 0.92rem;
+    color: var(--pok-text);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+
+  .about-text strong {
+    color: var(--pok-purple);
+    font-weight: 600;
+  }
+
+  /* ==================== FEATURES GRID ==================== */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .features-grid--4col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 1100px) {
+    .features-grid--4col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .features-grid--4col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .feature-card {
+    background: var(--pok-bg-card);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--pok-border);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--pok-purple-soft);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    color: white;
+  }
+
+  .feature-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--pok-purple);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+  }
+
+  .feature-card p {
+    font-size: 0.85rem;
+    color: var(--pok-text-muted);
+    line-height: 1.6;
+  }
+
+  /* ==================== MICRO-CREDENTIALS SECTION ==================== */
+  .micro-section {
+    background: linear-gradient(135deg, #f7f5fb 0%, #ede5fa 100%);
+    color: var(--pok-text);
+    padding: 5rem 4rem;
+    max-width: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .micro-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 80% 20%, rgba(81, 35, 164, 0.06) 0%, transparent 60%);
+  }
+
+  .micro-section .section-eyebrow { color: var(--pok-purple); }
+  .micro-section .section-eyebrow::before { background: var(--pok-purple); }
+  .micro-section .section-title { color: var(--pok-text); }
+  .micro-section .section-intro { color: #000000; }
+
+  .micro-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+  }
+
+  .micro-text {
+    font-size: 0.92rem;
+    color: var(--pok-text);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    max-width: 800px;
+  }
+
+  .micro-text strong { color: var(--pok-purple); font-weight: 600; }
+
+  /* Cycle diagram */
+  .cycle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 900px) {
+    .cycle-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .cycle-grid { grid-template-columns: 1fr; }
+  }
+
+  .cycle-card {
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 1.8rem;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+    color: white;
+  }
+
+  .cycle-card:hover {
+    border-color: var(--pok-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(81, 35, 164, 0.25);
+  }
+
+  .cycle-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .cycle-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .cycle-card h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--pok-accent-light);
+    font-weight: 600;
+  }
+
+  .cycle-card p {
+    font-size: 0.85rem;
+    color: #ffffff;
+    line-height: 1.6;
+  }
+
+  /* ==================== CHECK LIST ==================== */
+  .check-list { list-style: none; margin-top: 1.5rem; }
+
+  .check-list li {
+    display: flex;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--pok-border);
+    align-items: flex-start;
+  }
+
+  .check-list li:last-child { border-bottom: none; }
+
+  .check-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .check-icon svg { width: 12px; height: 12px; color: white; }
+
+  .check-list .content strong {
+    display: block;
+    color: var(--pok-purple);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    font-size: 0.93rem;
+  }
+
+  .check-list .content span {
+    color: var(--pok-text-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== TWO COLUMN ==================== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  .col-card {
+    background: var(--pok-bg-card);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--pok-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .col-card h3 {
+    font-size: 1.3rem;
+    color: var(--pok-purple);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* ==================== CHALLENGES (numbered) ==================== */
+  .challenges-list { list-style: none; }
+
+  .challenges-list li {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 1.2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px dashed var(--pok-border);
+  }
+
+  .challenges-list li:last-child { border-bottom: none; }
+
+  .challenge-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--pok-accent);
+    line-height: 1;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.03em;
+  }
+
+  .challenge-body strong {
+    display: block;
+    color: var(--pok-purple);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .challenge-body span {
+    color: var(--pok-text-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* ==================== OPPORTUNITIES ==================== */
+  .opp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .opp-item {
+    background: var(--pok-bg-card);
+    padding: 1.1rem 1.3rem;
+    border-radius: 12px;
+    border: 1px solid var(--pok-border);
+    border-left: 3px solid var(--pok-accent);
+    font-size: 0.85rem;
+    color: var(--pok-text);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .opp-item:hover {
+    border-left-color: var(--pok-purple);
+    transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .opp-item::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--pok-purple);
+    flex-shrink: 0;
+  }
+
+  /* ==================== COMMERCIAL PROPOSAL ==================== */
+  .proposal-section {
+    background: var(--pok-bg-card);
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .plan-card {
+    background: var(--pok-bg-card);
+    border: 2px solid var(--pok-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .plan-card:hover {
+    border-color: var(--pok-purple);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+  }
+
+  .plan-card.featured {
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
+    color: white;
+    border-color: var(--pok-purple);
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -12px;
+    right: 2rem;
+    background: white;
+    color: var(--pok-purple);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .plan-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--pok-border);
+  }
+
+  .plan-card.featured .plan-header { border-bottom-color: rgba(255,255,255,0.2); }
+
+  .plan-name {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pok-text-muted);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-card.featured .plan-name { color: var(--pok-accent-light); }
+
+  .plan-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--pok-purple);
+    letter-spacing: -0.02em;
+  }
+
+  .plan-card.featured .plan-title { color: white; }
+
+  .plan-credits {
+    font-size: 0.9rem;
+    color: var(--pok-text-muted);
+    text-align: right;
+  }
+
+  .plan-card.featured .plan-credits { color: rgba(255,255,255,0.7); }
+
+  .plan-credits strong {
+    display: block;
+    font-size: 1.4rem;
+    color: var(--pok-purple);
+    font-weight: 700;
+  }
+
+  .plan-card.featured .plan-credits strong { color: var(--pok-accent-light); }
+
+  .plan-details { margin-bottom: 1.8rem; }
+
+  .plan-details li {
+    list-style: none;
+    padding: 0.55rem 0;
+    font-size: 0.85rem;
+    color: var(--pok-text-muted);
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+
+  .plan-card.featured .plan-details li { color: #ffffff; }
+
+  .plan-details li::before {
+    content: '✓';
+    color: var(--pok-purple);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  .plan-card.featured .plan-details li::before { color: var(--pok-accent); }
+
+  .plan-price {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--pok-border);
+  }
+
+  .plan-card.featured .plan-price { border-top-color: rgba(255,255,255,0.2); }
+
+  .price-total {
+    font-size: 0.8rem;
+    color: var(--pok-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+
+  .plan-card.featured .price-total { color: rgba(255,255,255,0.6); }
+
+  .price-amount {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--pok-purple);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .plan-card.featured .price-amount { color: white; }
+
+  .price-currency { font-size: 1.2rem; font-weight: 500; vertical-align: top; }
+
+  .price-installments {
+    font-size: 0.9rem;
+    color: var(--pok-text-muted);
+  }
+
+  .plan-card.featured .price-installments { color: #ffffff; }
+
+  .price-parcelas {
+    display: inline-block;
+    margin: 0.1rem 0 0.7rem;
+    padding: 0.5rem 1.1rem;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  /* ==================== PAYMENT INFO ==================== */
+  .payment-info {
+    background: linear-gradient(135deg, var(--pok-bg) 0%, #efe9f7 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    margin-top: 3rem;
+    border: 1px solid var(--pok-border);
+  }
+
+  /* ==================== VOLUME / DIMENSIONAMENTO CARD ==================== */
+  .volume-card {
+    background: linear-gradient(135deg, #f7f5fb 0%, #efe9f7 100%);
+    border: 1px solid var(--pok-border);
+    border-radius: 16px;
+    padding: 1.5rem 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .volume-header {
+    margin-bottom: 1rem;
+  }
+
+  .volume-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    padding: 0.8rem 0 0.4rem;
+    border-top: 1px solid var(--pok-border);
+  }
+
+  .volume-item {
+    text-align: center;
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .volume-number {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--pok-purple);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+  }
+
+  .volume-total .volume-number {
+    color: var(--pok-purple);
+    font-size: 1.55rem;
+  }
+
+  .volume-total {
+    background: white;
+    border-radius: 10px;
+    padding: 0.7rem 0.4rem;
+    border: 1.5px solid var(--pok-purple);
+    flex: 0 0 auto;
+    width: 200px;
+    max-width: 100%;
+  }
+
+  .volume-label {
+    font-size: 0.62rem;
+    color: var(--pok-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .volume-divider {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--pok-accent);
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
+  /* ==================== DESTAQUE CORTESIA ==================== */
+  /* ==================== SINGLE PLAN LAYOUT ==================== */
+  .plans-single {
+    grid-template-columns: 1fr !important;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 640px) {
+    .volume-grid { flex-direction: column; gap: 0.8rem; }
+    .volume-divider { display: none; }
+    .volume-total { width: 100%; }
+  }
+
+  /* ==================== CERTIFICATE CTA ==================== */
+  .certificate-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .certificate-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
+    color: white;
+    padding: 0.95rem 1.8rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 18px rgba(81, 35, 164, 0.25);
+    border: 2px solid transparent;
+  }
+
+  .certificate-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(81, 35, 164, 0.35);
+  }
+
+  .certificate-cta-button--secondary {
+    background: white;
+    color: var(--pok-purple);
+    border: 2px solid var(--pok-purple);
+    box-shadow: 0 6px 18px rgba(81, 35, 164, 0.10);
+  }
+
+  .certificate-cta-button--secondary:hover {
+    background: var(--pok-bg);
+    box-shadow: 0 10px 28px rgba(81, 35, 164, 0.18);
+  }
+
+  .certificate-cta-button svg {
+    flex-shrink: 0;
+  }
+
+  .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .payment-block h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--pok-purple);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--pok-accent);
+    display: inline-block;
+  }
+
+  .payment-block p {
+    font-size: 0.85rem;
+    color: var(--pok-text);
+    line-height: 1.75;
+  }
+
+  .payment-block p strong {
+    color: var(--pok-purple);
+    font-weight: 600;
+  }
+
+  .payment-block .data-line {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  /* ==================== CONTACT SECTION ==================== */
+  .contact-section {
+    background: linear-gradient(135deg, var(--pok-purple) 0%, var(--pok-purple-deep) 100%);
+    color: white;
+    padding: 5rem 4rem;
+    max-width: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(228, 220, 247, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .contact-section::after {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    left: -120px;
+    width: 360px;
+    height: 360px;
+    background: radial-gradient(circle, rgba(169, 133, 232, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .contact-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .contact-section .section-eyebrow {
+    background: rgba(228, 220, 247, 0.15);
+    color: #e4dcf7;
+    padding: 0.4rem 0.85rem;
+    border-radius: 100px;
+    display: inline-block;
+    border: none;
+  }
+
+  .contact-section .section-eyebrow::before { display: none; }
+
+  .contact-title {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+  }
+
+  .contato-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 64px;
+    align-items: center;
+    margin-top: 48px;
+    max-width: 880px;
+  }
+
+  .contato-qr {
+    background: white;
+    padding: 24px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  }
+
+  .contato-qr img {
+    width: 200px;
+    height: 200px;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .contato-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contato-cargo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pok-accent);
+    margin-bottom: 4px;
+  }
+
+  .contato-info h3 {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: white;
+    letter-spacing: -1px;
+    margin-bottom: 4px;
+  }
+
+  .contato-email {
+    font-size: 18px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    align-self: flex-start;
+    transition: all 0.2s ease;
+    padding-bottom: 2px;
+  }
+
+  .contato-email:hover {
+    color: var(--pok-accent);
+    border-bottom-color: var(--pok-accent);
+  }
+
+  @media (max-width: 700px) {
+    .contato-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      max-width: 100%;
+    }
+    .contato-info h3 { font-size: 28px; }
+    .contato-qr img { width: 180px; height: 180px; }
+  }
+
+  /* ==================== FOOTER ==================== */
+  footer {
+    background: var(--pok-purple-deep);
+    color: rgba(255,255,255,0.6);
+    padding: 2rem 4rem;
+    margin-left: 280px;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer a { color: #ffffff; text-decoration: none; }
+
+  /* ==================== RESPONSIVE ==================== */
+  @media (max-width: 1024px) {
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .main, footer { margin-left: 0; }
+    .menu-toggle {
+      display: flex;
+      position: fixed;
+      top: 1rem; left: 1rem;
+      z-index: 200;
+      background: var(--pok-purple);
+      color: white;
+      border: none;
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+    }
+  }
+
+  @media (min-width: 1025px) { .menu-toggle { display: none; } }
+
+  @media (max-width: 768px) {
+    section, .hero, .micro-section, .contact-section, footer {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    section, .hero, .micro-section, .contact-section {
+      scroll-margin-top: 4rem;
+    }
+    .about-grid, .two-col, .plans-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .hero-meta { grid-template-columns: repeat(2, 1fr); }
+    .hero { padding-top: 5rem; }
+  }
+
+  /* ==================== PRINT ==================== */
+  @media print {
+    .sidebar, .menu-toggle { display: none; }
+    .main, footer { margin-left: 0; }
+    body { background: white; }
+    section { page-break-inside: avoid; padding: 2rem; }
+  }
+
+  /* Subtle fade-in on scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- Mobile menu toggle -->
+<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+
+<!-- ==================== SIDEBAR ==================== -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 197.3" aria-label="POK">
+      <path fill="#ffffff" d="M131.4,27.2c0-5.4-4.4-9.9-9.9-9.9H5.9c-3.3,0-5.9,2.6-5.9,5.9v115.6c0,5.5,4.4,9.9,9.9,9.9s9.9-4.4,9.9-9.9V42.3c0-2.9,2.3-5.2,5.2-5.2h96.6c5.3,0,9.8-4.4,9.8-9.9ZM164.8,60.6c-5.4,0-9.9,4.4-9.9,9.9v96.6c0,2.9-2.3,5.2-5.2,5.2H53.1c-5.4,0-9.9,4.4-9.9,9.9s4.4,9.9,9.9,9.9h115.6c3.3,0,5.9-2.6,5.9-5.9v-115.7c0-5.5-4.4-9.9-9.8-9.9ZM103.7,76l-23.9,35.8c-.9,1.4-2.8,1.6-4,.4l-9.9-9.9c-3.5-3.5-9.1-3.5-12.5,0-3.5,3.5-3.5,9.1,0,12.5l20.1,20.1c3.8,3.8,10.1,3.2,13.1-1.3l31.9-47.8c2.7-4.1,1.6-9.6-2.5-12.3-4.1-2.6-9.6-1.5-12.3,2.5ZM329.1,49.1c-7.4-4.8-15.9-7.2-25.5-7.2-6,0-11.9,1.2-17.5,3.5-5.5,2.3-10.1,5.3-14,9-1.1,1-2,2.1-2.9,3.2l-.2-13.9h-24.7v153.6h25.3v-58.3c.5.5.9,1,1.4,1.5,4,4,8.8,7.2,14.6,9.7,5.9,2.5,12,3.7,18.3,3.7,9.5,0,17.9-2.4,25.3-7.2,7.5-4.9,13.4-11.6,17.7-19.9,4.2-8.5,6.4-18.2,6.4-29s-2.2-20.4-6.6-28.8c-4.1-8.4-10-15.1-17.6-19.9ZM325.2,115.3c-2.6,5.1-6.2,9-10.7,11.9s-9.7,4.3-15.4,4.3c-6,0-11.3-1.4-15.8-4.3-4.5-2.9-8.1-6.9-10.7-11.9-2.6-5.1-3.9-10.9-3.9-17.5s1.3-12.4,3.9-17.5,6.2-9,10.7-11.9,9.8-4.3,15.8-4.3,11.1,1.5,15.6,4.5c4.5,2.9,8,6.9,10.5,11.9,2.6,4.9,3.9,10.7,3.9,17.3s-1.3,12.5-3.9,17.5ZM449.9,48.9c-8.5-4.9-18.1-7.4-28.8-7.4s-20.5,2.5-29,7.4c-8.5,4.8-15.2,11.4-20.1,19.9-4.8,8.5-7.2,18.2-7.2,29s2.4,20.5,7.2,29c4.9,8.5,11.6,15.2,20.1,20.1,8.5,4.8,18.2,7.2,29,7.2s20.3-2.4,28.8-7.2c8.5-4.9,15.1-11.6,19.9-20.1,4.9-8.5,7.4-18.2,7.4-29s-2.5-20.5-7.4-29c-4.7-8.4-11.4-15.1-19.9-19.9ZM447.9,115.3c-2.6,5.1-6.2,9.1-10.9,12.1-4.7,2.9-9.9,4.3-15.8,4.3s-11.2-1.4-16-4.3c-4.7-3-8.3-7.1-10.9-12.1-2.6-5.2-3.9-11-3.9-17.5s1.3-12.2,3.9-17.3c2.6-5.2,6.2-9.3,10.9-12.1,4.8-3,10.1-4.5,16-4.5s11.2,1.4,15.8,4.3c4.7,2.9,8.3,6.9,10.9,12.1,2.7,5.1,4,10.9,3.9,17.5.1,6.5-1.2,12.3-3.9,17.5ZM548.8,91.2l50.6-47.5h-33.5l-45,45V0h-25.1v152.1h25.1v-34.6l10.9-10.2,37,44.9h31.2l-51.2-61Z"/>
+    </svg>
+  </div>
+
+  <div class="nav-label">Proposta</div>
+  <ul class="nav-list">
+    <li><a href="#inicio" class="active"><span class="nav-number">01</span>Apresentação</a></li>
+    <li><a href="#sobre"><span class="nav-number">02</span>Sobre a POK</a></li>
+    <li><a href="#diferenciais"><span class="nav-number">03</span>Diferenciais</a></li>
+    <li><a href="#micro"><span class="nav-number">04</span>Micro-credenciais</a></li>
+    <li><a href="#certificado"><span class="nav-number">05</span>O Certificado</a></li>
+    <li><a href="#recursos"><span class="nav-number">06</span>Recursos Premium</a></li>
+  </ul>
+
+  <div class="nav-label">Contexto</div>
+  <ul class="nav-list">
+    <li><a href="#desafios"><span class="nav-number">07</span>O Contexto Santander</a></li>
+    <li><a href="#oportunidades"><span class="nav-number">08</span>Valor Estratégico</a></li>
+  </ul>
+
+  <div class="nav-label">Comercial</div>
+  <ul class="nav-list">
+    <li><a href="#proposta"><span class="nav-number">09</span>Proposta Comercial</a></li>
+    <li><a href="#contato"><span class="nav-number">10</span>Contato</a></li>
+  </ul>
+</aside>
+
+<main class="main">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="inicio">
+    <div class="hero-grid-pattern"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Proposta Comercial · 2026</span>
+      <h1>Credenciais digitais para <br>Universidade Corporativa Semesp + <span style="color: #db2f20;">Santander Universidades</span></h1>
+      <p class="hero-subtitle">
+        Uma camada de micro-credenciais em blockchain sobre a formação assíncrona e as Masterclasses do Santander Universidades – transformando cada etapa concluída em prova verificável de desenvolvimento profissional.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="label">Cliente</div>
+          <div class="value">Santander Universidades</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Programa</div>
+          <div class="value">Formação assíncrona · Masterclasses</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Escopo</div>
+          <div class="value">800 créditos</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Validade da proposta</div>
+          <div class="value">31/08/2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOBRE ==================== -->
+  <section id="sobre">
+    <div class="section-header">
+      <span class="section-eyebrow">Sobre a POK</span>
+      <h2 class="section-title">Mais que uma certificação digital</h2>
+      <p class="section-intro">
+        A POK (Proof of Knowledge) é uma plataforma que permite a instituições emitirem credenciais digitais seguras e verificáveis através da tecnologia blockchain.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="stats-card">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="number">+1.200</div>
+            <div class="label">Instituições</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">+15</div>
+            <div class="label">Países</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">100%</div>
+            <div class="label">Verificável</div>
+          </div>
+          <div class="stat-item">
+            <div class="number">NFT</div>
+            <div class="label">Blockchain</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p>Credenciais registradas como <strong>NFTs</strong> garantem autenticidade e fácil verificação, fortalecendo a reputação institucional no ecossistema educacional e produtivo.</p>
+        <p>A POK proporciona uma ferramenta de gestão orientada por <strong>resultados</strong>, reconhecimento de saberes e valorização dos estudantes como protagonistas de suas trajetórias formativas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DIFERENCIAIS ==================== -->
+  <section id="diferenciais">
+    <div class="section-header">
+      <span class="section-eyebrow">O que nos diferencia</span>
+      <h2 class="section-title">Diferenciais da plataforma</h2>
+    </div>
+
+    <div class="features-grid features-grid--4col">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Credenciais como NFTs</h3>
+        <p>Certificados digitais únicos, imutáveis e visualizáveis em carteiras compatíveis com NFTs (Blockchain).</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Open Badge 3.0 & Europass</h3>
+        <p>Conformidade com padrões globais, assegurando interoperabilidade e reconhecimento internacional.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Verificação Instantânea</h3>
+        <p>Autenticidade validada diretamente na plataforma, sem intermediários.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </div>
+        <h3>Compartilhamento Simplificado</h3>
+        <p>Facilidade para divulgar conquistas em redes profissionais como LinkedIn.</p>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 4rem;">
+      <span class="section-eyebrow">Benefícios para Instituições</span>
+      <h2 class="section-title">Resultados tangíveis para sua instituição</h2>
+    </div>
+
+    <ul class="check-list">
+      <li>
+        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="content">
+          <strong>Aumento da Credibilidade</strong>
+          <span>Certificados verificáveis aumentam a confiança de empregadores e outras instituições.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="content">
+          <strong>Engajamento de Alunos e Profissionais</strong>
+          <span>Reconhecimento tangível de conquistas motiva o contínuo desenvolvimento e reduz evasão.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="content">
+          <strong>Eficiência Operacional</strong>
+          <span>Automatização do processo de emissão e verificação de certificados, reduzindo custo e tempo.</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ==================== MICRO-CREDENCIAIS ==================== -->
+  <section id="micro" class="micro-section">
+    <div class="micro-content">
+      <div class="section-header">
+        <span class="section-eyebrow">Micro-credenciais</span>
+        <h2 class="section-title">O que são?</h2>
+      </div>
+
+      <p class="micro-text">
+        <strong>Micro-credenciais</strong> são certificações de aprendizagem focada, que comprovam o domínio de uma habilidade, competência ou conhecimento específico, geralmente conquistada em um curto período de tempo, através de cursos ou experiências educacionais mais flexíveis e modulares que as formações tradicionais.
+      </p>
+      <p class="micro-text">
+        Elas são pensadas para serem <strong>ágeis, aplicáveis e empilháveis</strong> – podem ser combinadas com outras para formar trajetórias de aprendizagem mais amplas – e normalmente estão vinculadas a <strong>resultados mensuráveis</strong> no mundo do trabalho.
+      </p>
+
+      <div class="cycle-grid">
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">01</div>
+            <h4>Aprendizagem Contínua</h4>
+          </div>
+          <p>As atualizações de habilidades em tempo real são cruciais para o mercado atual.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">02</div>
+            <h4>Reduz Evasão</h4>
+          </div>
+          <p>Os estudantes buscam o aprendizado quando sua empregabilidade melhora.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">03</div>
+            <h4>Interoperabilidade</h4>
+          </div>
+          <p>Permite a transferência contínua de habilidades entre instituições.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">04</div>
+            <h4>Empregabilidade</h4>
+          </div>
+          <p>As micro-credenciais aumentam a empregabilidade ao destacar habilidades específicas.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">05</div>
+            <h4>Marketing Orgânico</h4>
+          </div>
+          <p>Compartilhar conquistas aumenta a exposição da instituição de forma orgânica.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">06</div>
+            <h4>Autenticidade Verificável</h4>
+          </div>
+          <p>Registro em blockchain garante credenciais imutáveis e verificáveis sem intermediários.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CERTIFICADO ==================== -->
+  <section id="certificado">
+    <div class="section-header">
+      <span class="section-eyebrow">Como funciona</span>
+      <h2 class="section-title">O Certificado</h2>
+      <p class="section-intro">Autenticidade verificável em tempo real, garantida pela tecnologia blockchain.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="col-card">
+        <h3>Fluxo de Emissão</h3>
+        <ul class="check-list">
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="content"><strong>Emissor validado</strong><span>A instituição emissora é validada com seu domínio.</span></div>
+          </li>
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="content"><strong>Transformação em NFT</strong><span>A POK utiliza blockchain para transformar o certificado em um NFT.</span></div>
+          </li>
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="content"><strong>Envio criptografado</strong><span>O certificado é enviado pela instituição de forma criptografada.</span></div>
+          </li>
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="content"><strong>Validação do receptor</strong><span>Ao aceitar a credencial, o receptor valida o documento.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-card">
+        <h3>Customize do seu jeito</h3>
+        <ul class="check-list">
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="content"><strong>Informações institucionais</strong><span>Adicione dados da sua instituição à landing page do certificado.</span></div>
+          </li>
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="content"><strong>Trilhas e eventos</strong><span>Evidencie outras trilhas, cursos e divulgue eventos.</span></div>
+          </li>
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="content"><strong>Identidade visual</strong><span>Customize banners, logotipo, cores, cabeçalho, links e vídeo.</span></div>
+          </li>
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="content"><strong>Marketing orgânico</strong><span>Crie um ciclo de exposição contínua para a instituição emissora.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="certificate-cta">
+      <a href="https://view.pok.tech/c/374dd571-8a06-45b8-bcc6-fb389df87f84" target="_blank" class="certificate-cta-button">
+        Ver um certificado
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="https://view.pok.tech/c/ae6824a2-74d4-4af6-a545-362c16ebd466" target="_blank" class="certificate-cta-button certificate-cta-button--secondary">
+        Ver uma trilha formativa
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== RECURSOS PREMIUM ==================== -->
+  <section id="recursos">
+    <div class="section-header">
+      <span class="section-eyebrow">Recursos Premium</span>
+      <h2 class="section-title">Métricas e integrações</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Dashboard de Métricas</h3>
+        <p>Meça compartilhamentos e visualizações dos certificados, trazendo informações valiosas para o marketing da instituição.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </div>
+        <h3>CRM Integrado</h3>
+        <p>Ferramenta própria de CRM, com envio e re-envio de certificados em apenas um clique.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3>Emails White Label</h3>
+        <p>Personalize texto, imagens e cores nos emails enviados, mantendo a identidade da sua instituição.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <h3>Integração com Toolzz</h3>
+        <p>Integração nativa com a plataforma <a href="https://www.toolzz.com.br/" target="_blank" style="color: var(--pok-purple); font-weight: 500;">Toolzz</a>, sem custo adicional.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        </div>
+        <h3>Rotas de Aprendizagem</h3>
+        <p>Conecte micro-credenciais a um certificado-mãe, trazendo inteligência para certificações por módulos e experiências.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Empregabilidade</h3>
+        <p>Métricas sobre compartilhamento e empregabilidade dos estudantes que publicaram certificados no LinkedIn.</p>
+      </div>
+    </div>
+  </section>
+
+    <!-- ==================== CONTEXTO ==================== -->
+  <section id="desafios">
+    <div class="section-header">
+      <span class="section-eyebrow">O Contexto</span>
+      <h2 class="section-title">Formação de educadores em escala</h2>
+      <p class="section-intro">O Santander Universidades é uma das maiores iniciativas privadas de apoio à educação na América Latina. Esta proposta adiciona uma camada de credenciais verificáveis em blockchain à formação assíncrona e às Masterclasses – transformando cada etapa concluída em prova digital, portável e auditável.</p>
+    </div>
+
+    <ol class="challenges-list">
+      <li>
+        <span class="challenge-num">01</span>
+        <div class="challenge-body">
+          <strong>Formação certificada em blockchain</strong>
+          <span>Cada etapa concluída da jornada formativa vira uma credencial digital emitida em blockchain, no lugar do certificado em PDF sem verificação.</span>
+        </div>
+      </li>
+      <li>
+        <span class="challenge-num">02</span>
+        <div class="challenge-body">
+          <strong>Formação assíncrona e Masterclasses</strong>
+          <span>Os créditos certificam os participantes que concluíram a parte assíncrona e os que participaram das Masterclasses, distribuídos conforme o calendário dos programas.</span>
+        </div>
+      </li>
+      <li>
+        <span class="challenge-num">03</span>
+        <div class="challenge-body">
+          <strong>Rotas de aprendizagem</strong>
+          <span>Credenciais intermediárias podem ser conectadas a um certificado-mãe, dando estrutura às formações compostas por módulos e experiências.</span>
+        </div>
+      </li>
+      <li>
+        <span class="challenge-num">04</span>
+        <div class="challenge-body">
+          <strong>Credencial portável e verificável</strong>
+          <span>O professor mantém a credencial mesmo após o programa – um reconhecimento verificável que acompanha sua trajetória e carreira docente.</span>
+        </div>
+      </li>
+      <li>
+        <span class="challenge-num">05</span>
+        <div class="challenge-body">
+          <strong>Evidência de impacto educacional</strong>
+          <span>Credenciais registradas em blockchain geram evidência auditável do investimento do Santander em educação, útil para relatórios de impacto social e ESG.</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ==================== VALOR ESTRATÉGICO ==================== -->
+  <section id="oportunidades">
+    <div class="section-header">
+      <span class="section-eyebrow">Valor Estratégico da Parceria</span>
+      <h2 class="section-title nowrap-title">Um case de referência em formação de educadores</h2>
+      <p class="section-intro">Certificar educadores com credenciais verificáveis fortalece o Santander Universidades como referência em formação e empregabilidade, e cria um modelo replicável para toda a sua rede de programas e instituições parceiras.</p>
+    </div>
+
+    <div class="opp-grid">
+      <div class="opp-item">Reconhecimento verificável para a rede de professores formados</div>
+      <div class="opp-item">Fortalecimento da marca Santander Universidades em educação</div>
+      <div class="opp-item">Credenciais portáveis que acompanham a carreira docente</div>
+      <div class="opp-item">Modelo replicável para outras trilhas e programas do Santander</div>
+      <div class="opp-item">Métricas de engajamento e compartilhamento no LinkedIn</div>
+      <div class="opp-item">Evidência auditável de impacto educacional e social (ESG)</div>
+      <div class="opp-item">Interoperabilidade com padrões globais (Open Badge 3.0)</div>
+      <div class="opp-item">Base para expansão a outros países da rede Santander Universidades</div>
+    </div>
+  </section>
+
+  <!-- ==================== PROPOSTA COMERCIAL ==================== -->
+  <section id="proposta" class="proposal-section">
+    <div class="section-header">
+      <span class="section-eyebrow">Investimento</span>
+      <h2 class="section-title">Proposta Comercial</h2>
+      <p class="section-intro">Modelo por créditos, dimensionado para certificar os participantes da formação assíncrona e das Masterclasses.</p>
+    </div>
+
+    <!-- Modelo de cobrança -->
+    <div class="volume-card">
+      <div class="volume-header">
+        <span class="section-eyebrow" style="margin-bottom:0;">Modelo de Cobrança – Por Créditos</span>
+      </div>
+      <p style="color:#000000; font-size:0.9rem; margin:0.4rem 0 1.6rem;">Cada credencial digital emitida consome 1 crédito. O pacote cobre os participantes da parte assíncrona e das Masterclasses.</p>
+      <div class="volume-grid">
+        <div class="volume-item">
+          <div class="volume-number">800</div>
+          <div class="volume-label">créditos</div>
+        </div>
+        <div class="volume-divider">×</div>
+        <div class="volume-item">
+          <div class="volume-number">R$ 16</div>
+          <div class="volume-label">por crédito</div>
+        </div>
+        <div class="volume-divider">=</div>
+        <div class="volume-item volume-total">
+          <div class="volume-number">R$ 12.800</div>
+          <div class="volume-label">investimento</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pacote de créditos -->
+    <div class="plans-grid plans-single">
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div>
+            <div class="plan-name">Pacote Único</div>
+            <div class="plan-title">Santander Universidades</div>
+          </div>
+          <div class="plan-credits">
+            <strong style="display:inline;">800</strong> créditos
+          </div>
+        </div>
+        <ul class="plan-details">
+          <li>800 credenciais digitais emitidas em blockchain</li>
+          <li>Participantes da formação assíncrona e das Masterclasses</li>
+          <li>Todos os certificados como NFT, no padrão Open Badge 3.0</li>
+          <li>Rotas de aprendizagem configuráveis (certificado-mãe + filhos)</li>
+          <li>Setup, integração e onboarding sem custo adicional</li>
+          <li>Emails white-label com identidade Santander Universidades</li>
+          <li>Dashboard de métricas de engajamento e empregabilidade</li>
+        </ul>
+        <div class="plan-price">
+          <div class="price-amount"><span class="price-currency">R$</span>12.800</div>
+          <div class="price-parcelas">em 3× de R$ 4.266,67</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-info">
+      <div class="payment-grid">
+        <div class="payment-block">
+          <h4>Destinatário</h4>
+          <p>
+            <span class="data-line"><strong>Santander Universidades</strong></span>
+            <span class="data-line">Formação assíncrona · Masterclasses</span>
+          </p>
+        </div>
+
+        <div class="payment-block">
+          <h4>Recebimento dos créditos</h4>
+          <p>Créditos disponibilizados na conta Santander Universidades na plataforma POK, consumidos conforme as emissões.</p>
+        </div>
+
+        <div class="payment-block">
+          <h4>Forma de Pagamento</h4>
+          <p>
+            <span class="data-line">Transferência Bancária / Boleto</span>
+            <span class="data-line">Parcelável em 3× de R$ 4.266,67</span>
+            <span class="data-line"><strong>YOP DO BRASIL DIGITAL LTDA</strong></span>
+            <span class="data-line">Banco: Itaú Unibanco S.A.</span>
+            <span class="data-line">CNPJ: 21.960.826/0001-72</span>
+            <span class="data-line">Agência: 0350 · Conta: 0011761-0</span>
+          </p>
+        </div>
+
+        <div class="payment-block">
+          <h4>Validade da Proposta</h4>
+          <p><strong>31/08/2026</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ==================== CONTATO ==================== -->
+  <section id="contato" class="contact-section">
+    <div class="contact-content">
+      <div class="section-header">
+        <span class="section-eyebrow">10 · Comercial</span>
+        <h2 class="contact-title">Fale Conosco</h2>
+      </div>
+
+      <div class="contato-grid">
+        <div class="contato-qr">
+          <img src="data:image/png;base64,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" alt="QR Code de contato – Carolina Ferrés">
+        </div>
+
+        <div class="contato-info">
+          <div class="contato-cargo">Contato POK</div>
+          <h3>Carolina Ferrés</h3>
+          <a href="mailto:carolina@pok.tech" class="contato-email">carolina@pok.tech</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>© 2026 POK · Proof of Knowledge</div>
+  <div><a href="https://www.pok.tech" target="_blank">www.pok.tech</a></div>
+</footer>
+
+<script>
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-list a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Close mobile menu on nav click
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        document.querySelector('.sidebar').classList.remove('open');
+      }
+    });
+  });
+
+  // Fade-in observer
+  const fadeEls = document.querySelectorAll('.feature-card, .cycle-card, .plan-card, .opp-item, .challenges-list li');
+  fadeEls.forEach(el => el.classList.add('fade-in'));
+
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 40);
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  fadeEls.forEach(el => fadeObserver.observe(el));
+</script>
+
+</body>
+</html>
