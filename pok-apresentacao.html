@@ -457,7 +457,20 @@
     margin-top: 32px;
   }
 
-  .about-text { max-width: 900px; }
+  .about-text {
+    max-width: 900px;
+    background: var(--pok-branco);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--linha);
+    transition: all 0.3s ease;
+  }
+
+  .about-text:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(81, 35, 164, 0.10);
+    border-color: var(--pok-roxo-claro);
+  }
 
   .about-text p:last-child { margin-bottom: 0; }
 
