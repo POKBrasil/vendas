@@ -7,7 +7,7 @@
 <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
 <meta property="og:type" content="website" />
 <meta property="og:title" content="POK · Plataforma de Credenciais Digitais Verificáveis" />
-<meta property="og:description" content="Credenciais digitais verificáveis em blockchain. Micro-credenciais, badges e certificados com proveniência, anti-fraude e portabilidade. +1.200 instituições · +15 países." />
+<meta property="og:description" content="Credenciais digitais verificáveis em blockchain. Micro-credenciais, badges e credenciais com proveniência, anti-fraude e portabilidade. +1.200 instituições · +15 países." />
 <meta property="og:image" content="https://pokbrasil.github.io/content/pok_apresentacao_og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://pokbrasil.github.io/content/pok_apresentacao_og.png" />
 
 <!-- Standard meta description -->
-<meta name="description" content="POK é a plataforma de credenciais digitais verificáveis em blockchain. Micro-credenciais, badges e certificados com proveniência, anti-fraude e portabilidade." />
+<meta name="description" content="POK é a plataforma de credenciais digitais verificáveis em blockchain. Micro-credenciais, badges e credenciais com proveniência, anti-fraude e portabilidade." />
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -44,7 +44,7 @@
     --sombra-suave: 0 4px 20px rgba(81, 35, 164, 0.08);
     --sombra-media: 0 8px 32px rgba(81, 35, 164, 0.12);
     --sombra-forte: 0 16px 48px rgba(81, 35, 164, 0.18);
-    --sidebar-width: 240px;
+    --sidebar-width: 268px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -124,7 +124,8 @@
     padding: 9px 12px;
     text-decoration: none;
     color: var(--pok-branco);
-    font-size: 12px;
+    font-size: 11.5px;
+    white-space: nowrap;
     font-weight: 500;
     border-radius: 8px;
     transition: all 0.25s ease;
@@ -137,6 +138,30 @@
     padding-left: 16px;
   }
 
+  .nav-sublist {
+    list-style: none;
+    margin: 2px 0 6px 34px;
+  }
+
+  .nav-sublist a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: var(--pok-branco);
+    font-size: 10.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    border-left: 1px solid var(--pok-branco);
+    border-radius: 0;
+    transition: all 0.25s ease;
+  }
+
+  .nav-sublist a:hover {
+    border-left-width: 2px;
+    background: none;
+    transform: none;
+  }
+
   .nav-list a.active {
     background: rgba(228, 220, 247, 0.15);
     color: var(--pok-branco);
@@ -146,7 +171,7 @@
 
   .nav-list a.active .nav-number {
     color: var(--pok-branco);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .nav-number {
@@ -198,7 +223,7 @@
     padding: 7px 16px;
     font-family: 'Poppins', sans-serif;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 1.5px;
     color: var(--pok-cinza);
     cursor: pointer;
@@ -221,8 +246,9 @@
   }
 
   section {
-    padding: 96px 64px;
+    padding: 56px 64px 72px;
     position: relative;
+    scroll-margin-top: 0;
   }
 
   .container {
@@ -231,41 +257,30 @@
   }
 
   .section-header {
-    margin-bottom: 56px;
-    max-width: 800px;
-  }
-
-  .section-tag {
-    display: inline-block;
-    color: var(--pok-roxo);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    padding: 6px 14px;
-    background: var(--pok-lilas-bg);
-    border-radius: 4px;
+    margin-bottom: 32px;
+    max-width: 100%;
   }
 
   .section-title {
-    font-size: clamp(28px, 3.5vw, 42px);
+    font-size: clamp(22px, 2.4vw, 30px);
+    text-wrap: balance;
     font-weight: 700;
     color: var(--vitru-preto);
-    line-height: 1.2;
-    margin-bottom: 20px;
-    letter-spacing: -0.5px;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    letter-spacing: -0.4px;
   }
 
   /* Cabecalho que nao deve quebrar em duas linhas */
   .section-header-largo { max-width: 100%; }
-  .titulo-linha-unica { white-space: nowrap; }
 
   .section-subtitle {
-    font-size: 17px;
+    font-size: 14px;
+    max-width: 100%;
     color: var(--texto-corpo);
-    font-weight: 400;
-    line-height: 1.7;
+    font-weight: 300;
+    line-height: 1.6;
+    text-wrap: pretty;
   }
 
   /* ==================== HERO ==================== */
@@ -363,23 +378,26 @@
     color: var(--pok-branco);
     font-size: clamp(32px, 4vw, 54px);
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 24px;
+    line-height: 1.18;
+    margin-bottom: 20px;
     letter-spacing: -1.5px;
+    padding-bottom: 2px;
+    text-wrap: balance;
   }
 
   .hero h1 .accent {
     color: var(--pok-branco);
-    font-weight: 800;
+    font-weight: 700;
   }
 
   .hero-subtitle {
     color: var(--pok-branco);
     font-size: clamp(14px, 1.3vw, 16px);
     font-weight: 300;
-    max-width: 640px;
+    max-width: 860px;
     line-height: 1.7;
     margin-bottom: 40px;
+    text-wrap: pretty;
   }
 
   /* Hero stats */
@@ -409,8 +427,8 @@
 
   .hero-stat .num {
     font-size: 32px;
-    font-weight: 800;
-    color: var(--pok-lilas-bg);
+    font-weight: 700;
+    color: var(--pok-branco);
     line-height: 1;
     letter-spacing: -1px;
     margin-bottom: 8px;
@@ -418,10 +436,10 @@
 
   .hero-stat .label {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--pok-branco);
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 300;
   }
 
   .br-desktop { display: inline; }
@@ -466,30 +484,36 @@
 
   .about-text strong {
     color: var(--pok-roxo);
-    font-weight: 600;
+    font-weight: 500;
   }
 
   /* ==================== FEATURES GRID ==================== */
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1.6rem;
   }
 
-  /* Diferenciais: sempre 4 cards em uma unica linha */
-  #diferenciais .features-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
+  .features-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .features-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 1100px) {
+    .features-grid-4 { grid-template-columns: repeat(2, 1fr); }
   }
 
-  #diferenciais .feature-card { padding: 1.6rem 1.4rem; }
-  #diferenciais .feature-card h3 { font-size: 0.95rem; }
+  @media (max-width: 900px) {
+    .features-grid-2 { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .features-grid-4 { grid-template-columns: 1fr; }
+  }
 
   .feature-card {
     background: var(--pok-branco);
-    padding: 2rem;
-    border-radius: 16px;
+    padding: 1.4rem 1.5rem;
+    border-radius: 14px;
     border: 1px solid var(--linha);
     transition: all 0.3s ease;
     position: relative;
@@ -502,36 +526,37 @@
   }
 
   .feature-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
     background: linear-gradient(135deg, var(--pok-roxo) 0%, var(--pok-roxo-claro) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.9rem;
     color: var(--pok-branco);
   }
 
   .feature-card h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--pok-roxo);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.45rem;
     letter-spacing: -0.01em;
   }
 
   .feature-card p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--texto-corpo);
-    line-height: 1.6;
+    font-weight: 300;
+    line-height: 1.55;
   }
 
   /* ==================== MICRO-CREDENCIAIS SECTION ==================== */
   .micro-section {
     background: linear-gradient(135deg, var(--pok-roxo) 0%, var(--pok-roxo-escuro) 100%);
     color: var(--pok-branco);
-    padding: 96px 64px;
+    padding: 56px 64px 72px;
     position: relative;
     overflow: hidden;
   }
@@ -543,13 +568,8 @@
     background-image: radial-gradient(circle at 80% 20%, rgba(228, 220, 247, 0.1) 0%, transparent 60%);
   }
 
-  .micro-section .section-tag {
-    background: rgba(228, 220, 247, 0.15);
-    color: var(--pok-lilas-bg);
-  }
-
   .micro-section .section-title { color: var(--pok-branco); }
-  .micro-section .section-subtitle { color: rgba(255,255,255,0.85); }
+  .micro-section .section-subtitle { color: var(--pok-branco); }
 
   .micro-content {
     position: relative;
@@ -559,34 +579,37 @@
   }
 
   .micro-text {
-    font-size: 0.95rem;
+    font-size: 14px;
     color: var(--pok-branco);
-    line-height: 1.7;
-    margin-bottom: 1.2rem;
-    max-width: 800px;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 0.7rem;
+    max-width: 100%;
+    text-wrap: pretty;
   }
 
-  .micro-text strong { color: var(--pok-branco); font-weight: 600; }
+  .micro-text strong { color: var(--pok-branco); font-weight: 500; }
 
   .cycle-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.2rem;
-    margin-top: 3rem;
+    gap: 1rem;
+    margin-top: 2rem;
   }
 
   .cycle-card {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.12);
-    padding: 1.8rem;
+    background: var(--pok-lilas-suave);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 1.4rem 1.5rem;
     border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
     transition: all 0.3s ease;
   }
 
   .cycle-card:hover {
-    background: rgba(255,255,255,0.1);
+    background: var(--pok-branco);
     border-color: var(--pok-roxo-claro);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
     transform: translateY(-3px);
   }
 
@@ -601,94 +624,274 @@
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    background: rgba(255,255,255,0.15);
+    background: linear-gradient(135deg, var(--pok-roxo) 0%, var(--pok-roxo-claro) 100%);
     color: var(--pok-branco);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 0.85rem;
     flex-shrink: 0;
-    border: 1px solid rgba(255,255,255,0.25);
+    border: none;
   }
 
   .cycle-card h4 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--pok-branco);
+    font-size: 0.9rem;
+    letter-spacing: -0.01em;
+    color: var(--pok-roxo);
     font-weight: 600;
   }
 
   .cycle-card p {
-    font-size: 0.85rem;
-    color: var(--pok-branco);
+    font-size: 0.8rem;
+    color: var(--texto-corpo);
+    font-weight: 300;
     line-height: 1.6;
   }
 
-  /* ==================== CHECK LIST ==================== */
-  .check-list { list-style: none; margin-top: 1.5rem; }
+  .cycle-grid-compacto { margin-top: 0.9rem; }
 
-  .check-list li {
-    display: flex;
-    gap: 1rem;
-    padding: 1.1rem 0;
-    border-bottom: 1px solid var(--linha);
-    align-items: flex-start;
+  .cycle-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 1100px) {
+    .cycle-grid-4 { grid-template-columns: repeat(2, 1fr); }
   }
 
-  .check-list li:last-child { border-bottom: none; }
+  @media (max-width: 640px) {
+    .cycle-grid-4 { grid-template-columns: 1fr; }
+  }
 
-  .check-icon {
+  /* ==================== PAINEL DE EMPREGABILIDADE ==================== */
+  .painel-bloco {
+    margin-top: 2.5rem;
+    background: var(--pok-branco);
+    border: 1px solid var(--linha);
+    border-radius: 20px;
+    padding: 2rem 2.2rem;
+    box-shadow: var(--sombra-suave);
+  }
+
+  .sub-titulo {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--pok-roxo);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .painel-intro {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--texto-corpo);
+    text-wrap: pretty;
+  }
+
+  .painel-filtros {
+    margin-top: 1.4rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--linha);
+  }
+
+  .filtro-label {
+    display: block;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--texto-corpo);
+    margin-bottom: 0.7rem;
+  }
+
+  .filtro-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .chip {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--pok-branco);
+    background: var(--pok-roxo);
+    border: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+
+  .painel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.4rem;
+  }
+
+  .painel-card {
+    background: var(--pok-lilas-suave);
+    border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+  }
+
+  .painel-card h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--pok-roxo);
+    margin-bottom: 0.35rem;
+  }
+
+  .painel-card p {
+    font-size: 0.8rem;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--texto-corpo);
+  }
+
+  @media (max-width: 900px) {
+    .painel-grid { grid-template-columns: 1fr; }
+    .painel-bloco { padding: 1.5rem 1.3rem; }
+  }
+
+  /* ==================== STATS STRIP (estudantes) ==================== */
+  .stats-titulo {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--pok-branco);
+    font-weight: 600;
+    margin-top: 3.2rem;
+  }
+
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 1rem;
+  }
+
+  .stat-box {
+    background: var(--pok-branco);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    padding: 24px 22px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--pok-roxo) 0%, var(--pok-roxo-claro) 100%);
+  }
+
+  .stat-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+  }
+
+  .stat-box .num {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--pok-roxo);
+    line-height: 1;
+    letter-spacing: -1.5px;
+    margin-bottom: 10px;
+  }
+
+  .stat-box .label {
+    font-size: 12px;
+    color: var(--texto-corpo);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .stats-fonte {
+    font-size: 10.5px;
+    color: var(--pok-branco);
+    margin-top: 1rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* ==================== INSTITUICOES ==================== */
+  .instituicoes-section {
+    background: linear-gradient(180deg, var(--pok-lilas-suave) 0%, var(--pok-branco) 100%);
+  }
+
+  .destaque-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.1rem;
+    margin-top: 3rem;
+    background: #EDE6F6;
+    border: 1px solid #D8CEF0;
+    border-radius: 20px;
+    padding: 1.25rem 1.35rem 1.35rem;
+  }
+
+  .destaque-icon {
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--pok-roxo) 0%, var(--pok-roxo-claro) 100%);
+    width: 68px;
+    height: 68px;
+    border-radius: 16px;
+    background: var(--pok-roxo);
+    color: var(--pok-branco);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 2px;
+    box-shadow: 0 4px 14px rgba(81, 35, 164, 0.28);
   }
 
-  .check-icon svg { width: 12px; height: 12px; color: var(--pok-branco); }
+  .destaque-icon svg { width: 40px; height: 40px; display: block; }
 
-  .check-list .content strong {
-    display: block;
+  .destaque-eyebrow {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
     color: var(--pok-roxo);
     font-weight: 600;
-    margin-bottom: 0.2rem;
-    font-size: 0.93rem;
+    border: 1px solid var(--pok-roxo);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-bottom: 0.6rem;
   }
 
-  .check-list .content span {
-    color: var(--texto-corpo);
-    font-size: 0.85rem;
-    line-height: 1.6;
-  }
-
-  /* ==================== TWO COLUMN ==================== */
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 2rem;
-  }
-
-  .col-card {
-    background: var(--pok-branco);
-    padding: 2.5rem;
-    border-radius: 20px;
-    border: 1px solid var(--linha);
-    box-shadow: 0 2px 8px rgba(81, 35, 164, 0.06);
-  }
-
-  .col-card h3 {
-    font-size: 1.3rem;
+  .destaque-box h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
     color: var(--pok-roxo);
-    font-weight: 700;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.01em;
+  }
+
+  .destaque-box p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--texto-corpo);
+    max-width: 100%;
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 900px) {
+    .stats-strip { grid-template-columns: 1fr; gap: 12px; }
+    .destaque-box { flex-direction: column; gap: 1.1rem; padding: 1.5rem 1.4rem; }
+  }
+
+  .tabela-obs {
+    font-size: 11.5px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--texto-corpo);
+    margin-top: 1rem;
   }
 
   /* ==================== PLANOS ==================== */
@@ -734,7 +937,7 @@
     justify-content: center;
     color: var(--pok-branco);
     font-size: 22px;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: -0.5px;
     flex-shrink: 0;
   }
@@ -743,7 +946,7 @@
 
   .plano-label {
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--pok-roxo);
@@ -763,11 +966,12 @@
     color: var(--texto-corpo);
     line-height: 1.7;
     margin-bottom: 32px;
+    font-weight: 300;
   }
 
   .plano-descricao strong {
     color: var(--pok-roxo-escuro);
-    font-weight: 700;
+    font-weight: 500;
   }
 
   /* Tabelas */
@@ -784,7 +988,7 @@
   .valor-tabela thead th {
     background: var(--pok-lilas-suave);
     color: var(--pok-roxo);
-    font-weight: 700;
+    font-weight: 600;
     font-size: 11px;
     letter-spacing: 1.2px;
     text-transform: uppercase;
@@ -798,14 +1002,14 @@
   .valor-tabela tbody td {
     padding: 13px 16px;
     color: var(--vitru-preto);
-    font-weight: 500;
+    font-weight: 300;
     border-bottom: 1px solid var(--pok-lilas-suave);
   }
 
   .valor-tabela tbody tr:last-child td { border-bottom: none; }
 
   .valor-tabela tbody td:first-child {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--pok-roxo);
   }
 
@@ -821,7 +1025,7 @@
   }
 
   .valor-tabela tbody tr.valor-tabela-destaque td {
-    font-weight: 700;
+    font-weight: 600;
     color: var(--pok-roxo-escuro);
   }
 
@@ -853,11 +1057,6 @@
     height: 360px;
     background: radial-gradient(circle, rgba(228, 220, 247, 0.08) 0%, transparent 70%);
     border-radius: 50%;
-  }
-
-  .contato-section .section-tag {
-    background: rgba(228, 220, 247, 0.15);
-    color: var(--pok-lilas-bg);
   }
 
   .contato-section .section-title { color: var(--pok-branco); }
@@ -895,7 +1094,7 @@
 
   .contato-cargo {
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--pok-lilas-bg);
@@ -948,7 +1147,6 @@
     section { padding: 80px 48px; }
     .hero { padding: 80px 48px; }
     .features-grid { grid-template-columns: repeat(2, 1fr); }
-    #diferenciais .features-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 900px) {
@@ -970,7 +1168,6 @@
     .hero { padding: 96px 24px 64px; }
 
     .about-grid,
-    .two-col,
     .contato-grid,
     .planos-grid {
       grid-template-columns: 1fr;
@@ -992,10 +1189,8 @@
     .hero { padding: 88px 20px 56px; }
 
     .features-grid { grid-template-columns: 1fr; }
-    #diferenciais .features-grid { grid-template-columns: 1fr; }
     .cycle-grid { grid-template-columns: 1fr; }
 
-    .titulo-linha-unica { white-space: normal; }
 
     .hero h1 { font-size: 32px; letter-spacing: -1px; }
     .hero-subtitle { font-size: 14px; }
@@ -1025,7 +1220,6 @@
 
     .sidebar { width: 260px; padding: 24px 20px; }
 
-    .col-card { padding: 1.8rem 1.5rem; }
   }
 
   @media (max-width: 380px) {
@@ -1048,7 +1242,7 @@
 
 <!-- Mobile menu toggle -->
 <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open');document.body.classList.toggle('sidebar-aberta')" aria-label="Abrir menu" data-i18n-aria="menu_btn_label">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
 </button>
 
 <!-- ==================== SIDEBAR ==================== -->
@@ -1072,16 +1266,23 @@
   <ul class="nav-list">
     <li><a href="#home" class="active"><span class="nav-number">01</span><span data-i18n="menu_home">Apresentação</span></a></li>
     <li><a href="#sobre"><span class="nav-number">02</span><span data-i18n="menu_sobre">Sobre a POK</span></a></li>
-    <li><a href="#diferenciais"><span class="nav-number">03</span><span data-i18n="menu_diferenciais">Diferenciais</span></a></li>
-    <li><a href="#micro"><span class="nav-number">04</span><span data-i18n="menu_micro">Micro-credenciais</span></a></li>
-    <li><a href="#certificado"><span class="nav-number">05</span><span data-i18n="menu_certificado">O Certificado</span></a></li>
-    <li><a href="#recursos"><span class="nav-number">06</span><span data-i18n="menu_recursos">Recursos Premium</span></a></li>
+    <li><a href="#credenciais"><span class="nav-number">03</span><span data-i18n="menu_credenciais">Credenciais verificáveis</span></a></li>
+    <li><a href="#diploma"><span class="nav-number">04</span><span data-i18n="menu_diploma">Credencial + diploma</span></a></li>
+    <li><a href="#recursos"><span class="nav-number">05</span><span data-i18n="menu_recursos">Recursos Premium</span></a></li>
+    <li><a href="#estudantes"><span class="nav-number">06</span><span data-i18n="menu_estudantes">Estudantes e Egressos</span></a></li>
+    <li><a href="#instituicoes"><span class="nav-number">07</span><span data-i18n="menu_instituicoes">Instituições</span></a></li>
   </ul>
 
   <div class="nav-label" data-i18n="menu_grupo_comercial">Comercial</div>
   <ul class="nav-list">
-    <li><a href="#planos"><span class="nav-number">07</span><span data-i18n="menu_planos">Planos POK</span></a></li>
-    <li><a href="#contato"><span class="nav-number">08</span><span data-i18n="menu_contato">Fale Conosco</span></a></li>
+    <li>
+      <a href="#planos"><span class="nav-number">08</span><span data-i18n="menu_planos">Planos POK</span></a>
+      <ul class="nav-sublist">
+        <li><a href="#plano-creditos" data-i18n="menu_plano_creditos">Plano por créditos</a></li>
+        <li><a href="#plano-aluno" data-i18n="menu_plano_aluno">Plano por aluno</a></li>
+      </ul>
+    </li>
+    <li><a href="#contato"><span class="nav-number">09</span><span data-i18n="menu_contato">Fale Conosco</span></a></li>
   </ul>
 </aside>
 
@@ -1104,7 +1305,7 @@
 </svg>
       <span class="hero-eyebrow" data-i18n="hero_eyebrow">Proof of Knowledge</span>
       <h1 data-i18n-html="hero_h1">Credenciais digitais<br class="br-desktop"> verificáveis em <span class="accent">blockchain</span></h1>
-      <p class="hero-subtitle" data-i18n="hero_subtitle">A POK é a plataforma que transforma aprendizagens em evidências auditáveis: micro-credenciais, badges e certificados digitais com proveniência, anti-fraude e portabilidade. Uma camada de tecnologia que conecta instituições, alunos, profissionais e empregadores.</p>
+      <p class="hero-subtitle" data-i18n="hero_subtitle">A POK é a plataforma que transforma aprendizagens em evidências auditáveis: micro-credenciais, badges e credenciais digitais com proveniência, anti-fraude e portabilidade. Uma camada de tecnologia que conecta instituições, alunos, profissionais e empregadores.</p>
 
       <div class="hero-stats">
         <div class="hero-stat">
@@ -1131,7 +1332,6 @@
   <section id="sobre" class="sobre-pok-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag" data-i18n="sobre_tag">02 · Plataforma</span>
         <h2 class="section-title" data-i18n="sobre_titulo">Mais que uma certificação digital</h2>
         <p class="section-subtitle" data-i18n="sobre_sub">A POK (Proof of Knowledge) é uma plataforma que permite a instituições emitirem credenciais digitais seguras e verificáveis em blockchain.</p>
       </div>
@@ -1144,188 +1344,103 @@
     </div>
   </section>
 
-  <!-- ==================== DIFERENCIAIS ==================== -->
-  <section id="diferenciais">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag" data-i18n="dif_tag">03 · Plataforma</span>
-        <h2 class="section-title" data-i18n="dif_titulo">Diferenciais da plataforma</h2>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <h3 data-i18n="dif1_h3">Credenciais como NFTs</h3>
-          <p data-i18n="dif1_p">Certificados digitais únicos, imutáveis e visualizáveis em carteiras compatíveis com NFTs (Blockchain).</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <h3 data-i18n="dif2_h3">Open Badge 3.0 & Europass</h3>
-          <p data-i18n="dif2_p">Conformidade com padrões globais, assegurando interoperabilidade e reconhecimento internacional.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <h3 data-i18n="dif3_h3">Verificação Instantânea</h3>
-          <p data-i18n="dif3_p">Autenticidade validada diretamente na plataforma, sem intermediários.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          </div>
-          <h3 data-i18n="dif4_h3">Compartilhamento Simplificado</h3>
-          <p data-i18n="dif4_p">Facilidade para divulgar conquistas em redes profissionais como LinkedIn.</p>
-        </div>
-      </div>
-
-      <div class="section-header section-header-largo" style="margin-top: 4rem;">
-        <h2 class="section-title titulo-linha-unica" data-i18n="dif_resultados_titulo">Resultados tangíveis para sua instituição</h2>
-      </div>
-
-      <ul class="check-list">
-        <li>
-          <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div class="content">
-            <strong data-i18n="dif_res1_strong">Aumento da Credibilidade</strong>
-            <span data-i18n="dif_res1_span">Certificados verificáveis aumentam a confiança de empregadores e outras instituições.</span>
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div class="content">
-            <strong data-i18n="dif_res2_strong">Engajamento de Alunos e Profissionais</strong>
-            <span data-i18n="dif_res2_span">Reconhecimento tangível de conquistas motiva o contínuo desenvolvimento e reduz evasão.</span>
-          </div>
-        </li>
-        <li>
-          <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div class="content">
-            <strong data-i18n="dif_res3_strong">Eficiência Operacional</strong>
-            <span data-i18n="dif_res3_span">Automatização do processo de emissão e verificação de certificados, reduzindo custo e tempo.</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ==================== MICRO-CREDENCIAIS ==================== -->
-  <section id="micro" class="micro-section">
+  <!-- ============ CREDENCIAIS VERIFICAVEIS ============ -->
+  <section id="credenciais" class="micro-section">
     <div class="micro-content">
       <div class="section-header">
-        <span class="section-tag" data-i18n="micro_tag">04 · Plataforma</span>
-        <h2 class="section-title" data-i18n="micro_titulo">O que são micro-credenciais?</h2>
+        <h2 class="section-title" data-i18n="cred_titulo">Credenciais verificáveis</h2>
       </div>
 
-      <p class="micro-text" data-i18n-html="micro_p1"><strong>Micro-credenciais</strong> são certificações de aprendizagem focada, que comprovam o domínio de uma habilidade, competência ou conhecimento específico, geralmente conquistada em um curto período de tempo, por meio de cursos ou experiências educacionais mais flexíveis e modulares que as formações tradicionais.</p>
-      <p class="micro-text" data-i18n-html="micro_p2">Elas são pensadas para serem <strong>ágeis, aplicáveis e empilháveis</strong> – podem ser combinadas com outras para formar trajetórias de aprendizagem mais amplas – e normalmente estão vinculadas a <strong>resultados mensuráveis</strong> no mundo do trabalho.</p>
+      <p class="micro-text" data-i18n-html="cred_p1">Uma <strong>credencial verificável</strong> é o registro digital de uma conquista que carrega dentro de si a prova de que é autêntico: quem emitiu, para quem, quando e se continua válido. Vai além do nome do curso – descreve as competências desenvolvidas, os critérios usados para reconhecê-las e quem as atestou.</p>
+      <p class="micro-text" data-i18n-html="cred_p2">As <strong>micro-credenciais</strong> são a forma modular desse registro: ágeis, aplicáveis e <strong>empilháveis</strong> – podem ser combinadas para formar trilhas de aprendizagem mais amplas, reconhecendo competências ao longo de toda a jornada e não apenas no encerramento do curso.</p>
 
-      <div class="cycle-grid">
+      <div class="cycle-grid cycle-grid-compacto cycle-grid-4">
         <div class="cycle-card">
           <div class="cycle-card-header">
             <div class="cycle-num">01</div>
-            <h4 data-i18n="micro1_h4">Aprendizagem Contínua</h4>
+            <h4 data-i18n="cred_f1_h4">Emissor validado</h4>
           </div>
-          <p data-i18n="micro1_p">As atualizações de habilidades em tempo real são cruciais para o mercado atual.</p>
+          <p data-i18n="cred_f1_p">A instituição emissora é validada com seu domínio, garantindo que a credencial só possa ser assinada por quem tem autoridade para isso.</p>
         </div>
         <div class="cycle-card">
           <div class="cycle-card-header">
             <div class="cycle-num">02</div>
-            <h4 data-i18n="micro2_h4">Reduz Evasão</h4>
+            <h4 data-i18n="cred_f2_h4">Registro em blockchain</h4>
           </div>
-          <p data-i18n="micro2_p">Os estudantes buscam o aprendizado quando sua empregabilidade melhora.</p>
+          <p data-i18n="cred_f2_p">A POK registra a credencial em blockchain, em padrões Open Badge 3.0 e W3C Verifiable Credentials, tornando-a imutável e verificável sem intermediários.</p>
         </div>
         <div class="cycle-card">
           <div class="cycle-card-header">
             <div class="cycle-num">03</div>
-            <h4 data-i18n="micro3_h4">Interoperabilidade</h4>
+            <h4 data-i18n="cred_f3_h4">Envio criptografado</h4>
           </div>
-          <p data-i18n="micro3_p">Permite a transferência contínua de habilidades entre instituições.</p>
+          <p data-i18n="cred_f3_p">A credencial é enviada pela instituição de forma criptografada, com identidade visual própria e sem custo para o portador.</p>
         </div>
         <div class="cycle-card">
           <div class="cycle-card-header">
             <div class="cycle-num">04</div>
-            <h4 data-i18n="micro4_h4">Empregabilidade</h4>
+            <h4 data-i18n="cred_f4_h4">Aceite do portador</h4>
           </div>
-          <p data-i18n="micro4_p">As micro-credenciais aumentam a empregabilidade ao destacar habilidades específicas.</p>
-        </div>
-        <div class="cycle-card">
-          <div class="cycle-card-header">
-            <div class="cycle-num">05</div>
-            <h4 data-i18n="micro5_h4">Marketing Orgânico</h4>
-          </div>
-          <p data-i18n="micro5_p">Compartilhar conquistas aumenta a exposição da instituição de forma orgânica.</p>
-        </div>
-        <div class="cycle-card">
-          <div class="cycle-card-header">
-            <div class="cycle-num">06</div>
-            <h4 data-i18n="micro6_h4">Autenticidade Verificável</h4>
-          </div>
-          <p data-i18n="micro6_p">Registro em blockchain garante credenciais imutáveis e verificáveis sem intermediários.</p>
+          <p data-i18n="cred_f4_p">Ao aceitar, o portador passa a guardar a credencial em sua carteira digital e decide o que exibir e com quem compartilhar.</p>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ==================== O CERTIFICADO ==================== -->
-  <section id="certificado">
+  <!-- ============ CREDENCIAL + DIPLOMA ============ -->
+  <section id="diploma">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag" data-i18n="cert_tag">05 · Plataforma</span>
-        <h2 class="section-title" data-i18n="cert_titulo">O Certificado</h2>
-        <p class="section-subtitle" data-i18n="cert_sub">Autenticidade verificável em tempo real, garantida pela tecnologia blockchain.</p>
+        <h2 class="section-title" data-i18n="dip_titulo">Credencial + diploma</h2>
+        <p class="section-subtitle" data-i18n="dip_sub">As credenciais emitidas pela POK poderão ter valor de diploma digital, validadas pelo MEC – na prática, o mesmo documento que o egresso compartilha no LinkedIn passa a ser também o diploma dele, sem duplicidade de sistemas, de processos ou de fornecedores.</p>
       </div>
 
-      <div class="two-col">
-        <div class="col-card">
-          <h3 data-i18n="cert_col1_h3">Fluxo de Emissão</h3>
-          <ul class="check-list">
-            <li>
-              <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="content"><strong data-i18n="cert_col1_1s">Emissor validado</strong><span data-i18n="cert_col1_1p">A instituição emissora é validada com seu domínio.</span></div>
-            </li>
-            <li>
-              <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="content"><strong data-i18n="cert_col1_2s">Transformação em NFT</strong><span data-i18n="cert_col1_2p">A POK utiliza blockchain para transformar o certificado em um NFT.</span></div>
-            </li>
-            <li>
-              <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="content"><strong data-i18n="cert_col1_3s">Envio criptografado</strong><span data-i18n="cert_col1_3p">O certificado é enviado pela instituição de forma criptografada.</span></div>
-            </li>
-            <li>
-              <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="content"><strong data-i18n="cert_col1_4s">Validação do receptor</strong><span data-i18n="cert_col1_4p">Ao aceitar a credencial, o receptor valida o documento.</span></div>
-            </li>
-          </ul>
+      <div class="features-grid features-grid-2">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3 data-i18n="dip1_h3">Diploma digital – o registro que comprova a formação</h3>
+          <p data-i18n="dip1_p">Documento acadêmico de existência exclusivamente eletrônica, assinado com certificado ICP-Brasil e carimbo de tempo, nos padrões definidos pelo MEC. Responde à pergunta jurídica: esta pessoa concluiu este curso nesta instituição.</p>
         </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></svg>
+          </div>
+          <h3 data-i18n="dip2_h3">Credencial verificável – o registro que comunica competências</h3>
+          <p data-i18n="dip2_p">Registro em padrões abertos que descreve o que a pessoa desenvolveu ao longo do curso, em campos que sistemas de recrutamento conseguem ler. Responde à pergunta do mercado: o que esta pessoa sabe fazer.</p>
+        </div>
+      </div>
 
-        <div class="col-card">
-          <h3 data-i18n="cert_col2_h3">Customize do seu jeito</h3>
-          <ul class="check-list">
-            <li>
-              <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="content"><strong data-i18n="cert_col2_1s">Informações institucionais</strong><span data-i18n="cert_col2_1p">Adicione dados da sua instituição à landing page do certificado.</span></div>
-            </li>
-            <li>
-              <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="content"><strong data-i18n="cert_col2_2s">Trilhas e eventos</strong><span data-i18n="cert_col2_2p">Evidencie outras trilhas, cursos e divulgue eventos.</span></div>
-            </li>
-            <li>
-              <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="content"><strong data-i18n="cert_col2_3s">Identidade visual</strong><span data-i18n="cert_col2_3p">Customize banners, logotipo, cores, cabeçalho, links e vídeo.</span></div>
-            </li>
-            <li>
-              <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-              <div class="content"><strong data-i18n="cert_col2_4s">Marketing orgânico</strong><span data-i18n="cert_col2_4p">Crie um ciclo de exposição contínua para a instituição emissora.</span></div>
-            </li>
-          </ul>
+      <div class="features-grid features-grid-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <h3 data-i18n="dip3_h3">Um serviço no lugar de dois</h3>
+          <p data-i18n="dip3_p">A instituição deixa de manter uma solução para emitir diplomas e outra para emitir credenciais. Emissão, registro e compartilhamento acontecem no mesmo ambiente.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3 data-i18n="dip4_h3">Diploma que mostra competências</h3>
+          <p data-i18n="dip4_p">O aluno recebe seu diploma em formato de credencial verificável, com destaque para as competências adquiridas ao longo da graduação, e não apenas para o título obtido.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3 data-i18n="dip5_h3">Empregabilidade a partir do diploma</h3>
+          <p data-i18n="dip5_p">Como o diploma passa a circular como credencial, os dados de empregabilidade dos egressos ficam disponíveis na conta da instituição a partir da emissão regular.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          </div>
+          <h3 data-i18n="dip6_h3">Trilhas formativas completas</h3>
+          <p data-i18n="dip6_p">A instituição pode reconhecer competências ao longo de toda a jornada do aluno, com credenciais intermediárias, e fechar a trilha com a credencial final equivalente ao diploma.</p>
         </div>
       </div>
     </div>
@@ -1335,52 +1450,246 @@
   <section id="recursos">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag" data-i18n="rec_tag">06 · Plataforma</span>
         <h2 class="section-title" data-i18n="rec_titulo">Métricas e integrações</h2>
       </div>
 
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
           </div>
           <h3 data-i18n="rec1_h3">Dashboard de Métricas</h3>
-          <p data-i18n="rec1_p">Meça compartilhamentos e visualizações dos certificados, trazendo informações valiosas para o marketing da instituição.</p>
+          <p data-i18n="rec1_p">Meça compartilhamentos e visualizações das credenciais, trazendo informações valiosas para o marketing da instituição.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </div>
           <h3 data-i18n="rec2_h3">CRM Integrado</h3>
-          <p data-i18n="rec2_p">Ferramenta própria de CRM, com envio e re-envio de certificados em apenas um clique.</p>
+          <p data-i18n="rec2_p">Ferramenta própria de CRM, com envio e re-envio de credenciais em apenas um clique.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <h3 data-i18n="rec3_h3">Emails White Label</h3>
           <p data-i18n="rec3_p">Personalize texto, imagens e cores nos emails enviados, mantendo a identidade da sua instituição.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           </div>
           <h3 data-i18n="rec4_h3">Integrações Nativas</h3>
           <p data-i18n="rec4_p">Integração nativa com plataformas de aprendizagem amplamente utilizadas no mercado, sem custo adicional.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
           </div>
           <h3 data-i18n="rec5_h3">Rotas de Aprendizagem</h3>
-          <p data-i18n="rec5_p">Conecte micro-credenciais a um certificado-mãe, trazendo inteligência para certificações por módulos e experiências.</p>
+          <p data-i18n="rec5_p">Conecte micro-credenciais a uma credencial-mãe, trazendo inteligência para reconhecimento por módulos e experiências.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <h3 data-i18n="rec6_h3">Empregabilidade</h3>
-          <p data-i18n="rec6_p">Métricas sobre compartilhamento e empregabilidade dos estudantes que publicaram certificados no LinkedIn.</p>
+          <p data-i18n="rec6_p">Métricas sobre compartilhamento e empregabilidade dos estudantes que publicaram credenciais no LinkedIn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BENEFICIOS PARA ESTUDANTES E EGRESSOS ============ -->
+  <section id="estudantes" class="micro-section">
+    <div class="micro-content">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="est_titulo">Benefícios para estudantes e egressos</h2>
+      </div>
+
+      <p class="micro-text" data-i18n-html="est_p1">Para quem recebe, a credencial verificável muda a natureza do documento: em vez de um comprovante guardado em uma pasta, ela se torna uma <strong>prova ativa de competência</strong> – que circula, é verificada por terceiros e acompanha a pessoa ao longo da carreira.</p>
+      <p class="micro-text" data-i18n-html="est_p2">É o <strong>portador</strong> quem guarda a credencial e decide o que exibir, quando compartilhar e com quem. A instituição emite, o mercado verifica, a pessoa controla.</p>
+
+      <div class="cycle-grid">
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">01</div>
+            <h4 data-i18n="est1_h4">Visibilidade no LinkedIn</h4>
+          </div>
+          <p data-i18n="est1_p">A credencial entra na seção Licenças e Certificações e também pode ser publicada como post. O perfil deixa de ser um currículo e passa a mostrar evidências verificáveis da trajetória.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">02</div>
+            <h4 data-i18n="est2_h4">Carteira digital POK Holder</h4>
+          </div>
+          <p data-i18n="est2_p">Credenciais de diferentes instituições reunidas em um só ambiente, na web e em aplicativo. Cada credencial pode ser pública ou privada – quem decide é o portador.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">03</div>
+            <h4 data-i18n="est3_h4">Uma credencial que é sua</h4>
+          </div>
+          <p data-i18n="est3_p">Construída sobre Open Badge 3.0 e Europass, com URL pública de verificação. Não fica presa ao portal da instituição nem a um único fornecedor.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">04</div>
+            <h4 data-i18n="est4_h4">Competências explicitadas</h4>
+          </div>
+          <p data-i18n="est4_p">Além do título obtido, a credencial descreve o que a pessoa sabe fazer, em campos estruturados que sistemas de recrutamento conseguem ler automaticamente.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">05</div>
+            <h4 data-i18n="est5_h4">Verificação em segundos</h4>
+          </div>
+          <p data-i18n="est5_p">Qualquer recrutador confirma a conquista com um clique, no Brasil ou no exterior, sem depender de contato com a secretaria acadêmica.</p>
+        </div>
+        <div class="cycle-card">
+          <div class="cycle-card-header">
+            <div class="cycle-num">06</div>
+            <h4 data-i18n="est6_h4">Validade permanente</h4>
+          </div>
+          <p data-i18n="est6_p">A credencial segue verificável ao longo do tempo e acompanha o portador mesmo que ele mude de plataforma ou de carteira digital.</p>
+        </div>
+      </div>
+
+      <div class="stats-titulo" data-i18n="est_stats_titulo">Por que a visibilidade profissional importa</div>
+      <div class="stats-strip">
+        <div class="stat-box">
+          <div class="num">87%</div>
+          <div class="label" data-i18n="est_stat1">dos recrutadores utilizam o LinkedIn para encontrar candidatos</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">33×</div>
+          <div class="label" data-i18n="est_stat2">mais contatos de recrutadores ao listar habilidades verificadas</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">21×</div>
+          <div class="label" data-i18n="est_stat3">mais visualizações em perfis completos, com foto e credenciais</div>
+        </div>
+      </div>
+      <p class="stats-fonte" data-i18n="est_stats_fonte">Fontes: Jobscan (2024) · ResumeGo / Fortune (2019) · LinkedIn / CNBC (2023)</p>
+    </div>
+  </section>
+
+  <!-- ============ BENEFICIOS PARA AS INSTITUICOES ============ -->
+  <section id="instituicoes" class="instituicoes-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="inst_titulo">Benefícios para as instituições</h2>
+        <p class="section-subtitle" data-i18n="inst_sub">A credencial verificável deixa de ser um item de encerramento do curso e passa a ser um canal permanente: mantém o vínculo com o egresso, leva a marca ao mercado e devolve dados sobre o que aconteceu depois da formatura.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3 data-i18n="inst1_h3">Credencial e diploma em um produto só</h3>
+          <p data-i18n="inst1_p">A mesma emissão atende à obrigação legal do diploma digital e à comunicação de competências ao mercado. Um fornecedor, um fluxo, um documento.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3 data-i18n="inst2_h3">Dados de empregabilidade</h3>
+          <p data-i18n="inst2_p">A partir do compartilhamento das credenciais, a instituição acompanha na própria conta a trajetória dos egressos – novas posições, promoções e mudanças de carreira – com atualização contínua.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </div>
+          <h3 data-i18n="inst3_h3">Marketing institucional orgânico</h3>
+          <p data-i18n="inst3_p">Cada credencial compartilhada leva a marca da instituição ao feed e ao perfil do egresso, com verificação pública. É alcance qualificado, gerado por quem já se formou.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 data-i18n="inst4_h3">Reconexão com a base de egressos</h3>
+          <p data-i18n="inst4_p">A campanha reabre o contato com quem já se formou e devolve motivo de retorno – atualização cadastral, novas ofertas de pós-graduação e educação continuada.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <h3 data-i18n="inst5_h3">Integridade e fim da validação manual</h3>
+          <p data-i18n="inst5_p">A verificação acontece de forma pública e automática. Empresas e outras instituições deixam de acionar a secretaria acadêmica para confirmar documentos, e a falsificação perde espaço.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="16" y2="7"/><line x1="9" y1="11" x2="16" y2="11"/></svg>
+          </div>
+          <h3 data-i18n="inst6_h3">Competências explicitadas no currículo</h3>
+          <p data-i18n="inst6_p">Descrever competências em campos estruturados aproxima a emissão das Diretrizes Curriculares por competências e gera insumo concreto para revisão de PPC e processos de avaliação.</p>
+        </div>
+      </div>
+
+      <div class="painel-bloco">
+        <div class="painel-header">
+          <h3 class="sub-titulo" data-i18n="inst_painel_titulo">Painel de empregabilidade</h3>
+          <p class="painel-intro" data-i18n="inst_painel_sub">Os dados de empregabilidade chegam à instituição em um painel interativo, dentro da própria conta na plataforma POK. A leitura é construída a partir dos perfis públicos dos portadores que compartilharam suas credenciais, relidos periodicamente para detectar novos empregos e promoções, e pode ser exportada em CSV.</p>
+        </div>
+
+        <div class="painel-filtros">
+          <span class="filtro-label" data-i18n="inst_filtros_label">Recortes disponíveis</span>
+          <div class="filtro-chips">
+            <span class="chip" data-i18n="inst_filtro1">Trilha</span>
+            <span class="chip" data-i18n="inst_filtro2">Curso</span>
+            <span class="chip" data-i18n="inst_filtro3">Competência</span>
+            <span class="chip" data-i18n="inst_filtro4">Ano de emissão</span>
+            <span class="chip" data-i18n="inst_filtro5">Mudança profissional</span>
+            <span class="chip" data-i18n="inst_filtro6">Modelo de trabalho</span>
+            <span class="chip" data-i18n="inst_filtro7">Localização</span>
+          </div>
+        </div>
+
+        <div class="painel-grid">
+          <div class="painel-card">
+            <h4 data-i18n="inst_pa1_h4">Visão executiva</h4>
+            <p data-i18n="inst_pa1_p">Volume de credenciais no recorte, taxa de mobilidade profissional, novos empregos, promoções e tempo médio até a mudança.</p>
+          </div>
+          <div class="painel-card">
+            <h4 data-i18n="inst_pa2_h4">Jornada profissional</h4>
+            <p data-i18n="inst_pa2_p">Linha do tempo acumulada das transições em janelas de 60 a 365 dias, com empresas de destino e cargos mais frequentes.</p>
+          </div>
+          <div class="painel-card">
+            <h4 data-i18n="inst_pa3_h4">Cursos e competências</h4>
+            <p data-i18n="inst_pa3_p">Comparação de mobilidade entre cursos e competências reconhecidas, sempre com o tamanho da amostra visível para leitura honesta do dado.</p>
+          </div>
+          <div class="painel-card">
+            <h4 data-i18n="inst_pa4_h4">Portadores individuais</h4>
+            <p data-i18n="inst_pa4_p">Do agregado ao caso a caso: trilha de origem, competência reconhecida, cargo detectado, tipo de mudança e tempo até ela acontecer.</p>
+          </div>
+          <div class="painel-card">
+            <h4 data-i18n="inst_pa5_h4">Empreendedorismo após a credencial</h4>
+            <p data-i18n="inst_pa5_p">Proporção de portadores que abriram MEI ou se tornaram sócios de empresa depois de receber a credencial.</p>
+          </div>
+          <div class="painel-card">
+            <h4 data-i18n="inst_pa6_h4">Mobilidade geográfica</h4>
+            <p data-i18n="inst_pa6_p">Proporção da base que mudou de município ou estado, movimento frequentemente associado a oportunidades ascendentes.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="destaque-box">
+        <div class="destaque-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="11" width="16" height="21" rx="2.5"/>
+            <path d="M8.5 17.5h7"/><path d="M8.5 22h5"/><path d="M8.5 26.5h7"/>
+            <path d="M23.5 21.5h7.5"/><path d="M28 18.5l3.5 3-3.5 3"/>
+            <circle cx="37.5" cy="27" r="7"/>
+            <path d="M34 33v9l3.5-2.4L41 42v-9"/>
+            <path d="M35.4 27.1l1.7 1.7 3.1-3.4"/>
+          </svg>
+        </div>
+        <div class="destaque-conteudo">
+          <span class="destaque-eyebrow" data-i18n="inst_2027_eyebrow">A partir de 2027</span>
+          <h3 data-i18n="inst_2027_h3">Conversor de diploma digital em credencial verificável</h3>
+          <p data-i18n="inst_2027_p">A POK irá lançar uma ferramenta que transforma diplomas digitais já emitidos em credenciais verificáveis. A instituição poderá oferecê-la como serviço aos seus alunos e egressos, sem reemitir documentos nem alterar o que já está registrado.</p>
         </div>
       </div>
     </div>
@@ -1390,15 +1699,14 @@
   <section id="planos" class="planos-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag" data-i18n="planos_tag">07 · Comercial</span>
         <h2 class="section-title" data-i18n="planos_titulo">Planos e Valores</h2>
-        <p class="section-subtitle" data-i18n="planos_sub">A POK trabalha com dois modelos comerciais que se adaptam ao volume e ao perfil de uso: compra de créditos para emissão de certificados ou cobrança mensal por aluno ativo na plataforma.</p>
+        <p class="section-subtitle" data-i18n="planos_sub">A POK trabalha com dois modelos comerciais que se adaptam ao volume e ao perfil de uso: compra de créditos para emissão de credenciais ou cobrança mensal por aluno ativo na plataforma.</p>
       </div>
 
       <div class="planos-grid">
 
         <!-- PLANO 1 -->
-        <div class="plano-card">
+        <div class="plano-card" id="plano-creditos">
           <div class="plano-header">
             <div class="plano-numero">01</div>
             <div class="plano-titulo-bloco">
@@ -1407,7 +1715,7 @@
             </div>
           </div>
 
-          <p class="plano-descricao" data-i18n-html="plano1_desc">A instituição adquire antecipadamente um pacote de créditos – cada crédito corresponde à emissão de <strong>um certificado em blockchain</strong>. O valor unitário cai conforme o volume contratado, permitindo ganho de escala. Indicado para <strong>projetos específicos, programas piloto ou iniciativas com volumes definidos</strong>.</p>
+          <p class="plano-descricao" data-i18n-html="plano1_desc">A instituição adquire antecipadamente um pacote de créditos – cada crédito corresponde à emissão de <strong>uma credencial em blockchain</strong>. O valor unitário cai conforme o volume contratado, permitindo ganho de escala. Indicado para <strong>projetos específicos, programas piloto ou iniciativas com volumes definidos</strong>.</p>
 
           <table class="valor-tabela">
             <thead>
@@ -1426,10 +1734,12 @@
               <tr class="valor-tabela-destaque"><td>100.000</td><td data-i18n="t1_p6">R$ 4,00</td><td data-i18n="t1_t6">R$ 400.000</td></tr>
             </tbody>
           </table>
+
+          <p class="tabela-obs" data-i18n="tabela_obs">Credenciais verificáveis com valor de diploma digital MEC possuem outros valores, a consultar.</p>
         </div>
 
         <!-- PLANO 2 -->
-        <div class="plano-card">
+        <div class="plano-card" id="plano-aluno">
           <div class="plano-header">
             <div class="plano-numero">02</div>
             <div class="plano-titulo-bloco">
@@ -1438,7 +1748,7 @@
             </div>
           </div>
 
-          <p class="plano-descricao" data-i18n-html="plano2_desc">Cobrança mensal calculada sobre o <strong>número de alunos ativos</strong> na plataforma. Cada aluno pode receber até <strong>10 certificados por ano</strong>, independentemente da distribuição ao longo do período. Indicado para <strong>adoção contínua e integrada</strong> à experiência educacional.</p>
+          <p class="plano-descricao" data-i18n-html="plano2_desc">Cobrança mensal calculada sobre o <strong>número de alunos ativos</strong> na plataforma. Cada aluno pode receber até <strong>10 credenciais por ano</strong>, independentemente da distribuição ao longo do período. Indicado para <strong>adoção contínua e integrada</strong> à experiência educacional.</p>
 
           <table class="valor-tabela">
             <thead>
@@ -1457,6 +1767,8 @@
               <tr class="valor-tabela-destaque"><td>100.000</td><td data-i18n="t2_p6">R$ 2,80</td><td data-i18n="t2_t6">R$ 280.000</td></tr>
             </tbody>
           </table>
+
+          <p class="tabela-obs" data-i18n="tabela_obs">Credenciais verificáveis com valor de diploma digital MEC possuem outros valores, a consultar.</p>
         </div>
       </div>
     </div>
@@ -1466,7 +1778,6 @@
   <section id="contato" class="contato-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag" data-i18n="cont_tag">08 · Comercial</span>
         <h2 class="section-title" data-i18n="cont_titulo">Fale Conosco</h2>
       </div>
 
@@ -1492,7 +1803,7 @@
 <script>
   // Highlight nav item on scroll
   const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-list a');
+  const navLinks = document.querySelectorAll('.nav-list > li > a');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1519,11 +1830,14 @@
     "menu_grupo_comercial": { "pt": "Comercial", "es": "Comercial" },
     "menu_home": { "pt": "Apresentação", "es": "Presentación" },
     "menu_sobre": { "pt": "Sobre a POK", "es": "Sobre POK" },
-    "menu_diferenciais": { "pt": "Diferenciais", "es": "Diferenciales" },
-    "menu_micro": { "pt": "Micro-credenciais", "es": "Microcredenciales" },
-    "menu_certificado": { "pt": "O Certificado", "es": "El Certificado" },
+    "menu_credenciais": { "pt": "Credenciais verificáveis", "es": "Credenciales verificables" },
+    "menu_diploma": { "pt": "Credencial + diploma", "es": "Credencial + diploma" },
     "menu_recursos": { "pt": "Recursos Premium", "es": "Recursos Premium" },
+    "menu_estudantes": { "pt": "Estudantes e Egressos", "es": "Estudiantes y Egresados" },
+    "menu_instituicoes": { "pt": "Instituições", "es": "Instituciones" },
     "menu_planos": { "pt": "Planos POK", "es": "Planes POK" },
+    "menu_plano_creditos": { "pt": "Plano por créditos", "es": "Plan por créditos" },
+    "menu_plano_aluno": { "pt": "Plano por aluno", "es": "Plan por estudiante" },
     "menu_contato": { "pt": "Fale Conosco", "es": "Contáctenos" },
 
     "hero_eyebrow": { "pt": "Proof of Knowledge", "es": "Proof of Knowledge" },
@@ -1532,15 +1846,14 @@
       "es": "Credenciales digitales<br class=\"br-desktop\"> verificables en <span class=\"accent\">blockchain</span>"
     },
     "hero_subtitle": {
-      "pt": "A POK é a plataforma que transforma aprendizagens em evidências auditáveis: micro-credenciais, badges e certificados digitais com proveniência, anti-fraude e portabilidade. Uma camada de tecnologia que conecta instituições, alunos, profissionais e empregadores.",
-      "es": "POK es la plataforma que transforma aprendizajes en evidencias auditables: microcredenciales, badges y certificados digitales con trazabilidad, antifraude y portabilidad. Una capa de tecnología que conecta instituciones, estudiantes, profesionales y empleadores."
+      "pt": "A POK é a plataforma que transforma aprendizagens em evidências auditáveis: micro-credenciais, badges e credenciais digitais com proveniência, anti-fraude e portabilidade. Uma camada de tecnologia que conecta instituições, alunos, profissionais e empregadores.",
+      "es": "POK es la plataforma que transforma aprendizajes en evidencias auditables: microcredenciales, badges y credenciales digitales con trazabilidad, antifraude y portabilidad. Una capa de tecnología que conecta instituciones, estudiantes, profesionales y empleadores."
     },
     "hero_stat1": { "pt": "Instituições", "es": "Instituciones" },
     "hero_stat2": { "pt": "Países", "es": "Países" },
     "hero_stat3": { "pt": "Verificável", "es": "Verificable" },
     "hero_stat4": { "pt": "Blockchain", "es": "Blockchain" },
 
-    "sobre_tag": { "pt": "02 · Plataforma", "es": "02 · Plataforma" },
     "sobre_titulo": { "pt": "Mais que uma certificação digital", "es": "Más que una certificación digital" },
     "sobre_sub": {
       "pt": "A POK (Proof of Knowledge) é uma plataforma que permite a instituições emitirem credenciais digitais seguras e verificáveis em blockchain.",
@@ -1551,89 +1864,228 @@
       "es": "Credenciales registradas como <strong>NFTs</strong> garantizan autenticidad y fácil verificación, fortaleciendo la reputación institucional en el ecosistema educativo y productivo. POK proporciona una herramienta de gestión orientada por <strong>resultados</strong>, reconocimiento de saberes y valorización de los estudiantes como protagonistas de sus trayectorias formativas."
     },
 
-    "dif_tag": { "pt": "03 · Plataforma", "es": "03 · Plataforma" },
-    "dif_titulo": { "pt": "Diferenciais da plataforma", "es": "Diferenciales de la plataforma" },
-    "dif1_h3": { "pt": "Credenciais como NFTs", "es": "Credenciales como NFTs" },
-    "dif1_p": { "pt": "Certificados digitais únicos, imutáveis e visualizáveis em carteiras compatíveis com NFTs (Blockchain).", "es": "Certificados digitales únicos, inmutables y visibles en wallets compatibles con NFTs (Blockchain)." },
-    "dif2_h3": { "pt": "Open Badge 3.0 & Europass", "es": "Open Badge 3.0 & Europass" },
-    "dif2_p": { "pt": "Conformidade com padrões globais, assegurando interoperabilidade e reconhecimento internacional.", "es": "Conformidad con estándares globales, asegurando interoperabilidad y reconocimiento internacional." },
-    "dif3_h3": { "pt": "Verificação Instantânea", "es": "Verificación Instantánea" },
-    "dif3_p": { "pt": "Autenticidade validada diretamente na plataforma, sem intermediários.", "es": "Autenticidad validada directamente en la plataforma, sin intermediarios." },
-    "dif4_h3": { "pt": "Compartilhamento Simplificado", "es": "Compartición Simplificada" },
-    "dif4_p": { "pt": "Facilidade para divulgar conquistas em redes profissionais como LinkedIn.", "es": "Facilidad para difundir logros en redes profesionales como LinkedIn." },
-    "dif_resultados_titulo": { "pt": "Resultados tangíveis para sua instituição", "es": "Resultados tangibles para su institución" },
-    "dif_res1_strong": { "pt": "Aumento da Credibilidade", "es": "Aumento de la Credibilidad" },
-    "dif_res1_span": { "pt": "Certificados verificáveis aumentam a confiança de empregadores e outras instituições.", "es": "Los certificados verificables aumentan la confianza de empleadores y otras instituciones." },
-    "dif_res2_strong": { "pt": "Engajamento de Alunos e Profissionais", "es": "Compromiso de Estudiantes y Profesionales" },
-    "dif_res2_span": { "pt": "Reconhecimento tangível de conquistas motiva o contínuo desenvolvimento e reduz evasão.", "es": "El reconocimiento tangible de los logros motiva el desarrollo continuo y reduce la deserción." },
-    "dif_res3_strong": { "pt": "Eficiência Operacional", "es": "Eficiencia Operativa" },
-    "dif_res3_span": { "pt": "Automatização do processo de emissão e verificação de certificados, reduzindo custo e tempo.", "es": "Automatización del proceso de emisión y verificación de certificados, reduciendo costo y tiempo." },
 
-    "micro_tag": { "pt": "04 · Plataforma", "es": "04 · Plataforma" },
-    "micro_titulo": { "pt": "O que são micro-credenciais?", "es": "¿Qué son las microcredenciales?" },
-    "micro_p1": {
-      "pt": "<strong>Micro-credenciais</strong> são certificações de aprendizagem focada, que comprovam o domínio de uma habilidade, competência ou conhecimento específico, geralmente conquistada em um curto período de tempo, por meio de cursos ou experiências educacionais mais flexíveis e modulares que as formações tradicionais.",
-      "es": "Las <strong>microcredenciales</strong> son certificaciones de aprendizaje focalizado, que comprueban el dominio de una habilidad, competencia o conocimiento específico, generalmente alcanzado en un corto período de tiempo, mediante cursos o experiencias educativas más flexibles y modulares que las formaciones tradicionales."
+
+
+    "cred_titulo": { "pt": "Credenciais verificáveis", "es": "Credenciales verificables" },
+    "cred_p1": {
+      "pt": "Uma <strong>credencial verificável</strong> é o registro digital de uma conquista que carrega dentro de si a prova de que é autêntico: quem emitiu, para quem, quando e se continua válido. Vai além do nome do curso – descreve as competências desenvolvidas, os critérios usados para reconhecê-las e quem as atestou.",
+      "es": "Una <strong>credencial verificable</strong> es el registro digital de un logro que lleva dentro de sí la prueba de que es auténtico: quién emitió, para quién, cuándo y si sigue vigente. Va más allá del nombre del curso – describe las competencias desarrolladas, los criterios usados para reconocerlas y quién las certificó."
     },
-    "micro_p2": {
-      "pt": "Elas são pensadas para serem <strong>ágeis, aplicáveis e empilháveis</strong> – podem ser combinadas com outras para formar trajetórias de aprendizagem mais amplas – e normalmente estão vinculadas a <strong>resultados mensuráveis</strong> no mundo do trabalho.",
-      "es": "Están diseñadas para ser <strong>ágiles, aplicables y apilables</strong> – pueden combinarse con otras para formar trayectorias de aprendizaje más amplias – y normalmente están vinculadas a <strong>resultados medibles</strong> en el mundo del trabajo."
+    "cred_p2": {
+      "pt": "As <strong>micro-credenciais</strong> são a forma modular desse registro: ágeis, aplicáveis e <strong>empilháveis</strong> – podem ser combinadas para formar trilhas de aprendizagem mais amplas, reconhecendo competências ao longo de toda a jornada e não apenas no encerramento do curso.",
+      "es": "Las <strong>microcredenciales</strong> son la forma modular de ese registro: ágiles, aplicables y <strong>apilables</strong> – pueden combinarse para formar rutas de aprendizaje más amplias, reconociendo competencias a lo largo de todo el recorrido y no solo al cierre del curso."
     },
-    "micro1_h4": { "pt": "Aprendizagem Contínua", "es": "Aprendizaje Continuo" },
-    "micro1_p": { "pt": "As atualizações de habilidades em tempo real são cruciais para o mercado atual.", "es": "Las actualizaciones de habilidades en tiempo real son cruciales para el mercado actual." },
-    "micro2_h4": { "pt": "Reduz Evasão", "es": "Reduce la Deserción" },
-    "micro2_p": { "pt": "Os estudantes buscam o aprendizado quando sua empregabilidade melhora.", "es": "Los estudiantes buscan el aprendizaje cuando su empleabilidad mejora." },
-    "micro3_h4": { "pt": "Interoperabilidade", "es": "Interoperabilidad" },
-    "micro3_p": { "pt": "Permite a transferência contínua de habilidades entre instituições.", "es": "Permite la transferencia continua de habilidades entre instituciones." },
-    "micro4_h4": { "pt": "Empregabilidade", "es": "Empleabilidad" },
-    "micro4_p": { "pt": "As micro-credenciais aumentam a empregabilidade ao destacar habilidades específicas.", "es": "Las microcredenciales aumentan la empleabilidad al destacar habilidades específicas." },
-    "micro5_h4": { "pt": "Marketing Orgânico", "es": "Marketing Orgánico" },
-    "micro5_p": { "pt": "Compartilhar conquistas aumenta a exposição da instituição de forma orgânica.", "es": "Compartir logros aumenta la exposición de la institución de forma orgánica." },
-    "micro6_h4": { "pt": "Autenticidade Verificável", "es": "Autenticidad Verificable" },
-    "micro6_p": { "pt": "Registro em blockchain garante credenciais imutáveis e verificáveis sem intermediários.", "es": "El registro en blockchain garantiza credenciales inmutables y verificables sin intermediarios." },
+    "cred_f1_h4": { "pt": "Emissor validado", "es": "Emisor validado" },
+    "cred_f1_p": {
+      "pt": "A instituição emissora é validada com seu domínio, garantindo que a credencial só possa ser assinada por quem tem autoridade para isso.",
+      "es": "La institución emisora se valida con su dominio, garantizando que la credencial solo pueda ser firmada por quien tiene autoridad para hacerlo."
+    },
+    "cred_f2_h4": { "pt": "Registro em blockchain", "es": "Registro en blockchain" },
+    "cred_f2_p": {
+      "pt": "A POK registra a credencial em blockchain, em padrões Open Badge 3.0 e W3C Verifiable Credentials, tornando-a imutável e verificável sem intermediários.",
+      "es": "POK registra la credencial en blockchain, en estándares Open Badge 3.0 y W3C Verifiable Credentials, volviéndola inmutable y verificable sin intermediarios."
+    },
+    "cred_f3_h4": { "pt": "Envio criptografado", "es": "Envío cifrado" },
+    "cred_f3_p": {
+      "pt": "A credencial é enviada pela instituição de forma criptografada, com identidade visual própria e sem custo para o portador.",
+      "es": "La credencial es enviada por la institución de forma cifrada, con identidad visual propia y sin costo para el portador."
+    },
+    "cred_f4_h4": { "pt": "Aceite do portador", "es": "Aceptación del portador" },
+    "cred_f4_p": {
+      "pt": "Ao aceitar, o portador passa a guardar a credencial em sua carteira digital e decide o que exibir e com quem compartilhar.",
+      "es": "Al aceptarla, el portador guarda la credencial en su billetera digital y decide qué mostrar y con quién compartirla."
+    },
 
-    "cert_tag": { "pt": "05 · Plataforma", "es": "05 · Plataforma" },
-    "cert_titulo": { "pt": "O Certificado", "es": "El Certificado" },
-    "cert_sub": { "pt": "Autenticidade verificável em tempo real, garantida pela tecnologia blockchain.", "es": "Autenticidad verificable en tiempo real, garantizada por la tecnología blockchain." },
-    "cert_col1_h3": { "pt": "Fluxo de Emissão", "es": "Flujo de Emisión" },
-    "cert_col1_1s": { "pt": "Emissor validado", "es": "Emisor validado" },
-    "cert_col1_1p": { "pt": "A instituição emissora é validada com seu domínio.", "es": "La institución emisora es validada con su dominio." },
-    "cert_col1_2s": { "pt": "Transformação em NFT", "es": "Transformación en NFT" },
-    "cert_col1_2p": { "pt": "A POK utiliza blockchain para transformar o certificado em um NFT.", "es": "POK utiliza blockchain para transformar el certificado en un NFT." },
-    "cert_col1_3s": { "pt": "Envio criptografado", "es": "Envío encriptado" },
-    "cert_col1_3p": { "pt": "O certificado é enviado pela instituição de forma criptografada.", "es": "El certificado es enviado por la institución de forma encriptada." },
-    "cert_col1_4s": { "pt": "Validação do receptor", "es": "Validación del receptor" },
-    "cert_col1_4p": { "pt": "Ao aceitar a credencial, o receptor valida o documento.", "es": "Al aceptar la credencial, el receptor valida el documento." },
-    "cert_col2_h3": { "pt": "Customize do seu jeito", "es": "Personalice a su manera" },
-    "cert_col2_1s": { "pt": "Informações institucionais", "es": "Información institucional" },
-    "cert_col2_1p": { "pt": "Adicione dados da sua instituição à landing page do certificado.", "es": "Agregue datos de su institución a la landing page del certificado." },
-    "cert_col2_2s": { "pt": "Trilhas e eventos", "es": "Itinerarios y eventos" },
-    "cert_col2_2p": { "pt": "Evidencie outras trilhas, cursos e divulgue eventos.", "es": "Evidencie otros itinerarios, cursos y difunda eventos." },
-    "cert_col2_3s": { "pt": "Identidade visual", "es": "Identidad visual" },
-    "cert_col2_3p": { "pt": "Customize banners, logotipo, cores, cabeçalho, links e vídeo.", "es": "Personalice banners, logotipo, colores, encabezado, enlaces y video." },
-    "cert_col2_4s": { "pt": "Marketing orgânico", "es": "Marketing orgánico" },
-    "cert_col2_4p": { "pt": "Crie um ciclo de exposição contínua para a instituição emissora.", "es": "Cree un ciclo de exposición continua para la institución emisora." },
+    "dip_titulo": { "pt": "Credencial + diploma", "es": "Credencial + diploma" },
+    "dip_sub": {
+      "pt": "As credenciais emitidas pela POK poderão ter valor de diploma digital, validadas pelo MEC – na prática, o mesmo documento que o egresso compartilha no LinkedIn passa a ser também o diploma dele, sem duplicidade de sistemas, de processos ou de fornecedores.",
+      "es": "Las credenciales emitidas por POK podrán tener valor de diploma digital, validadas por el MEC – en la práctica, el mismo documento que el egresado comparte en LinkedIn pasa a ser también su diploma, sin duplicidad de sistemas, de procesos ni de proveedores."
+    },
+    "dip1_h3": { "pt": "Diploma digital – o registro que comprova a formação", "es": "Diploma digital – el registro que comprueba la formación" },
+    "dip1_p": {
+      "pt": "Documento acadêmico de existência exclusivamente eletrônica, assinado com certificado ICP-Brasil e carimbo de tempo, nos padrões definidos pelo MEC. Responde à pergunta jurídica: esta pessoa concluiu este curso nesta instituição.",
+      "es": "Documento académico de existencia exclusivamente electrónica, firmado con certificado ICP-Brasil y sellado de tiempo, en los estándares definidos por el MEC. Responde a la pregunta jurídica: esta persona concluyó esta carrera en esta institución."
+    },
+    "dip2_h3": { "pt": "Credencial verificável – o registro que comunica competências", "es": "Credencial verificable – el registro que comunica competencias" },
+    "dip2_p": {
+      "pt": "Registro em padrões abertos que descreve o que a pessoa desenvolveu ao longo do curso, em campos que sistemas de recrutamento conseguem ler. Responde à pergunta do mercado: o que esta pessoa sabe fazer.",
+      "es": "Registro en estándares abiertos que describe lo que la persona desarrolló a lo largo del curso, en campos que los sistemas de reclutamiento pueden leer. Responde a la pregunta del mercado: qué sabe hacer esta persona."
+    },
+    "dip3_h3": { "pt": "Um serviço no lugar de dois", "es": "Un servicio en lugar de dos" },
+    "dip3_p": {
+      "pt": "A instituição deixa de manter uma solução para emitir diplomas e outra para emitir credenciais. Emissão, registro e compartilhamento acontecem no mesmo ambiente.",
+      "es": "La institución deja de mantener una solución para emitir diplomas y otra para emitir credenciales. Emisión, registro y compartición ocurren en el mismo entorno."
+    },
+    "dip4_h3": { "pt": "Diploma que mostra competências", "es": "Diploma que muestra competencias" },
+    "dip4_p": {
+      "pt": "O aluno recebe seu diploma em formato de credencial verificável, com destaque para as competências adquiridas ao longo da graduação, e não apenas para o título obtido.",
+      "es": "El estudiante recibe su diploma en formato de credencial verificable, destacando las competencias adquiridas a lo largo de la carrera y no solo el título obtenido."
+    },
+    "dip5_h3": { "pt": "Empregabilidade a partir do diploma", "es": "Empleabilidad a partir del diploma" },
+    "dip5_p": {
+      "pt": "Como o diploma passa a circular como credencial, os dados de empregabilidade dos egressos ficam disponíveis na conta da instituição a partir da emissão regular.",
+      "es": "Como el diploma pasa a circular como credencial, los datos de empleabilidad de los egresados quedan disponibles en la cuenta de la institución a partir de la emisión regular."
+    },
+    "dip6_h3": { "pt": "Trilhas formativas completas", "es": "Rutas formativas completas" },
+    "dip6_p": {
+      "pt": "A instituição pode reconhecer competências ao longo de toda a jornada do aluno, com credenciais intermediárias, e fechar a trilha com a credencial final equivalente ao diploma.",
+      "es": "La institución puede reconocer competencias a lo largo de toda la trayectoria del estudiante, con credenciales intermedias, y cerrar la ruta con la credencial final equivalente al diploma."
+    },
 
-    "rec_tag": { "pt": "06 · Plataforma", "es": "06 · Plataforma" },
     "rec_titulo": { "pt": "Métricas e integrações", "es": "Métricas e integraciones" },
     "rec1_h3": { "pt": "Dashboard de Métricas", "es": "Dashboard de Métricas" },
-    "rec1_p": { "pt": "Meça compartilhamentos e visualizações dos certificados, trazendo informações valiosas para o marketing da instituição.", "es": "Mida las comparticiones y visualizaciones de los certificados, aportando información valiosa para el marketing de la institución." },
+    "rec1_p": { "pt": "Meça compartilhamentos e visualizações das credenciais, trazendo informações valiosas para o marketing da instituição.", "es": "Mida las comparticiones y visualizaciones de las credenciales, aportando información valiosa para el marketing de la institución." },
     "rec2_h3": { "pt": "CRM Integrado", "es": "CRM Integrado" },
-    "rec2_p": { "pt": "Ferramenta própria de CRM, com envio e re-envio de certificados em apenas um clique.", "es": "Herramienta propia de CRM, con envío y reenvío de certificados con un solo clic." },
+    "rec2_p": { "pt": "Ferramenta própria de CRM, com envio e re-envio de credenciais em apenas um clique.", "es": "Herramienta propia de CRM, con envío y reenvío de credenciales con un solo clic." },
     "rec3_h3": { "pt": "Emails White Label", "es": "Emails White Label" },
     "rec3_p": { "pt": "Personalize texto, imagens e cores nos emails enviados, mantendo a identidade da sua instituição.", "es": "Personalice texto, imágenes y colores en los emails enviados, manteniendo la identidad de su institución." },
     "rec4_h3": { "pt": "Integrações Nativas", "es": "Integraciones Nativas" },
     "rec4_p": { "pt": "Integração nativa com plataformas de aprendizagem amplamente utilizadas no mercado, sem custo adicional.", "es": "Integración nativa con plataformas de aprendizaje ampliamente utilizadas en el mercado, sin costo adicional." },
     "rec5_h3": { "pt": "Rotas de Aprendizagem", "es": "Rutas de Aprendizaje" },
-    "rec5_p": { "pt": "Conecte micro-credenciais a um certificado-mãe, trazendo inteligência para certificações por módulos e experiências.", "es": "Conecte microcredenciales a un certificado-madre, aportando inteligencia para certificaciones por módulos y experiencias." },
+    "rec5_p": { "pt": "Conecte micro-credenciais a uma credencial-mãe, trazendo inteligência para reconhecimento por módulos e experiências.", "es": "Conecte microcredenciales a una credencial-madre, aportando inteligencia para el reconocimiento por módulos y experiencias." },
     "rec6_h3": { "pt": "Empregabilidade", "es": "Empleabilidad" },
-    "rec6_p": { "pt": "Métricas sobre compartilhamento e empregabilidade dos estudantes que publicaram certificados no LinkedIn.", "es": "Métricas sobre compartición y empleabilidad de los estudiantes que publicaron certificados en LinkedIn." },
+    "rec6_p": { "pt": "Métricas sobre compartilhamento e empregabilidade dos estudantes que publicaram credenciais no LinkedIn.", "es": "Métricas sobre compartición y empleabilidad de los estudiantes que publicaron credenciales en LinkedIn." },
 
-    "planos_tag": { "pt": "07 · Comercial", "es": "07 · Comercial" },
+    "est_titulo": { "pt": "Benefícios para estudantes e egressos", "es": "Beneficios para estudiantes y egresados" },
+    "est_p1": {
+      "pt": "Para quem recebe, a credencial verificável muda a natureza do documento: em vez de um comprovante guardado em uma pasta, ela se torna uma <strong>prova ativa de competência</strong> – que circula, é verificada por terceiros e acompanha a pessoa ao longo da carreira.",
+      "es": "Para quien la recibe, la credencial verificable cambia la naturaleza del documento: en vez de un comprobante guardado en una carpeta, se convierte en una <strong>prueba activa de competencia</strong> – que circula, es verificada por terceros y acompaña a la persona a lo largo de su carrera."
+    },
+    "est_p2": {
+      "pt": "É o <strong>portador</strong> quem guarda a credencial e decide o que exibir, quando compartilhar e com quem. A instituição emite, o mercado verifica, a pessoa controla.",
+      "es": "Es el <strong>portador</strong> quien guarda la credencial y decide qué mostrar, cuándo compartirla y con quién. La institución emite, el mercado verifica, la persona controla."
+    },
+    "est1_h4": { "pt": "Visibilidade no LinkedIn", "es": "Visibilidad en LinkedIn" },
+    "est1_p": {
+      "pt": "A credencial entra na seção Licenças e Certificações e também pode ser publicada como post. O perfil deixa de ser um currículo e passa a mostrar evidências verificáveis da trajetória.",
+      "es": "La credencial entra en la sección Licencias y Certificaciones y también puede publicarse como post. El perfil deja de ser un currículum y pasa a mostrar evidencias verificables de la trayectoria."
+    },
+    "est2_h4": { "pt": "Carteira digital POK Holder", "es": "Billetera digital POK Holder" },
+    "est2_p": {
+      "pt": "Credenciais de diferentes instituições reunidas em um só ambiente, na web e em aplicativo. Cada credencial pode ser pública ou privada – quem decide é o portador.",
+      "es": "Credenciales de distintas instituciones reunidas en un solo entorno, en web y en aplicación. Cada credencial puede ser pública o privada – quien decide es el portador."
+    },
+    "est3_h4": { "pt": "Uma credencial que é sua", "es": "Una credencial que es suya" },
+    "est3_p": {
+      "pt": "Construída sobre Open Badge 3.0 e Europass, com URL pública de verificação. Não fica presa ao portal da instituição nem a um único fornecedor.",
+      "es": "Construida sobre Open Badge 3.0 y Europass, con URL pública de verificación. No queda atada al portal de la institución ni a un único proveedor."
+    },
+    "est4_h4": { "pt": "Competências explicitadas", "es": "Competencias explicitadas" },
+    "est4_p": {
+      "pt": "Além do título obtido, a credencial descreve o que a pessoa sabe fazer, em campos estruturados que sistemas de recrutamento conseguem ler automaticamente.",
+      "es": "Además del título obtenido, la credencial describe lo que la persona sabe hacer, en campos estructurados que los sistemas de reclutamiento pueden leer automáticamente."
+    },
+    "est5_h4": { "pt": "Verificação em segundos", "es": "Verificación en segundos" },
+    "est5_p": {
+      "pt": "Qualquer recrutador confirma a conquista com um clique, no Brasil ou no exterior, sem depender de contato com a secretaria acadêmica.",
+      "es": "Cualquier reclutador confirma el logro con un clic, en Brasil o en el exterior, sin depender del contacto con la secretaría académica."
+    },
+    "est6_h4": { "pt": "Validade permanente", "es": "Validez permanente" },
+    "est6_p": {
+      "pt": "A credencial segue verificável ao longo do tempo e acompanha o portador mesmo que ele mude de plataforma ou de carteira digital.",
+      "es": "La credencial sigue siendo verificable a lo largo del tiempo y acompaña al portador aunque cambie de plataforma o de billetera digital."
+    },
+    "est_stats_titulo": { "pt": "Por que a visibilidade profissional importa", "es": "Por qué importa la visibilidad profesional" },
+    "est_stat1": { "pt": "dos recrutadores utilizam o LinkedIn para encontrar candidatos", "es": "de los reclutadores usan LinkedIn para encontrar candidatos" },
+    "est_stat2": { "pt": "mais contatos de recrutadores ao listar habilidades verificadas", "es": "más contactos de reclutadores al listar habilidades verificadas" },
+    "est_stat3": { "pt": "mais visualizações em perfis completos, com foto e credenciais", "es": "más visualizaciones en perfiles completos, con foto y credenciales" },
+    "est_stats_fonte": { "pt": "Fontes: Jobscan (2024) · ResumeGo / Fortune (2019) · LinkedIn / CNBC (2023)", "es": "Fuentes: Jobscan (2024) · ResumeGo / Fortune (2019) · LinkedIn / CNBC (2023)" },
+
+    "inst_titulo": { "pt": "Benefícios para as instituições", "es": "Beneficios para las instituciones" },
+    "inst_sub": {
+      "pt": "A credencial verificável deixa de ser um item de encerramento do curso e passa a ser um canal permanente: mantém o vínculo com o egresso, leva a marca ao mercado e devolve dados sobre o que aconteceu depois da formatura.",
+      "es": "La credencial verificable deja de ser un elemento de cierre del curso y pasa a ser un canal permanente: mantiene el vínculo con el egresado, lleva la marca al mercado y devuelve datos sobre lo que ocurrió después de la graduación."
+    },
+    "inst1_h3": { "pt": "Credencial e diploma em um produto só", "es": "Credencial y diploma en un solo producto" },
+    "inst1_p": {
+      "pt": "A mesma emissão atende à obrigação legal do diploma digital e à comunicação de competências ao mercado. Um fornecedor, um fluxo, um documento.",
+      "es": "La misma emisión atiende la obligación legal del diploma digital y la comunicación de competencias al mercado. Un proveedor, un flujo, un documento."
+    },
+    "inst2_h3": { "pt": "Dados de empregabilidade", "es": "Datos de empleabilidad" },
+    "inst2_p": {
+      "pt": "A partir do compartilhamento das credenciais, a instituição acompanha na própria conta a trajetória dos egressos – novas posições, promoções e mudanças de carreira – com atualização contínua.",
+      "es": "A partir de que se comparten las credenciales, la institución sigue en su propia cuenta la trayectoria de los egresados – nuevas posiciones, promociones y cambios de carrera – con actualización continua."
+    },
+    "inst3_h3": { "pt": "Marketing institucional orgânico", "es": "Marketing institucional orgánico" },
+    "inst3_p": {
+      "pt": "Cada credencial compartilhada leva a marca da instituição ao feed e ao perfil do egresso, com verificação pública. É alcance qualificado, gerado por quem já se formou.",
+      "es": "Cada credencial compartida lleva la marca de la institución al feed y al perfil del egresado, con verificación pública. Es alcance cualificado, generado por quien ya se graduó."
+    },
+    "inst4_h3": { "pt": "Reconexão com a base de egressos", "es": "Reconexión con la base de egresados" },
+    "inst4_p": {
+      "pt": "A campanha reabre o contato com quem já se formou e devolve motivo de retorno – atualização cadastral, novas ofertas de pós-graduação e educação continuada.",
+      "es": "La campaña reabre el contacto con quien ya se graduó y devuelve un motivo de retorno – actualización de datos, nuevas ofertas de posgrado y educación continua."
+    },
+    "inst5_h3": { "pt": "Integridade e fim da validação manual", "es": "Integridad y fin de la validación manual" },
+    "inst5_p": {
+      "pt": "A verificação acontece de forma pública e automática. Empresas e outras instituições deixam de acionar a secretaria acadêmica para confirmar documentos, e a falsificação perde espaço.",
+      "es": "La verificación ocurre de forma pública y automática. Empresas y otras instituciones dejan de recurrir a la secretaría académica para confirmar documentos, y la falsificación pierde espacio."
+    },
+    "inst6_h3": { "pt": "Competências explicitadas no currículo", "es": "Competencias explicitadas en el currículo" },
+    "inst6_p": {
+      "pt": "Descrever competências em campos estruturados aproxima a emissão das Diretrizes Curriculares por competências e gera insumo concreto para revisão de PPC e processos de avaliação.",
+      "es": "Describir competencias en campos estructurados acerca la emisión a los lineamientos curriculares por competencias y genera insumos concretos para la revisión de planes de estudio y procesos de evaluación."
+    },
+    "inst_painel_titulo": { "pt": "Painel de empregabilidade", "es": "Panel de empleabilidad" },
+    "inst_painel_sub": {
+      "pt": "Os dados de empregabilidade chegam à instituição em um painel interativo, dentro da própria conta na plataforma POK. A leitura é construída a partir dos perfis públicos dos portadores que compartilharam suas credenciais, relidos periodicamente para detectar novos empregos e promoções, e pode ser exportada em CSV.",
+      "es": "Los datos de empleabilidad llegan a la institución en un panel interactivo, dentro de su propia cuenta en la plataforma POK. La lectura se construye a partir de los perfiles públicos de los portadores que compartieron sus credenciales, releídos periódicamente para detectar nuevos empleos y promociones, y puede exportarse en CSV."
+    },
+    "inst_filtros_label": { "pt": "Recortes disponíveis", "es": "Segmentaciones disponibles" },
+    "inst_filtro1": { "pt": "Trilha", "es": "Ruta" },
+    "inst_filtro2": { "pt": "Curso", "es": "Carrera" },
+    "inst_filtro3": { "pt": "Competência", "es": "Competencia" },
+    "inst_filtro4": { "pt": "Ano de emissão", "es": "Año de emisión" },
+    "inst_filtro5": { "pt": "Mudança profissional", "es": "Cambio profesional" },
+    "inst_filtro6": { "pt": "Modelo de trabalho", "es": "Modelo de trabajo" },
+    "inst_filtro7": { "pt": "Localização", "es": "Localización" },
+    "inst_pa1_h4": { "pt": "Visão executiva", "es": "Visión ejecutiva" },
+    "inst_pa1_p": {
+      "pt": "Volume de credenciais no recorte, taxa de mobilidade profissional, novos empregos, promoções e tempo médio até a mudança.",
+      "es": "Volumen de credenciales en el recorte, tasa de movilidad profesional, nuevos empleos, promociones y tiempo medio hasta el cambio."
+    },
+    "inst_pa2_h4": { "pt": "Jornada profissional", "es": "Trayectoria profesional" },
+    "inst_pa2_p": {
+      "pt": "Linha do tempo acumulada das transições em janelas de 60 a 365 dias, com empresas de destino e cargos mais frequentes.",
+      "es": "Línea de tiempo acumulada de las transiciones en ventanas de 60 a 365 días, con empresas de destino y cargos más frecuentes."
+    },
+    "inst_pa3_h4": { "pt": "Cursos e competências", "es": "Carreras y competencias" },
+    "inst_pa3_p": {
+      "pt": "Comparação de mobilidade entre cursos e competências reconhecidas, sempre com o tamanho da amostra visível para leitura honesta do dado.",
+      "es": "Comparación de movilidad entre carreras y competencias reconocidas, siempre con el tamaño de la muestra visible para una lectura honesta del dato."
+    },
+    "inst_pa4_h4": { "pt": "Portadores individuais", "es": "Portadores individuales" },
+    "inst_pa4_p": {
+      "pt": "Do agregado ao caso a caso: trilha de origem, competência reconhecida, cargo detectado, tipo de mudança e tempo até ela acontecer.",
+      "es": "Del agregado al caso a caso: ruta de origen, competencia reconocida, cargo detectado, tipo de cambio y tiempo hasta que ocurre."
+    },
+    "inst_pa5_h4": { "pt": "Empreendedorismo após a credencial", "es": "Emprendimiento después de la credencial" },
+    "inst_pa5_p": {
+      "pt": "Proporção de portadores que abriram MEI ou se tornaram sócios de empresa depois de receber a credencial.",
+      "es": "Proporción de portadores que abrieron empresa individual o se volvieron socios de una empresa después de recibir la credencial."
+    },
+    "inst_pa6_h4": { "pt": "Mobilidade geográfica", "es": "Movilidad geográfica" },
+    "inst_pa6_p": {
+      "pt": "Proporção da base que mudou de município ou estado, movimento frequentemente associado a oportunidades ascendentes.",
+      "es": "Proporción de la base que cambió de municipio o estado, movimiento frecuentemente asociado a oportunidades ascendentes."
+    },
+
+    "inst_2027_eyebrow": { "pt": "A partir de 2027", "es": "A partir de 2027" },
+    "inst_2027_h3": { "pt": "Conversor de diploma digital em credencial verificável", "es": "Conversor de diploma digital en credencial verificable" },
+    "inst_2027_p": {
+      "pt": "A POK irá lançar uma ferramenta que transforma diplomas digitais já emitidos em credenciais verificáveis. A instituição poderá oferecê-la como serviço aos seus alunos e egressos, sem reemitir documentos nem alterar o que já está registrado.",
+      "es": "POK lanzará una herramienta que transforma diplomas digitales ya emitidos en credenciales verificables. La institución podrá ofrecerla como servicio a sus estudiantes y egresados, sin reemitir documentos ni alterar lo que ya está registrado."
+    },
+
     "planos_titulo": { "pt": "Planos e Valores", "es": "Planes y Valores" },
+    "tabela_obs": {
+      "pt": "Credenciais verificáveis com valor de diploma digital MEC possuem outros valores, a consultar.",
+      "es": "Las credenciales verificables con valor de diploma digital MEC tienen otros valores, a consultar."
+    },
     "planos_sub": {
-      "pt": "A POK trabalha com dois modelos comerciais que se adaptam ao volume e ao perfil de uso: compra de créditos para emissão de certificados ou cobrança mensal por aluno ativo na plataforma.",
-      "es": "POK trabaja con dos modelos comerciales que se adaptan al volumen y al perfil de uso: compra de créditos para emisión de certificados o cobro mensual por estudiante activo en la plataforma."
+      "pt": "A POK trabalha com dois modelos comerciais que se adaptam ao volume e ao perfil de uso: compra de créditos para emissão de credenciais ou cobrança mensal por aluno ativo na plataforma.",
+      "es": "POK trabaja con dos modelos comerciales que se adaptan al volumen y al perfil de uso: compra de créditos para emisión de credenciales o cobro mensual por estudiante activo en la plataforma."
     },
     "t1_p1": { "pt": "R$ 16,00", "es": "USD 3,00" },
     "t1_t1": { "pt": "R$ 8.000", "es": "USD 1.500" },
@@ -1662,8 +2114,8 @@
     "plano1_label": { "pt": "Modelo 01", "es": "Modelo 01" },
     "plano1_titulo": { "pt": "Compra de créditos", "es": "Compra de créditos" },
     "plano1_desc": {
-      "pt": "A instituição adquire antecipadamente um pacote de créditos – cada crédito corresponde à emissão de <strong>um certificado em blockchain</strong>. O valor unitário cai conforme o volume contratado, permitindo ganho de escala. Indicado para <strong>projetos específicos, programas piloto ou iniciativas com volumes definidos</strong>.",
-      "es": "La institución adquiere por adelantado un paquete de créditos – cada crédito corresponde a la emisión de <strong>un certificado en blockchain</strong>. El valor unitario disminuye conforme el volumen contratado, permitiendo ganancia de escala. Indicado para <strong>proyectos específicos, programas piloto o iniciativas con volúmenes definidos</strong>."
+      "pt": "A instituição adquire antecipadamente um pacote de créditos – cada crédito corresponde à emissão de <strong>uma credencial em blockchain</strong>. O valor unitário cai conforme o volume contratado, permitindo ganho de escala. Indicado para <strong>projetos específicos, programas piloto ou iniciativas com volumes definidos</strong>.",
+      "es": "La institución adquiere por adelantado un paquete de créditos – cada crédito corresponde a la emisión de <strong>una credencial en blockchain</strong>. El valor unitario disminuye conforme el volumen contratado, permitiendo ganancia de escala. Indicado para <strong>proyectos específicos, programas piloto o iniciativas con volúmenes definidos</strong>."
     },
     "plano1_th1": { "pt": "Créditos", "es": "Créditos" },
     "plano1_th2": { "pt": "Preço · crédito", "es": "Precio · crédito" },
@@ -1671,14 +2123,13 @@
     "plano2_label": { "pt": "Modelo 02", "es": "Modelo 02" },
     "plano2_titulo": { "pt": "Mensal por aluno", "es": "Mensual por estudiante" },
     "plano2_desc": {
-      "pt": "Cobrança mensal calculada sobre o <strong>número de alunos ativos</strong> na plataforma. Cada aluno pode receber até <strong>10 certificados por ano</strong>, independentemente da distribuição ao longo do período. Indicado para <strong>adoção contínua e integrada</strong> à experiência educacional.",
-      "es": "Cobro mensual calculado sobre el <strong>número de estudiantes activos</strong> en la plataforma. Cada estudiante puede recibir hasta <strong>10 certificados por año</strong>, independientemente de la distribución a lo largo del período. Indicado para <strong>adopción continua e integrada</strong> a la experiencia educativa."
+      "pt": "Cobrança mensal calculada sobre o <strong>número de alunos ativos</strong> na plataforma. Cada aluno pode receber até <strong>10 credenciais por ano</strong>, independentemente da distribuição ao longo do período. Indicado para <strong>adoção contínua e integrada</strong> à experiência educacional.",
+      "es": "Cobro mensual calculado sobre el <strong>número de estudiantes activos</strong> en la plataforma. Cada estudiante puede recibir hasta <strong>10 credenciales por año</strong>, independientemente de la distribución a lo largo del período. Indicado para <strong>adopción continua e integrada</strong> a la experiencia educativa."
     },
     "plano2_th1": { "pt": "Alunos", "es": "Estudiantes" },
     "plano2_th2": { "pt": "Preço · aluno/mês", "es": "Precio · estudiante/mes" },
     "plano2_th3": { "pt": "Pacote mensal", "es": "Paquete mensual" },
 
-    "cont_tag": { "pt": "08 · Comercial", "es": "08 · Comercial" },
     "cont_titulo": { "pt": "Fale Conosco", "es": "Contáctenos" },
     "cont_cargo": { "pt": "Contato POK", "es": "Contacto POK" }
   };
