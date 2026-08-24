@@ -14,7 +14,6 @@
 <meta property="og:url" content="https://pokbrasil.github.io/vendas/pok_apresentacao.html" />
 <meta property="og:site_name" content="POK" />
 <meta property="og:locale" content="pt_BR" />
-<meta property="og:locale:alternate" content="es_ES" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
@@ -156,6 +155,18 @@
     transition: all 0.25s ease;
   }
 
+  .nav-sublist-grupo {
+    padding: 10px 12px 4px 13px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--pok-lilas-bg);
+    opacity: 0.75;
+  }
+
+  .nav-sublist li:first-child .nav-sublist-grupo { padding-top: 0; }
+
   .nav-sublist a:hover {
     border-left-width: 2px;
     background: none;
@@ -199,42 +210,6 @@
     align-items: center;
     justify-content: center;
     box-shadow: var(--sombra-media);
-  }
-
-  /* ==================== LANGUAGE TOGGLE ==================== */
-  .lang-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 200;
-    display: inline-flex;
-    align-items: center;
-    background: var(--pok-branco);
-    border: 1px solid var(--linha);
-    border-radius: 100px;
-    padding: 4px;
-    box-shadow: 0 4px 16px rgba(81, 35, 164, 0.12);
-    overflow: hidden;
-  }
-
-  .lang-toggle button {
-    background: transparent;
-    border: none;
-    padding: 7px 16px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    color: var(--pok-cinza);
-    cursor: pointer;
-    border-radius: 100px;
-    transition: all 0.25s ease;
-  }
-
-  .lang-toggle button:hover { color: var(--pok-roxo); }
-  .lang-toggle button.active {
-    background: var(--pok-roxo);
-    color: var(--pok-branco);
   }
 
   body.sidebar-aberta .menu-toggle { display: none; }
@@ -906,6 +881,42 @@
     margin-bottom: 40px;
   }
 
+  .planos-categoria { margin-bottom: 56px; }
+  .planos-categoria:last-child { margin-bottom: 0; }
+
+  .categoria-header {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--pok-lilas-bg);
+  }
+
+  .categoria-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--pok-roxo);
+    background: var(--pok-lilas-suave);
+    border-radius: 999px;
+    padding: 5px 14px;
+    margin-bottom: 10px;
+  }
+
+  .categoria-titulo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--vitru-preto);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+
+  .categoria-sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--vitru-preto);
+  }
+
   .plano-card {
     background: var(--pok-branco);
     border-radius: 20px;
@@ -954,11 +965,11 @@
   }
 
   .plano-card h2 {
-    font-size: 26px;
+    font-size: 19px;
     color: var(--vitru-preto);
     font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
   }
 
   .plano-descricao {
@@ -1027,6 +1038,125 @@
   .valor-tabela tbody tr.valor-tabela-destaque td {
     font-weight: 600;
     color: var(--pok-roxo-escuro);
+  }
+
+  /* Tabela com cabeçalho agrupado (2 níveis) */
+  .valor-tabela-grupo {
+    table-layout: fixed;
+  }
+
+  .valor-tabela-grupo thead th.th-grupo {
+    text-align: center;
+    border-bottom: 1px solid var(--pok-lilas-bg);
+  }
+
+  .valor-tabela-grupo thead tr:first-child th {
+    border-bottom: 1px solid var(--pok-lilas-bg);
+  }
+
+  .valor-tabela-grupo thead tr:last-child th {
+    padding-top: 8px;
+    padding-bottom: 10px;
+    font-size: 10px;
+    text-align: right;
+  }
+
+  .valor-tabela-grupo thead tr:last-child th:first-child {
+    text-align: left;
+  }
+
+  .valor-tabela-grupo thead tr:first-child th:nth-child(3) {
+    border-left: 1px solid var(--pok-lilas-bg);
+  }
+
+  .valor-tabela-grupo thead tr:last-child th:nth-child(4) {
+    border-left: 1px solid var(--pok-lilas-bg);
+  }
+
+  .valor-tabela-grupo tbody td:nth-child(4) {
+    border-left: 1px solid var(--pok-lilas-bg);
+  }
+
+  /* Exemplo de cálculo abaixo da tabela */
+  .exemplo-calculo {
+    margin-top: 20px;
+    padding: 18px 20px;
+    background: var(--pok-lilas-suave);
+    border-radius: 12px;
+    border: 1px solid var(--pok-lilas-bg);
+  }
+
+  .exemplo-calculo-titulo {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--pok-roxo);
+    margin-bottom: 8px;
+  }
+
+  .exemplo-calculo-formula {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--pok-roxo-escuro);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .exemplo-calculo-texto {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--vitru-preto);
+    line-height: 1.7;
+  }
+
+  .exemplo-calculo-texto strong {
+    font-weight: 600;
+    color: var(--pok-roxo-escuro);
+  }
+
+  /* Boxes explicativos Verify / NFT */
+  .tipo-credencial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .tipo-credencial-box {
+    padding: 18px 20px;
+    border-radius: 12px;
+    border: 1px solid var(--pok-lilas-bg);
+    background: var(--pok-branco);
+  }
+
+  .tipo-credencial-label {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--pok-roxo);
+    background: var(--pok-lilas-suave);
+    border-radius: 999px;
+    padding: 4px 12px;
+    margin-bottom: 10px;
+  }
+
+  .tipo-credencial-box.tipo-nft .tipo-credencial-label {
+    color: var(--pok-roxo-escuro);
+    background: var(--pok-lilas-bg);
+  }
+
+  .tipo-credencial-texto {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--vitru-preto);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .tipo-credencial-grid { grid-template-columns: 1fr; }
   }
 
   /* ==================== CONTATO ==================== */
@@ -1115,23 +1245,18 @@
     color: var(--pok-lilas-bg);
     text-decoration: none;
     font-weight: 500;
-    border-bottom: 1px solid rgba(228, 220, 247, 0.4);
     align-self: flex-start;
     transition: all 0.2s ease;
-    padding-bottom: 2px;
   }
 
   .contato-email:hover {
     color: var(--pok-branco);
-    border-bottom-color: var(--pok-branco);
   }
 
   .contato-website {
     font-size: 14px;
     color: rgba(228, 220, 247, 0.7);
     margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(228, 220, 247, 0.15);
   }
 
   .contato-website a {
@@ -1157,12 +1282,6 @@
     .sidebar.open { transform: translateX(0); z-index: 300; }
     .main { margin-left: 0; }
     .menu-toggle { display: flex; }
-
-    .lang-toggle {
-      top: 20px;
-      right: auto;
-      left: 20px;
-    }
 
     section { padding: 64px 24px; }
     .hero { padding: 96px 24px 64px; }
@@ -1215,9 +1334,6 @@
     .valor-tabela thead th { font-size: 9.5px; padding: 9px 8px; letter-spacing: 0.8px; }
     .valor-tabela tbody td { padding: 9px 8px; }
 
-    .lang-toggle { padding: 3px; }
-    .lang-toggle button { padding: 6px 14px; font-size: 10.5px; }
-
     .sidebar { width: 260px; padding: 24px 20px; }
 
   }
@@ -1233,12 +1349,6 @@
 </style>
 </head>
 <body>
-
-<!-- Language Toggle -->
-<div class="lang-toggle" role="group" aria-label="Idioma / Idioma">
-  <button type="button" data-lang="pt" class="active" onclick="setLang('pt')">PT</button>
-  <button type="button" data-lang="es" onclick="setLang('es')">ES</button>
-</div>
 
 <!-- Mobile menu toggle -->
 <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open');document.body.classList.toggle('sidebar-aberta')" aria-label="Abrir menu" data-i18n-aria="menu_btn_label">
@@ -1278,8 +1388,13 @@
     <li>
       <a href="#planos"><span class="nav-number">08</span><span data-i18n="menu_planos">Planos POK</span></a>
       <ul class="nav-sublist">
-        <li><a href="#plano-creditos" data-i18n="menu_plano_creditos">Plano por créditos</a></li>
-        <li><a href="#plano-aluno" data-i18n="menu_plano_aluno">Plano por aluno</a></li>
+        <li class="nav-sublist-grupo" data-i18n="menu_cat_certificados">Certificados</li>
+        <li><a href="#cert-creditos" data-i18n="menu_plano_creditos">Plano por créditos</a></li>
+        <li><a href="#cert-aluno" data-i18n="menu_plano_aluno">Plano por aluno</a></li>
+        <li class="nav-sublist-grupo" data-i18n="menu_cat_trilhas">Trilhas Formativas</li>
+        <li><a href="#trilha-creditos" data-i18n="menu_plano_creditos">Plano por créditos</a></li>
+        <li class="nav-sublist-grupo" data-i18n="menu_cat_diploma">Certificado + Diploma Digital MEC</li>
+        <li><a href="#diploma-creditos" data-i18n="menu_plano_creditos">Plano por créditos</a></li>
       </ul>
     </li>
     <li><a href="#contato"><span class="nav-number">09</span><span data-i18n="menu_contato">Fale Conosco</span></a></li>
@@ -1700,77 +1815,203 @@
     <div class="container">
       <div class="section-header">
         <h2 class="section-title" data-i18n="planos_titulo">Planos e Valores</h2>
-        <p class="section-subtitle" data-i18n="planos_sub">A POK trabalha com dois modelos comerciais que se adaptam ao volume e ao perfil de uso: compra de créditos para emissão de credenciais ou cobrança mensal por aluno ativo na plataforma.</p>
+        <p class="section-subtitle" data-i18n="planos_sub">A POK trabalha com três linhas de produto — Certificados, Trilhas Formativas e Certificado + Diploma Digital MEC — cada uma disponível em dois modelos comerciais: compra de créditos ou cobrança mensal por aluno ativo na plataforma.</p>
       </div>
 
-      <div class="planos-grid">
-
-        <!-- PLANO 1 -->
-        <div class="plano-card" id="plano-creditos">
-          <div class="plano-header">
-            <div class="plano-numero">01</div>
-            <div class="plano-titulo-bloco">
-              <div class="plano-label" data-i18n="plano1_label">Modelo 01</div>
-              <h2 data-i18n="plano1_titulo">Compra de créditos</h2>
-            </div>
-          </div>
-
-          <p class="plano-descricao" data-i18n-html="plano1_desc">A instituição adquire antecipadamente um pacote de créditos – cada crédito corresponde à emissão de <strong>uma credencial em blockchain</strong>. O valor unitário cai conforme o volume contratado, permitindo ganho de escala. Indicado para <strong>projetos específicos, programas piloto ou iniciativas com volumes definidos</strong>.</p>
-
-          <table class="valor-tabela">
-            <thead>
-              <tr>
-                <th data-i18n="plano1_th1">Créditos</th>
-                <th data-i18n="plano1_th2">Preço · crédito</th>
-                <th data-i18n="plano1_th3">Preço · pacote</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>500</td><td data-i18n="t1_p1">R$ 16,00</td><td data-i18n="t1_t1">R$ 8.000</td></tr>
-              <tr><td>1.000</td><td data-i18n="t1_p2">R$ 13,00</td><td data-i18n="t1_t2">R$ 13.000</td></tr>
-              <tr><td>5.000</td><td data-i18n="t1_p3">R$ 10,00</td><td data-i18n="t1_t3">R$ 50.000</td></tr>
-              <tr><td>10.000</td><td data-i18n="t1_p4">R$ 8,50</td><td data-i18n="t1_t4">R$ 85.000</td></tr>
-              <tr><td>50.000</td><td data-i18n="t1_p5">R$ 6,00</td><td data-i18n="t1_t5">R$ 300.000</td></tr>
-              <tr class="valor-tabela-destaque"><td>100.000</td><td data-i18n="t1_p6">R$ 4,00</td><td data-i18n="t1_t6">R$ 400.000</td></tr>
-            </tbody>
-          </table>
-
-          <p class="tabela-obs" data-i18n="tabela_obs">Credenciais verificáveis com valor de diploma digital MEC possuem outros valores, a consultar.</p>
+      <!-- ===== CATEGORIA 1 · CERTIFICADOS ===== -->
+      <div class="planos-categoria">
+        <div class="categoria-header">
+          <span class="categoria-tag" data-i18n="cat1_tag">Linha 01</span>
+          <h3 class="categoria-titulo" data-i18n="cat1_titulo">Certificados</h3>
+          <p class="categoria-sub" data-i18n="cat1_sub">Credencial única, emitida como NFT de propriedade do portador.</p>
         </div>
 
-        <!-- PLANO 2 -->
-        <div class="plano-card" id="plano-aluno">
-          <div class="plano-header">
-            <div class="plano-numero">02</div>
-            <div class="plano-titulo-bloco">
-              <div class="plano-label" data-i18n="plano2_label">Modelo 02</div>
-              <h2 data-i18n="plano2_titulo">Mensal por aluno</h2>
+        <div class="planos-grid">
+
+          <!-- PLANO 1 -->
+          <div class="plano-card" id="cert-creditos">
+            <div class="plano-header">
+              <div class="plano-numero">01</div>
+              <div class="plano-titulo-bloco">
+                <div class="plano-label" data-i18n="plano1_label">Modelo 01</div>
+                <h2 data-i18n="plano1_titulo">Compra de créditos de Certificados</h2>
+              </div>
             </div>
+
+            <p class="plano-descricao" data-i18n-html="plano1_desc">A instituição adquire antecipadamente um pacote de créditos – cada crédito corresponde à emissão de <strong>uma credencial em blockchain</strong>. O valor unitário cai conforme o volume contratado, permitindo ganho de escala. Indicado para <strong>projetos específicos, programas piloto ou iniciativas com volumes definidos</strong>.</p>
+
+            <table class="valor-tabela">
+              <thead>
+                <tr>
+                  <th data-i18n="plano1_th1">Créditos</th>
+                  <th data-i18n="plano1_th2">Preço · crédito</th>
+                  <th data-i18n="plano1_th3">Preço · pacote</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>500</td><td data-i18n="t1_p1">R$ 16,00</td><td data-i18n="t1_t1">R$ 8.000</td></tr>
+                <tr><td>1.000</td><td data-i18n="t1_p2">R$ 13,00</td><td data-i18n="t1_t2">R$ 13.000</td></tr>
+                <tr><td>5.000</td><td data-i18n="t1_p3">R$ 10,00</td><td data-i18n="t1_t3">R$ 50.000</td></tr>
+                <tr><td>10.000</td><td data-i18n="t1_p4">R$ 8,50</td><td data-i18n="t1_t4">R$ 85.000</td></tr>
+                <tr><td>50.000</td><td data-i18n="t1_p5">R$ 6,00</td><td data-i18n="t1_t5">R$ 300.000</td></tr>
+                <tr class="valor-tabela-destaque"><td>100.000</td><td data-i18n="t1_p6">R$ 4,00</td><td data-i18n="t1_t6">R$ 400.000</td></tr>
+              </tbody>
+            </table>
           </div>
 
-          <p class="plano-descricao" data-i18n-html="plano2_desc">Cobrança mensal calculada sobre o <strong>número de alunos ativos</strong> na plataforma. Cada aluno pode receber até <strong>10 credenciais por ano</strong>, independentemente da distribuição ao longo do período. Indicado para <strong>adoção contínua e integrada</strong> à experiência educacional.</p>
+          <!-- PLANO 2 -->
+          <div class="plano-card" id="cert-aluno">
+            <div class="plano-header">
+              <div class="plano-numero">02</div>
+              <div class="plano-titulo-bloco">
+                <div class="plano-label" data-i18n="plano2_label">Modelo 02</div>
+                <h2 data-i18n="plano2_titulo">Mensal por aluno de Certificados</h2>
+              </div>
+            </div>
 
-          <table class="valor-tabela">
-            <thead>
-              <tr>
-                <th data-i18n="plano2_th1">Alunos</th>
-                <th data-i18n="plano2_th2">Preço · aluno/mês</th>
-                <th data-i18n="plano2_th3">Pacote mensal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>500</td><td data-i18n="t2_p1">R$ 5,00</td><td data-i18n="t2_t1">R$ 2.500</td></tr>
-              <tr><td>1.000</td><td data-i18n="t2_p2">R$ 4,50</td><td data-i18n="t2_t2">R$ 4.500</td></tr>
-              <tr><td>5.000</td><td data-i18n="t2_p3">R$ 4,00</td><td data-i18n="t2_t3">R$ 20.000</td></tr>
-              <tr><td>10.000</td><td data-i18n="t2_p4">R$ 3,60</td><td data-i18n="t2_t4">R$ 36.000</td></tr>
-              <tr><td>50.000</td><td data-i18n="t2_p5">R$ 3,20</td><td data-i18n="t2_t5">R$ 160.000</td></tr>
-              <tr class="valor-tabela-destaque"><td>100.000</td><td data-i18n="t2_p6">R$ 2,80</td><td data-i18n="t2_t6">R$ 280.000</td></tr>
-            </tbody>
-          </table>
+            <p class="plano-descricao" data-i18n-html="plano2_desc">Cobrança mensal calculada sobre o <strong>número de alunos ativos</strong> na plataforma. Cada aluno pode receber até <strong>10 credenciais por ano</strong>, independentemente da distribuição ao longo do período. Indicado para <strong>adoção contínua e integrada</strong> à experiência educacional.</p>
 
-          <p class="tabela-obs" data-i18n="tabela_obs">Credenciais verificáveis com valor de diploma digital MEC possuem outros valores, a consultar.</p>
+            <table class="valor-tabela">
+              <thead>
+                <tr>
+                  <th data-i18n="plano2_th1">Alunos</th>
+                  <th data-i18n="plano2_th2">Preço · aluno/mês</th>
+                  <th data-i18n="plano2_th3">Pacote mensal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>500</td><td data-i18n="t2_p1">R$ 5,00</td><td data-i18n="t2_t1">R$ 2.500</td></tr>
+                <tr><td>1.000</td><td data-i18n="t2_p2">R$ 4,50</td><td data-i18n="t2_t2">R$ 4.500</td></tr>
+                <tr><td>5.000</td><td data-i18n="t2_p3">R$ 4,00</td><td data-i18n="t2_t3">R$ 20.000</td></tr>
+                <tr><td>10.000</td><td data-i18n="t2_p4">R$ 3,60</td><td data-i18n="t2_t4">R$ 36.000</td></tr>
+                <tr><td>50.000</td><td data-i18n="t2_p5">R$ 3,20</td><td data-i18n="t2_t5">R$ 160.000</td></tr>
+                <tr class="valor-tabela-destaque"><td>100.000</td><td data-i18n="t2_p6">R$ 2,80</td><td data-i18n="t2_t6">R$ 280.000</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
+
+      <!-- ===== CATEGORIA 2 · TRILHAS FORMATIVAS ===== -->
+      <div class="planos-categoria">
+        <div class="categoria-header">
+          <span class="categoria-tag" data-i18n="cat2_tag">Linha 02</span>
+          <h3 class="categoria-titulo" data-i18n="cat2_titulo">Trilhas Formativas</h3>
+          <p class="categoria-sub" data-i18n="cat2_sub">Pacote com credenciais intermediárias em Blockchain Verify ao longo da trilha e credencial final em NFT ao concluí-la.</p>
+        </div>
+
+        <div class="planos-grid">
+
+          <!-- PLANO 3 -->
+          <div class="plano-card" id="trilha-creditos">
+            <div class="plano-header">
+              <div class="plano-numero">03</div>
+              <div class="plano-titulo-bloco">
+                <div class="plano-label" data-i18n="plano3_label">Modelo 01</div>
+                <h2 data-i18n="plano3_titulo">Compra de créditos de Trilha Formativa</h2>
+              </div>
+            </div>
+
+            <p class="plano-descricao" data-i18n-html="plano3_desc">A instituição adquire antecipadamente um pacote de créditos para <strong>trilhas formativas completas</strong>: cada trilha inclui credenciais intermediárias em <strong>Blockchain Verify</strong> e se encerra com a credencial final em <strong>NFT</strong>. Indicado para <strong>cursos, programas e trilhas de aprendizagem estruturadas em etapas</strong>.</p>
+
+            <table class="valor-tabela valor-tabela-grupo">
+              <colgroup>
+                <col style="width:12%">
+                <col style="width:22%">
+                <col style="width:22%">
+                <col style="width:22%">
+                <col style="width:22%">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th data-i18n="plano3_th1">Créditos</th>
+                  <th colspan="2" class="th-grupo" data-i18n="plano3_th2">Intermediária · Verify</th>
+                  <th colspan="2" class="th-grupo" data-i18n="plano3_th3">Final · NFT</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th data-i18n="plano3_th2a">Crédito</th>
+                  <th data-i18n="plano3_th2b">Pacote</th>
+                  <th data-i18n="plano3_th3a">Crédito</th>
+                  <th data-i18n="plano3_th3b">Pacote</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>500</td><td data-i18n="t3_p1">R$ 3,00</td><td data-i18n="t3_pt1">R$ 1.500</td><td data-i18n="t3_f1">R$ 16,00</td><td data-i18n="t3_ft1">R$ 8.000</td></tr>
+                <tr><td>1.000</td><td data-i18n="t3_p2">R$ 2,50</td><td data-i18n="t3_pt2">R$ 2.500</td><td data-i18n="t3_f2">R$ 13,00</td><td data-i18n="t3_ft2">R$ 13.000</td></tr>
+                <tr><td>5.000</td><td data-i18n="t3_p3">R$ 2,20</td><td data-i18n="t3_pt3">R$ 11.000</td><td data-i18n="t3_f3">R$ 10,00</td><td data-i18n="t3_ft3">R$ 50.000</td></tr>
+                <tr><td>10.000</td><td data-i18n="t3_p4">R$ 2,00</td><td data-i18n="t3_pt4">R$ 20.000</td><td data-i18n="t3_f4">R$ 8,50</td><td data-i18n="t3_ft4">R$ 85.000</td></tr>
+                <tr><td>50.000</td><td data-i18n="t3_p5">R$ 1,80</td><td data-i18n="t3_pt5">R$ 90.000</td><td data-i18n="t3_f5">R$ 6,00</td><td data-i18n="t3_ft5">R$ 300.000</td></tr>
+                <tr class="valor-tabela-destaque"><td>100.000</td><td data-i18n="t3_p6">R$ 1,50</td><td data-i18n="t3_pt6">R$ 150.000</td><td data-i18n="t3_f6">R$ 4,00</td><td data-i18n="t3_ft6">R$ 400.000</td></tr>
+              </tbody>
+            </table>
+
+            <div class="exemplo-calculo">
+              <p class="exemplo-calculo-titulo" data-i18n="ex3_titulo">Como calcular o custo de uma trilha</p>
+              <p class="exemplo-calculo-formula" data-i18n-html="ex3_formula">Custo da trilha = (nº de credenciais intermediárias × preço · crédito Verify) + (1 × preço · crédito NFT final)</p>
+              <p class="exemplo-calculo-texto" data-i18n-html="ex3_texto">Exemplo: uma trilha com <strong>5 etapas intermediárias</strong> e <strong>1 certificado final</strong>, na faixa de 500 créditos (R$ 3,00 por crédito Verify e R$ 16,00 pelo certificado final em NFT):<br>5 × R$ 3,00 = R$ 15,00 &nbsp;+&nbsp; 1 × R$ 16,00 = R$ 16,00 &nbsp;→&nbsp; <strong>R$ 31,00 por trilha concluída</strong>.</p>
+            </div>
+
+            <div class="tipo-credencial-grid">
+              <div class="tipo-credencial-box tipo-verify">
+                <div class="tipo-credencial-label" data-i18n="verify_label">Blockchain Verify</div>
+                <p class="tipo-credencial-texto" data-i18n="verify_texto">Registra um hash criptográfico de cada credencial em blockchain pública (padrão Blockcerts), sem emitir NFT. As credenciais são agrupadas em lote e ancoradas por uma única transação, o que reduz o custo. Usado nas etapas intermediárias da trilha.</p>
+              </div>
+              <div class="tipo-credencial-box tipo-nft">
+                <div class="tipo-credencial-label" data-i18n="nft_label">NFT Ownership</div>
+                <p class="tipo-credencial-texto" data-i18n="nft_texto">Emite a credencial como um NFT de propriedade do portador, com máxima rastreabilidade e permanência independente da POK. É o modelo mais robusto, reservado para a credencial final que fecha a trilha.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CATEGORIA 3 · CERTIFICADO + DIPLOMA DIGITAL MEC ===== -->
+      <div class="planos-categoria">
+        <div class="categoria-header">
+          <span class="categoria-tag" data-i18n="cat3_tag">Linha 03</span>
+          <h3 class="categoria-titulo" data-i18n="cat3_titulo">Certificado + Diploma Digital MEC</h3>
+          <p class="categoria-sub" data-i18n="cat3_sub">Credencial com valor jurídico de diploma digital, validada pelo MEC.</p>
+        </div>
+
+        <div class="planos-grid">
+
+          <!-- PLANO 4 -->
+          <div class="plano-card" id="diploma-creditos">
+            <div class="plano-header">
+              <div class="plano-numero">04</div>
+              <div class="plano-titulo-bloco">
+                <div class="plano-label" data-i18n="plano5_label">Modelo 01</div>
+                <h2 data-i18n="plano5_titulo">Compra de créditos de Certificado + Diploma Digital MEC</h2>
+              </div>
+            </div>
+
+            <p class="plano-descricao" data-i18n-html="plano5_desc">A instituição adquire antecipadamente um pacote de créditos – cada crédito corresponde à emissão de <strong>uma credencial com valor de diploma digital, validada pelo MEC</strong>. Indicado para <strong>emissão de diplomas de turmas ou cursos específicos</strong>.</p>
+
+            <table class="valor-tabela">
+              <thead>
+                <tr>
+                  <th data-i18n="plano5_th1">Créditos</th>
+                  <th data-i18n="plano5_th2">Preço · crédito</th>
+                  <th data-i18n="plano5_th3">Preço · pacote</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>500</td><td data-i18n="t5_p1">R$ 48,00</td><td data-i18n="t5_t1">R$ 24.000</td></tr>
+                <tr><td>1.000</td><td data-i18n="t5_p2">R$ 39,00</td><td data-i18n="t5_t2">R$ 39.000</td></tr>
+                <tr><td>5.000</td><td data-i18n="t5_p3">R$ 30,00</td><td data-i18n="t5_t3">R$ 150.000</td></tr>
+                <tr><td>10.000</td><td data-i18n="t5_p4">R$ 25,50</td><td data-i18n="t5_t4">R$ 255.000</td></tr>
+                <tr><td>50.000</td><td data-i18n="t5_p5">R$ 18,00</td><td data-i18n="t5_t5">R$ 900.000</td></tr>
+                <tr class="valor-tabela-destaque"><td>100.000</td><td data-i18n="t5_p6">R$ 12,00</td><td data-i18n="t5_t6">R$ 1.200.000</td></tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1836,6 +2077,9 @@
     "menu_estudantes": { "pt": "Estudantes e Egressos", "es": "Estudiantes y Egresados" },
     "menu_instituicoes": { "pt": "Instituições", "es": "Instituciones" },
     "menu_planos": { "pt": "Planos POK", "es": "Planes POK" },
+    "menu_cat_certificados": { "pt": "Certificados", "es": "Certificados" },
+    "menu_cat_trilhas": { "pt": "Trilhas Formativas", "es": "Rutas Formativas" },
+    "menu_cat_diploma": { "pt": "Certificado + Diploma Digital MEC", "es": "Certificado + Diploma Digital MEC" },
     "menu_plano_creditos": { "pt": "Plano por créditos", "es": "Plan por créditos" },
     "menu_plano_aluno": { "pt": "Plano por aluno", "es": "Plan por estudiante" },
     "menu_contato": { "pt": "Fale Conosco", "es": "Contáctenos" },
@@ -2084,9 +2328,79 @@
       "es": "Las credenciales verificables con valor de diploma digital MEC tienen otros valores, a consultar."
     },
     "planos_sub": {
-      "pt": "A POK trabalha com dois modelos comerciais que se adaptam ao volume e ao perfil de uso: compra de créditos para emissão de credenciais ou cobrança mensal por aluno ativo na plataforma.",
-      "es": "POK trabaja con dos modelos comerciales que se adaptan al volumen y al perfil de uso: compra de créditos para emisión de credenciales o cobro mensual por estudiante activo en la plataforma."
+      "pt": "A POK trabalha com três linhas de produto — Certificados, Trilhas Formativas e Certificado + Diploma Digital MEC — cada uma disponível em dois modelos comerciais: compra de créditos ou cobrança mensal por aluno ativo na plataforma.",
+      "es": "POK trabaja con tres líneas de producto — Certificados, Rutas Formativas y Certificado + Diploma Digital MEC — cada una disponible en dos modelos comerciales: compra de créditos o cobro mensual por estudiante activo en la plataforma."
     },
+
+    "cat1_tag": { "pt": "Linha 01", "es": "Línea 01" },
+    "cat1_titulo": { "pt": "Certificados", "es": "Certificados" },
+    "cat1_sub": {
+      "pt": "Credencial única, emitida como NFT de propriedade do portador.",
+      "es": "Credencial única, emitida como NFT de propiedad del portador."
+    },
+    "cat2_tag": { "pt": "Linha 02", "es": "Línea 02" },
+    "cat2_titulo": { "pt": "Trilhas Formativas", "es": "Rutas Formativas" },
+    "cat2_sub": {
+      "pt": "Pacote com credenciais intermediárias em Blockchain Verify ao longo da trilha e credencial final em NFT ao concluí-la.",
+      "es": "Paquete con credenciales intermedias en Blockchain Verify a lo largo de la ruta y credencial final en NFT al completarla."
+    },
+    "cat3_tag": { "pt": "Linha 03", "es": "Línea 03" },
+    "cat3_titulo": { "pt": "Certificado + Diploma Digital MEC", "es": "Certificado + Diploma Digital MEC" },
+    "cat3_sub": {
+      "pt": "Credencial com valor jurídico de diploma digital, validada pelo MEC.",
+      "es": "Credencial con valor jurídico de diploma digital, validada por el MEC."
+    },
+
+    "plano3_label": { "pt": "Modelo 01", "es": "Modelo 01" },
+    "plano3_titulo": { "pt": "Compra de créditos de Trilha Formativa", "es": "Compra de créditos" },
+    "plano3_desc": {
+      "pt": "A instituição adquire antecipadamente um pacote de créditos para <strong>trilhas formativas completas</strong>: cada trilha inclui credenciais intermediárias em <strong>Blockchain Verify</strong> e se encerra com a credencial final em <strong>NFT</strong>. Indicado para <strong>cursos, programas e trilhas de aprendizagem estruturadas em etapas</strong>.",
+      "es": "La institución adquiere por adelantado un paquete de créditos para <strong>rutas formativas completas</strong>: cada ruta incluye credenciales intermedias en <strong>Blockchain Verify</strong> y se cierra con la credencial final en <strong>NFT</strong>. Indicado para <strong>cursos, programas y rutas de aprendizaje estructuradas en etapas</strong>."
+    },
+    "plano3_th1": { "pt": "Créditos", "es": "Créditos" },
+    "plano3_th2": { "pt": "Intermediária · Verify", "es": "Intermedia · Verify" },
+    "plano3_th3": { "pt": "Final · NFT", "es": "Final · NFT" },
+    "plano3_th2a": { "pt": "Crédito", "es": "Crédito" },
+    "plano3_th2b": { "pt": "Pacote", "es": "Paquete" },
+    "plano3_th3a": { "pt": "Crédito", "es": "Crédito" },
+    "plano3_th3b": { "pt": "Pacote", "es": "Paquete" },
+
+    "plano4_label": { "pt": "Modelo 02", "es": "Modelo 02" },
+    "plano4_titulo": { "pt": "Mensal por aluno de Trilha Formativa", "es": "Mensual por estudiante" },
+    "plano4_desc": {
+      "pt": "Cobrança mensal calculada sobre o <strong>número de alunos ativos</strong> em trilhas formativas na plataforma, cobrindo as credenciais intermediárias em Blockchain Verify e a credencial final em NFT de cada trilha concluída. Indicado para <strong>adoção contínua em programas de formação por competências</strong>.",
+      "es": "Cobro mensual calculado sobre el <strong>número de estudiantes activos</strong> en rutas formativas en la plataforma, cubriendo las credenciales intermedias en Blockchain Verify y la credencial final en NFT de cada ruta completada. Indicado para <strong>adopción continua en programas de formación por competencias</strong>."
+    },
+    "plano4_th1": { "pt": "Alunos", "es": "Estudiantes" },
+    "plano4_th2": { "pt": "Preço · aluno/mês", "es": "Precio · estudiante/mes" },
+    "plano4_th3": { "pt": "Pacote mensal", "es": "Paquete mensual" },
+
+    "plano5_label": { "pt": "Modelo 01", "es": "Modelo 01" },
+    "plano5_titulo": { "pt": "Compra de créditos de Certificado + Diploma Digital MEC", "es": "Compra de créditos" },
+    "plano5_desc": {
+      "pt": "A instituição adquire antecipadamente um pacote de créditos – cada crédito corresponde à emissão de <strong>uma credencial com valor de diploma digital, validada pelo MEC</strong>. Indicado para <strong>emissão de diplomas de turmas ou cursos específicos</strong>.",
+      "es": "La institución adquiere por adelantado un paquete de créditos – cada crédito corresponde a la emisión de <strong>una credencial con valor de diploma digital, validada por el MEC</strong>. Indicado para <strong>emisión de diplomas de cohortes o carreras específicas</strong>."
+    },
+    "plano5_th1": { "pt": "Créditos", "es": "Créditos" },
+    "plano5_th2": { "pt": "Preço · crédito", "es": "Precio · crédito" },
+    "plano5_th3": { "pt": "Preço · pacote", "es": "Precio · paquete" },
+
+    "plano6_label": { "pt": "Modelo 02", "es": "Modelo 02" },
+    "plano6_titulo": { "pt": "Mensal por aluno de Certificado + Diploma Digital MEC", "es": "Mensual por estudiante" },
+    "plano6_desc": {
+      "pt": "Cobrança mensal calculada sobre o <strong>número de alunos ativos</strong> com direito a credencial com valor de diploma digital MEC. Indicado para <strong>instituições que emitem diplomas digitais de forma contínua</strong>.",
+      "es": "Cobro mensual calculado sobre el <strong>número de estudiantes activos</strong> con derecho a credencial con valor de diploma digital MEC. Indicado para <strong>instituciones que emiten diplomas digitales de forma continua</strong>."
+    },
+    "plano6_th1": { "pt": "Alunos", "es": "Estudiantes" },
+    "plano6_th2": { "pt": "Preço · aluno/mês", "es": "Precio · estudiante/mes" },
+    "plano6_th3": { "pt": "Pacote mensal", "es": "Paquete mensual" },
+
+    "tabela_obs_trilha": { "pt": "Valores a definir.", "es": "Valores a definir." },
+    "tabela_obs_trilha_creditos": {
+      "pt": "A credencial final é cobrada pelo mesmo valor já praticado hoje no modelo Certificados (Modelo 01), conforme o volume contratado.",
+      "es": "La credencial final se cobra al mismo valor ya practicado hoy en el modelo Certificados (Modelo 01), según el volumen contratado."
+    },
+    "tabela_obs_diploma": { "pt": "Valores a definir.", "es": "Valores a definir." },
     "t1_p1": { "pt": "R$ 16,00", "es": "USD 3,00" },
     "t1_t1": { "pt": "R$ 8.000", "es": "USD 1.500" },
     "t1_p2": { "pt": "R$ 13,00", "es": "USD 2,50" },
@@ -2111,8 +2425,57 @@
     "t2_t5": { "pt": "R$ 160.000", "es": "USD 30.000" },
     "t2_p6": { "pt": "R$ 2,80", "es": "USD 0,55" },
     "t2_t6": { "pt": "R$ 280.000", "es": "USD 55.000" },
+
+    "t3_p1": { "pt": "R$ 3,00", "es": "R$ 3,00" }, "t3_pt1": { "pt": "R$ 1.500", "es": "R$ 1.500" }, "t3_f1": { "pt": "R$ 16,00", "es": "R$ 16,00" }, "t3_ft1": { "pt": "R$ 8.000", "es": "R$ 8.000" },
+    "t3_p2": { "pt": "R$ 2,50", "es": "R$ 2,50" }, "t3_pt2": { "pt": "R$ 2.500", "es": "R$ 2.500" }, "t3_f2": { "pt": "R$ 13,00", "es": "R$ 13,00" }, "t3_ft2": { "pt": "R$ 13.000", "es": "R$ 13.000" },
+    "t3_p3": { "pt": "R$ 2,20", "es": "R$ 2,20" }, "t3_pt3": { "pt": "R$ 11.000", "es": "R$ 11.000" }, "t3_f3": { "pt": "R$ 10,00", "es": "R$ 10,00" }, "t3_ft3": { "pt": "R$ 50.000", "es": "R$ 50.000" },
+    "t3_p4": { "pt": "R$ 2,00", "es": "R$ 2,00" }, "t3_pt4": { "pt": "R$ 20.000", "es": "R$ 20.000" }, "t3_f4": { "pt": "R$ 8,50", "es": "R$ 8,50" }, "t3_ft4": { "pt": "R$ 85.000", "es": "R$ 85.000" },
+    "t3_p5": { "pt": "R$ 1,80", "es": "R$ 1,80" }, "t3_pt5": { "pt": "R$ 90.000", "es": "R$ 90.000" }, "t3_f5": { "pt": "R$ 6,00", "es": "R$ 6,00" }, "t3_ft5": { "pt": "R$ 300.000", "es": "R$ 300.000" },
+    "t3_p6": { "pt": "R$ 1,50", "es": "R$ 1,50" }, "t3_pt6": { "pt": "R$ 150.000", "es": "R$ 150.000" }, "t3_f6": { "pt": "R$ 4,00", "es": "R$ 4,00" }, "t3_ft6": { "pt": "R$ 400.000", "es": "R$ 400.000" },
+
+    "ex3_titulo": { "pt": "Como calcular o custo de uma trilha", "es": "Cómo calcular el costo de una ruta" },
+    "ex3_formula": {
+      "pt": "Custo da trilha = (nº de credenciais intermediárias × preço · crédito Verify) + (1 × preço · crédito NFT final)",
+      "es": "Costo de la ruta = (nº de credenciales intermedias × precio · crédito Verify) + (1 × precio · crédito NFT final)"
+    },
+    "ex3_texto": {
+      "pt": "Exemplo: uma trilha com <strong>5 etapas intermediárias</strong> e <strong>1 certificado final</strong>, na faixa de 500 créditos (R$ 3,00 por crédito Verify e R$ 16,00 pelo certificado final em NFT):<br>5 × R$ 3,00 = R$ 15,00 &nbsp;+&nbsp; 1 × R$ 16,00 = R$ 16,00 &nbsp;→&nbsp; <strong>R$ 31,00 por trilha concluída</strong>.",
+      "es": "Ejemplo: una ruta con <strong>5 etapas intermedias</strong> y <strong>1 certificado final</strong>, en el rango de 500 créditos (R$ 3,00 por crédito Verify y R$ 16,00 por el certificado final en NFT):<br>5 × R$ 3,00 = R$ 15,00 &nbsp;+&nbsp; 1 × R$ 16,00 = R$ 16,00 &nbsp;→&nbsp; <strong>R$ 31,00 por ruta completada</strong>."
+    },
+
+    "verify_label": { "pt": "Blockchain Verify", "es": "Blockchain Verify" },
+    "verify_texto": {
+      "pt": "Registra um hash criptográfico de cada credencial em blockchain pública (padrão Blockcerts), sem emitir NFT. As credenciais são agrupadas em lote e ancoradas por uma única transação, o que reduz o custo. Usado nas etapas intermediárias da trilha.",
+      "es": "Registra un hash criptográfico de cada credencial en blockchain pública (estándar Blockcerts), sin emitir NFT. Las credenciales se agrupan en lote y se anclan en una única transacción, lo que reduce el costo. Se usa en las etapas intermedias de la ruta."
+    },
+    "nft_label": { "pt": "NFT Ownership", "es": "NFT Ownership" },
+    "nft_texto": {
+      "pt": "Emite a credencial como um NFT de propriedade do portador, com máxima rastreabilidade e permanência independente da POK. É o modelo mais robusto, reservado para a credencial final que fecha a trilha.",
+      "es": "Emite la credencial como un NFT de propiedad del portador, con máxima trazabilidad y permanencia independiente de POK. Es el modelo más robusto, reservado para la credencial final que cierra la ruta."
+    },
+
+    "t4_p1": { "pt": "—", "es": "—" }, "t4_t1": { "pt": "—", "es": "—" },
+    "t4_p2": { "pt": "—", "es": "—" }, "t4_t2": { "pt": "—", "es": "—" },
+    "t4_p3": { "pt": "—", "es": "—" }, "t4_t3": { "pt": "—", "es": "—" },
+    "t4_p4": { "pt": "—", "es": "—" }, "t4_t4": { "pt": "—", "es": "—" },
+    "t4_p5": { "pt": "—", "es": "—" }, "t4_t5": { "pt": "—", "es": "—" },
+    "t4_p6": { "pt": "—", "es": "—" }, "t4_t6": { "pt": "—", "es": "—" },
+
+    "t5_p1": { "pt": "R$ 48,00", "es": "R$ 48,00" }, "t5_t1": { "pt": "R$ 24.000", "es": "R$ 24.000" },
+    "t5_p2": { "pt": "R$ 39,00", "es": "R$ 39,00" }, "t5_t2": { "pt": "R$ 39.000", "es": "R$ 39.000" },
+    "t5_p3": { "pt": "R$ 30,00", "es": "R$ 30,00" }, "t5_t3": { "pt": "R$ 150.000", "es": "R$ 150.000" },
+    "t5_p4": { "pt": "R$ 25,50", "es": "R$ 25,50" }, "t5_t4": { "pt": "R$ 255.000", "es": "R$ 255.000" },
+    "t5_p5": { "pt": "R$ 18,00", "es": "R$ 18,00" }, "t5_t5": { "pt": "R$ 900.000", "es": "R$ 900.000" },
+    "t5_p6": { "pt": "R$ 12,00", "es": "R$ 12,00" }, "t5_t6": { "pt": "R$ 1.200.000", "es": "R$ 1.200.000" },
+
+    "t6_p1": { "pt": "R$ 10,00", "es": "R$ 10,00" }, "t6_t1": { "pt": "R$ 5.000", "es": "R$ 5.000" },
+    "t6_p2": { "pt": "R$ 9,00", "es": "R$ 9,00" }, "t6_t2": { "pt": "R$ 9.000", "es": "R$ 9.000" },
+    "t6_p3": { "pt": "R$ 8,00", "es": "R$ 8,00" }, "t6_t3": { "pt": "R$ 40.000", "es": "R$ 40.000" },
+    "t6_p4": { "pt": "R$ 7,20", "es": "R$ 7,20" }, "t6_t4": { "pt": "R$ 72.000", "es": "R$ 72.000" },
+    "t6_p5": { "pt": "R$ 6,40", "es": "R$ 6,40" }, "t6_t5": { "pt": "R$ 320.000", "es": "R$ 320.000" },
+    "t6_p6": { "pt": "R$ 5,60", "es": "R$ 5,60" }, "t6_t6": { "pt": "R$ 560.000", "es": "R$ 560.000" },
     "plano1_label": { "pt": "Modelo 01", "es": "Modelo 01" },
-    "plano1_titulo": { "pt": "Compra de créditos", "es": "Compra de créditos" },
+    "plano1_titulo": { "pt": "Compra de créditos de Certificados", "es": "Compra de créditos" },
     "plano1_desc": {
       "pt": "A instituição adquire antecipadamente um pacote de créditos – cada crédito corresponde à emissão de <strong>uma credencial em blockchain</strong>. O valor unitário cai conforme o volume contratado, permitindo ganho de escala. Indicado para <strong>projetos específicos, programas piloto ou iniciativas com volumes definidos</strong>.",
       "es": "La institución adquiere por adelantado un paquete de créditos – cada crédito corresponde a la emisión de <strong>una credencial en blockchain</strong>. El valor unitario disminuye conforme el volumen contratado, permitiendo ganancia de escala. Indicado para <strong>proyectos específicos, programas piloto o iniciativas con volúmenes definidos</strong>."
@@ -2121,7 +2484,7 @@
     "plano1_th2": { "pt": "Preço · crédito", "es": "Precio · crédito" },
     "plano1_th3": { "pt": "Preço · pacote", "es": "Precio · paquete" },
     "plano2_label": { "pt": "Modelo 02", "es": "Modelo 02" },
-    "plano2_titulo": { "pt": "Mensal por aluno", "es": "Mensual por estudiante" },
+    "plano2_titulo": { "pt": "Mensal por aluno de Certificados", "es": "Mensual por estudiante" },
     "plano2_desc": {
       "pt": "Cobrança mensal calculada sobre o <strong>número de alunos ativos</strong> na plataforma. Cada aluno pode receber até <strong>10 credenciais por ano</strong>, independentemente da distribuição ao longo do período. Indicado para <strong>adoção contínua e integrada</strong> à experiência educacional.",
       "es": "Cobro mensual calculado sobre el <strong>número de estudiantes activos</strong> en la plataforma. Cada estudiante puede recibir hasta <strong>10 credenciales por año</strong>, independientemente de la distribución a lo largo del período. Indicado para <strong>adopción continua e integrada</strong> a la experiencia educativa."
@@ -2162,17 +2525,7 @@
       }
     });
 
-    try { localStorage.setItem('pok_apresentacao_lang', lang); } catch(e) {}
   }
-
-  (function() {
-    let lang = 'pt';
-    try {
-      const saved = localStorage.getItem('pok_apresentacao_lang');
-      if (saved === 'pt' || saved === 'es') lang = saved;
-    } catch(e) {}
-    if (lang === 'es') setLang('es');
-  })();
 </script>
 
 </body>
