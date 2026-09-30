@@ -775,7 +775,8 @@
   }
 
   /* ==================== PROPOSTA · APRESENTAÇÃO ==================== */
-  .prop-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; margin-top: 1.2rem; }
+  .prop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin-top: 1.2rem; }
+  @media (max-width: 1200px) { .prop-grid { grid-template-columns: repeat(2, 1fr); } }
   .prop-pok { margin-top: 2rem; }
   .prop-pok-eyebrow { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pok-purple); margin-bottom: 1rem; }
   .prop-pok-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; }
@@ -1520,6 +1521,12 @@
 
   .contact-section .section-eyebrow::before { display: none; }
 
+  /* Capa de capítulo: mesmo modelo de eyebrow das seções, em cor clara sobre o roxo */
+  .chapter-cover .section-eyebrow { color: #e4dcf7; margin-bottom: 28px; }
+  .chapter-cover .section-eyebrow::before { background: var(--pok-accent-light); }
+  .chapter-cover .hero-subtitle { margin-bottom: 16px; font-size: clamp(13px, 1.3vw, 15px); }
+  .chapter-cover .hero-subtitle:last-child { margin-bottom: 0; }
+
   .contact-title {
     font-size: clamp(22px, 2.4vw, 30px);
     font-weight: 700;
@@ -2239,15 +2246,16 @@
 
   <div class="nav-label">Proposta</div>
   <ul class="nav-list">
-    <li><a href="#proposta-apresentacao"><span class="nav-number">06</span>Apresentação</a></li>
-    <li><a href="#fluxo-proposto"><span class="nav-number">07</span>Fluxo Aluno</a></li>
-    <li><a href="#fluxo-proposto-egresso"><span class="nav-number">08</span>Fluxo Egresso</a></li>
+    <li><a href="#proposta-capa"><span class="nav-number">06</span>Apresentação</a></li>
+    <li><a href="#proposta-apresentacao"><span class="nav-number">07</span>Frentes da Parceria</a></li>
+    <li><a href="#fluxo-proposto"><span class="nav-number">08</span>Fluxo Aluno</a></li>
+    <li><a href="#fluxo-proposto-egresso"><span class="nav-number">09</span>Fluxo Egresso</a></li>
   </ul>
 
   <div class="nav-label">Comercial</div>
   <ul class="nav-list">
-    <li><a href="#proposta"><span class="nav-number">09</span>Proposta Comercial</a></li>
-    <li><a href="#contato"><span class="nav-number">10</span>Contato</a></li>
+    <li><a href="#proposta"><span class="nav-number">10</span>Proposta Comercial</a></li>
+    <li><a href="#contato"><span class="nav-number">11</span>Contato</a></li>
   </ul>
 </aside>
 
@@ -2257,22 +2265,7 @@
   <section class="hero" id="inicio">
     <div class="hero-grid-pattern"></div>
     <div class="hero-content">
-      <span class="hero-eyebrow">Proposta Comercial · 2026</span>
-      <h1>Credenciais verificáveis por competências em blockchain - <span class="accent">Vitru 2027</span></h1>
-      <div class="hero-meta">
-        <div class="hero-meta-item">
-          <div class="label">Cliente</div>
-          <div class="value">Vitru Educação - Uniasselvi e Unicesumar</div>
-        </div>
-        <div class="hero-meta-item">
-          <div class="label">Escopo</div>
-          <div class="value">xxx alunos Uniasselvi e Unicesumar</div>
-        </div>
-        <div class="hero-meta-item">
-          <div class="label">Validade da proposta</div>
-          <div class="value">xx/xx/xxxx</div>
-        </div>
-      </div>
+      <h1>Credenciais verificáveis por competências em blockchain – <span class="accent">Vitru 2027</span></h1>
     </div>
   </section>
 
@@ -2570,23 +2563,23 @@
     </a>
 
     <div class="results-grid">
-      <div class="result-step"><div class="result-bar rc-1">4.751</div><div class="result-label">Credenciais emitidas</div><div class="result-context">Base do caso</div></div>
-      <div class="result-step"><div class="result-bar rc-2">3.152</div><div class="result-label">Credenciais aceitas</div><div class="result-context">66% das emitidas</div></div>
-      <div class="result-step"><div class="result-bar rc-3">1.192</div><div class="result-label">Credenciais no LinkedIn</div><div class="result-context">38% das aceitas</div></div>
-      <div class="result-step"><div class="result-bar rc-4">410</div><div class="result-label">Publicações no feed</div><div class="result-context">34% das credenciais no LinkedIn</div></div>
-      <div class="result-step"><div class="result-bar rc-5">5.065</div><div class="result-label">Visualizações</div><div class="result-context">Dos certificados emitidos</div></div>
-      <div class="result-step"><div class="result-bar rc-6">1.803</div><div class="result-label">Downloads</div><div class="result-context">57% das aceitas</div></div>
+      <div class="result-step"><div class="result-bar rc-1">4.752</div><div class="result-label">Credenciais emitidas</div><div class="result-context">Base do caso</div></div>
+      <div class="result-step"><div class="result-bar rc-2">3.218</div><div class="result-label">Credenciais aceitas</div><div class="result-context">68% das emitidas</div></div>
+      <div class="result-step"><div class="result-bar rc-3">1.180</div><div class="result-label">Credenciais no LinkedIn</div><div class="result-context">37% das aceitas</div></div>
+      <div class="result-step"><div class="result-bar rc-4">414</div><div class="result-label">Publicações no feed</div><div class="result-context">35% das credenciais no LinkedIn</div></div>
+      <div class="result-step"><div class="result-bar rc-5">5.262</div><div class="result-label">Visualizações</div><div class="result-context">Dos certificados emitidos</div></div>
+      <div class="result-step"><div class="result-bar rc-6">1.844</div><div class="result-label">Downloads</div><div class="result-context">57% das aceitas</div></div>
     </div>
 
     <div class="insights-row">
-      <div class="insight-box"><span class="insight-num">01</span><h4>Sinais de mobilidade</h4><p><strong>37 mudanças</strong> em 60 dias, <strong>89% delas</strong> no primeiro mês após o envio: 1 em cada 32 portadores com a credencial no LinkedIn já registra uma mudança, e a curva tende a subir nas próximas leituras.</p></div>
-      <div class="insight-box"><span class="insight-num">02</span><h4>Retenção no ecossistema Vitru</h4><p><strong>20 das 37 mudanças</strong> (<strong>54%</strong>) foram para instituições da própria rede: UNIASSELVI, UniCesumar e Vitru Educação. A credencial circula dentro de casa e sustenta novos vínculos e promoções internas.</p></div>
-      <div class="insight-box"><span class="insight-num">03</span><h4>As mudanças levam para a docência</h4><p>Das <strong>37 mudanças</strong>, <strong>23 (62%)</strong> foram para cargos de professor, docente, tutor ou mediador: quem muda de emprego depois da trilha vai lecionar, ou lecionar em nível mais alto.</p></div>
+      <div class="insight-box"><span class="insight-num">01</span><h4>Sinais de mobilidade</h4><p><strong>45 mudanças</strong> em 82 dias, <strong>78% delas</strong> no primeiro mês após o envio: 1 em cada 26 portadores com a credencial no LinkedIn já registra uma mudança, e a curva tende a subir nas próximas leituras.</p></div>
+      <div class="insight-box"><span class="insight-num">02</span><h4>Retenção no ecossistema Vitru</h4><p><strong>20 das 45 mudanças</strong> (<strong>44%</strong>) foram para instituições da própria rede: UNIASSELVI, UniCesumar e Vitru Educação. A credencial circula dentro de casa e sustenta novos vínculos e promoções internas.</p></div>
+      <div class="insight-box"><span class="insight-num">03</span><h4>As mudanças levam para a docência</h4><p>Das <strong>45 mudanças</strong>, <strong>23 (51%)</strong> foram para cargos de professor, docente, tutor ou mediador: quem muda de emprego depois da trilha vai lecionar, ou lecionar em nível mais alto.</p></div>
     </div>
     <div class="insights-row">
-      <div class="insight-box"><span class="insight-num">04</span><h4>Presença no LinkedIn</h4><p><strong>1.192</strong> credenciais aparecem no LinkedIn, <strong>410</strong> delas viraram publicação no feed – cada uma levando o nome da instituição à rede profissional do docente.</p></div>
-      <div class="insight-box"><span class="insight-num">05</span><h4>Competência que mais expõe a marca</h4><p><strong>Palestra de Abertura</strong> é a competência que mais leva a marca ao LinkedIn, com <strong>218 credenciais</strong> presentes.</p></div>
-      <div class="insight-box"><span class="insight-num">06</span><h4>Conversão em publicações</h4><p><strong>Avaliações Discursivas</strong> é a que mais converte presença em publicação: <strong>46%</strong> das suas credenciais no LinkedIn viraram post no feed.</p></div>
+      <div class="insight-box"><span class="insight-num">04</span><h4>Presença no LinkedIn</h4><p><strong>1.180</strong> credenciais aparecem no LinkedIn, <strong>414</strong> delas viraram publicação no feed – cada uma levando o nome da instituição à rede profissional do docente.</p></div>
+      <div class="insight-box"><span class="insight-num">05</span><h4>Competência que mais expõe a marca</h4><p><strong>Palestra de Abertura</strong> é a competência que mais leva a marca ao LinkedIn, com <strong>217 credenciais</strong> presentes.</p></div>
+      <div class="insight-box"><span class="insight-num">06</span><h4>Conversão em publicações</h4><p><strong>Avaliações Discursivas</strong> é a que mais converte presença em publicação: <strong>47%</strong> das suas credenciais no LinkedIn viraram post no feed.</p></div>
     </div>
   </section>
 
@@ -2605,48 +2598,59 @@
 
     <div class="results-grid">
       <div class="result-step"><div class="result-bar rc-1">21.121</div><div class="result-label">Credenciais emitidas</div><div class="result-context">Base do caso</div></div>
-      <div class="result-step"><div class="result-bar rc-2">2.421</div><div class="result-label">Credenciais aceitas</div><div class="result-context">11% das emitidas</div></div>
-      <div class="result-step"><div class="result-bar rc-3">572</div><div class="result-label">Credenciais no LinkedIn</div><div class="result-context">24% das aceitas</div></div>
-      <div class="result-step"><div class="result-bar rc-4">221</div><div class="result-label">Publicações no feed</div><div class="result-context">39% das credenciais no LinkedIn</div></div>
-      <div class="result-step"><div class="result-bar rc-5">21</div><div class="result-label">Adicionadas ao perfil</div><div class="result-context">Fixadas no perfil profissional</div></div>
-      <div class="result-step"><div class="result-bar rc-6">2</div><div class="result-label">Mudanças profissionais</div><div class="result-context">Novo emprego observado</div></div>
+      <div class="result-step"><div class="result-bar rc-2">4.256</div><div class="result-label">Credenciais aceitas</div><div class="result-context">20% das emitidas</div></div>
+      <div class="result-step"><div class="result-bar rc-3">842</div><div class="result-label">Credenciais no LinkedIn</div><div class="result-context">20% das aceitas</div></div>
+      <div class="result-step"><div class="result-bar rc-4">333</div><div class="result-label">Publicações no feed</div><div class="result-context">40% das credenciais no LinkedIn</div></div>
+      <div class="result-step"><div class="result-bar rc-5">9.777</div><div class="result-label">Visualizações</div><div class="result-context">Dos certificados emitidos</div></div>
+      <div class="result-step"><div class="result-bar rc-6">1.678</div><div class="result-label">Downloads</div><div class="result-context">39% das aceitas</div></div>
     </div>
 
     <div class="insights-row">
-      <div class="insight-box"><span class="insight-num">01</span><h4>Sinais de mobilidade</h4><p><strong>2 mudanças</strong> de emprego observadas até a data de leitura. Base pequena: é uma leitura inicial, não uma taxa sobre a turma – a curva tende a crescer nas próximas varreduras.</p></div>
-      <div class="insight-box"><span class="insight-num">02</span><h4>Empresas de destino</h4><p>As mudanças levaram a <strong>2 empresas de destino</strong>: METALTEC Não Destrutivos e DealerUp – Sistemas para Concessionárias.</p></div>
-      <div class="insight-box"><span class="insight-num">03</span><h4>Cargos de destino</h4><p>Das <strong>2 mudanças</strong>, ambas são <strong>novo emprego</strong>: Auxiliar de radiografia (Radiologia) e Sales Development Representative (Administração) – cargos na área da formação.</p></div>
+      <div class="insight-box"><span class="insight-num">01</span><h4>Sinais de mobilidade</h4><p><strong>4 mudanças</strong> profissionais observadas até a data de leitura. Base pequena: é uma leitura inicial, não uma taxa sobre a turma – a curva tende a crescer nas próximas varreduras.</p></div>
+      <div class="insight-box"><span class="insight-num">02</span><h4>Empresas de destino</h4><p>As mudanças levaram a <strong>4 empresas de destino</strong>: Vero, METALTEC Não Destrutivos, DealerUp – Sistemas para Concessionárias e Prefeitura de Bofete.</p></div>
+      <div class="insight-box"><span class="insight-num">03</span><h4>Cargos de destino</h4><p>Das <strong>4 mudanças</strong>, <strong>3 são novo emprego</strong> e <strong>1 é promoção</strong>: Analista de processos (Administração), Auxiliar de radiografia (Radiologia), Sales Development Representative (Administração) e Guarda municipal (Administração).</p></div>
     </div>
     <div class="insights-row">
-      <div class="insight-box"><span class="insight-num">04</span><h4>Presença no LinkedIn</h4><p><strong>572</strong> credenciais aparecem no LinkedIn, <strong>221</strong> delas viraram publicação no feed – cada uma levando o nome da instituição à rede profissional do egresso.</p></div>
+      <div class="insight-box"><span class="insight-num">04</span><h4>Presença no LinkedIn</h4><p><strong>842</strong> credenciais aparecem no LinkedIn, <strong>333</strong> delas viraram publicação no feed – cada uma levando o nome da instituição à rede profissional do egresso.</p></div>
       <div class="insight-box"><span class="insight-num">05</span><h4>Formação que mais expõe a marca</h4><p><strong>Bacharel em Administração</strong> é a formação que mais leva a marca ao LinkedIn – o maior curso da base também lidera em presença.</p></div>
-      <div class="insight-box"><span class="insight-num">06</span><h4>Conversão em publicações</h4><p>No conjunto, <strong>39%</strong> das credenciais no LinkedIn já viraram publicação no feed – taxa de amplificação de marca acima da observada no Conecta.</p></div>
+      <div class="insight-box"><span class="insight-num">06</span><h4>Conversão em publicações</h4><p>No conjunto, <strong>40%</strong> das credenciais no LinkedIn já viraram publicação no feed – taxa de amplificação de marca acima da observada no Conecta.</p></div>
     </div>
   </section>
 
   <!-- ==================== PROPOSTA · APRESENTAÇÃO ==================== -->
+  <!-- ==================== CAPA · APRESENTAÇÃO ==================== -->
+  <section class="hero chapter-cover" id="proposta-capa">
+    <div class="hero-grid-pattern"></div>
+    <div class="hero-content">
+      <span class="section-eyebrow">Proposta · Apresentação</span>
+      <h1>Currículos por competências, <span class="accent">tangíveis e verificáveis</span></h1>
+      <p class="hero-subtitle">O MEC exige que PPCs e currículos sejam construídos por competências. A POK tangibiliza e evidencia essa construção: cada competência prevista no currículo vira uma credencial verificável, emitida ao longo do percurso e comprovável por qualquer instituição ou empregador. A partir das credenciais, a POK também levanta dados por competência: empregabilidade dos portadores e exposição da marca da instituição.</p>
+    </div>
+  </section>
+
+  <!-- ==================== FRENTES DA PARCERIA ==================== -->
   <section id="proposta-apresentacao">
     <div class="section-header">
-      <span class="section-eyebrow">Proposta</span>
-      <h2 class="section-title">Apresentação</h2>
+      <span class="section-eyebrow">Proposta · Frentes</span>
+      <h2 class="section-title">Frentes da parceria</h2>
       <p class="section-intro">A proposta organiza a parceria entre POK e Vitru em seis frentes que acompanham toda a jornada acadêmica – do aluno entrante ao egresso, passando pela formação docente – e culminam no uso da credencial verificável como diploma digital validado pelo MEC.</p>
     </div>
 
     <div class="prop-grid">
-      <div class="insight-box"><span class="insight-num">01</span><h4>Trilhas Formativas para entrantes 2027</h4><p>Criação de <strong>trilhas formativas</strong> com <strong>microcredenciais intermediárias</strong> e <strong>certificado final</strong> para os alunos entrantes de 2027 da UNIASSELVI e da UniCesumar, reconhecendo as competências desenvolvidas ao longo de toda a graduação.</p></div>
-      <div class="insight-box"><span class="insight-num">02</span><h4>Diploma convertido em credencial verificável para egressos</h4><p>Conversão do diploma em <strong>credencial verificável</strong>, como canal de reconexão com os egressos e de retorno para cursos de <strong>educação continuada</strong>. Os <strong>primeiros 10.000 diplomas</strong> são convertidos gratuitamente; a partir daí, a Vitru passa a cobrar um valor pela conversão, mesmo que simbólico.</p></div>
+      <div class="insight-box"><span class="insight-num">01</span><h4>Trilhas Formativas para entrantes 2027</h4><p>Criação de <strong>trilhas formativas</strong> com <strong>microcredenciais intermediárias</strong> e <strong>certificado final</strong> para os alunos entrantes de 2027 da UNIASSELVI e da UniCesumar em todos os níveis e modalidades: <strong>cursos profissionalizantes e técnicos</strong>, <strong>graduação EAD e presencial</strong> e <strong>pós-graduação EAD, híbrida e presencial</strong>, reconhecendo as competências desenvolvidas ao longo de todo o curso.</p></div>
+      <div class="insight-box"><span class="insight-num">02</span><h4>Diploma convertido em credencial verificável para egressos</h4><p>Conversão do diploma em <strong>credencial verificável</strong>, como canal de reconexão com os egressos e de retorno para cursos de <strong>educação continuada</strong>. Os <strong>primeiros 20.000 diplomas</strong> são convertidos gratuitamente; a partir daí, a Vitru passa a cobrar um valor pela conversão, mesmo que simbólico.</p></div>
       <div class="insight-box"><span class="insight-num">03</span><h4>Certificação da formação docente</h4><p>Certificação das formações docentes da Vitru no modelo do <strong>Vitru Conecta</strong>: trilha com credenciais intermediárias por competência e certificado final ao concluir a formação.</p></div>
-      <div class="insight-box"><span class="insight-num">04</span><h4>Credencial verificável com valor de diploma digital</h4><p>Adoção da credencial verificável como <strong>diploma digital</strong> da Vitru, com o diploma <strong>validado pelo MEC</strong> incluído na própria credencial. Um documento, um fluxo e um fornecedor para registro acadêmico e comunicação de competências ao mercado.</p></div>
-      <div class="insight-box"><span class="insight-num">05</span><h4>Eventos e masterclasses em parceria</h4><p>Eventos e <strong>masterclasses periódicas</strong> realizados em parceria entre POK e Vitru, com temas como <strong>empregabilidade</strong>, <strong>internacionalização</strong> e <strong>desenvolvimento de competências</strong>.</p></div>
-      <div class="insight-box"><span class="insight-num">06</span><h4>Análise de dados de empregabilidade</h4><p><strong>Análises periódicas</strong> dos dados de empregabilidade de alunos e egressos a partir dos painéis do <strong>POK Score</strong>, com leituras por trilha, curso e competência.</p></div>
+      <div class="insight-box"><span class="insight-num">04</span><h4>Eventos e masterclasses em parceria</h4><p>Eventos e <strong>masterclasses periódicas</strong> realizados em parceria entre POK e Vitru, com temas como <strong>empregabilidade</strong>, <strong>internacionalização</strong> e <strong>desenvolvimento de competências</strong>.</p></div>
+      <div class="insight-box"><span class="insight-num">05</span><h4>Painéis de análise de dados de empregabilidade</h4><p><strong>Análises mensais</strong> dos dados de empregabilidade de alunos e egressos a partir dos painéis do <strong>POK Score</strong>, com leituras por trilha, curso e competência.</p></div>
+      <div class="insight-box"><span class="insight-num">06</span><h4>Credencial verificável com valor de diploma digital</h4><p>Adoção da credencial verificável como <strong>diploma digital</strong> da Vitru, com o diploma <strong>validado pelo MEC</strong> incluído na própria credencial. Um documento, um fluxo e um fornecedor para registro acadêmico e comunicação de competências ao mercado.</p></div>
     </div>
 
     <div class="prop-pok">
       <span class="prop-pok-eyebrow">Desenvolvimento funcionalidades POK</span>
       <div class="prop-pok-grid">
-        <div class="insight-box"><h4>Integração com LMSs</h4><p>Desenvolvimento da integração com os LMSs utilizados pela UNIASSELVI e pela UniCesumar, para que a emissão acompanhe automaticamente o percurso acadêmico.</p></div>
-        <div class="insight-box"><h4>Emissão via portais educacionais e WhatsApp</h4><p>Soluções com fluxos de emissão de credenciais nos portais do aluno e do egresso e pelo WhatsApp, a partir do CPF.</p></div>
-        <div class="insight-box"><h4>Login por CPF na carteira digital POK</h4><p>Acesso à carteira digital da POK através do CPF, garantindo que o portador mantenha suas credenciais mesmo após perder o e-mail institucional.</p></div>
+        <div class="insight-box"><h4>Integração com LMSs e AVAs</h4><p>Desenvolvimento da integração com os LMSs utilizados pela UNIASSELVI e pela UniCesumar, para que a emissão acompanhe automaticamente o percurso acadêmico.</p></div>
+        <div class="insight-box"><h4>Gadgets de emissão via portais educacionais e WhatsApp</h4><p>Soluções com fluxos de emissão de credenciais nos portais do aluno e do egresso e pelo WhatsApp, a partir do CPF.</p></div>
+        <div class="insight-box"><h4>Login por CPF na carteira digital POK customizada para Vitru</h4><p>Acesso à carteira digital da POK através do CPF, garantindo que o portador mantenha suas credenciais mesmo após perder o e-mail institucional.</p></div>
         <div class="insight-box"><h4>Conversor de diploma em credencial verificável</h4><p>Desenvolvimento do conversor que transforma diplomas digitais já emitidos em credenciais verificáveis, preservando o registro original.</p></div>
       </div>
     </div>
@@ -2929,7 +2933,7 @@
             Saiba mais o que é uma credencial verificável
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
           </a>
-          <span class="portal-offer">Os 10.000 primeiros egressos emitem grátis.</span>
+          <span class="portal-offer">Os 20.000 primeiros egressos emitem grátis.</span>
           <div class="gadget">
             <div class="gadget-head">
               <div class="gadget-icon" aria-hidden="true">
@@ -3024,7 +3028,7 @@
           </div>
 
           <div class="wa-msg" style="background: #FFF4B5;">
-            <p class="wa-msg-text" style="font-weight: 700;">⚡ Os 10.000 primeiros egressos emitem grátis</p>
+            <p class="wa-msg-text" style="font-weight: 700;">⚡ Os 20.000 primeiros egressos emitem grátis</p>
             <div class="wa-msg-time">09:42</div>
           </div>
         </div>
@@ -3095,7 +3099,7 @@
           </svg>
         </div>
         <div class="advantage-title">Modelo comercial escalável</div>
-        <p class="advantage-desc">Os 10.000 primeiros egressos emitem grátis. O restante a instituição pode vender a emissão, transformando o custo em receita.</p>
+        <p class="advantage-desc">Os 20.000 primeiros egressos emitem grátis. O restante a instituição pode vender a emissão, transformando o custo em receita.</p>
       </div>
 
       <div class="advantage-card">
@@ -3130,17 +3134,87 @@
     <div class="section-header">
       <span class="section-eyebrow">Investimento</span>
       <h2 class="section-title">Proposta Comercial</h2>
-      <p class="section-intro">Proposta única com cobertura completa: credenciais verificáveis para a jornada do estudante, CONECTA, Campanha de Egressos e Diploma Digital, reunidas em um único ecossistema de credenciais Vitru.</p>
+      <p class="section-intro">Proposta comercial para <strong>600.000 alunos anuais</strong>: <strong>Graduação EAD</strong> + <strong>Cursos Técnicos</strong> para <strong>UNIASSELVI e UniCesumar</strong>.</p>
+    </div>
+
+    <!-- Modelo de cobrança -->
+    <div class="volume-card">
+      <div class="volume-header">
+        <span class="section-eyebrow" style="margin-bottom:0;">Modelo de Cobrança – Por Créditos</span>
+      </div>
+      <p style="color:#000000; font-size:0.8rem; line-height:1.6; margin:0.4rem 0 1.4rem;"><strong>UNIASSELVI:</strong> a trilha anual tem 2 credenciais intermediárias (Verify) e 1 credencial final por aluno (NFT).<br><strong>UniCesumar:</strong> a trilha anual tem 4 credenciais intermediárias (Verify) e 1 credencial final por aluno (NFT).</p>
+      <div class="volume-grid">
+        <div class="volume-item">
+          <div class="volume-number">2.400.000</div>
+          <div class="volume-label">Créditos Verify<br>para badges intermediários</div>
+        </div>
+        <div class="volume-divider">×</div>
+        <div class="volume-item">
+          <div class="volume-number">R$ 0,50</div>
+          <div class="volume-label">por crédito</div>
+        </div>
+        <div class="volume-divider">=</div>
+        <div class="volume-item volume-total">
+          <div class="volume-number">R$ 1.200.000</div>
+          <div class="volume-label">credenciais intermediárias</div>
+        </div>
+      </div>
+      <div class="volume-grid">
+        <div class="volume-item">
+          <div class="volume-number">600.000</div>
+          <div class="volume-label">Créditos NFT<br>para certificado final</div>
+        </div>
+        <div class="volume-divider">×</div>
+        <div class="volume-item">
+          <div class="volume-number">R$ 3,50</div>
+          <div class="volume-label">por crédito</div>
+        </div>
+        <div class="volume-divider">=</div>
+        <div class="volume-item volume-total">
+          <div class="volume-number">R$ 2.100.000</div>
+          <div class="volume-label">credenciais anuais</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pacote de créditos -->
+    <div class="plans-grid plans-single" style="margin-top:0; margin-bottom:2.8rem;">
+      <div class="plan-card featured">
+        <div class="plan-header">
+          <div>
+            <div class="plan-name">Pacote Anual</div>
+            <div class="plan-title">Vitru – 600.000 alunos</div>
+          </div>
+          <div class="plan-credits">
+            <strong style="display:inline;">3.000.000</strong> créditos
+          </div>
+        </div>
+        <ul class="plan-details" style="margin-bottom:1.2rem;">
+          <li>2.400.000 credenciais intermediárias em Verify</li>
+          <li>600.000 credenciais anuais em NFT</li>
+        </ul>
+        <div class="plan-name" style="margin-bottom:0.2rem;">Incluído gratuitamente</div>
+        <ul class="plan-details">
+          <li>Certificação Vitru Conecta</li>
+          <li>Certificação demais trilhas de docentes</li>
+          <li>Campanha de egressos com 20.000 credenciais</li>
+          <li>Integração com LMSs e AVAs</li>
+          <li>Gadgets de emissão via portais educacionais e WhatsApp</li>
+          <li>Login por CPF na carteira digital POK customizada para Vitru</li>
+          <li>Conversor de diploma em credencial verificável</li>
+          <li>Onboarding e consultoria</li>
+          <li>Eventos e masterclasses regulares em parceria Vitru × POK</li>
+          <li>Painéis de análise de dados de empregabilidade, com periodicidade mensal</li>
+        </ul>
+        <div class="plan-price">
+          <div class="price-amount">R$ 3.300.000</div>
+        </div>
+      </div>
     </div>
 
     <!-- Proposta única · cobertura completa -->
     <div class="scope-options">
       <div class="scope-option featured" id="proposta-completa">
-        <div class="scope-option-header">
-          <div class="scope-option-heading">
-            <div class="scope-option-title-row"><span class="scope-option-title">Jornada do Estudante + CONECTA + Campanha Egressos do ano + Diploma Digital</span></div>
-          </div>
-        </div>
         <div class="scope-price-label">Tabela de preços</div>
         <table class="valor-tabela valor-tabela-grupo scope-price-table">
           <colgroup>
@@ -3175,7 +3249,6 @@
         </table>
       </div>
     </div>
-    <p class="tabela-nota" style="margin-top:1.2rem;">Valores de investimento serão adicionados após o alinhamento dos volumes de credenciais de cada frente.</p>
 
     <div class="payment-info">
       <div class="payment-grid">
@@ -3202,11 +3275,6 @@
             <span class="data-line">Agência: 0350 · Conta: 0011761-0</span>
           </p>
         </div>
-
-        <div class="payment-block">
-          <h4>Validade da Proposta</h4>
-          <p><strong>xx/xx/xxxx</strong></p>
-        </div>
       </div>
     </div>
   </section>
@@ -3215,7 +3283,6 @@
   <section id="contato" class="contact-section">
     <div class="contact-content">
       <div class="section-header">
-        <span class="section-eyebrow">10 · Comercial</span>
         <h2 class="contact-title">Fale Conosco</h2>
       </div>
 
